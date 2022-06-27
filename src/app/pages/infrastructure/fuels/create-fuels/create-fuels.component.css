@@ -1,0 +1,23 @@
+.formUser{
+    border: 1px solid #101010;
+    border-radius: 10px ;
+    padding: 10px;
+    width: 700px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    box-shadow: -30px 30px 20px rgb(0,0,0,0.3);
+    background-color: slategray;
+}
+
+p{
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: normal;
+}
+
+label{
+    font-style: italic;
+}

@@ -1,0 +1,53 @@
+<app-maintenance-navbar></app-maintenance-navbar>
+
+<form  [formGroup]="newUserForm" class="formUser"  (ngSubmit)="createUser();">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Nombres</label>
+        <input type="text" class="form-control" formControlName="firstName" placeholder="Nombres" >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Apellidos</label>
+        <input type="text" class="form-control" formControlName="lastName" placeholder="Apellidos">
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="form-group col-md-12">
+            <label for="inputAddress">Correo</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="@">
+        </div>
+      
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputAddress2">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="***">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="inputAddress2">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="inputAddress2" placeholder="***">
+            </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputState">Rol</label>
+        <select class="form-control" formControlName="rolesId">
+            <option value="">-- Seleccione un Rol --</option>
+            <option *ngFor="let roles of selectedRoles" [value]="roles.rolesId"> {{ roles.roleName }} </option>
+        </select>
+      </div>
+      
+      <div class="form-group col-md-4">
+        <label for="inputState">Status</label>
+        <select class="form-control" formControlName="statusId">
+            <option value="">-- Seleccione Status --</option>
+            <option *ngFor="let status of selectedStatus" [value]="status.statusId"> {{ status.statusName }} </option>
+        </select>
+      </div>
+    </div>
+   
+    <button type="submit" class="btn btn-primary btn-lg btn-block btn btn-info" >Guardar</button>
+  
+</form>

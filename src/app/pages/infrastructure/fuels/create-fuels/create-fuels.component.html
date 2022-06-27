@@ -1,0 +1,36 @@
+<app-maintenance-navbar></app-maintenance-navbar>
+<form  [formGroup]="newFuelForm" class="formUser"  (ngSubmit)="createFuel();">
+    <p>Nuevo Combustible</p>
+    <hr>
+   
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Tipo Combustible</label>
+        <input type="text" class="form-control" formControlName="firstName" placeholder="Nombres" >
+      </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Precio Costo</label>
+          <input type="text" class="form-control" formControlName="firstName" placeholder="Nombres" >
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Precio Público</label>
+          <input type="text" class="form-control" formControlName="lastName" placeholder="Apellidos">
+        </div>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <label for="inputState">Status</label>
+        <select class="form-control" formControlName="statusId">
+            <option value="">-- Seleccione Status --</option>
+            <option *ngFor="let status of selectedStatus" [value]="status.statusId"> {{ status.statusName }} </option>
+        </select>
+      </div>
+    
+   
+    <button type="submit" class="btn btn-primary btn-lg btn-block btn btn-info" >Guardar</button>
+  
+</form>

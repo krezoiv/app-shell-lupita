@@ -1,0 +1,69 @@
+<app-maintenance-navbar></app-maintenance-navbar>
+
+<form class="formUsers">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+    
+                    <input type="text"
+                            class="form-control"
+                            placeholder="Buscar Usuario..."/>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Usuarios</h4>
+                    <div class="table table-responsive">
+                        <table class="table table-border">
+                            <thead >
+                                <tr  class="trprincipal">
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Correo</th>
+                                    <th>Rol</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let users of users; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{users.firstName}}</td>
+                                    <td>{{ users.lastName }}</td>
+                                    <td>{{users.email}}</td>
+                                    <td>{{users.rolesId.roleName}}</td>
+                                    <td>{{users.statusId.statusName}}</td>
+
+                                    
+                                    <td>
+                                        <a  (click)="deleteUser();">
+                                            <i  class="fa-solid fa-pencil text-info" ></i>
+                                        </a>&nbsp;
+                                        <a (click)="deleteUser();">
+
+                                        <i  class="fa-solid fa-trash-can text-danger"></i>
+                                        </a>
+                                    </td>
+    
+                                </tr>
+                            </tbody>
+                        </table>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+</form>
