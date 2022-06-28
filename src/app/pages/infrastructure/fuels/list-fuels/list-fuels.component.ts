@@ -33,5 +33,27 @@ export class ListFuelsComponent implements OnInit {
           })
 }
 
+async updatePrice(){
+  const { value: formValues } = await Swal.fire({
+    title: 'Ingrese los Nuevos Precios',
+    html:
+      
+      '<a>Precio Costo</a>'+
+      '<input id="swal-input1" class="swal2-input">'+
+      '<a>Precio Público</a>'+
+      '<input id="swal-input2" class="swal2-input">',
+    focusConfirm: false,
+    preConfirm: () => {
+      return [
+        
+      ]
+    }
+  })
+  
+  if (formValues) {
+    Swal.fire(JSON.stringify(formValues))
+  }
+}
+
 
 }

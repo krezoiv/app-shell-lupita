@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Fuels, getFuels, newFuel } from '../interfaces/infrastructure.interface';
+import { Fuels, getFuels, newFuel, updatePriceFuel_I } from '../interfaces/infrastructure.interface';
 
 
 
@@ -41,4 +41,6 @@ export class InfrastructuresService {
             return this.http.post<newFuel[]>(`${api_url}/fuels`, fuel, this.headers);
 
   }
+
+ 
 }

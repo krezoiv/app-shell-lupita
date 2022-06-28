@@ -16,3 +16,8 @@ export interface newFuel {
 export interface Fuels {
     fuels:[],
 }
+
+export interface updatePriceFuel_I{
+    costPrice : number,
+    salePrice : number,
+}

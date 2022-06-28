@@ -41,13 +41,17 @@
                                 <td>{{fl.statusId.statusName}}</td>
                                                     
                                 <td>
-                                    <a  >
+                                    <a>
                                         <i  class="fa-solid fa-pencil text-info" ></i>
-                                    </a>&nbsp;
-                                    <a >
-
-                                    <i  class="fa-solid fa-trash-can text-danger"></i>
                                     </a>
+                                    
+                                    <a>&nbsp;
+                                        <i class="fa-solid fa-dollar-sign text-orange" (click)="updatePrice();"></i>
+                                    </a>
+                                    <a>&nbsp;
+                                        <i  class="fa-solid fa-trash-can text-danger" ></i>
+                                    </a>
+                                    
                                 </td>
 
                             </tr>
