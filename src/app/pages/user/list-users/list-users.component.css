@@ -1,15 +1,11 @@
 
-
-.formUsers{
+.table{
     border: 1px solid #101010;
     border-radius: 10px ;
-    padding: 10px;
-    width: 1500px;
-    position: absolute;
-    top: 15%;
-    left: 8%;
+    border-collapse: separate;
     box-shadow: -30px 30px 20px rgb(0,0,0,0.3);
-    background-color: slategray;
+    
+   
 }
 
 .fa-solid {
@@ -20,12 +16,14 @@
     background-color:teal;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size : 18px;
-    color: white
+    color: white;
+    border-collapse: separate;
 }
 
 td{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-style: italic;
     font-size: 18px;
-
+   
 }
+

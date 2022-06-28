@@ -54,7 +54,7 @@ export class CreateUsersComponent implements OnInit {
   
 
   createUser(){
-    const{firstName, lastName} =this.newUserForm.value
+    const{firstName, lastName} =this.newUserForm.value;
     this.userService.createUser(this.newUserForm.value)
         .subscribe( data => {
           Swal.fire('Exitoso', `${firstName} ${lastName} creado correctamente`)

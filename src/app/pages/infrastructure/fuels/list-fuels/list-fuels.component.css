@@ -1,0 +1,27 @@
+
+
+.table{
+    border: 1px solid #101010;
+    border-radius: 10px ;
+    
+    box-shadow: -30px 30px 20px rgb(0,0,0,0.3);
+   
+}
+
+.fa-solid {
+    cursor: pointer;
+}
+
+.trprincipal {
+    background-color:teal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size : 18px;
+    color: white
+}
+
+td{
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    font-size: 18px;
+
+}

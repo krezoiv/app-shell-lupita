@@ -2,6 +2,7 @@
 
 export interface getFuels {
     fuels:[];
+    status:[];
 }
 
 export interface newFuel {
@@ -10,4 +11,8 @@ export interface newFuel {
     costPrice : number,
     salePrice : number,
     statusId : string,
+}
+
+export interface Fuels {
+    fuels:[],
 }

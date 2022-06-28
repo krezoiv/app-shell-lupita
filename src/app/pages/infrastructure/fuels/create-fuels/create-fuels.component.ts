@@ -20,7 +20,7 @@ export class CreateFuelsComponent implements OnInit {
     fuelName: [ '', Validators.required],
     costPrice: [ '', Validators.required],
     salePrice: [ '', Validators.required],
-    StatusId: [ '', Validators.required],
+    statusId: [ '', Validators.required],
     
   })
 
@@ -39,12 +39,19 @@ export class CreateFuelsComponent implements OnInit {
     this.userService.getStatus()
         .subscribe(({status}) => {
           this.selectedStatus = status
-          console.log(status)
         });
   };
 
   createFuel(){
-    
-  }
+    const { fuelName } = this.newFuelForm.value;    
 
-}
+    this.infrastructureService.createFuel(this.newFuelForm.value)
+          .subscribe( data => {
+            Swal.fire('Exitoso', `${fuelName} creado correctamente`);
+            this.newFuelForm.reset();
+          }, err => {
+            Swal.fire('Error', err.error.msg, 'error')
+          });
+  };
+
+};

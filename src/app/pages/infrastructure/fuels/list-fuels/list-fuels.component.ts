@@ -24,11 +24,14 @@ export class ListFuelsComponent implements OnInit {
   }
 
   getFuels(){
+    
     this.infrastructureService.getFuels()
-    .subscribe(({fuels}) => {
+          .subscribe(({fuels}) => {
             this.fuels = fuels
             console.log(fuels)
-          });
-  };
+           
+          })
+}
+
 
 }
