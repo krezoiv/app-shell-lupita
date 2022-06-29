@@ -114,3 +114,71 @@
     </ul>
   </nav>
   <!-- /.navbar -->
+
+
+  <!-- tabla de lista de combustibles-->
+
+  <div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text"
+                        class="form-control"
+                        placeholder="Buscar Usuario..."/>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Combustibles</h4>
+                <div class="table table-responsive">
+                    <table class="table table-border">
+                        <thead >
+                            <tr  class="trprincipal">
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Precio Costo</th>
+                                <th>Precio Público</th>
+                                <th>Status</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let fl of fuels; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{fl.fuelName}}</td>
+                                <td>{{fl.costPrice}}</td>
+                                <td>{{fl.salePrice}}</td>
+                                <td>{{fl.statusId.statusName}}</td>
+                                                    
+                                <td>
+                                    <a>
+                                        <i  class="fa-solid fa-pencil text-info" ></i>
+                                    </a>
+                                    
+                                    <a>&nbsp;
+                                        <button mat-fab color="primary" (click)="openDialog()">
+                                            <mat-icon>delete</mat-icon>
+                                          </button>
+                                    </a>
+                                    <a>&nbsp;
+                                        <i  class="fa-solid fa-trash-can text-danger" ></i>
+                                    </a>
+                                    
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

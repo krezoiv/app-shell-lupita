@@ -18,6 +18,14 @@ import { CreateTanksComponent } from './infrastructure/tanks/create-tanks/create
 import { ListTanksComponent } from './infrastructure/tanks/list-tanks/list-tanks.component';
 import { CreateFuelsComponent } from './infrastructure/fuels/create-fuels/create-fuels.component';
 import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { UpdatePriceComponent } from './dialogs/update-price/update-price.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -37,13 +45,23 @@ import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels
     CreateTanksComponent,
     ListTanksComponent,
     CreateFuelsComponent,
-    ListFuelsComponent
+    ListFuelsComponent,
+    UpdatePriceComponent
   ],
   imports: [
     CommonModule,
     SharedModule, 
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule
+
+
   ],
   exports : [
     DashboardComponent,

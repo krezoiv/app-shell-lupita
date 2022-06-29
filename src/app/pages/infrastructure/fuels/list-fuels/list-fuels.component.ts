@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Fuels } from 'src/app/models/infrastructure.model';
 import { Status } from 'src/app/models/status.model'; 
+import { UpdatePriceComponent } from 'src/app/pages/dialogs/update-price/update-price.component';
 import { InfrastructuresService } from 'src/app/services/infrastructures.service';
 import Swal from 'sweetalert2';
 
@@ -13,9 +18,15 @@ export class ListFuelsComponent implements OnInit {
 
   public fuels : Fuels[]=[];
   public statusFuel : Status[]=[];
+  public columns : string[] =['fuelName', 'costPrice', 'salePrice', 'statusId', 'accions'];
+  
+
+  @ViewChild(MatPaginator) paginator! : MatPaginator;
+  @ViewChild(MatSort) sort! : MatSort
 
   constructor(
-    private infrastructureService : InfrastructuresService
+    private infrastructureService : InfrastructuresService,
+    private dialog : MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -27,9 +38,7 @@ export class ListFuelsComponent implements OnInit {
     
     this.infrastructureService.getFuels()
           .subscribe(({fuels}) => {
-            this.fuels = fuels
-            console.log(fuels)
-           
+           this.fuels = fuels         
           })
 }
 
@@ -56,4 +65,22 @@ async updatePrice(){
 }
 
 
+openDialog() {
+  this.dialog.open(UpdatePriceComponent, {
+    width: '30%',
+   
+  });
 }
+
+editPrice( fl : any){
+  this.dialog.open(UpdatePriceComponent, {
+   width: '30px',
+   
+  })
+}
+
+
+}
+
+
+

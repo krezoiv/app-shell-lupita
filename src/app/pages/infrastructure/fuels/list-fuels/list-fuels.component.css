@@ -1,27 +1,25 @@
 
 
-.table{
-    border: 1px solid #101010;
-    border-radius: 10px ;
-    
-    box-shadow: -30px 30px 20px rgb(0,0,0,0.3);
-   
+table{
+  width: 100%;
 }
+
+
 
 .fa-solid {
     cursor: pointer;
 }
 
-.trprincipal {
-    background-color:teal;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size : 18px;
+th {
+    background-color: blueviolet;
+    font-family: 'Courier New', Courier, monospace;
+    font-size : 20px;
     color: white
 }
 
 td{
-    font-family: 'Courier New', Courier, monospace;
-    font-style: italic;
-    font-size: 18px;
-
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: italic;
 }
+
+
