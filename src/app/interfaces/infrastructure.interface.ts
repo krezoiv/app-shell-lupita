@@ -13,11 +13,12 @@ export interface newFuel {
     statusId : string,
 }
 
-export interface Fuels {
+export interface Fuels_I {
     fuels:[],
 }
 
 export interface updatePriceFuel_I{
+    fuelId : string,
     costPrice : number,
     salePrice : number,
 }

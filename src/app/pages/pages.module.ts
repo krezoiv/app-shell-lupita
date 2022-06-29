@@ -21,7 +21,7 @@ import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { UpdatePriceComponent } from './dialogs/update-price/update-price.component';
+import { UpdatePriceComponent } from './dialogs/fuels/update-price/update-price.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

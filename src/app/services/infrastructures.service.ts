@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Fuels, getFuels, newFuel, updatePriceFuel_I } from '../interfaces/infrastructure.interface';
+import { Fuels_I, getFuels, newFuel, updatePriceFuel_I } from '../interfaces/infrastructure.interface';
+import { Fuels } from '../models/infrastructure.model';
+//import { Fuelss } from '../models/infrastructure.model';
 
 
 
@@ -32,15 +34,20 @@ export class InfrastructuresService {
   }
 
   getFuels()  {
-           return this.http.get<Fuels>(`${api_url}/fuels`, this.headers);
+           return this.http.get<Fuels_I>(`${api_url}/fuels`, this.headers);
 
   }
 
-  createFuel(fuel : Fuels) 
+  createFuel(fuel : Fuels_I) 
         : Observable<newFuel[]>{
             return this.http.post<newFuel[]>(`${api_url}/fuels`, fuel, this.headers);
 
   }
 
+  updatePriceFuel(fuel:Fuels ) {
+    
+    return this.http.put(`${api_url}/fuels/updatePrices/`+fuel.fuelId,fuel, this.headers);
+  
+  }
  
 }

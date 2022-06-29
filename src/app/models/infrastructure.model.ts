@@ -8,7 +8,7 @@ export class Fuels {
         public costPrice : number,
         public salePrice : number,
         public statusId : Status,
-        public fuelIs? : string
+        public fuelId? : string
       
     ){}
 }

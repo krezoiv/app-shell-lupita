@@ -1,16 +1,17 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { updatePriceFuel_I } from 'src/app/interfaces/infrastructure.interface';
 import { Fuels } from 'src/app/models/infrastructure.model';
-import { Status } from 'src/app/models/status.model'; 
-import { UpdatePriceComponent } from 'src/app/pages/dialogs/update-price/update-price.component';
+import { Status } from 'src/app/models/status.model';
+import { UpdatePriceComponent } from 'src/app/pages/dialogs/fuels/update-price/update-price.component';
 import { InfrastructuresService } from 'src/app/services/infrastructures.service';
 import Swal from 'sweetalert2';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-fuels',
@@ -19,45 +20,43 @@ import {MatDialogModule} from '@angular/material/dialog';
 })
 export class ListFuelsComponent implements OnInit {
 
-  public fuels : Fuels[]=[];
-  public statusFuel : Status[]=[];
-  public columns : string[] =['fuelName', 'costPrice', 'salePrice', 'statusId', 'accions'];
-  
+  public fuels: Fuels[] = [];
+  public statusFuel: Status[] = [];
+  public columns: string[] = ['fuelName', 'costPrice', 'salePrice', 'statusId', 'accions'];
 
-  @ViewChild(MatPaginator) paginator! : MatPaginator;
-  @ViewChild(MatSort) sort! : MatSort
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort
 
   constructor(
 
-    private infrastructureService : InfrastructuresService,
-    private dialog : MatDialog
+    private infrastructureService: InfrastructuresService,
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    
+
     this.getFuels();
   }
 
-  getFuels(){
-    
+  getFuels() {
+
     this.infrastructureService.getFuels()
-          .subscribe(({fuels}) => {
-           this.fuels = fuels         
-          })
-}
+      .subscribe(({ fuels }) => {
+        this.fuels = fuels
+      })
+  }
 
 
-openDialog(element : Fuels) {
-  this.dialog.open(UpdatePriceComponent, {
-    width: '30%',
-    data: element
-    
-   
-   
-  });
+  openDialog(element: Fuels) {
+    this.dialog.open(UpdatePriceComponent, {
+      width: '30%',
+      data: element
 
+    })
 
-}
+  }
 
 }
 
