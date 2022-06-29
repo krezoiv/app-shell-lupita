@@ -22,3 +22,7 @@ export interface updatePriceFuel_I{
     costPrice : number,
     salePrice : number,
 }
+
+export interface deleteFuel_I {
+    fuelId : string
+}

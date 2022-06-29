@@ -26,6 +26,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { DeleteFuelDialogComponent } from './dialogs/fuels/delete-fuel-dialog/delete-fuel-dialog.component';
+import { UpdateFuelDialogComponent } from './dialogs/fuels/update-fuel-dialog/update-fuel-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -46,7 +49,9 @@ import { MatTableModule } from '@angular/material/table';
     ListTanksComponent,
     CreateFuelsComponent,
     ListFuelsComponent,
-    UpdatePriceComponent
+    UpdatePriceComponent,
+    DeleteFuelDialogComponent,
+    UpdateFuelDialogComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +64,8 @@ import { MatTableModule } from '@angular/material/table';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
 
 
   ],

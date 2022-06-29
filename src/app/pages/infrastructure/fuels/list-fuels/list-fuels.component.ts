@@ -12,6 +12,8 @@ import { InfrastructuresService } from 'src/app/services/infrastructures.service
 import Swal from 'sweetalert2';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DeleteFuelDialogComponent } from 'src/app/pages/dialogs/fuels/delete-fuel-dialog/delete-fuel-dialog.component';
+import { UpdateFuelDialogComponent } from 'src/app/pages/dialogs/fuels/update-fuel-dialog/update-fuel-dialog.component';
 
 @Component({
   selector: 'app-list-fuels',
@@ -58,6 +60,23 @@ export class ListFuelsComponent implements OnInit {
 
   }
 
+  openDialogDelete(element : Fuels){
+    this.dialog.open(DeleteFuelDialogComponent,{
+      width:'30%',
+      data: element
+    
+    })
+
+  }
+
+  openDialogUpdate(element : Fuels){
+    this.dialog.open(UpdateFuelDialogComponent,{
+      width:'30%',
+      data: element
+    
+    })
+  }
+   
 }
 
 

@@ -1,5 +1,6 @@
+
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Fuels } from 'src/app/models/infrastructure.model';
@@ -7,21 +8,20 @@ import { InfrastructuresService } from 'src/app/services/infrastructures.service
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-update-price',
-  templateUrl: './update-price.component.html',
-  styleUrls: ['./update-price.component.css']
+  selector: 'app-delete-fuel-dialog',
+  templateUrl: './delete-fuel-dialog.component.html',
+  styleUrls: ['./delete-fuel-dialog.component.css']
 })
-export class UpdatePriceComponent implements OnInit {
+export class DeleteFuelDialogComponent implements OnInit {
 
-  //public fuelSelected!: Fuels
-  updatePriceForm!: FormGroup;
+  deleteFuelForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private infrastructureService: InfrastructuresService,
     @Inject(MAT_DIALOG_DATA) public fuels: Fuels,
-    private dialogRef: MatDialogRef<UpdatePriceComponent>,
+    private dialogRef: MatDialogRef<DeleteFuelDialogComponent>,
 
   ) {
 
@@ -29,7 +29,7 @@ export class UpdatePriceComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.updatePriceForm = this.fb.group({
+    this.deleteFuelForm = this.fb.group({
 
       fuelName: ['', Validators.required],
       costPrice: ['', Validators.required],
@@ -37,28 +37,29 @@ export class UpdatePriceComponent implements OnInit {
     })
 
     if (this.fuels) {
-      this.updatePriceForm.controls['fuelName'].setValue(this.fuels.fuelName);
-      this.updatePriceForm.controls['costPrice'].setValue(this.fuels.costPrice);
-      this.updatePriceForm.controls['salePrice'].setValue(this.fuels.salePrice);
+      this.deleteFuelForm.controls['fuelName'].setValue(this.fuels.fuelName );
+      this.deleteFuelForm.controls['fuelName'].setValue(this.fuels.fuelName);
+      this.deleteFuelForm.controls['costPrice'].setValue(this.fuels.costPrice);
+      this.deleteFuelForm.controls['salePrice'].setValue(this.fuels.salePrice);
     }
   }
 
 
-  updatePrice() {
-    const { fuelName } = this.updatePriceForm.value;
+  deleteFuel() {
+    const { fuelName } = this.deleteFuelForm.value;
 
     const data = {
-      ...this.updatePriceForm.value,
+     
       fuelId: this.fuels.fuelId
     }
- 
-    this.infrastructureService.updatePriceFuel
+
+   this.infrastructureService.deleteFuel
       (data).subscribe(resp => {
-          
+        
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() =>
           this.router.navigate(['/dashboard/infrastructure/fuels/listFuels']));
-        this.updatePriceForm.reset();
-        Swal.fire('Actualizado', `${fuelName} Actualizado Correctamente`, 'success');
+        this.deleteFuelForm.reset();
+        Swal.fire('Eliminado', `${fuelName} Eliminado Correctamente`, 'success');
         this.dialogRef.close('actualizado');
 
 
@@ -67,7 +68,5 @@ export class UpdatePriceComponent implements OnInit {
       })
 
   }
-
-
 
 }

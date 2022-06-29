@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Fuels_I, getFuels, newFuel, updatePriceFuel_I } from '../interfaces/infrastructure.interface';
+import { deleteFuel_I, Fuels_I, getFuels, newFuel, updatePriceFuel_I } from '../interfaces/infrastructure.interface';
 import { Fuels } from '../models/infrastructure.model';
 //import { Fuelss } from '../models/infrastructure.model';
 
@@ -44,10 +44,21 @@ export class InfrastructuresService {
 
   }
 
-  updatePriceFuel(fuel:Fuels ) {
-    
-    return this.http.put(`${api_url}/fuels/updatePrices/`+fuel.fuelId,fuel, this.headers);
+  updatePriceFuel(fuel:Fuels ): Observable<Fuels[]> {
+    return this.http.put<Fuels[]>(`${api_url}/fuels/updatePrices/${fuel.fuelId}`,fuel, this.headers);
   
   }
+
+  deleteFuel(fuel:Fuels ): Observable<Fuels[]> {
+    return this.http.put<Fuels[]>(`${api_url}/fuels/delete/${fuel.fuelId}`,fuel, this.headers);
+  
+  
+  }
+
+  updateFuel(fuel: Fuels):Observable<Fuels[]> {
+    return this.http.put<Fuels[]>(`${api_url}/fuels/${fuel.fuelId}`,fuel, this.headers);
+  }
+
+  
  
 }
