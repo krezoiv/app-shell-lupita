@@ -1,15 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
+import { StatusService } from 'src/app/services/functions/status.service';
+import Swal from 'sweetalert2';
 
+import {Status} from '../../../../models/status.model'
 @Component({
   selector: 'app-create-island',
   templateUrl: './create-island.component.html',
   styleUrls: ['./create-island.component.css']
 })
 export class CreateIslandComponent implements OnInit {
+selectedStatus : Status[]=[];
 
-  constructor() { }
+islandForm : FormGroup = this.fb.group({
+  islandNumber: [ '', Validators.required],
+  statusId: [ '', Validators.required],
+
+})
+
+  constructor(
+    
+    private fb: FormBuilder,
+    private statusService : StatusService
+  ) { }
 
   ngOnInit(): void {
+    this.getStatus();
   }
+
+
+  getStatus(){
+    this.statusService.getStatus()
+        .subscribe(({status}) => {
+          this.selectedStatus = status
+          console.log(status)
+        });
+  };
 
 }

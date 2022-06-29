@@ -1,3 +1,4 @@
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -42,7 +43,7 @@ export class UpdateFuelDialogComponent implements OnInit {
       this.updateFuelForm.controls['fuelName'].setValue(this.fuels.fuelName);
       this.updateFuelForm.controls['costPrice'].setValue(this.fuels.costPrice);
       this.updateFuelForm.controls['salePrice'].setValue(this.fuels.salePrice);
-      this.updateFuelForm.controls['statusId'].setValue(this.fuels.statusId);
+      this.updateFuelForm.controls['statusId'].setValue(this.fuels.statusId?.statusName);
     }
 
     this.getStatus();

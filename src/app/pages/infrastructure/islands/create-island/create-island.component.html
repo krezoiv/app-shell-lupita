@@ -1,2 +1,39 @@
 <app-maintenance-navbar></app-maintenance-navbar>
-<p>create-island works!</p>
+
+<div>
+    <form  [formGroup]="islandForm" class="mat-elevation-z8">
+
+        <h3><mat-icon>done_all</mat-icon> &nbsp; Crear Nueva Isla</h3>
+        <hr>
+       
+        <div>
+            <mat-form-field appearance="legacy">
+                <mat-label>Código de Isla</mat-label>
+                <input matInput  placeholder="Código de Isla...">
+                <mat-icon matSuffix>format_list_numbered_rtl</mat-icon>
+                <mat-hint>Ingrese código de Isla</mat-hint>
+              </mat-form-field> 
+        </div><br>
+
+          <div>
+            <mat-form-field appearance="legacy">
+                <mat-label>Select</mat-label>
+                <mat-icon matSuffix>accessible</mat-icon>
+                <mat-select  class="form-control" formControlName="statusId">
+                  <option value="">-- Seleccione Status --</option>
+            <option *ngFor="let status of selectedStatus" [value]="status.statusId"> {{ status.statusName }} </option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+
+          <div mat-dialog-actions >
+            <button mat-raised-button color="warn" mat-dialog-close style="float:right">
+                <mat-icon>close</mat-icon>&nbsp; Cerrar</button>&nbsp;
+            <button mat-raised-button color="primary" style="float:right">
+                <mat-icon>save</mat-icon> &nbsp; Guardar</button>
+        </div>
+    
+    <br>
+        
+    </form>
+</div>
