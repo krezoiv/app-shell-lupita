@@ -1,13 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { DialogRef } from '@angular/cdk/dialog';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { updatePriceFuel_I } from 'src/app/interfaces/infrastructure.interface';
 import { Fuels } from 'src/app/models/infrastructure.model';
 import { Status } from 'src/app/models/status.model'; 
 import { UpdatePriceComponent } from 'src/app/pages/dialogs/update-price/update-price.component';
 import { InfrastructuresService } from 'src/app/services/infrastructures.service';
 import Swal from 'sweetalert2';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-list-fuels',
@@ -25,12 +28,13 @@ export class ListFuelsComponent implements OnInit {
   @ViewChild(MatSort) sort! : MatSort
 
   constructor(
+
     private infrastructureService : InfrastructuresService,
     private dialog : MatDialog
   ) { }
 
   ngOnInit(): void {
-
+    
     this.getFuels();
   }
 
@@ -42,43 +46,18 @@ export class ListFuelsComponent implements OnInit {
           })
 }
 
-async updatePrice(){
-  const { value: formValues } = await Swal.fire({
-    title: 'Ingrese los Nuevos Precios',
-    html:
-      
-      '<a>Precio Costo</a>'+
-      '<input id="swal-input1" class="swal2-input">'+
-      '<a>Precio Público</a>'+
-      '<input id="swal-input2" class="swal2-input">',
-    focusConfirm: false,
-    preConfirm: () => {
-      return [
-        
-      ]
-    }
-  })
-  
-  if (formValues) {
-    Swal.fire(JSON.stringify(formValues))
-  }
-}
 
-
-openDialog() {
+openDialog(element : Fuels) {
   this.dialog.open(UpdatePriceComponent, {
     width: '30%',
+    data: element
+    
+   
    
   });
-}
 
-editPrice( fl : any){
-  this.dialog.open(UpdatePriceComponent, {
-   width: '30px',
-   
-  })
-}
 
+}
 
 }
 

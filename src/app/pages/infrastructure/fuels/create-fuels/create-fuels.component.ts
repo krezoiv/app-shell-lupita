@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Status } from 'src/app/models/status.model';
 import { InfrastructuresService } from 'src/app/services/infrastructures.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-fuels',
@@ -25,6 +26,7 @@ export class CreateFuelsComponent implements OnInit {
   })
 
   constructor(
+    private router : Router,
     private fb: FormBuilder,
     private infrastructureService : InfrastructuresService,
     private userService : UsersService
@@ -49,6 +51,7 @@ export class CreateFuelsComponent implements OnInit {
           .subscribe( data => {
             Swal.fire('Exitoso', `${fuelName} creado correctamente`);
             this.newFuelForm.reset();
+            this.router.navigateByUrl('/dashboard/infrastructure/fuels/listFuels');
           }, err => {
             Swal.fire('Error', err.error.msg, 'error')
           });

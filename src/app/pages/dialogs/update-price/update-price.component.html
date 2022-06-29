@@ -1,33 +1,43 @@
-<h3 mat-dialog-title >Cambio de Precios</h3>
+<h3 mat-dialog-title ><mat-icon>autorenew</mat-icon>&nbsp; "Cambio de Precios"</h3>
 <hr>
 
 <div mat-dialog-content>
 
     <form [formGroup]="updatePriceForm">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Tipo de Combustible:</mat-label>
+            <input  id="fName"formControlName="fuelName" matInput readonly="">
+            <mat-icon matSuffix> local_gas_station</mat-icon>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
         <mat-form-field appearance="outline">     
             <mat-label>Precio Costo</mat-label>
             <input formControlName="costPrice" matInput placeholder="Precio Costo Q..">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon matSuffix>attach_money</mat-icon>
             <mat-hint>Ingrese precio nuevo</mat-hint>      
-        </mat-form-field>
+        </mat-form-field><br>
     
         
         <mat-form-field appearance="outline">
             <mat-label>Precio Público</mat-label>
             <input  formControlName="salePrice" matInput placeholder="Precio Público Q..">
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-icon matSuffix>attach_money</mat-icon>
             <mat-hint>Ingrese precio nuevo</mat-hint>
         </mat-form-field>
     
  
     
     <div mat-dialog-actions [align]="'end'">
-        <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
-        <button mat-raised-button color="primary" (click)="updatePrice();">Guardar</button>
+        <button mat-raised-button color="warn" mat-dialog-close>
+            <mat-icon>close</mat-icon>&nbsp; Cerrar</button>
+        <button mat-raised-button color="primary" (click)="updatePrice();">
+            <mat-icon>save</mat-icon> &nbsp; Guardar</button>
     
     </div>
 
-
+<br><br><br>
     </form>
 
 </div>

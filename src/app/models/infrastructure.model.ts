@@ -5,8 +5,8 @@ export class Fuels {
     constructor(
        
         public fuelName : string,
-        public costPrice : string,
-        public salePrice : string,
+        public costPrice : number,
+        public salePrice : number,
         public statusId : Status,
         public fuelIs? : string
       
