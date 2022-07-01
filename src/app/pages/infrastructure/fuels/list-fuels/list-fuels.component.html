@@ -13,7 +13,7 @@
             <!-- Nombre de combustible -->
             <ng-container matColumnDef="fuelName">
               <th mat-header-cell *matHeaderCellDef> Combustible </th>
-              <td mat-cell *matCellDef="let element"> {{element.fuelName}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.fuelName | titlecase}} </td>
             </ng-container>
 
             <!-- Precio costo -->
@@ -31,7 +31,7 @@
               <!-- Position Status -->
             <ng-container matColumnDef="statusId">
                 <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td mat-cell *matCellDef="let element"> {{element.statusId.statusName}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.statusId.statusName | titlecase}} </td>
               </ng-container>
 
                 <!-- Position Status -->

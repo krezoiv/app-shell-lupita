@@ -34,7 +34,7 @@ export class ListFuelsComponent implements OnInit {
 
     private infrastructureService: InfrastructuresService,
     private dialog: MatDialog,
-    private router: Router,
+    //private router: Router,
   ) { }
 
   ngOnInit(): void {

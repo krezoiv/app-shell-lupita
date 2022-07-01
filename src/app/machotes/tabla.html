@@ -185,5 +185,65 @@
 
 <!--
 
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Island } from 'src/app/models/fuelstation/island.models';
+import { IslandsService } from 'src/app/services/fuelstation/islands.service';
+
+@Component({
+  selector: 'app-update-island',
+  templateUrl: './update-island.component.html',
+  styleUrls: ['./update-island.component.css']
+})
+export class UpdateIslandComponent implements OnInit {
+
+  updateIslandForm! : FormGroup;
+  public islands : Island[]=[];
+
+ 
+  
+  constructor(
+    private fb : FormBuilder,
+    private router : Router,
+    private islandService : IslandsService,
+
+    @Inject(MAT_DIALOG_DATA) public island : Island,
+    private dialogRef : MatDialogRef<UpdateIslandComponent>
+
+  ) { }
+
+  ngOnInit(): void {
+
+    this.updateIslandForm = this.fb.group({
+      islandNumber : ['', Validators.required]
+    })
+
+    if(this.island) {
+      this.updateIslandForm.controls['islandNumber'].setValue(this.island.islandNumber);
+    }
+
+    this.getIslands();
+   
+  }
+
+  getIslands(){
+    this.islandService.getIslands()
+        .subscribe(({ island }) => {
+          this.islands = island;
+          console.log(island)
+        }) 
+  }
+
+  updateIsland(){
+
+    const data = {
+      ...this.updateIsland
+
+    }
+  }
+
+}
 
 -->
