@@ -21,7 +21,7 @@
               <!-- Position Status -->
             <ng-container matColumnDef="islandId">
                 <th mat-header-cell *matHeaderCellDef> Isla </th>
-                <td mat-cell *matCellDef="let element"> {{element.islandId.IslandCode | titlecase}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.islandId.islandNumber | titlecase}} </td>
               </ng-container>
 
               <ng-container matColumnDef="statusId">
