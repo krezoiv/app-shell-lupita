@@ -4,7 +4,7 @@ export class Island {
 
     constructor(
 
-        public islandNumber? : number,
+        public islandNumber? : string,
         public statusId? : Status,
         public islandId? : string
     ){}

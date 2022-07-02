@@ -31,6 +31,8 @@ import { UpdateFuelDialogComponent } from './dialogs/fuels/update-fuel-dialog/up
 import { MatSelectModule } from '@angular/material/select';
 import { UpdateIslandComponent } from './dialogs/fuels/update-island/update-island.component';
 import { DeleteIslandComponent } from './dialogs/fuels/delete-island/delete-island.component';
+import { DeleteDispenserDialogComponent } from './dialogs/dispensers/delete-dispenser-dialog/delete-dispenser-dialog.component';
+import { UpdateDispenserDialogComponent } from './dialogs/dispensers/update-dispenser-dialog/update-dispenser-dialog.component';
 
 
 
@@ -55,7 +57,9 @@ import { DeleteIslandComponent } from './dialogs/fuels/delete-island/delete-isla
     DeleteFuelDialogComponent,
     UpdateFuelDialogComponent,
     UpdateIslandComponent,
-    DeleteIslandComponent
+    DeleteIslandComponent,
+    DeleteDispenserDialogComponent,
+    UpdateDispenserDialogComponent
   ],
   imports: [
     CommonModule,

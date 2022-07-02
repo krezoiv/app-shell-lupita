@@ -4,7 +4,7 @@ import { Island } from "./island.models";
 export class Dispensers {
 
     constructor(
-        public dispenserCode? : number,
+        public dispenserCode? : string,
         public islandId? : Island,
         public statusId? : Status
 
