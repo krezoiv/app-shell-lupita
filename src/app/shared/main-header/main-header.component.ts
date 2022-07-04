@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-header.component.css']
 })
 export class MainHeaderComponent implements OnInit {
-
+  title ="Shell Lupita"
+  opened = false;
   constructor() { }
 
   ngOnInit(): void {

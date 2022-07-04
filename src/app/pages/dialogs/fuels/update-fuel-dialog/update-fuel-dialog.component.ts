@@ -18,6 +18,7 @@ export class UpdateFuelDialogComponent implements OnInit {
   updateFuelForm! : FormGroup;
   selectedStatus : Status[]=[];
   public fuel: Fuels[] = [];
+
   constructor(
     private fb : FormBuilder,
     private router : Router,
@@ -79,8 +80,9 @@ export class UpdateFuelDialogComponent implements OnInit {
         this.updateFuelForm.reset();
         Swal.fire('Actualizado', `${fuelName} Actualizado Correctamente`, 'success');
         this.dialogRef.close('actualizado');
-      }
-      )}
+      },err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })}
 
   
 }

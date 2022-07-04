@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Island } from 'src/app/models/fuelstation/island.models'
 import { Status } from 'src/app/models/status.model';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
+import { StatusService } from 'src/app/services/functions/status.service';
 
 import Swal from 'sweetalert2';
 @Component({
@@ -22,6 +23,7 @@ export class UpdateIslandComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private islandService: IslandsService,
+    private statusService : StatusService,
 
     @Inject(MAT_DIALOG_DATA) public islands: Island,
     private dialogRef: MatDialogRef<UpdateIslandComponent>
@@ -31,18 +33,24 @@ export class UpdateIslandComponent implements OnInit {
   ngOnInit(): void {
 
     this.updateIslandForm = this.fb.group({
-      islandNumber: ['', Validators.required]
+      islandNumber: ['', Validators.required],
+      statusId :  ['', Validators.required],
 
     })
 
     if (this.islands) {
       this.updateIslandForm.controls['islandNumber'].setValue(this.islands.islandNumber);
-
     }
 
-
+    this.getStatus();
   }
 
+  getStatus(){
+    this.statusService.getStatus()
+        .subscribe(({status}) => {
+          this.selectedStatus = status
+        })
+  }
 
   updateIsland() {
     const data = {

@@ -33,6 +33,8 @@ import { UpdateIslandComponent } from './dialogs/fuels/update-island/update-isla
 import { DeleteIslandComponent } from './dialogs/fuels/delete-island/delete-island.component';
 import { DeleteDispenserDialogComponent } from './dialogs/dispensers/delete-dispenser-dialog/delete-dispenser-dialog.component';
 import { UpdateDispenserDialogComponent } from './dialogs/dispensers/update-dispenser-dialog/update-dispenser-dialog.component';
+import { UpdateTankDialogComponent } from './dialogs/tanks/update-tank-dialog/update-tank-dialog.component';
+import { DeleteTankDialogComponent } from './dialogs/tanks/delete-tank-dialog/delete-tank-dialog.component';
 
 
 
@@ -59,7 +61,11 @@ import { UpdateDispenserDialogComponent } from './dialogs/dispensers/update-disp
     UpdateIslandComponent,
     DeleteIslandComponent,
     DeleteDispenserDialogComponent,
-    UpdateDispenserDialogComponent
+    UpdateDispenserDialogComponent,
+    UpdateTankDialogComponent,
+    DeleteTankDialogComponent
+  
+    
   ],
   imports: [
     CommonModule,

@@ -14,6 +14,20 @@
             <mat-hint></mat-hint>
         </mat-form-field>
 
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="statusId" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
+                  {{status.statusName | titlecase}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="updateIslandForm.hasError('required')">Please choose an animal</mat-error>
+              <mat-hint>{{updateIslandForm.value?.sound}}</mat-hint>
+            </mat-form-field>
+          </div>
+
 
         <div mat-dialog-actions [align]="'end'">
             <button mat-raised-button color="warn" mat-dialog-close>
@@ -23,6 +37,8 @@
                 <mat-icon>save</mat-icon> &nbsp; Guardar
             </button>
         </div>
+
+        
 
         <br><br><br>
     </form>

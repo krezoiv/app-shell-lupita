@@ -33,6 +33,10 @@ getIslands(){
   return this.http.get<Island_I>(`${api_url}/islands`, this.headers);
 }
 
+getIslandsActive(){
+  return this.http.get<Island_I>(`${api_url}/islands/active`, this.headers);
+}
+
 createIsland(island: Island): Observable<Island[]>{
   return this.http.post<Island[]>(`${api_url}/islands`, island, this.headers);
 }

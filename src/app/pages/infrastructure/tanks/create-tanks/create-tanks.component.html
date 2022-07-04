@@ -1,2 +1,91 @@
+
 <app-maintenance-navbar></app-maintenance-navbar>
-<p>create-tanks works!</p>
+
+<div>
+  <form [formGroup]="newTankForm" class="mat-elevation-z8">
+
+    <h3>
+        <mat-icon> local_gas_station</mat-icon> &nbsp; Crear Nuevo Tanque
+    </h3>
+    <hr>
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Nombre de Tanque</mat-label>
+        <input type="text" formControlName="tankName"matInput placeholder="Nombre de Tanque...">
+        <mat-icon matSuffix>local_gas_station</mat-icon>
+        <mat-hint>Ingrese nombre de Tanque</mat-hint>
+      </mat-form-field>
+    </div><br>
+
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Capacidad de Almacenaje</mat-label>
+        <input type="number" formControlName="maxStorage"matInput placeholder="Ingrese capidad de tanque...">
+        <mat-icon  matSuffix>opacity</mat-icon>
+        <mat-hint>Ingrese capacidad de almacenaje del tanque</mat-hint>
+      </mat-form-field>
+    </div><br>
+
+    <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Almacenaje</mat-label>
+        <input type="number" formControlName="gallonsStoraged"matInput placeholder="Cantidad que contiene tanque...">
+        <mat-icon  matSuffix>save_alt</mat-icon>
+        <mat-hint>Ingrese lmacenaje del tanque</mat-hint>
+      </mat-form-field>
+    </div><br>
+
+      
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td>
+       
+        <mat-form-field appearance="fill">
+          <mat-label>Combustible</mat-label>
+          <mat-select formControlName="fuelId" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let fuels of selectedFuel" [value]="fuels.fuelId">
+              {{fuels.fuelName | titlecase}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="newTankForm.hasError('required')">Por favor escoja una opción</mat-error>
+        <mat-hint>{{newTankForm.value?.sound}}</mat-hint>
+      </mat-form-field>
+    
+      </td>
+      <td>
+       
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="statusId" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
+              {{status.statusName | titlecase}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="newTankForm.hasError('required')">Por favor escoja una opción</mat-error>
+        <mat-hint>{{newTankForm.value?.sound}}</mat-hint>
+      </mat-form-field>
+        
+
+
+      </td>
+    </tr></table>
+      
+
+
+    
+    <div mat-dialog-actions>
+      <button mat-raised-button color="warn" mat-dialog-close >
+        <mat-icon>close</mat-icon>&nbsp; Cerrar
+      </button>&nbsp;
+      <button (click)="createFuelTank();" mat-raised-button color="primary" >
+        <mat-icon>save</mat-icon>&nbsp; Guardar
+      </button>
+    </div>
+
+    <br>
+
+  </form>
+</div>

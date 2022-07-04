@@ -32,7 +32,7 @@ const routes: Routes =[
     {path : 'infrastructure/island/newIsland', component : CreateIslandComponent},
     {path : 'infrastructure/island/listIsland', component : ListIslandComponent},
     {path : 'infrastructure/disenpensers/newDispenser', component : CreateDispensersComponent},
-    {path : 'infrastructure/island/listDispensers', component : ListDispensersComponent},
+    {path : 'infrastructure/dispensers/listDispensers', component : ListDispensersComponent},
     {path : 'infrastructure/tanks/newTank', component : CreateTanksComponent},
     {path : 'infrastructure/tanks/listTanks', component : ListTanksComponent},
     {path : 'infrastructure/fuels/newFuel', component : CreateFuelsComponent},

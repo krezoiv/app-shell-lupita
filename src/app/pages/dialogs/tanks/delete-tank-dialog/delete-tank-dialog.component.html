@@ -1,0 +1,28 @@
+<h3 mat-dialog-title ><mat-icon>delete_forever</mat-icon>&nbsp; "Eliminar Combustible"</h3>
+<hr>
+
+<div mat-dialog-content>
+
+    <form [formGroup]="deleteFuelTankForm">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Nombre de Tanque:</mat-label>
+            <input  id="fName"formControlName="tankName" matInput readonly="">
+            <mat-icon matSuffix> local_gas_station</mat-icon>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+        
+    
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="primary" mat-dialog-close>
+            <mat-icon>close</mat-icon>&nbsp; Cerrar</button>
+        <button mat-raised-button color="warn" (click)="deleteFuelTank();">
+            <mat-icon>delete_forever</mat-icon> &nbsp; Eliminar</button>
+    
+    </div>
+
+<br><br><br>
+    </form>
+
+</div>

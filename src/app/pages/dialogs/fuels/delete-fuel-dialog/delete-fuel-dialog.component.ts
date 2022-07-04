@@ -23,9 +23,7 @@ export class DeleteFuelDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public fuels: Fuels,
     private dialogRef: MatDialogRef<DeleteFuelDialogComponent>,
 
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
 
@@ -37,7 +35,7 @@ export class DeleteFuelDialogComponent implements OnInit {
     })
 
     if (this.fuels) {
-      this.deleteFuelForm.controls['fuelName'].setValue(this.fuels.fuelName );
+      this.deleteFuelForm.controls['fuelName'].setValue(this.fuels.fuelName);
       this.deleteFuelForm.controls['fuelName'].setValue(this.fuels.fuelName);
       this.deleteFuelForm.controls['costPrice'].setValue(this.fuels.costPrice);
       this.deleteFuelForm.controls['salePrice'].setValue(this.fuels.salePrice);
@@ -49,24 +47,24 @@ export class DeleteFuelDialogComponent implements OnInit {
     const { fuelName } = this.deleteFuelForm.value;
 
     const data = {
-     
+
       fuelId: this.fuels.fuelId
     }
 
-   this.infrastructureService.deleteFuel
+    this.infrastructureService.deleteFuel
       (data).subscribe(resp => {
-        
+
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() =>
-          this.router.navigate(['/dashboard/infrastructure/fuels/listFuels']));
+        this.router.navigate(['/dashboard/infrastructure/fuels/listFuels']));
         this.deleteFuelForm.reset();
         Swal.fire('Eliminado', `${fuelName} Eliminado Correctamente`, 'success');
-        this.dialogRef.close('actualizado');
+        this.dialogRef.close('Eliminado');
 
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
-      })
+      });
 
-  }
+  };
 
-}
+};

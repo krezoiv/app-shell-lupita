@@ -1,0 +1,23 @@
+mat-sidenav-container {
+    height: calc(205vh - 115vh);
+}
+
+mat-sidenav {
+    width: 200px;
+    background-color: #212F3C;
+
+}
+
+mat-list{
+    text-decoration: white;
+   
+}
+
+a{
+    color: white;
+}
+
+mat-toolbar {
+    background-color: #212F3C ;
+    color: white;
+}

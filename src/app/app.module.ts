@@ -5,11 +5,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { DialogModule } from '@angular/cdk/dialog';
 import {MatInputModule  } from '@angular/material/input'
 import { MatTableModule } from '@angular/material/table'
+import{ MatListModule} from '@angular/material/list'
+import { MatMenuModule} from '@angular/material/menu';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +45,12 @@ import { PagesModule } from './pages/pages.module';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule
+    
+    
 
 
 

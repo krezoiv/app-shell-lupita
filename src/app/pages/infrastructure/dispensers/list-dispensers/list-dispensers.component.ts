@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Dispensers } from 'src/app/models/fuelstation/dispensers.interface';
+import { Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { Island } from 'src/app/models/fuelstation/island.models';
 import { Status } from 'src/app/models/status.model';
 import { DeleteDispenserDialogComponent } from 'src/app/pages/dialogs/dispensers/delete-dispenser-dialog/delete-dispenser-dialog.component';

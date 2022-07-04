@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dispensers_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
-import { Dispensers } from 'src/app/models/fuelstation/dispensers.interface';
+import { Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
 
 const api_url = environment.api_url;
@@ -34,5 +34,14 @@ export class DispensersService {
 
   createDispenser(dispenser : Dispensers) : Observable<Dispensers[]>{
     return this.http.post<Dispensers[]>(`${api_url}/dispensers`, dispenser, this.headers);
+  }
+
+
+  deleteDispenser(dispenser: Dispensers): Observable<Dispensers[]>{
+    return this.http.put<Dispensers[]>(`${api_url}/dispensers/delete/${dispenser.dispenserId}`,dispenser, this.headers);
+  }
+
+  updateDispenser(dispenser : Dispensers): Observable<Dispensers[]>{
+    return this.http.put<Dispensers[]>(`${api_url}/dispensers/${dispenser.dispenserId}`,dispenser, this.headers);
   }
 }

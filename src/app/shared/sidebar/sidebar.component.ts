@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  title = "Sell Lupita";
+  opened = false;
 
   constructor(
     private  authService : AuthService

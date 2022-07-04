@@ -11,6 +11,7 @@ h3 {
 input{
     font-size:200%;
     text-align: center;
+    text-transform: capitalize;
 }
 
 mat-label{
