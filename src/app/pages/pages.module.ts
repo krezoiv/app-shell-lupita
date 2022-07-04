@@ -35,6 +35,10 @@ import { DeleteDispenserDialogComponent } from './dialogs/dispensers/delete-disp
 import { UpdateDispenserDialogComponent } from './dialogs/dispensers/update-dispenser-dialog/update-dispenser-dialog.component';
 import { UpdateTankDialogComponent } from './dialogs/tanks/update-tank-dialog/update-tank-dialog.component';
 import { DeleteTankDialogComponent } from './dialogs/tanks/delete-tank-dialog/delete-tank-dialog.component';
+import { CreateHoseComponent } from './infrastructure/hoses/create-hose/create-hose.component';
+import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.component';
+import { UpdateHosesComponent } from './dialogs/hoses/update-hoses/update-hoses.component';
+import { DeleteHosesComponent } from './dialogs/hoses/delete-hoses/delete-hoses.component';
 
 
 
@@ -63,8 +67,12 @@ import { DeleteTankDialogComponent } from './dialogs/tanks/delete-tank-dialog/de
     DeleteDispenserDialogComponent,
     UpdateDispenserDialogComponent,
     UpdateTankDialogComponent,
-    DeleteTankDialogComponent
-  
+    DeleteTankDialogComponent,
+    CreateHoseComponent,
+    ListHoseComponent,
+    UpdateHosesComponent,
+    DeleteHosesComponent,
+   
     
   ],
   imports: [

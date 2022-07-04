@@ -31,18 +31,17 @@ export class ListIslandComponent implements OnInit {
     this.islandService.getIslands()
       .subscribe(({ island }) => {
         this.islands = island
-        console.log(island)
-      })
-  }
+      });
+  };
 
   openDialogUpdate(element: Island) {
     this.dialog.open(UpdateIslandComponent, {
       width: '30%',
       data: element
 
-    })
+    });
 
-  }
+  };
 
 
   openDialogDelete(element: Island) {
@@ -50,7 +49,7 @@ export class ListIslandComponent implements OnInit {
       width: '30%',
       data: element
 
-    })
+    });
 
-  }
+  };
 }

@@ -33,32 +33,37 @@ export class InfrastructuresService {
     }
   }
 
-  getFuels()  {
-           return this.http.get<Fuels_I>(`${api_url}/fuels`, this.headers);
+  getFuels() {
+    return this.http.get<Fuels_I>(`${api_url}/fuels`, this.headers);
+
+  };
+
+  getFuelsActive() {
+    return this.http.get<Fuels_I>(`${api_url}/fuels/active`, this.headers);
 
   }
 
-  createFuel(fuel : Fuels_I) 
-        : Observable<newFuel[]>{
-            return this.http.post<newFuel[]>(`${api_url}/fuels`, fuel, this.headers);
+  createFuel(fuel: Fuels_I)
+    : Observable<newFuel[]> {
+    return this.http.post<newFuel[]>(`${api_url}/fuels`, fuel, this.headers);
 
   }
 
-  updatePriceFuel(fuel:Fuels ): Observable<Fuels[]> {
-    return this.http.put<Fuels[]>(`${api_url}/fuels/updatePrices/${fuel.fuelId}`,fuel, this.headers);
-  
+  updatePriceFuel(fuel: Fuels): Observable<Fuels[]> {
+    return this.http.put<Fuels[]>(`${api_url}/fuels/updatePrices/${fuel.fuelId}`, fuel, this.headers);
+
   }
 
-  deleteFuel(fuel:Fuels ): Observable<Fuels[]> {
-    return this.http.put<Fuels[]>(`${api_url}/fuels/delete/${fuel.fuelId}`,fuel, this.headers);
-  
-  
+  deleteFuel(fuel: Fuels): Observable<Fuels[]> {
+    return this.http.put<Fuels[]>(`${api_url}/fuels/delete/${fuel.fuelId}`, fuel, this.headers);
+
+
   }
 
-  updateFuel(fuel: Fuels):Observable<Fuels[]> {
-    return this.http.put<Fuels[]>(`${api_url}/fuels/${fuel.fuelId}`,fuel, this.headers);
+  updateFuel(fuel: Fuels): Observable<Fuels[]> {
+    return this.http.put<Fuels[]>(`${api_url}/fuels/${fuel.fuelId}`, fuel, this.headers);
   }
 
-  
- 
+
+
 }

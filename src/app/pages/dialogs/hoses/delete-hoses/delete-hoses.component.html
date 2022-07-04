@@ -1,0 +1,28 @@
+<h3 mat-dialog-title ><mat-icon>delete_forever</mat-icon>&nbsp; "Eliminar Combustible"</h3>
+<hr>
+
+<div mat-dialog-content>
+
+    <form [formGroup]="deleteHoseForm">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Color de Manguera:</mat-label>
+            <input  id="fName"formControlName="hoseColor" matInput readonly="">
+            <mat-icon matSuffix> local_gas_station</mat-icon>
+            <mat-hint></mat-hint>
+          </mat-form-field>
+
+        
+    
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="primary" mat-dialog-close>
+            <mat-icon>close</mat-icon>&nbsp; Cerrar</button>
+        <button mat-raised-button color="warn" (click)="deleteHose();">
+            <mat-icon>delete_forever</mat-icon> &nbsp; Eliminar</button>
+    
+    </div>
+
+<br><br><br>
+    </form>
+
+</div>

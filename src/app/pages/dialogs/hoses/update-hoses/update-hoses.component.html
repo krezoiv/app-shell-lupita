@@ -1,0 +1,49 @@
+<h3 mat-dialog-title ><mat-icon>sync</mat-icon>&nbsp; "Editar Combustible"</h3>
+<hr>
+
+<div mat-dialog-content>
+
+    <form [formGroup]="updateHoseForm">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Color de Manguera:</mat-label>
+            <input  id="fName"formControlName="hoseColor" matInput>
+            <mat-icon matSuffix> local_gas_station</mat-icon>
+            <mat-hint>Ingrese color de manguera</mat-hint>
+          </mat-form-field><br><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Combustible</mat-label>
+            <mat-select formControlName="fuelId" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let fuels of selectedFuels" [value]="fuels.fuelId">
+                {{fuels.fuelName | titlecase}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+            <mat-hint>{{updateHoseForm.value?.sound}}</mat-hint>
+          </mat-form-field>
+ 
+        <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="statusId" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
+                {{status.statusName | titlecase}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="updateHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+            <mat-hint>{{updateHoseForm.value?.sound}}</mat-hint>
+          </mat-form-field>
+    
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialog-close>
+            <mat-icon>close</mat-icon>&nbsp; Cerrar</button>
+        <button mat-raised-button color="primary" (click)="updateHose();">
+            <mat-icon>save</mat-icon> &nbsp; Guardar</button>
+    </div>
+
+<br><br><br>
+    </form>
+
+</div>

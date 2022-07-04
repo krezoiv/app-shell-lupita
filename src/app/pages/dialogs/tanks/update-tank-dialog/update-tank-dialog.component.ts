@@ -49,17 +49,17 @@ export class UpdateTankDialogComponent implements OnInit {
       this.updateFuelTankForm.controls['statusId'].setValue(this.fuelTank.statusId);
     }
     this.getStatus();
-    this.getFuels();
+    this.getFuelsActive();
   }
 
-  getFuels() {
+  getFuelsActive() {
 
-    this.infrastructureService.getFuels()
+    this.infrastructureService.getFuelsActive()
       .subscribe(({ fuels }) => {
         this.selectedFuel = fuels
-      })
+      });
 
-    }
+    };
 
     getStatus(){
       this.statusService.getStatus()

@@ -17,6 +17,8 @@ import { CreateTanksComponent } from './infrastructure/tanks/create-tanks/create
 import { ListTanksComponent } from './infrastructure/tanks/list-tanks/list-tanks.component';
 import { CreateFuelsComponent } from './infrastructure/fuels/create-fuels/create-fuels.component';
 import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels.component';
+import { CreateHoseComponent } from './infrastructure/hoses/create-hose/create-hose.component';
+import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.component';
 
 
 const routes: Routes =[
@@ -37,6 +39,10 @@ const routes: Routes =[
     {path : 'infrastructure/tanks/listTanks', component : ListTanksComponent},
     {path : 'infrastructure/fuels/newFuel', component : CreateFuelsComponent},
     {path : 'infrastructure/fuels/listFuels', component : ListFuelsComponent},
+    {path : 'infrastructure/hoses/newHoses', component : CreateHoseComponent},
+    {path : 'infrastructure/hoses/listHoses', component : ListHoseComponent},
+    
+
 
 
   ]},

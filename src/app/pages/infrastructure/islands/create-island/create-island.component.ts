@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
 import { StatusService } from 'src/app/services/functions/status.service';
 import Swal from 'sweetalert2';
+import { Status } from '../../../../models/status.model';
 
-import { Status } from '../../../../models/status.model'
 @Component({
   selector: 'app-create-island',
   templateUrl: './create-island.component.html',
@@ -51,6 +51,6 @@ export class CreateIslandComponent implements OnInit {
       Swal.fire('Error', err.error.msg, 'error')
     });
   
-  }
+  };
 
-}
+};

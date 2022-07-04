@@ -149,10 +149,16 @@
 
   <button mat-button [matMenuTriggerFor]="infrastructure">Infraestructura</button>
   <mat-menu #infrastructure="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="hoses"><mat-icon> directions</mat-icon><a>Mangueras</a></button>
     <button mat-menu-item [matMenuTriggerFor]="combustibles"><mat-icon> local_gas_station</mat-icon><a>Combustibles</a></button>
     <button mat-menu-item [matMenuTriggerFor]="dispenesers"><mat-icon> ev_station</mat-icon><a>Bombas</a></button>
     <button mat-menu-item [matMenuTriggerFor]="islands">	<mat-icon> place</mat-icon><a>Islas</a></button>
     <button mat-menu-item [matMenuTriggerFor]="tanks"><mat-icon>storage</mat-icon><a>Tanques</a></button>
+  </mat-menu>
+
+  <mat-menu #hoses="matMenu">
+    <button mat-menu-item routerLink="/dashboard/infrastructure/hoses/newHoses"><mat-icon>add_circle</mat-icon><a>Crear</a></button>
+    <button mat-menu-item routerLink="/dashboard/infrastructure/hoses/listHoses"><mat-icon> format_list_numbered</mat-icon><a>Listar</a></button>
   </mat-menu>
   
   <mat-menu #combustibles="matMenu">
