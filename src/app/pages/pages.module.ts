@@ -39,6 +39,7 @@ import { CreateHoseComponent } from './infrastructure/hoses/create-hose/create-h
 import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.component';
 import { UpdateHosesComponent } from './dialogs/hoses/update-hoses/update-hoses.component';
 import { DeleteHosesComponent } from './dialogs/hoses/delete-hoses/delete-hoses.component';
+import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignments-hoses/assignments-hoses.component';
 
 
 
@@ -72,6 +73,7 @@ import { DeleteHosesComponent } from './dialogs/hoses/delete-hoses/delete-hoses.
     ListHoseComponent,
     UpdateHosesComponent,
     DeleteHosesComponent,
+    AssignmentsHosesComponent,
    
     
   ],

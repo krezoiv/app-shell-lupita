@@ -19,6 +19,7 @@ import { CreateFuelsComponent } from './infrastructure/fuels/create-fuels/create
 import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels.component';
 import { CreateHoseComponent } from './infrastructure/hoses/create-hose/create-hose.component';
 import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.component';
+import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignments-hoses/assignments-hoses.component';
 
 
 const routes: Routes =[
@@ -41,8 +42,7 @@ const routes: Routes =[
     {path : 'infrastructure/fuels/listFuels', component : ListFuelsComponent},
     {path : 'infrastructure/hoses/newHoses', component : CreateHoseComponent},
     {path : 'infrastructure/hoses/listHoses', component : ListHoseComponent},
-    
-
+    {path : 'infrastructure/assignmentsHoses', component : AssignmentsHosesComponent},
 
 
   ]},
