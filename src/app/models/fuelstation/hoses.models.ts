@@ -11,3 +11,12 @@ export class Hoses {
         public hoseId? : string
     ){}
 }
+
+export class SideDispenser {
+
+    constructor(
+        public sideName? : string,
+        public sideId? : string
+    ){}
+
+}

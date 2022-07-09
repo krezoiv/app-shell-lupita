@@ -13,6 +13,9 @@ import {MatInputModule  } from '@angular/material/input'
 import { MatTableModule } from '@angular/material/table'
 import{ MatListModule} from '@angular/material/list'
 import { MatMenuModule} from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -48,12 +51,11 @@ import { PagesModule } from './pages/pages.module';
     MatSelectModule,
     MatSidenavModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule,
+    MatTabsModule,
+    ScrollingModule
     
-    
-
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]

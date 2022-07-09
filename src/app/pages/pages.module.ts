@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UpdatePriceComponent } from './dialogs/fuels/update-price/update-price.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { DeleteFuelDialogComponent } from './dialogs/fuels/delete-fuel-dialog/delete-fuel-dialog.component';
@@ -40,6 +40,10 @@ import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.co
 import { UpdateHosesComponent } from './dialogs/hoses/update-hoses/update-hoses.component';
 import { DeleteHosesComponent } from './dialogs/hoses/delete-hoses/delete-hoses.component';
 import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignments-hoses/assignments-hoses.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 
@@ -89,7 +93,10 @@ import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignmen
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatTabsModule,
+    ScrollingModule
 
 
   ],
