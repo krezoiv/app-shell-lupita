@@ -34,7 +34,7 @@ getHoses(){
 };
 
 getHosesActive(){
-  return this.http.get<Hoses_I>(`${api_url}/hoses/actve`, this.headers);
+  return this.http.get<Hoses_I>(`${api_url}/hoses/active`, this.headers);
 };
 
 

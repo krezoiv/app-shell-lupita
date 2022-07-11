@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dispensers_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
 
@@ -44,4 +45,19 @@ export class DispensersService {
   updateDispenser(dispenser : Dispensers): Observable<Dispensers[]>{
     return this.http.put<Dispensers[]>(`${api_url}/dispensers/${dispenser.dispenserId}`,dispenser, this.headers);
   }
+
+
+  createAssignment(assignment : Assignment) : Observable<Assignment[]>{
+    return this.http.post<Assignment[]>(`${api_url}/assignment`, assignment, this.headers);
+  }
+
+  getIdAssignment(assignment : Assignment) : Observable<Assignment[]>{
+    return this.http.get<Assignment[]>(`${api_url}/assignment`, this.headers);
+  }
+
+  creatAssignmentHose(assignmentHose : AssignmentHose): Observable<Assignment[]>{
+    return this.http.post<Assignment[]>(`${api_url}/assignmentHose`,assignmentHose, this.headers);
+  }
+
+  
 }

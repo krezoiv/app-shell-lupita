@@ -1,20 +1,33 @@
 <body>
   <app-maintenance-navbar></app-maintenance-navbar>
 
-  <form  id="formulario" [formGroup]="assignmentForm" class="mat-elevation-z8">
+  <form  id="formulario" [formGroup]="assignmentHoseForm" class="mat-elevation-z8">
     <h3>
       <mat-icon> local_gas_station</mat-icon> &nbsp; Asignaciones
     </h3>
+    <h4>Seleccione Bomba :</h4>
+    <mat-form-field appearance="fill" id="bomba">
+      <mat-label>Bomba</mat-label>
+      <mat-select formControlName="dispenserId" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let dispenser of selectedDispenser" [value]="dispenser.dispenserId">
+          {{dispenser.dispenserCode | titlecase}} 
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+      <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
+    </mat-form-field>&nbsp;
+    <button mat-raised-button color="accent" (click)="createAssignment();">Asignar</button>
+    <button mat-raised-button color="accent" (click)="getIdAssignment();">Modificar</button>
     <hr>
 
-   
-
-    
     <mat-tab-group backgroundColor="primary" [color]="color">
 
       <mat-tab  label="Lado A">
-        <div style="overflow-y: scroll;height:300px; width:550px">
+        
         <h1>Lado A</h1>
+        <hr>
+          <div style="overflow-y: scroll;height:300px; width:550px">
         <h4>Manguera 1:</h4>
         
         <table class="example-full-width" cellspacing="0">
@@ -26,11 +39,11 @@
                 <mat-select formControlName="hosesId" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                    {{hoses.hoseColor | titlecase}}
+                    {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>
             
@@ -46,13 +59,13 @@
                     {{status.statusName | titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>&nbsp; &nbsp; &nbsp;
 
             <td>
-             <mat-icon id="check" (click) ="save();">check_circle_outline</mat-icon>
+             <mat-icon id="check" (click) ="createAssignmentHose();">check_circle_outline</mat-icon>
             </td>
 
           </tr>
@@ -69,11 +82,11 @@
                 <mat-select formControlName="hosesId2" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                    {{hoses.hoseColor | titlecase}}
+                    {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>
             
@@ -89,8 +102,8 @@
                     {{status.statusName | titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>&nbsp; &nbsp; &nbsp;
 
@@ -113,11 +126,11 @@
                 <mat-select formControlName="hosesId3" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                    {{hoses.hoseColor | titlecase}}
+                    {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>
             
@@ -133,8 +146,8 @@
                     {{status.statusName | titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>&nbsp; &nbsp; &nbsp;
 
@@ -157,11 +170,11 @@
                 <mat-select formControlName="hosesId4" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                    {{hoses.hoseColor | titlecase}}
+                    {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>
             
@@ -177,8 +190,8 @@
                     {{status.statusName | titlecase}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
               </mat-form-field>
             </td>&nbsp; &nbsp; &nbsp;
 
@@ -194,8 +207,10 @@
 
       <mat-tab label="Lado B">
        
-        <div style="overflow-y: scroll;height:300px; width:550px">
-          <h1>Lado A</h1>
+        
+          <h1>Lado B</h1>
+          <hr>
+          <div style="overflow-y: scroll;height:300px; width:550px">
           <h4>Manguera 1:</h4>
           
           <table class="example-full-width" cellspacing="0">
@@ -204,14 +219,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId" required>
+                  <mat-select formControlName="hosesId5" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                      {{hoses.hoseColor | titlecase}}
+                      {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>
               
@@ -221,14 +236,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId" required>
+                  <mat-select formControlName="statusId5" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>&nbsp; &nbsp; &nbsp;
   
@@ -247,14 +262,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId2" required>
+                  <mat-select formControlName="hosesId6" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                      {{hoses.hoseColor | titlecase}}
+                      {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>
               
@@ -264,14 +279,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId2" required>
+                  <mat-select formControlName="statusId6" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>&nbsp; &nbsp; &nbsp;
   
@@ -291,14 +306,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId3" required>
+                  <mat-select formControlName="hosesId7" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                      {{hoses.hoseColor | titlecase}}
+                      {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>
               
@@ -308,14 +323,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId3" required>
+                  <mat-select formControlName="statusId7" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>&nbsp; &nbsp; &nbsp;
   
@@ -335,14 +350,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId4" required>
+                  <mat-select formControlName="hosesId8" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                      {{hoses.hoseColor | titlecase}}
+                      {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>
               
@@ -352,14 +367,14 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId4" required>
+                  <mat-select formControlName="statusId8" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="assignmentForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentForm.value?.sound}}</mat-hint>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
                 </mat-form-field>
               </td>&nbsp; &nbsp; &nbsp;
   
@@ -373,13 +388,6 @@
         
       </mat-tab>
     </mat-tab-group>
-
-
-   
-  
-
-
   </form>
-
-
 </body>
+<app-footer></app-footer>

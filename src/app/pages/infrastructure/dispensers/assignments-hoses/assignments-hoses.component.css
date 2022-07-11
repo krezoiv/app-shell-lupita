@@ -11,6 +11,10 @@ form{
 
 }
 
+h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
 h3 {
     font-size:30px;
     text-align: center;
@@ -36,8 +40,10 @@ mat-hint{
 
 mat-form-field{
     width: 100%;
-      
-    
+        
+}
+#bomba {
+    width: 50%;
 }
 
 h3 {
@@ -68,7 +74,8 @@ mat-hint{
     width: 70px;
     color: blueviolet;
     cursor: pointer;
-  
-   
+ 
 }
+
+
 
