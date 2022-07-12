@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hoses, SideDispenser } from 'src/app/models/fuelstation/hoses.models';
@@ -19,72 +19,49 @@ import { Assignment } from 'src/app/models/fuelstation/assignment.model';
 })
 export class AssignmentsHosesComponent implements OnInit {
 
-color= 'accent'
- 
-public sideA2 = '';
-public sdeB ='';
-  selectedStatus : Status[]=[]; 
-  selectedHose : Hoses[] =[];
-  selectedSideA : SideDispenser[] =[];
-  selectedSideB : SideDispenser[] =[];
-  selectedDispenser : Dispensers[]=[];
-  selectedassignments : Assignment[]=[];
- 
-  public columns : string[]=['sideA', 'sideB']
+  color = 'accent'
+  buttonDisable: boolean = true;
+  buttonDisable2: boolean = true;
+  buttonDisable3: boolean = true;
+  buttonDisable4: boolean = true;
+  buttonDisable5: boolean = true;
+  buttonDisable6: boolean = true;
+  buttonDisable7: boolean = true;
+  buttonDisable8: boolean = true;
 
-  assignmentForm : FormGroup = this.fb2.group({
-    dispenser : ['', Validators.required],
+  selectedStatus: Status[] = [];
+  selectedHose: Hoses[] = [];
+  public SelectedsideA: SideDispenser[] = [];
+  selectedSideB: SideDispenser[] = [];
+  selectedDispenser: Dispensers[] = [];
+  public assignements: Assignment[] = [];
+
+  public columns: string[] = ['sideA', 'sideB']
+
+  assignmentForm: FormGroup = this.fb2.group({
+    dispenser: ['', Validators.required],
   })
 
-  assignmentHoseForm : FormGroup = this.fb.group({
-    hosesId : [''],
-    statusId : ['', Validators.required],
-    position : ['1', Validators.required],
-
-    hosesId2 : [''],
-    statusId2 : ['', Validators.required],
-    position2 : ['2', Validators.required],
-
-    hosesId3 : [''],
-    statusId3 : [''],
-    position3 : ['3', Validators.required],
-
-    hosesId4 : [''],
-    statusId4 : ['', Validators.required],
-    position4 : ['4', Validators.required],
-
-    hosesId5 : [''],
-    statusId5 : ['', Validators.required],
-    position5 : ['1', Validators.required],
-
-    hosesId6 : [''],
-    statusId6 : ['', Validators.required],
-    position6 : ['2', Validators.required],
-
-    hosesId7 : [''],
-    statusId7 : ['', Validators.required],
-    position7 : ['3', Validators.required],
-
-    hosesId8 : [''],
-    statusId8 : ['', Validators.required],
-    position8 : ['4', Validators.required],
-
-    assignmentId : ['', Validators.required],
-    dispenserId : ['', Validators.required],
-    dispenserSide : ['', Validators.required]
+  assignmentHoseForm: FormGroup = this.fb.group({
+    hoseId: [''],
+    position: [''],
+    statusId: [''],
+    assignmentId: ['', Validators.required],
+    dispenserId: ['', Validators.required],
+    sideId: ['', Validators.required]
 
   })
 
   constructor(
-    private router : Router,
-    private fb : FormBuilder,
-    private fb2 : FormBuilder,
-    private hoseService : HosesService,
-    private statusService : StatusService,
-    private dispenserService : DispensersService,
- 
+    private router: Router,
+    private fb: FormBuilder,
+    private fb2: FormBuilder,
+    private hoseService: HosesService,
+    private statusService: StatusService,
+    private dispenserService: DispensersService,
 
-   
+
+
   ) { }
 
   ngOnInit(): void {
@@ -92,167 +69,305 @@ public sdeB ='';
     this.getHose();
     this.getStatus();
     this.getDispenser();
-    
+
+
 
   }
 
-  getDispenser(){
+  getDispenser() {
     this.dispenserService.getDIspensers()
-      .subscribe(({dispenser}) => {
+      .subscribe(({ dispenser }) => {
         this.selectedDispenser = dispenser
       })
   }
 
-  getStatus(){
+  getStatus() {
     this.statusService.getStatus()
-        .subscribe(({status})=> {
-          this.selectedStatus = status
+      .subscribe(({ status }) => {
+        this.selectedStatus = status
 
-        });
+      });
   };
 
-  getHose(){
+  getHose() {
     this.hoseService.getHosesActive()
-      .subscribe(({hoses})=> {
+      .subscribe(({ hoses }) => {
         this.selectedHose = hoses
-       
+
       })
   }
 
-  enableForm(){
-    this.assignmentHoseForm.get('hosesId')?.enable();
+  enableForm() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
     this.assignmentHoseForm.get('statusId')?.enable();
-    this.assignmentHoseForm.get('hosesId2')?.enable();
-    this.assignmentHoseForm.get('statusId2')?.enable();
-    this.assignmentHoseForm.get('hosesId3')?.enable();
-    this.assignmentHoseForm.get('statusId3')?.enable();
-    this.assignmentHoseForm.get('hosesId4')?.enable();
-    this.assignmentHoseForm.get('statusId4')?.enable();
-    this.assignmentHoseForm.get('hosesId5')?.enable();
-    this.assignmentHoseForm.get('statusId5')?.enable();
-    this.assignmentHoseForm.get('hosesId6')?.enable();
-    this.assignmentHoseForm.get('statusId6')?.enable();
-    this.assignmentHoseForm.get('hosesId7')?.enable();
-    this.assignmentHoseForm.get('statusId7')?.enable();
-    this.assignmentHoseForm.get('hosesId8')?.enable();
-    this.assignmentHoseForm.get('statusId8')?.enable();
- 
-    
+
+
+
   }
 
-  disableForm(){
-    this.assignmentHoseForm.get('hosesId')?.disable();
+  disableForm() {
+    this.assignmentHoseForm.get('hoseId')?.disable();
     this.assignmentHoseForm.get('statusId')?.disable();
-    this.assignmentHoseForm.get('hosesId2')?.disable();
-    this.assignmentHoseForm.get('statusId2')?.disable();
-    this.assignmentHoseForm.get('hosesId3')?.disable();
-    this.assignmentHoseForm.get('statusId3')?.disable();
-    this.assignmentHoseForm.get('hosesId4')?.disable();
-    this.assignmentHoseForm.get('statusId4')?.disable();
-    this.assignmentHoseForm.get('hosesId5')?.disable();
-    this.assignmentHoseForm.get('statusId5')?.disable();
-    this.assignmentHoseForm.get('hosesId6')?.disable();
-    this.assignmentHoseForm.get('statusId6')?.disable();
-    this.assignmentHoseForm.get('hosesId7')?.disable();
-    this.assignmentHoseForm.get('statusId7')?.disable();
-    this.assignmentHoseForm.get('hosesId8')?.disable();
-    this.assignmentHoseForm.get('statusId8')?.disable();
+
   }
- 
-  createAssignment(){
-    
+
+  createAssignment() {
+
     this.dispenserService.createAssignment(this.assignmentHoseForm.value)
-        .subscribe(data => {
-          Swal.fire('Exitoso', 'creado correctamente');
-          //this.enableForm();
-          //this.assignmentHoseForm.get('dispenserId')?.disable();
-          //this.assignmentHoseForm.reset();
-          //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
-        }, err => {
-          Swal.fire('Error', err.error.msg, 'error')
-
-        })
-  }
-
-  createAssignmentHose(){
-   this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
-        .subscribe(data => {
-          Swal.fire('Exitoso', 'creado correctamente');
-          //this.assignmentHoseForm.get('dispenserId')?.disable();
-          //this.assignmentHoseForm.reset();
-          //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
-        }, err => {
-          Swal.fire('Error', err.error.msg, 'error')
-        })
-
-        console.log(this.assignmentHoseForm.value)
-  }
-
-  save(){
-    this.disableForm();
-    
-  }
-
-  getIdAssignment(){
-
-   // console.log(this.assignmentHoseForm.value)
-    this.dispenserService.getIdAssig(this.assignmentHoseForm.value)
       .subscribe(data => {
-        console.log(data.idAssignments)
-        this.assignmentHoseForm.controls['assignmentId'].setValue(data.idAssignments)
-        console.log(this.assignmentHoseForm.value)
         Swal.fire('Exitoso', 'creado correctamente');
 
-        //this.assignmentHoseForm.controls['assignmentId'].setValue(t)
-        //this.assignmentHoseForm.reset();
-        //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
-        
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
-        console.log(err)
+
+      })
+  }
+
+  createAssignmentHose() {
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+
+  }
+
+  save() {
+    this.disableForm();
+
+  }
+
+  getIdAssignment() {
+
+
+    this.dispenserService.getIdAssig(this.assignmentHoseForm.value)
+      .subscribe(({ idAssignments }) => {
+        this.assignmentHoseForm.controls['assignmentId'].setValue(idAssignments.assignmentId);
+        Swal.fire('Exitoso', 'creado correctamente');
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+
       })
   }
 
 
-  sideA(){
+  sideA() {
     this.dispenserService.getSideA()
-      .subscribe(data =>{
-        this.selectedSideA = data
-        console.log(data)
+      .subscribe(({ sideDispenser }) => {
+        this.assignmentHoseForm.controls['sideId'].setValue(sideDispenser.sideId);
+
       })
   }
 
-  sideB(){
-    this.dispenserService.getSideA()
-      .subscribe(data =>{
-        this.selectedSideB = data
-        console.log(data)
+  sideB() {
+    this.dispenserService.getSideB()
+      .subscribe(({ sideDispenser }) => {
+
+        this.assignmentHoseForm.controls['sideId'].setValue(sideDispenser.sideId);
+
+
       })
   }
 
 
-  position1(){
-    this.assignmentHoseForm.get('hosesId')?.enable();
+  position1() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
     this.assignmentHoseForm.get('statusId')?.enable();
     this.sideA();
-    
-    this.getIdAssignment();
-    
-    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
-          .subscribe( data =>  {
-                    
-        Swal.fire('Exitoso', 'creado correctamente');
+    this.buttonDisable = false
 
-        //this.assignmentHoseForm.controls['assignmentId'].setValue(t)
-        //this.assignmentHoseForm.reset();
-        //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
-        
-      }, err => {
-        Swal.fire('Error', err.error.msg, 'error')
-        console.log(err)
-          })
+
   }
 
-  prueba(){}
+  savePosition1() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('1');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable = true
+
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+  position2() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideA();
+    this.buttonDisable2 = false
+
+
+  }
+
+  savePosition2() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('2');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable2 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+  position3() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideA();
+    this.buttonDisable3 = false
+
+
+  }
+
+  savePosition3() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('3');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable3 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+  position4() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideA();
+    this.buttonDisable4 = false
+
+
+  }
+
+  savePosition4() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('4');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable4 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+
+  position5() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideB();
+    this.buttonDisable5 = false
+
+
+  }
+
+  savePosition5() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('1');
+
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable5 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+  position6() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideB();
+    this.buttonDisable6 = false
+
+
+  }
+
+  savePosition6() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('2');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable6 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+  position7() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideB();
+    this.buttonDisable7 = false
+
+
+  }
+
+  savePosition7() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('3');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable7 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
+
+
+  position8() {
+    this.assignmentHoseForm.get('hoseId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideB();
+    this.buttonDisable8 = false
+
+
+  }
+
+  savePosition8() {
+    this.getIdAssignment();
+    this.assignmentHoseForm.controls['position'].setValue('4');
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+      .subscribe(data => {
+        Swal.fire('Exitoso', 'creado correctamente');
+        this.disableForm();
+        this.buttonDisable8 = true
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+
+  }
 
 }

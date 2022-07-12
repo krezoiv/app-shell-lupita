@@ -37,7 +37,7 @@
             <td>
               <mat-form-field appearance="fill">
                 <mat-label>Combustible</mat-label>
-                <mat-select formControlName="hosesId" required>
+                <mat-select formControlName="hoseId" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
                     {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
@@ -66,13 +66,14 @@
             </td>&nbsp; &nbsp; &nbsp;
 
             <td>
-             <mat-icon id="check" (click) ="position1();">check_circle_outline</mat-icon>
+              <button mat-raised-button color="accent" (click) ="savePosition1();" [disabled]="buttonDisable">Guardar</button>
+            
             </td>
 
           </tr>
         </table>
 
-        <button id="posiciones" mat-raised-button (click)="prueba();"><h4 >Manguera 2:</h4></button>
+        <button id="posiciones" mat-raised-button (click)="position2();"><h4 >Manguera 2:</h4></button>
 
         <table class="example-full-width" cellspacing="0">
           <tr>
@@ -80,7 +81,7 @@
             <td>
               <mat-form-field appearance="fill">
                 <mat-label>Combustible</mat-label>
-                <mat-select formControlName="hosesId2" required>
+                <mat-select formControlName="hoseId" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
                     {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
@@ -97,7 +98,7 @@
             <td>
               <mat-form-field appearance="fill">
                 <mat-label>Status</mat-label>
-                <mat-select formControlName="statusId2" required>
+                <mat-select formControlName="statusId" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                     {{status.statusName | titlecase}}
@@ -109,58 +110,14 @@
             </td>&nbsp; &nbsp; &nbsp;
 
             <td>
-              <mat-icon id="check">check_circle_outline</mat-icon>
-            </td>
-
-          </tr>
-        </table>
-
-        
-        <button id="posiciones" mat-raised-button (click)="prueba();"><h4 >Manguera 3:</h4></button>
-
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-
-            <td>
-              <mat-form-field appearance="fill">
-                <mat-label>Combustible</mat-label>
-                <mat-select formControlName="hosesId3" required>
-                  <mat-option>--</mat-option>
-                  <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                    {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
-              </mat-form-field>
-            </td>
-            
-              &nbsp; &nbsp; &nbsp;
-            
-
-            <td>
-              <mat-form-field appearance="fill">
-                <mat-label>Status</mat-label>
-                <mat-select formControlName="statusId3" required>
-                  <mat-option>--</mat-option>
-                  <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
-                    {{status.statusName | titlecase}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
-                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
-              </mat-form-field>
-            </td>&nbsp; &nbsp; &nbsp;
-
-            <td>
-              <mat-icon id="check">check_circle_outline</mat-icon>
+              <button mat-raised-button color="accent" (click) ="savePosition2();" [disabled]="buttonDisable2">Guardar</button>
             </td>
 
           </tr>
         </table>
 
         
-        <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 4:</h4></button>
+        <button id="posiciones" mat-raised-button (click)="position3();"><h4 >Manguera 3:</h4></button>
 
         <table class="example-full-width" cellspacing="0">
           <tr>
@@ -168,7 +125,7 @@
             <td>
               <mat-form-field appearance="fill">
                 <mat-label>Combustible</mat-label>
-                <mat-select formControlName="hosesId4" required>
+                <mat-select formControlName="hoseId" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
                     {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
@@ -185,7 +142,7 @@
             <td>
               <mat-form-field appearance="fill">
                 <mat-label>Status</mat-label>
-                <mat-select formControlName="statusId4" required>
+                <mat-select formControlName="statusId" required>
                   <mat-option>--</mat-option>
                   <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                     {{status.statusName | titlecase}}
@@ -197,8 +154,50 @@
             </td>&nbsp; &nbsp; &nbsp;
 
             <td>
-              <mat-icon id="check">check_circle_outline</mat-icon>
+              <button mat-raised-button color="accent" (click) ="savePosition3();" [disabled]="buttonDisable3">Guardar</button>
             </td>
+
+          </tr>
+        </table>
+
+        
+        <button id="posiciones" mat-raised-button (click)="position4();"><h4 >Manguera 4:</h4></button>
+        <table class="example-full-width" cellspacing="0">
+          <tr>
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Combustible</mat-label>
+                <mat-select formControlName="hoseId" required>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
+                    {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
+              </mat-form-field>
+            </td>
+            
+              &nbsp; &nbsp; &nbsp;
+            
+
+            <td>
+              <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="statusId" required>
+                  <mat-option>--</mat-option>
+                  <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
+                    {{status.statusName | titlecase}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
+              </mat-form-field>
+            </td>&nbsp; &nbsp; &nbsp;
+
+            <td>
+              <button mat-raised-button color="accent" (click) ="savePosition4();" [disabled]="buttonDisable4">Guardar</button>
 
           </tr>
         </table>
@@ -212,7 +211,7 @@
           <h1>Lado B</h1>
           <hr>
           <div style="overflow-y: scroll;height:190px; width:550px">
-            <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 1:</h4></button>
+            <button id="posiciones" mat-raised-button (click)="position5();"><h4 >Manguera 1:</h4></button>
           
           <table class="example-full-width" cellspacing="0">
             <tr>
@@ -220,7 +219,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId5" required>
+                  <mat-select formControlName="hoseId" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
                       {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
@@ -237,7 +236,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId5" required>
+                  <mat-select formControlName="hoseId" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
@@ -249,13 +248,13 @@
               </td>&nbsp; &nbsp; &nbsp;
   
               <td>
-               <mat-icon id="check" (click) ="save();">check_circle_outline</mat-icon>
+                <button mat-raised-button color="accent" (click) ="savePosition5();" [disabled]="buttonDisable5">Guardar</button>
               </td>
   
             </tr>
           </table>
   
-          <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 2:</h4></button>
+          <button id="posiciones" mat-raised-button (click)="position6();"><h4 >Manguera 2:</h4></button>
   
           <table class="example-full-width" cellspacing="0">
             <tr>
@@ -263,7 +262,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId6" required>
+                  <mat-select formControlName="hoseId" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
                       {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
@@ -280,7 +279,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId6" required>
+                  <mat-select formControlName="statusId" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
@@ -292,66 +291,21 @@
               </td>&nbsp; &nbsp; &nbsp;
   
               <td>
-                <mat-icon id="check">check_circle_outline</mat-icon>
-              </td>
-  
-            </tr>
-          </table>
-  
-          
-          <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 3:</h4></button>
-  
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-  
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId7" required>
-                    <mat-option>--</mat-option>
-                    <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
-                      {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
-                </mat-form-field>
-              </td>
-              
-                &nbsp; &nbsp; &nbsp;
-              
-  
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId7" required>
-                    <mat-option>--</mat-option>
-                    <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
-                      {{status.statusName | titlecase}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
-                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
-                </mat-form-field>
-              </td>&nbsp; &nbsp; &nbsp;
-  
-              <td>
-                <mat-icon id="check">check_circle_outline</mat-icon>
+                <button mat-raised-button color="accent" (click) ="savePosition6();" [disabled]="buttonDisable6">Guardar</button>
               </td>
   
             </tr>
           </table>
   
           
-          <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 4:</h4></button>
-  
+          <button id="posiciones" mat-raised-button (click)="position7();"><h4 >Manguera 3:</h4></button>
           <table class="example-full-width" cellspacing="0">
             <tr>
   
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Combustible</mat-label>
-                  <mat-select formControlName="hosesId8" required>
+                  <mat-select formControlName="hoseId" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
                       {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
@@ -368,7 +322,7 @@
               <td>
                 <mat-form-field appearance="fill">
                   <mat-label>Status</mat-label>
-                  <mat-select formControlName="statusId8" required>
+                  <mat-select formControlName="statusId" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
                       {{status.statusName | titlecase}}
@@ -380,7 +334,51 @@
               </td>&nbsp; &nbsp; &nbsp;
   
               <td>
-                <mat-icon id="check">check_circle_outline</mat-icon>
+                <button mat-raised-button color="accent" (click) ="savePosition7();" [disabled]="buttonDisable7">Guardar</button>
+              </td>
+  
+            </tr>
+          </table>
+  
+          
+          <button id="posiciones" mat-raised-button (click)="position8();"><h4 >Manguera 4:</h4></button>
+  
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+  
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Combustible</mat-label>
+                  <mat-select formControlName="hoseId" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let hoses of selectedHose" [value]="hoses.hoseId">
+                      {{hoses.hoseColor | titlecase}} - {{hoses.fuelId?.fuelName| titlecase}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
+                </mat-form-field>
+              </td>
+              
+                &nbsp; &nbsp; &nbsp;
+              
+  
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Status</mat-label>
+                  <mat-select formControlName="statusId" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
+                      {{status.statusName | titlecase}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="assignmentHoseForm.hasError('required')">Por favor escoja una opción</mat-error>
+                  <mat-hint>{{assignmentHoseForm.value?.sound}}</mat-hint>
+                </mat-form-field>
+              </td>&nbsp; &nbsp; &nbsp;
+  
+              <td>
+                <button mat-raised-button color="accent" (click) ="savePosition8();" [disabled]="buttonDisable8">Guardar</button>
               </td>
   
             </tr>

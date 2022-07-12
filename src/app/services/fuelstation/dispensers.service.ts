@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { Assignment_I, Dispensers_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import {  Assignment_I, Dispensers_I, SideA_I, SideB_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { Dispensers, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -36,8 +36,16 @@ export class DispensersService {
   getIdAssig(formData: Assignment_I): Observable<Assignment_I> {
     return this.http.post<Assignment_I>(`${api_url}/assignment/idAssignment`, formData, this.headers)
 
-
   };
+
+  
+  getSideA(): Observable<SideA_I> {
+    return this.http.get<SideA_I>(`${api_url}/sideDispenser/sideA`, this.headers);
+  }
+
+  getSideB(): Observable<SideB_I> {
+    return this.http.get<SideB_I>(`${api_url}/sideDispenser/sideB`, this.headers);
+  }
 
   createDispenser(dispenser: Dispensers): Observable<Dispensers[]> {
     return this.http.post<Dispensers[]>(`${api_url}/dispensers`, dispenser, this.headers);
@@ -65,13 +73,8 @@ export class DispensersService {
     return this.http.post<Assignment[]>(`${api_url}/assignmentHose`, assignmentHose, this.headers);
   }
 
-  getSideA(): Observable<SideDispenser[]> {
-    return this.http.get<SideDispenser[]>(`${api_url}/sideDispenser/sideA`, this.headers);
-  }
-
-  getSideB(): Observable<SideDispenser[]> {
-    return this.http.get<SideDispenser[]>(`${api_url}/sideDispenser/sideB`, this.headers);
-  }
+ 
+ 
 
  
 }
