@@ -5,5 +5,5 @@ export interface Dispensers_I {
 }
 
 export interface Assignment_I {
-    dispenserId : string
+    idAssignments : string
 }

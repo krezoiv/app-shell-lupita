@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hoses, SideDispenser } from 'src/app/models/fuelstation/hoses.models';
@@ -8,6 +8,7 @@ import { StatusService } from 'src/app/services/functions/status.service';
 import { Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import Swal from 'sweetalert2';
+import { Assignment } from 'src/app/models/fuelstation/assignment.model';
 
 
 
@@ -27,6 +28,7 @@ public sdeB ='';
   selectedSideA : SideDispenser[] =[];
   selectedSideB : SideDispenser[] =[];
   selectedDispenser : Dispensers[]=[];
+  selectedassignments : Assignment[]=[];
  
   public columns : string[]=['sideA', 'sideB']
 
@@ -80,6 +82,8 @@ public sdeB ='';
     private hoseService : HosesService,
     private statusService : StatusService,
     private dispenserService : DispensersService,
+ 
+
    
   ) { }
 
@@ -88,7 +92,7 @@ public sdeB ='';
     this.getHose();
     this.getStatus();
     this.getDispenser();
-   
+    
 
   }
 
@@ -191,16 +195,21 @@ public sdeB ='';
 
   getIdAssignment(){
 
-    console.log(this.assignmentHoseForm.value)
-    this.dispenserService.getIdAssignment(this.assignmentHoseForm.value)
+   // console.log(this.assignmentHoseForm.value)
+    this.dispenserService.getIdAssig(this.assignmentHoseForm.value)
       .subscribe(data => {
-        console.log(data)
+        console.log(data.idAssignments)
+        this.assignmentHoseForm.controls['assignmentId'].setValue(data.idAssignments)
+        console.log(this.assignmentHoseForm.value)
         Swal.fire('Exitoso', 'creado correctamente');
-        this.assignmentHoseForm.reset();
+
+        //this.assignmentHoseForm.controls['assignmentId'].setValue(t)
+        //this.assignmentHoseForm.reset();
         //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
+        
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
-
+        console.log(err)
       })
   }
 
@@ -228,6 +237,20 @@ public sdeB ='';
     this.sideA();
     
     this.getIdAssignment();
+    
+    this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+          .subscribe( data =>  {
+                    
+        Swal.fire('Exitoso', 'creado correctamente');
+
+        //this.assignmentHoseForm.controls['assignmentId'].setValue(t)
+        //this.assignmentHoseForm.reset();
+        //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
+        
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+        console.log(err)
+          })
   }
 
   prueba(){}

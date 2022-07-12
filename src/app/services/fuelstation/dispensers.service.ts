@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Dispensers_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { Observable, tap } from 'rxjs';
+import { Assignment_I, Dispensers_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { Dispensers, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -14,57 +14,66 @@ const api_url = environment.api_url;
 export class DispensersService {
 
   constructor(
-    private http : HttpClient
+    private http: HttpClient
   ) { }
 
-  get token(): string{
-    return localStorage.getItem('token')|| '';
+  get token(): string {
+    return localStorage.getItem('token') || '';
   }
-  
+
   get headers() {
     return {
       headers: {
-        'jwt-token' : this.token
+        'jwt-token': this.token
       }
     };
-  }; 
+  };
 
-  getDIspensers() : Observable<Dispensers_I>{
+  getDIspensers(): Observable<Dispensers_I> {
     return this.http.get<Dispensers_I>(`${api_url}/dispensers`, this.headers);
   }
 
-  createDispenser(dispenser : Dispensers) : Observable<Dispensers[]>{
+  getIdAssig(formData: Assignment_I): Observable<Assignment_I> {
+    return this.http.post<Assignment_I>(`${api_url}/assignment/idAssignment`, formData, this.headers)
+
+
+  };
+
+  createDispenser(dispenser: Dispensers): Observable<Dispensers[]> {
     return this.http.post<Dispensers[]>(`${api_url}/dispensers`, dispenser, this.headers);
   }
 
 
-  deleteDispenser(dispenser: Dispensers): Observable<Dispensers[]>{
-    return this.http.put<Dispensers[]>(`${api_url}/dispensers/delete/${dispenser.dispenserId}`,dispenser, this.headers);
+  deleteDispenser(dispenser: Dispensers): Observable<Dispensers[]> {
+    return this.http.put<Dispensers[]>(`${api_url}/dispensers/delete/${dispenser.dispenserId}`, dispenser, this.headers);
   }
 
-  updateDispenser(dispenser : Dispensers): Observable<Dispensers[]>{
-    return this.http.put<Dispensers[]>(`${api_url}/dispensers/${dispenser.dispenserId}`,dispenser, this.headers);
+  updateDispenser(dispenser: Dispensers): Observable<Dispensers[]> {
+    return this.http.put<Dispensers[]>(`${api_url}/dispensers/${dispenser.dispenserId}`, dispenser, this.headers);
   }
 
 
-  createAssignment(assignment : Assignment) : Observable<Assignment[]>{
+  createAssignment(assignment: Assignment): Observable<Assignment[]> {
     return this.http.post<Assignment[]>(`${api_url}/assignment`, assignment, this.headers);
   }
 
-  getIdAssignment(assignment : Assignment) : Observable<Assignment[]>{
-    return this.http.get<Assignment[]>(`${api_url}/assignment`, this.headers);
+  getIdAssignment(assignment: Assignment): Observable<Assignment[]> {
+    return this.http.post<Assignment[]>(`${api_url}/assignment`, assignment, this.headers);
   }
 
-  creatAssignmentHose(assignmentHose : AssignmentHose): Observable<Assignment[]>{
-    return this.http.post<Assignment[]>(`${api_url}/assignmentHose`,assignmentHose, this.headers);
+  creatAssignmentHose(assignmentHose: AssignmentHose): Observable<Assignment[]> {
+    return this.http.post<Assignment[]>(`${api_url}/assignmentHose`, assignmentHose, this.headers);
   }
 
-  getSideA() : Observable<SideDispenser[]>{
+  getSideA(): Observable<SideDispenser[]> {
     return this.http.get<SideDispenser[]>(`${api_url}/sideDispenser/sideA`, this.headers);
   }
-  
-  getSideB() : Observable<SideDispenser[]>{
+
+  getSideB(): Observable<SideDispenser[]> {
     return this.http.get<SideDispenser[]>(`${api_url}/sideDispenser/sideB`, this.headers);
   }
-  
+
+ 
 }
+
+
