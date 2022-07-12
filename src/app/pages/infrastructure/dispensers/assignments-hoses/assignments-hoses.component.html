@@ -21,14 +21,15 @@
     <button mat-raised-button color="accent" (click)="getIdAssignment();">Modificar</button>
     <hr>
 
-    <mat-tab-group backgroundColor="primary" [color]="color">
-
-      <mat-tab  label="Lado A">
-        
+    <mat-tab-group backgroundColor="primary" [color]="color" >
+      
+      <mat-tab label="Lado A" >
+      
         <h1>Lado A</h1>
         <hr>
-          <div style="overflow-y: scroll;height:300px; width:550px">
-        <h4>Manguera 1:</h4>
+          <div style="overflow-y: scroll;height:190px; width:550px; ">
+            <button id="posiciones" mat-raised-button  (click)="position1();"><h4 >Manguera 1:</h4></button>
+        
         
         <table class="example-full-width" cellspacing="0">
           <tr>
@@ -71,7 +72,7 @@
           </tr>
         </table>
 
-        <h4>Manguera 2:</h4>
+        <button id="posiciones" mat-raised-button (click)="prueba();"><h4 >Manguera 2:</h4></button>
 
         <table class="example-full-width" cellspacing="0">
           <tr>
@@ -115,7 +116,7 @@
         </table>
 
         
-        <h4>Manguera 3:</h4>
+        <button id="posiciones" mat-raised-button (click)="prueba();"><h4 >Manguera 3:</h4></button>
 
         <table class="example-full-width" cellspacing="0">
           <tr>
@@ -159,7 +160,7 @@
         </table>
 
         
-        <h4>Manguera 4:</h4>
+        <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 4:</h4></button>
 
         <table class="example-full-width" cellspacing="0">
           <tr>
@@ -210,8 +211,8 @@
         
           <h1>Lado B</h1>
           <hr>
-          <div style="overflow-y: scroll;height:300px; width:550px">
-          <h4>Manguera 1:</h4>
+          <div style="overflow-y: scroll;height:190px; width:550px">
+            <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 1:</h4></button>
           
           <table class="example-full-width" cellspacing="0">
             <tr>
@@ -254,7 +255,7 @@
             </tr>
           </table>
   
-          <h4>Manguera 2:</h4>
+          <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 2:</h4></button>
   
           <table class="example-full-width" cellspacing="0">
             <tr>
@@ -298,7 +299,7 @@
           </table>
   
           
-          <h4>Manguera 3:</h4>
+          <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 3:</h4></button>
   
           <table class="example-full-width" cellspacing="0">
             <tr>
@@ -342,7 +343,7 @@
           </table>
   
           
-          <h4>Manguera 4:</h4>
+          <button id="posiciones" mat-raised-button  (click)="prueba();"><h4 >Manguera 4:</h4></button>
   
           <table class="example-full-width" cellspacing="0">
             <tr>

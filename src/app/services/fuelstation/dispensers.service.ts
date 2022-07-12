@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dispensers_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
-import { Dispensers } from 'src/app/models/fuelstation/dispensers.model';
+import { Dispensers, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
 
 const api_url = environment.api_url;
@@ -59,5 +59,12 @@ export class DispensersService {
     return this.http.post<Assignment[]>(`${api_url}/assignmentHose`,assignmentHose, this.headers);
   }
 
+  getSideA() : Observable<SideDispenser[]>{
+    return this.http.get<SideDispenser[]>(`${api_url}/sideDispenser/sideA`, this.headers);
+  }
+  
+  getSideB() : Observable<SideDispenser[]>{
+    return this.http.get<SideDispenser[]>(`${api_url}/sideDispenser/sideB`, this.headers);
+  }
   
 }

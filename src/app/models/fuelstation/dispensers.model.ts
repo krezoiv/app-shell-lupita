@@ -11,3 +11,11 @@ export class Dispensers {
 
     ){}
 }
+
+export class SideDispenser{
+
+    constructor(
+        public sideName? : string,
+        public sideId? : string
+    ){}
+}

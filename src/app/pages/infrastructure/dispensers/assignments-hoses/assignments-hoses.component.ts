@@ -19,10 +19,13 @@ import Swal from 'sweetalert2';
 export class AssignmentsHosesComponent implements OnInit {
 
 color= 'accent'
-
+ 
+public sideA2 = '';
+public sdeB ='';
   selectedStatus : Status[]=[]; 
   selectedHose : Hoses[] =[];
-  selectedSide : SideDispenser[] =[];
+  selectedSideA : SideDispenser[] =[];
+  selectedSideB : SideDispenser[] =[];
   selectedDispenser : Dispensers[]=[];
  
   public columns : string[]=['sideA', 'sideB']
@@ -64,9 +67,9 @@ color= 'accent'
     statusId8 : ['', Validators.required],
     position8 : ['4', Validators.required],
 
-    assignmentId : ['62ca216c90233718f8901fb9', Validators.required],
+    assignmentId : ['', Validators.required],
     dispenserId : ['', Validators.required],
-    dispenserSide : ['62c4649b1ed79b9c074dcbcf', Validators.required]
+    dispenserSide : ['', Validators.required]
 
   })
 
@@ -81,10 +84,11 @@ color= 'accent'
   ) { }
 
   ngOnInit(): void {
-    //this.disableForm();
+    this.disableForm();
     this.getHose();
     this.getStatus();
     this.getDispenser();
+   
 
   }
 
@@ -156,7 +160,7 @@ color= 'accent'
     this.dispenserService.createAssignment(this.assignmentHoseForm.value)
         .subscribe(data => {
           Swal.fire('Exitoso', 'creado correctamente');
-          this.enableForm();
+          //this.enableForm();
           //this.assignmentHoseForm.get('dispenserId')?.disable();
           //this.assignmentHoseForm.reset();
           //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
@@ -167,7 +171,7 @@ color= 'accent'
   }
 
   createAssignmentHose(){
-   /*this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
+   this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
         .subscribe(data => {
           Swal.fire('Exitoso', 'creado correctamente');
           //this.assignmentHoseForm.get('dispenserId')?.disable();
@@ -175,7 +179,7 @@ color= 'accent'
           //this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
         }, err => {
           Swal.fire('Error', err.error.msg, 'error')
-        })*/
+        })
 
         console.log(this.assignmentHoseForm.value)
   }
@@ -188,7 +192,7 @@ color= 'accent'
   getIdAssignment(){
 
     console.log(this.assignmentHoseForm.value)
-    /*this.dispenserService.getIdAssignment(this.assignmentHoseForm.value)
+    this.dispenserService.getIdAssignment(this.assignmentHoseForm.value)
       .subscribe(data => {
         console.log(data)
         Swal.fire('Exitoso', 'creado correctamente');
@@ -197,9 +201,35 @@ color= 'accent'
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
-      })*/
+      })
   }
 
 
+  sideA(){
+    this.dispenserService.getSideA()
+      .subscribe(data =>{
+        this.selectedSideA = data
+        console.log(data)
+      })
+  }
+
+  sideB(){
+    this.dispenserService.getSideA()
+      .subscribe(data =>{
+        this.selectedSideB = data
+        console.log(data)
+      })
+  }
+
+
+  position1(){
+    this.assignmentHoseForm.get('hosesId')?.enable();
+    this.assignmentHoseForm.get('statusId')?.enable();
+    this.sideA();
+    
+    this.getIdAssignment();
+  }
+
+  prueba(){}
 
 }
