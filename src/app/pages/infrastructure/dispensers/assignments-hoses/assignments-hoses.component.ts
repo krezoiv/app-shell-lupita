@@ -35,8 +35,8 @@ export class AssignmentsHosesComponent implements OnInit {
   selectedSideB: SideDispenser[] = [];
   selectedDispenser: Dispensers[] = [];
   public assignements: Assignment[] = [];
-  public assignmentsHose : AssignmentHose[]=[];
-  public columns : string[]= ['hoseId', 'sideId', 'position', 'statusId' ];
+  public assignmentsHose : AssignmentHose [] = [];
+  public columns : string[]= ['hoseId', 'sideId', 'position', 'statusId'];
 
 
   assignmentHoseForm: FormGroup = this.fb.group({
@@ -66,7 +66,8 @@ export class AssignmentsHosesComponent implements OnInit {
     this.getHose();
     this.getStatus();
     this.getDispenser();
-
+    this.getAssignmentHoses();
+    
 
 
   }
@@ -144,7 +145,7 @@ export class AssignmentsHosesComponent implements OnInit {
       .subscribe(({ idAssignments }) => {
         this.assignmentHoseForm.controls['assignmentId'].setValue(idAssignments.assignmentId);
         Swal.fire('Exitoso', 'creado correctamente');
-        this.getAssignmentHoses();
+        
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -189,6 +190,7 @@ export class AssignmentsHosesComponent implements OnInit {
         this.disableForm();
       
         this.buttonDisable = true
+        this.getAssignmentHoses();
 
 
       }, err => {
@@ -214,6 +216,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable2 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -238,6 +241,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable3 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -262,6 +266,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable4 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -288,6 +293,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable5 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -312,6 +318,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable6 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -324,6 +331,7 @@ export class AssignmentsHosesComponent implements OnInit {
     this.assignmentHoseForm.get('statusId')?.enable();
     this.sideB();
     this.buttonDisable7 = false
+    
 
 
   }
@@ -336,6 +344,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable7 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -361,6 +370,7 @@ export class AssignmentsHosesComponent implements OnInit {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
         this.buttonDisable8 = true
+        this.getAssignmentHoses();
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -376,9 +386,7 @@ export class AssignmentsHosesComponent implements OnInit {
       .subscribe(({ assignmentHose }) => {
        this.assignmentsHose = assignmentHose
         Swal.fire('Exitoso', 'creado correctamente');
-
-      }, err => {
-        Swal.fire('Error', err.error.msg, 'error')
+       
 
       })
   }

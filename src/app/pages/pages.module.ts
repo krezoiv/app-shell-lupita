@@ -44,6 +44,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ListAsignmentHosesComponent } from './infrastructure/dispensers/list-asignment-hoses/list-asignment-hoses.component';
 
 
 
@@ -78,6 +79,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     UpdateHosesComponent,
     DeleteHosesComponent,
     AssignmentsHosesComponent,
+    ListAsignmentHosesComponent
+  
    
     
   ],
