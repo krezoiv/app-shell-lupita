@@ -8,7 +8,7 @@ import { StatusService } from 'src/app/services/functions/status.service';
 import { Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import Swal from 'sweetalert2';
-import { Assignment } from 'src/app/models/fuelstation/assignment.model';
+import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 
 
 
@@ -35,12 +35,9 @@ export class AssignmentsHosesComponent implements OnInit {
   selectedSideB: SideDispenser[] = [];
   selectedDispenser: Dispensers[] = [];
   public assignements: Assignment[] = [];
+  public assignmentsHose : AssignmentHose[]=[];
+  public columns : string[]= ['hoseId', 'sideId', 'position', 'statusId' ];
 
-  public columns: string[] = ['sideA', 'sideB']
-
-  assignmentForm: FormGroup = this.fb2.group({
-    dispenser: ['', Validators.required],
-  })
 
   assignmentHoseForm: FormGroup = this.fb.group({
     hoseId: [''],
@@ -147,7 +144,7 @@ export class AssignmentsHosesComponent implements OnInit {
       .subscribe(({ idAssignments }) => {
         this.assignmentHoseForm.controls['assignmentId'].setValue(idAssignments.assignmentId);
         Swal.fire('Exitoso', 'creado correctamente');
-
+        this.getAssignmentHoses();
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -190,6 +187,7 @@ export class AssignmentsHosesComponent implements OnInit {
       .subscribe(data => {
         Swal.fire('Exitoso', 'creado correctamente');
         this.disableForm();
+      
         this.buttonDisable = true
 
 
@@ -369,5 +367,21 @@ export class AssignmentsHosesComponent implements OnInit {
       })
 
   }
+
+
+  getAssignmentHoses() {
+
+
+    this.dispenserService.getAssignmetHoses(this.assignmentHoseForm.value)
+      .subscribe(({ assignmentHose }) => {
+       this.assignmentsHose = assignmentHose
+        Swal.fire('Exitoso', 'creado correctamente');
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+
+      })
+  }
+
 
 }

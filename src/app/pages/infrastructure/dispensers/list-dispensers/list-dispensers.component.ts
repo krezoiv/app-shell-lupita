@@ -37,8 +37,6 @@ export class ListDispensersComponent implements OnInit {
     this.dispenserService.getDIspensers()
         .subscribe(({dispenser}) =>{
           this.dispensers = dispenser
-          console.log(dispenser)
-
         })
   }
 

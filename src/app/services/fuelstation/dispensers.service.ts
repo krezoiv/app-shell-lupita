@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import {  Assignment_I, Dispensers_I, SideA_I, SideB_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, Assignment_I, Dispensers_I, SideA_I, SideB_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { Dispensers, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -38,7 +38,7 @@ export class DispensersService {
 
   };
 
-  
+
   getSideA(): Observable<SideA_I> {
     return this.http.get<SideA_I>(`${api_url}/sideDispenser/sideA`, this.headers);
   }
@@ -73,10 +73,13 @@ export class DispensersService {
     return this.http.post<Assignment[]>(`${api_url}/assignmentHose`, assignmentHose, this.headers);
   }
 
- 
- 
 
- 
+  getAssignmetHoses(formData: AssignmentHose_I): Observable<AssignmentHose_I> {
+    return this.http.post<AssignmentHose_I>(`${api_url}/assignmentHose/getAssig`, formData, this.headers);
+  }
+
+
+
 }
 
 

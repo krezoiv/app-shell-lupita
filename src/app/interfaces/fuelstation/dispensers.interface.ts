@@ -17,3 +17,7 @@ export interface SideA_I {
 export interface SideB_I {
     sideDispenser : SideDispenser
 }
+
+export interface AssignmentHose_I {
+    assignmentHose : []
+}

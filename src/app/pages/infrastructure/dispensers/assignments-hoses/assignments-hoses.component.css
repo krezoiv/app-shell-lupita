@@ -7,8 +7,20 @@ form{
     height:fit-content;
     position: absolute;
     top: 15%;
-    left: 5%;
+    left: 1%;
 
+}
+
+#formulario2 {
+    border: 1px solid #101010;
+    border-radius: 10px ;
+    background-color :white;
+    padding: 5px;
+    width: 700px;
+    height:fit-content;
+    position: absolute;
+    top: 15%;
+    left: 45%;
 }
 
 h1 {
@@ -85,5 +97,43 @@ mat-hint{
     height: 20px;
 }
 
+
+table{
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  
+  
+  .fa-solid {
+      cursor: pointer;
+  }
+  
+  th {
+      background-color: blueviolet;
+      font-family: 'Courier New', Courier, monospace;
+      font-size : 20px;
+      color: white;
+      
+      border: 1px solid rgb(57, 57, 58);
+  }
+  
+  td{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-size : 20px;
+    text-align: center;
+  }
+
+  
+  #encabezado{
+    text-align: center;
+  }
+
+  #asignacion{
+    background-color: teal;
+    color: #fff;
+
+  }
 
 
