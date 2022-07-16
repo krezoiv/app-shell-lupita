@@ -44,7 +44,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ListAsignmentHosesComponent } from './infrastructure/dispensers/list-asignment-hoses/list-asignment-hoses.component';
+import { CuadresComponent } from './cuadres/cuadres/cuadres.component';
+import { CuadresNavbarComponent } from '../shared/cuadres-navbar/cuadres-navbar.component';
+import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -79,8 +83,9 @@ import { ListAsignmentHosesComponent } from './infrastructure/dispensers/list-as
     UpdateHosesComponent,
     DeleteHosesComponent,
     AssignmentsHosesComponent,
-    ListAsignmentHosesComponent
-  
+    CuadresComponent,
+    DigitizeDispenserComponent,
+
    
     
   ],
@@ -99,7 +104,9 @@ import { ListAsignmentHosesComponent } from './infrastructure/dispensers/list-as
     MatSelectModule,
     MatCardModule,
     MatTabsModule,
-    ScrollingModule
+    ScrollingModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
 
   ],
@@ -107,7 +114,8 @@ import { ListAsignmentHosesComponent } from './infrastructure/dispensers/list-as
     DashboardComponent,
     UsersComponent,
     CouponsComponent,
-    MaintenancesComponent
+    MaintenancesComponent,
+    CuadresNavbarComponent
   
   ]
 })

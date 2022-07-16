@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { CuadresNavbarComponent } from './cuadres-navbar/cuadres-navbar.component';
+import { CuadresComponent } from '../pages/cuadres/cuadres/cuadres.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
     SidebarComponent,
     FooterComponent,
     MaintenanceNavbarComponent,
+    CuadresNavbarComponent,
  
   ],
   imports: [
@@ -38,7 +41,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MantenimientoUserHeaderComponent,
     SidebarComponent,
     FooterComponent,
-    MaintenanceNavbarComponent
+    MaintenanceNavbarComponent,
+    CuadresNavbarComponent
   ]
 })
 export class SharedModule { }

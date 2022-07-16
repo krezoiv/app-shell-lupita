@@ -1,0 +1,145 @@
+form{
+    border: 1px solid #101010;
+    border-radius: 10px ;
+    background-color :white;
+    padding: 10px;
+    width: 950px;
+    height:fit-content;
+    position: absolute;
+    top: 15%;
+    left: 1%;
+
+}
+
+#formulario2 {
+    border: 1px solid #101010;
+    border-radius: 10px ;
+    background-color :white;
+    padding: 5px;
+    width: 700px;
+    height:fit-content;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+h3 {
+    font-size:30px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+input{
+    font-size:200%;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+label{
+    font-size: 15px;
+}
+mat-label{
+    font-size:20px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+mat-hint{
+    font-size:15px;
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+mat-form-field{
+    margin-right: 10px;
+        
+}
+#bomba {
+    width: 50%;
+}
+
+h4 {
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: blue;
+
+}
+input{
+    font-size:200%;
+    text-align: center;
+}
+
+mat-label{
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+mat-hint{
+    font-size:15px;
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#check{
+    font-size: 50px;
+    height: 70px;
+    width: 70px;
+    color: blueviolet;
+    cursor: pointer;
+ 
+}
+
+#posiciones{
+    background-color: cadetblue;
+    color: #fff;
+    height: 20px;
+}
+
+
+table{
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  
+  
+  .fa-solid {
+      cursor: pointer;
+  }
+  
+  th {
+      background-color: blueviolet;
+      font-family: 'Courier New', Courier, monospace;
+      font-size : 20px;
+      color: white;
+      
+      border: 1px solid rgb(57, 57, 58);
+  }
+  
+  td{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-size : 20px;
+    text-align: center;
+  }
+
+  
+  #encabezado{
+    text-align: center;
+  }
+
+  #asignacion{
+    background-color: teal;
+    color: #fff;
+
+  }
+
+#dateAssignment {
+    margin-right: 25px;
+
+  }

@@ -1,0 +1,147 @@
+<app-cuadres-navbar></app-cuadres-navbar>
+
+<body>
+
+    <form id="formulario" [formGroup]="digitizeForm" class="mat-elevation-z8">
+        <h3>
+            <mat-icon> local_gas_station</mat-icon> &nbsp; Numeración de Bombas
+        </h3>
+
+
+        <hr>
+
+
+        <mat-tab-group backgroundColor="primary" [color]="color">
+
+            <mat-tab label="Isla 1 ">
+                <!--    <h1 *ngFor="let islando of selectedIsland">{{islando.islandNumber}}</h1> -->
+                <h1>Isla 1</h1>
+
+                
+        <div>
+            <table class="example-full-width" cellSpacing="0">
+                <tr>
+                    <td>
+                        <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field color="accent" appearance="fill">
+                            <input matInput [matDatepicker]="assignmentDate">
+                            <mat-datepicker-toggle [for]="assignmentDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #assignmentDate></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Seleccione Bomba</mat-label>
+                            <mat-select >
+                              
+                              <mat-option *ngFor="let dispenser of selectedDispenser" [value]="dispenser.dispenserId">
+                                {{dispenser.dispenserCode | titlecase}}
+                              </mat-option>
+                            </mat-select>
+                           
+                        </mat-form-field>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+                <mat-tab-group backgroundColor="accent">
+
+                    <mat-tab label="lado A">
+                        <h1>Lado A</h1>
+                        <label>
+                            <h2> Regular :</h2>
+
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Super :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Diesel :</h2>
+                        </label>
+
+                    </mat-tab>
+
+                    <mat-tab label="lado B">
+                        <h1>Lado B</h1>
+                        <label>
+                            <h2> Regular :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Super :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Diesel :</h2>
+                        </label>
+
+
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </mat-tab>
+
+            <mat-tab label="Isla 2 ">
+                <h1>Isla 2</h1>
+                <hr>
+
+                <mat-tab-group backgroundColor="accent">
+
+                    <mat-tab label="lado A">
+                        <h1>Lado A</h1>
+                        <label>
+                            <h2> Regular :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Super :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Diesel :</h2>
+                        </label>
+
+                    </mat-tab>
+
+                    <mat-tab label="lado B">
+                        <h1>Lado B</h1>
+                        <label>
+                            <h2> Regular :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Super :</h2>
+                        </label>
+
+                        <hr>
+                        <label>
+                            <h2> Diesel :</h2>
+                        </label>
+
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </mat-tab>
+
+        </mat-tab-group>
+
+    </form>
+
+</body>
+<app-footer></app-footer>

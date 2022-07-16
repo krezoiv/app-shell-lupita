@@ -16,8 +16,8 @@ import { MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ScrollingModule} from '@angular/cdk/scrolling';
-
-
+import { MatDatepickerModule,  } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -54,7 +54,10 @@ import { PagesModule } from './pages/pages.module';
     MatMenuModule,
     MatCardModule,
     MatTabsModule,
-    ScrollingModule
+    ScrollingModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+   
     
   ],
   providers: [],

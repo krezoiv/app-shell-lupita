@@ -50,9 +50,8 @@ export class AssignmentsHosesComponent implements OnInit {
   })
 
   constructor(
-    private router: Router,
+
     private fb: FormBuilder,
-    private fb2: FormBuilder,
     private hoseService: HosesService,
     private statusService: StatusService,
     private dispenserService: DispensersService,

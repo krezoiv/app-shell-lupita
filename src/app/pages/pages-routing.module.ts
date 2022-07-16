@@ -20,7 +20,8 @@ import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels
 import { CreateHoseComponent } from './infrastructure/hoses/create-hose/create-hose.component';
 import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.component';
 import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignments-hoses/assignments-hoses.component';
-import { ListAsignmentHosesComponent } from './infrastructure/dispensers/list-asignment-hoses/list-asignment-hoses.component';
+import { CuadresComponent } from './cuadres/cuadres/cuadres.component';
+import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
 
 
 const routes: Routes =[
@@ -44,7 +45,9 @@ const routes: Routes =[
     {path : 'infrastructure/hoses/newHoses', component : CreateHoseComponent},
     {path : 'infrastructure/hoses/listHoses', component : ListHoseComponent},
     {path : 'infrastructure/assignmentsHoses', component : AssignmentsHosesComponent},
-    {path : 'infrastructure/ListAssignmentsHoses', component : ListAsignmentHosesComponent},
+    {path : 'cuadres', component: CuadresComponent},
+    {path : 'cuadres/digitalizacionBombas', component: DigitizeDispenserComponent}
+
 
 
   ]},
