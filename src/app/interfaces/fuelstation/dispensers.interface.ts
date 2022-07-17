@@ -1,5 +1,7 @@
-import { Assignment } from "src/app/models/fuelstation/assignment.model"
-import { SideDispenser } from "src/app/models/fuelstation/dispensers.model"
+import { Assignment, AssignmentHose } from "src/app/models/fuelstation/assignment.model"
+import { DispenserReader, GeneralDispenserReader, SideDispenser } from "src/app/models/fuelstation/dispensers.model"
+import { Hoses } from "src/app/models/fuelstation/hoses.models"
+import { Status } from "src/app/models/status.model"
 
 
 export interface Dispensers_I {
@@ -20,4 +22,30 @@ export interface SideB_I {
 
 export interface AssignmentHose_I {
     assignmentHose : []
+}
+
+export interface AssignmentHose_In {
+    assignmenHose : AssignmentHose
+}
+
+export interface As_I{
+
+    assignmenHose :AssignmentHose
+   
+}
+
+export interface PreviousGallons_I {
+    previousNoGallons : [];
+}
+
+export interface PreviousMechanic_I {
+    previousNoMechanic : [];
+}
+
+export interface PreviousMoney_I {
+    previousNoMoney : [];
+}
+
+export interface GeneralDispenserReader_I{
+    generalDispenserReader: GeneralDispenserReader;
 }

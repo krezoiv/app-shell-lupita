@@ -1,3 +1,4 @@
+body { min-height: 200vh; }
 form{
     border: 1px solid #101010;
     border-radius: 10px ;
@@ -100,13 +101,29 @@ mat-hint{
     height: 20px;
 }
 
-
-table{
+table, th, tr {
     width: 100%;
     margin: 0 auto;
+    border: 1px solid;
+}
+
+#tabla{
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid;
   }
   
+  #tablaTr{
+    
+    margin: 0 auto;
+    border: 1px solid;
+  }
   
+  #tablaTd{
+    
+    margin: 0 auto;
+    border: 1px solid;
+  }
   
   .fa-solid {
       cursor: pointer;

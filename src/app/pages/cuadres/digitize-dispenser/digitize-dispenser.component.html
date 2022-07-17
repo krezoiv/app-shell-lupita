@@ -13,79 +13,558 @@
 
         <mat-tab-group backgroundColor="primary" [color]="color">
 
-            <mat-tab label="Isla 1 ">
-                <!--    <h1 *ngFor="let islando of selectedIsland">{{islando.islandNumber}}</h1> -->
+            <mat-tab label="Isla 122 ">
+
                 <h1>Isla 1</h1>
 
-                
-        <div>
-            <table class="example-full-width" cellSpacing="0">
-                <tr>
-                    <td>
-                        <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
-                        <mat-form-field color="accent" appearance="fill">
-                            <input matInput [matDatepicker]="assignmentDate">
-                            <mat-datepicker-toggle [for]="assignmentDate" matSuffix></mat-datepicker-toggle>
-                            <mat-datepicker #assignmentDate></mat-datepicker>
-                        </mat-form-field>
-                    </td>
 
-                    <td>
-                        <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Seleccione Bomba</mat-label>
-                            <mat-select >
-                              
-                              <mat-option *ngFor="let dispenser of selectedDispenser" [value]="dispenser.dispenserId">
-                                {{dispenser.dispenserCode | titlecase}}
-                              </mat-option>
-                            </mat-select>
-                           
-                        </mat-form-field>
-                    </td>
-                </tr>
 
-            </table>
-        </div>
+                <div>
+                    <table class="example-full-width" cellSpacing="0">
+                        <tr>
+                            <td>
+                                <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                                <mat-form-field color="accent" appearance="fill">
+                                    <input formControlName="readingDate" required matInput
+                                        [matDatepicker]="readingDate">
+                                    <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                                    <mat-datepicker #readingDate></mat-datepicker>
+                                </mat-form-field>
+                            </td>
+
+                            <td>
+                                <label>Seleccione Bomba : &nbsp; &nbsp; &nbsp;</label>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Seleccione Bomba</mat-label>
+                                    <mat-select formControlName="dispenserId" required>
+
+                                        <mat-option *ngFor="let dispenser of selectedDispenser"
+                                            [value]="dispenser.dispenserId">
+                                            {{dispenser.dispenserCode | titlecase}}
+                                        </mat-option>
+                                    </mat-select>
+
+                                </mat-form-field>
+                            </td>
+
+
+                        </tr>
+
+                        <button (click)="prueba();"></button>
+                        <button (click)="prueba2();"></button>
+
+                    </table>
+                </div>
 
 
                 <mat-tab-group backgroundColor="accent">
 
                     <mat-tab label="lado A">
                         <h1>Lado A</h1>
-                        <label>
-                            <h2> Regular :</h2>
-
-                        </label>
-
                         <hr>
                         <label>
-                            <h2> Super :</h2>
+                            <h2> Regular : <button id="botondigitar" mat-raised-button color="accent" (click)="regular();"><mat-icon> border_color</mat-icon>Digitar</button> </h2>
                         </label>
 
+                        <!-- tabla para registro de Regular-->
+                        <table id="tabla" class="example-full-width" cellspacing="0">
+                            <tr id="tablaTr" >
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderM">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input  type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderMY">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                                
+                            </tr>
+                            <tr>
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+
+
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                            </tr><br>
+
+                            <div>
+                                <tr> 
+                                    <button mat-raised-button color="primary" (click)="guardarRegular();">Guardar</button>              
+                                </tr>
+                            </div><br>
+                        </table>
+                        <br>
                         <hr>
                         <label>
-                            <h2> Diesel :</h2>
+                            <h2> Super : <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>Digitar</button> </h2>
                         </label>
+
+                        <!-- tabla para registro de Super-->
+                        <table id="tabla" class="example-full-width" cellspacing="0">
+                            <tr id="tablaTr">
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+
+
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                            </tr><br>
+
+                            <div>
+                                <tr> 
+                                    <button mat-raised-button color="primary">Guardar</button>              
+                                </tr>
+                            </div><br>
+                        </table><br>
+                        <hr>
+
+                        <label>
+                            <h2> Diesel: <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>Digitar</button> </h2>
+                        </label>
+
+                        <!-- tabla para registro de Diesel-->
+                        <table id="tabla" class="example-full-width" cellspacing="0">
+                            <tr id="tablaTr">
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput >
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+
+
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                            </tr><br>
+
+                            <div>
+                                <tr> 
+                                    <button mat-raised-button color="primary">Guardar</button>              
+                                </tr>
+                            </div><br>
+                        </table>
+
 
                     </mat-tab>
 
                     <mat-tab label="lado B">
                         <h1>Lado B</h1>
-                        <label>
-                            <h2> Regular :</h2>
-                        </label>
-
                         <hr>
                         <label>
-                            <h2> Super :</h2>
+                            <h2> Regular: <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>Digitar</button> </h2>
                         </label>
 
+                        <!-- tabla para registro de Regular-->
+                        <table id="tabla" class="example-full-width" cellspacing="0">
+                            <tr id="tablaTr">
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput >
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+
+
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput >
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                            </tr><br>
+
+                            <div>
+                                <tr> 
+                                    <button mat-raised-button color="primary">Guardar</button>              
+                                </tr>
+                            </div><br>
+                        </table>
+                        <br>
                         <hr>
                         <label>
-                            <h2> Diesel :</h2>
+                            <h2> Super : <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>Digitar</button> </h2>
                         </label>
 
+                        <!-- tabla para registro de Super-->
+                        <table id="tabla" class="example-full-width" cellspacing="0">
+                            <tr id="tablaTr">
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+
+
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                            </tr><br>
+
+                            <div>
+                                <tr> 
+                                    <button mat-raised-button color="primary">Guardar</button>              
+                                </tr>
+                            </div><br>
+                        </table><br>
+                        <hr>
+
+                        <label>
+                            <h2> Diesel : <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>Digitar</button> </h2>
+                        </label>
+
+                        <!-- tabla para registro de Diesel-->
+                        <table id="tabla" class="example-full-width" cellspacing="0">
+                            <tr id="tablaTr">
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName"  matInput readonly="">
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura Anterior</mat-hint>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Galones:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+
+
+                                </td>
+
+
+                                <td id="tablaTd">
+
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Mecánica:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+
+                                </td>
+
+                                <td id="tablaTd">
+                                    <mat-form-field appearance="legacy">
+                                        <mat-label>Lectura Dinero:</mat-label>
+                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                        <mat-icon matSuffix> local_gas_station</mat-icon>
+                                        <mat-hint>Lectura de día</mat-hint>
+                                    </mat-form-field>
+                                </td>
+
+                            </tr><br>
+
+                            <div>
+                                <tr> 
+                                    <button mat-raised-button color="primary">Guardar</button>              
+                                </tr>
+                            </div><br>
+                        </table>
 
                     </mat-tab>
 
