@@ -1,11 +1,17 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { ConfirmationDialog } from 'src/app/interfaces/fuelstation/confirmation-dialog.interface';
 import { AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { Island } from 'src/app/models/fuelstation/island.models';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
+import { ConfirmationsService } from 'src/app/services/functions/confirmations.service';
 import Swal from 'sweetalert2';
+import { ConfirmationsComponent } from '../../dialogs/confirmations/confirmations.component';
 
 @Component({
   selector: 'app-digitize-dispenser',
@@ -15,37 +21,49 @@ import Swal from 'sweetalert2';
 export class DigitizeDispenserComponent implements OnInit {
 
   color = 'accent';
-  public columnsRegular : string[]=[];
+
+  showMe : boolean = false;
+
+  buttonDisableRegular: boolean = true;
+  buttonDisableSuper : boolean = true;
+  buttonDisableDiesel : boolean = true;
+  buttonDisableVpower : boolean = true;
+  buttonDisableRegularB: boolean = true;
+  buttonDisableSuperB : boolean = true;
+  buttonDisableDieselB : boolean = true;
+  buttonDisableVpowerB : boolean = true;
+  public columnsRegular: string[] = [];
   public selectedIsland: Island[] = [];
   public selectedDispenser: Dispensers[] = [];
-  public selectedAssignmentHose : AssignmentHose[]=[];
-  public dispenserReaderG : DispenserReader[]=[];
-  public dispenserReaderM : DispenserReader[]=[];
-  public dispenserReaderMY : DispenserReader[]=[];
+  public selectedAssignmentHose: AssignmentHose[] = [];
+  public dispenserReaderG: DispenserReader[] = [];
+  public dispenserReaderM: DispenserReader[] = [];
+  public dispenserReaderMY: DispenserReader[] = [];
 
+  
 
   digitizeForm: FormGroup = this.fb.group({
     assignmentId: ['', Validators.required],
-    assignmentHoseId :['',Validators.required],
+    assignmentHoseId: ['', Validators.required],
     dispenserId: ['', Validators.required],
     sideId: ['', Validators.required],
     position: ['', Validators.required],
-    islaNombre : ['', Validators.required],
-    readingDate : ['', Validators.required],
-    totalFuelA :[0, Validators.required],
-    totalFuelB :[0, Validators.required],
-    totalFuelC :[0, Validators.required],
-    totalFuelD :[0, Validators.required],
-    previuosNoGallons : [0],
-    actualNoGallons : [0],
-    totalNoGallons : [0],
-    previuosNoMechanic : [0],
-    actualNoMechanic : [0],
-    totalNoMechanic : [0],
-    previuosNoMoney : [0],
-    actualNoMoney : [0],
-    totalNoMoney : [0],
-    generalDispenserReaderId : ['', Validators.required]
+    islaNombre: ['', Validators.required],
+    readingDate: ['', Validators.required],
+    totalFuelA: [0, Validators.required],
+    totalFuelB: [0, Validators.required],
+    totalFuelC: [0, Validators.required],
+    totalFuelD: [0, Validators.required],
+    previuosNoGallons: [0],
+    actualNoGallons: [0],
+    totalNoGallons: [0],
+    previuosNoMechanic: [0],
+    actualNoMechanic: [0],
+    totalNoMechanic: [0],
+    previuosNoMoney: [0],
+    actualNoMoney: [0],
+    totalNoMoney: [0],
+    generalDispenserReaderId: ['', Validators.required]
 
   })
 
@@ -53,43 +71,45 @@ export class DigitizeDispenserComponent implements OnInit {
     private fb: FormBuilder,
     private islandService: IslandsService,
     private dispenserService: DispensersService,
-    
+    private confirmationService: ConfirmationsService,
+    private dialog: MatDialog
+
 
   ) { }
 
   ngOnInit(): void {
     this.getDispenser();
     this.sideA();
-    
+
   }
 
-  createDispenserReader(){
+  createDispenserReader() {
     this.dispenserService.createDispenserReader(this.digitizeForm.value)
-        .subscribe((data) => {
-          Swal.fire('Creado', `Actualizado Correctamente`, 'success');
-        },  err => {
-          Swal.fire('Error', err.error.msg, 'error')
-        
-        })
+      .subscribe((data) => {
+        Swal.fire('Creado', `Actualizado Correctamente`, 'success');
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+
+      })
   }
 
-  creatGeneralAssignmentDispenserReader(){
+  creatGeneralAssignmentDispenserReader() {
     this.dispenserService.createGeneralDispenserReader(this.digitizeForm.value)
-        .subscribe((data) => {
-          Swal.fire('Creado', `Actualizado Correctamente`, 'success');
-          },  err => {
-            Swal.fire('Error', err.error.msg, 'error')
-          
-        })  
-  }
-  
+      .subscribe((data) => {
+        Swal.fire('Creado', `Actualizado Correctamente`, 'success');
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
 
-  
+      })
+  }
+
+
+
   sideA() {
     this.dispenserService.getSideA()
       .subscribe(({ sideDispenser }) => {
         this.digitizeForm.controls['sideId'].setValue(sideDispenser.sideId);
-        
+
       })
   }
 
@@ -123,32 +143,31 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dispenserService.getIdAssig(this.digitizeForm.value)
       .subscribe(({ idAssignments }) => {
         this.digitizeForm.controls['assignmentId'].setValue(idAssignments.assignmentId);
-        console.log(idAssignments.assignmentId)
-
+       
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
       })
   }
 
-  getGeneralAssignmentDispenserReaderId(){
+  getGeneralAssignmentDispenserReaderId() {
     this.dispenserService.getGeneralDispenserReaderId(this.digitizeForm.value)
-        .subscribe(({generalDispenserReader})=> {
-          this.digitizeForm.controls['generalDispenserReaderId'].setValue(generalDispenserReader.generalDispenserReaderId);
-          
-        })
+      .subscribe(({ generalDispenserReader }) => {
+        this.digitizeForm.controls['generalDispenserReaderId'].setValue(generalDispenserReader.generalDispenserReaderId);
+
+      })
   }
 
-  getAssignmentHoseId(){
+  getAssignmentHoseId() {
     this.sideA();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(1);
 
-    
+
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
-        
+
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -156,58 +175,98 @@ export class DigitizeDispenserComponent implements OnInit {
       })
   }
 
-  
-  prueba() {
+
+  aperturar() {
     this.getIdAssignment();
 
-  }
+   
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.creatGeneralAssignmentDispenserReader();
+      }
+    })
 
-  prueba2() {
-   this.creatGeneralAssignmentDispenserReader();
-   
-   
+
   }
 
   
 
-  getPreviuosNoGallons(){
+
+
+  getPreviuosNoGallons() {
     this.dispenserService.getPreviousGallons()
-        .subscribe(({previousNoGallons}) => {
-          this.dispenserReaderG = previousNoGallons
+      .subscribe(({ previousNoGallons }) => {
+        this.dispenserReaderG = previousNoGallons
 
-        })
+      })
   }
 
-  getPreviuosNoMechanic(){
+  getPreviuosNoMechanic() {
     this.dispenserService.getPreviousMechanic()
-        .subscribe(({previousNoMechanic})=> {
-          this.dispenserReaderM = previousNoMechanic
-          
-        })
+      .subscribe(({ previousNoMechanic }) => {
+        this.dispenserReaderM = previousNoMechanic
+
+      })
   }
 
-  getPreviuosNoMoney(){
+  getPreviuosNoMoney() {
     this.dispenserService.getPreviousMoney()
-        .subscribe(({previousNoMoney})=> {
-          this.dispenserReaderMY = previousNoMoney
-          
-        })
+      .subscribe(({ previousNoMoney }) => {
+        this.dispenserReaderMY = previousNoMoney
+
+      })
   }
 
-  regular(){
-    this.getPreviuosNoGallons();
-    this.getPreviuosNoMechanic();
-    this.getPreviuosNoMoney();
-    this.getAssignmentHoseId();
-    console.log(this.digitizeForm.value)
+  regular() {
+    //this.getPreviuosNoGallons();
+    //this.getPreviuosNoMechanic();
+    //this.getPreviuosNoMoney();
+    //this.getAssignmentHoseId();
+    this.buttonDisableRegular = false
+    this.showMe = !this.showMe
     
+  
+
   }
 
-  guardarRegular(){
-    console.log(this.digitizeForm.value)
+  guardarRegular(): void {
+
     this.getGeneralAssignmentDispenserReaderId();
-    this.createDispenserReader();
-    
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.createDispenserReader();
+      }
+    })
   }
+
+  guardarSuper(): void {
+
+  }
+
+  guardarDiesel(): void {
+
+  }
+
+  guardarRegularB(): void {
+
+  }
+  guardarSuperB(): void {
+
+  }
+
+  guardarDieselB(): void {
+
+  }
+
+enableform(){
+
+
+}
 
 }

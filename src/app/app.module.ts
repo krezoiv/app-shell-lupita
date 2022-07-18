@@ -25,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
 import { Page404Component } from './page404/page404.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
 import { PagesModule } from './pages/pages.module';
+import { ConfirmationsComponent } from './pages/dialogs/confirmations/confirmations.component';
 
 
 
@@ -56,10 +57,12 @@ import { PagesModule } from './pages/pages.module';
     MatTabsModule,
     ScrollingModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatToolbarModule
    
     
   ],
+  entryComponents: [ConfirmationsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

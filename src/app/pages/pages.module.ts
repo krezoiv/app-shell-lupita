@@ -49,6 +49,7 @@ import { CuadresNavbarComponent } from '../shared/cuadres-navbar/cuadres-navbar.
 import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmationsComponent } from './dialogs/confirmations/confirmations.component';
 
 
 
@@ -85,6 +86,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     AssignmentsHosesComponent,
     CuadresComponent,
     DigitizeDispenserComponent,
+    ConfirmationsComponent,
 
    
     
