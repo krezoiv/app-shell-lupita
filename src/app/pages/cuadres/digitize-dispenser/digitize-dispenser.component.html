@@ -48,7 +48,7 @@
 
                         </tr>
 
-                        <button  mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
+                        <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
                         <button *ngIf="buttonacierre" mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
                         
                         
@@ -62,7 +62,7 @@
                     <mat-tab label="lado A">
                         
                         
-                            <button   mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> -> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
+                            <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> -> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
                             <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado A Aperturado</button>
                        
 
@@ -167,32 +167,32 @@
                         <!-- tabla para registro de Super-->
                         <table *ngIf="showMeSuper1A" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons"  matInput readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
                                 </td>
 
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderM" >
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
 
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
