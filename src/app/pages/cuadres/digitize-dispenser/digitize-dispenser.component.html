@@ -48,7 +48,7 @@
 
                         </tr>
 
-                        <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
+                        <button  mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
                         <button *ngIf="buttonacierre" mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
                         
                         
@@ -62,7 +62,7 @@
                     <mat-tab label="lado A">
                         
                         
-                            <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> -> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
+                            <button   mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> -> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
                             <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado A Aperturado</button>
                        
 
