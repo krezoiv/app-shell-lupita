@@ -33,7 +33,7 @@ export class DispensersService {
     return this.http.get<Dispensers_I>(`${api_url}/dispensers`, this.headers);
   }
 
- 
+
 
   getAssignmentHoseId(formData: As_I): Observable<As_I> {
     return this.http.post<As_I>(`${api_url}/assignmentHose/assignmentHoseId`, formData, this.headers)
@@ -79,7 +79,7 @@ export class DispensersService {
     return this.http.post<AssignmentHose_I>(`${api_url}/assignmentHose/getAssig`, formData, this.headers);
   }
 
-  getGeneralDispenserReaderId(formData : GeneralDispenserReader_I): Observable<GeneralDispenserReader_I>{
+  getGeneralDispenserReaderId(formData: GeneralDispenserReader_I): Observable<GeneralDispenserReader_I> {
     return this.http.post<GeneralDispenserReader_I>(`${api_url}/generalDispenserReader/generalDispenserReader`, formData, this.headers);
   }
   getIdAssig(formData: Assignment_I): Observable<Assignment_I> {
@@ -88,25 +88,65 @@ export class DispensersService {
   };
 
 
-  createGeneralDispenserReader(formData : GeneralDispenserReader) : Observable<GeneralDispenserReader[]>{
+  createGeneralDispenserReader(formData: GeneralDispenserReader): Observable<GeneralDispenserReader[]> {
     return this.http.post<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader`, formData, this.headers);
   }
 
-  createDispenserReader(formData : DispenserReader) : Observable<DispenserReader[]>{
+  createDispenserReader(formData: DispenserReader): Observable<DispenserReader[]> {
     return this.http.post<DispenserReader[]>(`${api_url}/dispenserReaders`, formData, this.headers);
   }
 
-  
-  getPreviousGallons() : Observable<PreviousGallons_I>{
-    return this.http.get<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallon`, this.headers);
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de regular
+  getPreviousGallons(): Observable<PreviousGallons_I> {
+    return this.http.get<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonRegular`, this.headers);
   }
- 
-  getPreviousMechanic() : Observable<PreviousMechanic_I>{
-    return this.http.get<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanic`, this.headers);
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de regular
+  getPreviousMechanic(): Observable<PreviousMechanic_I> {
+    return this.http.get<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicRegular`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de regular
+  getPreviousMoney(): Observable<PreviousMoney_I> {
+    return this.http.get<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyRegular`, this.headers);
   }
 
-  getPreviousMoney() : Observable<PreviousMoney_I>{
-    return this.http.get<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoney`, this.headers);
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de super
+  getPreviousGallonsSuper(): Observable<PreviousGallons_I> {
+    return this.http.get<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonSuper`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de super
+  getPreviousMechanicSuper(): Observable<PreviousMechanic_I> {
+    return this.http.get<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicSuper`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de super
+  getPreviousMoneySuper(): Observable<PreviousMoney_I> {
+    return this.http.get<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneySuper`, this.headers);
+  }
+
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de diesl
+  getPreviousGallonsDiesel(): Observable<PreviousGallons_I> {
+    return this.http.get<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonDiesel`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de diesel
+  getPreviousMechanicDiesel(): Observable<PreviousMechanic_I> {
+    return this.http.get<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicDiesel`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de diesel
+  getPreviousMoneyDiesel(): Observable<PreviousMoney_I> {
+    return this.http.get<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyDiesel`, this.headers);
+  }
+
+
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de Vpower
+  getPreviousGallonsVpower(): Observable<PreviousGallons_I> {
+    return this.http.get<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonVpower`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de Vpower
+  getPreviousMechanicVpower(): Observable<PreviousMechanic_I> {
+    return this.http.get<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicVpower`, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de Vpower
+  getPreviousMoneyVpower(): Observable<PreviousMoney_I> {
+    return this.http.get<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyVpower`, this.headers);
   }
 
 }

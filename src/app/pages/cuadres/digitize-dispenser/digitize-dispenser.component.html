@@ -50,7 +50,7 @@
 
                         </tr>
 
-                        <button mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar</button>
+                        <button [disabled]="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
                         
                         
 
@@ -61,22 +61,24 @@
                 <mat-tab-group backgroundColor="accent">
 
                     <mat-tab label="lado A">
-                        <h1 >Lado A</h1>
+                        <h1 >  <button [disabled]="buttonDisableSideA" *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock_open</mat-icon>&nbsp; Aperturar Lado A</button></h1>
+                        <h1 >  <button  *ngIf="buttonDisableSideAA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon>&nbsp; Lado A Aperturado</button></h1>
+                       
                         <hr>
                         <label>
-                            <h2> Regular : <button id="botondigitar" mat-raised-button color="accent" (click)="regular();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
+                            <h2> Regular : <button [disabled]="btnDisableRegularR1A" id="botondigitar"   mat-raised-button color="accent" (click)="regular1A();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
                         </label>
 
+
                         <!-- tabla para registro de Regular-->
-                        <table  *ngIf="showMe" id="tabla" class="example-full-width" cellspacing="0">
+                        <table  *ngIf="showMeRegular1A" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr"   >
-                                <div >
-                                    <div >
+                                
                                         <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
 
                                             <mat-form-field appearance="legacy">
                                                 <mat-label>Lectura Galones:</mat-label>
-                                                <input   type="number"  id="fName" formControlName="previuosNoGallons" matInput readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <input   type="number"  id="fName" formControlName="previuosNoGallons" matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
                                                 <mat-icon matSuffix> local_gas_station</mat-icon>
                                                 <mat-hint>Lectura Anterior</mat-hint>
                                             </mat-form-field>
@@ -103,11 +105,10 @@
                                             </mat-form-field>
                                         </td>
         
-                                    </div>
-                                </div>
+                               
                                 
                             </tr>
-
+                         
                             <tr>
                                 <td id="tablaTd">
 
@@ -145,57 +146,24 @@
 
                             </tr><br>
 
-                            <tr>
-                                <td id="tablaTd">
 
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-
-
-                                </td>
-
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="primary" (click)="guardarRegular();">	<mat-icon>save</mat-icon>&nbsp; Guardar</button>              
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegular();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="primary" (click)="guardarRegular();">	<mat-icon>save</mat-icon>&nbsp; Guardar</button>         
+                                      
                                 </tr>
                             </div><br>
                         </table>
                         <br>
                         <hr>
                         <label>
-                            <h2> Super : <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
+                            <h2> Super : <button [disabled]="btnDisableSuperR1A" id="botondigitar" mat-raised-button color="accent" (click)="super1A();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
                         </label>
 
                         <!-- tabla para registro de Super-->
-                        <table id="tabla" class="example-full-width" cellspacing="0">
+                        <table *ngIf="showMeSuper1A" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
                                 <td id="tablaTd">
 
@@ -212,7 +180,7 @@
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -222,7 +190,7 @@
                                 <td id="tablaTd">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -267,6 +235,7 @@
 
                             <div>
                                 <tr> 
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuper();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp; 
                                     <button [disabled]="buttonDisableSuper"mat-raised-button color="primary" (click)="guardarSuper();"><mat-icon>save</mat-icon>&nbsp;   Guardar</button>              
                                 </tr>
                             </div><br>
@@ -274,17 +243,17 @@
                         <hr>
 
                         <label>
-                            <h2> Diesel: <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
+                            <h2> Diesel: <button [disabled]="btnDisableDisableR1A" id="botondigitar" mat-raised-button color="accent" (click)="diesel1A();"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
                         </label>
 
                         <!-- tabla para registro de Diesel-->
-                        <table id="tabla" class="example-full-width" cellspacing="0">
+                        <table *ngIf="showMeDiesel1A" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
                                 <td id="tablaTd">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -295,7 +264,7 @@
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -305,7 +274,7 @@
                                 <td id="tablaTd">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -350,6 +319,7 @@
 
                             <div>
                                 <tr> 
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDiesel();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
                                     <button [disabled]="buttonDisableDiesel" mat-raised-button color="primary" (click)="guardarDiesel();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
@@ -362,11 +332,11 @@
                         <h1>Lado B</h1>
                         <hr>
                         <label>
-                            <h2> Regular: <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
+                            <h2> Regular: <button [disabled]="btnDisableRegularR1B"id="botondigitar" mat-raised-button color="accent" (click)="regular1B();"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
                         </label>
 
                         <!-- tabla para registro de Regular-->
-                        <table id="tabla" class="example-full-width" cellspacing="0">
+                        <table *ngIf="showMeRegular1B" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
                                 <td id="tablaTd">
 
@@ -383,7 +353,7 @@
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -438,6 +408,7 @@
 
                             <div>
                                 <tr> 
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegularB();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
                                     <button [disabled]="buttonDisableRegularB" mat-raised-button color="primary" (click)="guardarRegularB();" ><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
@@ -445,17 +416,17 @@
                         <br>
                         <hr>
                         <label>
-                            <h2> Super : <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
+                            <h2> Super : <button [disabled]="btnDisableSuperR1B" id="botondigitar" mat-raised-button color="accent" (click)="super1B();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
                         </label>
 
                         <!-- tabla para registro de Super-->
-                        <table id="tabla" class="example-full-width" cellspacing="0">
+                        <table *ngIf="showMeSuper1B" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
                                 <td id="tablaTd">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -466,7 +437,7 @@
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -476,7 +447,7 @@
                                 <td id="tablaTd">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName"  formControlName="previuosNoMoney" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -521,6 +492,7 @@
 
                             <div>
                                 <tr> 
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuperB();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
                                     <button [disabled]="buttonDisableSuperB" mat-raised-button color="primary" (click)="guardarSuperB();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
@@ -528,17 +500,17 @@
                         <hr>
 
                         <label>
-                            <h2> Diesel : <button id="botondigitar" mat-raised-button color="accent"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
+                            <h2> Diesel : <button  [disabled]="btnDisableDieselR1B" id="botondigitar" mat-raised-button color="accent" (click)="diesel1B();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
                         </label>
 
                         <!-- tabla para registro de Diesel-->
-                        <table id="tabla" class="example-full-width" cellspacing="0">
+                        <table *ngIf="showMeDiesel1B" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
                                 <td id="tablaTd">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -549,7 +521,7 @@
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -559,7 +531,7 @@
                                 <td id="tablaTd">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName"  formControlName="previuosNoMoney" matInput readonly="">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -604,6 +576,7 @@
 
                             <div>
                                 <tr> 
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDieselB();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
                                     <button [disabled]="buttonDisableDieselB" mat-raised-button color="primary" (click)="guardarDieselB();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
