@@ -17,8 +17,6 @@
 
                 <h1>Isla 1</h1>
 
-
-
                 <div>
                     <table class="example-full-width" cellSpacing="0">
                         <tr>
@@ -50,7 +48,8 @@
 
                         </tr>
 
-                        <button [disabled]="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
+                        <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
+                        <button *ngIf="buttonacierre" mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
                         
                         
 
@@ -61,9 +60,12 @@
                 <mat-tab-group backgroundColor="accent">
 
                     <mat-tab label="lado A">
-                        <h1 >  <button [disabled]="buttonDisableSideA" *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock_open</mat-icon>&nbsp; Aperturar Lado A</button></h1>
-                        <h1 >  <button  *ngIf="buttonDisableSideAA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon>&nbsp; Lado A Aperturado</button></h1>
+                        
+                        
+                            <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> -> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
+                            <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado A Aperturado</button>
                        
+
                         <hr>
                         <label>
                             <h2> Regular : <button [disabled]="btnDisableRegularR1A" id="botondigitar"   mat-raised-button color="accent" (click)="regular1A();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
@@ -150,8 +152,8 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegular();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="primary" (click)="guardarRegular();">	<mat-icon>save</mat-icon>&nbsp; Guardar</button>         
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegularA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="primary" (click)="guardarRegularA1();">	<mat-icon>save</mat-icon>&nbsp; Guardar</button>         
                                       
                                 </tr>
                             </div><br>
@@ -235,8 +237,8 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuper();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp; 
-                                    <button [disabled]="buttonDisableSuper"mat-raised-button color="primary" (click)="guardarSuper();"><mat-icon>save</mat-icon>&nbsp;   Guardar</button>              
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuperA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp; 
+                                    <button [disabled]="buttonDisableSuper"mat-raised-button color="primary" (click)="guardarSuperA1();"><mat-icon>save</mat-icon>&nbsp;   Guardar</button>              
                                 </tr>
                             </div><br>
                         </table><br>
@@ -319,8 +321,8 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDiesel();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableDiesel" mat-raised-button color="primary" (click)="guardarDiesel();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDieselA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button [disabled]="buttonDisableDiesel" mat-raised-button color="primary" (click)="guardarDieselA1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
                         </table>
@@ -408,8 +410,8 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegularB();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableRegularB" mat-raised-button color="primary" (click)="guardarRegularB();" ><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegularB1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button [disabled]="buttonDisableRegularB" mat-raised-button color="primary" (click)="guardarRegularB1();" ><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
                         </table>
@@ -492,8 +494,8 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuperB();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableSuperB" mat-raised-button color="primary" (click)="guardarSuperB();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuperB1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button [disabled]="buttonDisableSuperB" mat-raised-button color="primary" (click)="guardarSuperB1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
                         </table><br>
@@ -576,8 +578,8 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDieselB();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableDieselB" mat-raised-button color="primary" (click)="guardarDieselB();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
+                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDieselB1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button [disabled]="buttonDisableDieselB" mat-raised-button color="primary" (click)="guardarDieselB1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
                         </table>
