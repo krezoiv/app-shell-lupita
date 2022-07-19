@@ -204,7 +204,7 @@ export class DigitizeDispenserComponent implements OnInit {
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
         
-        console.log(this.digitizeForm.value)
+     
 
 
       }, err => {
@@ -263,7 +263,7 @@ export class DigitizeDispenserComponent implements OnInit {
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
         this.creatGeneralAssignmentDispenserReader();
-        console.log(this.digitizeForm.value)
+       
       }
 
     })
@@ -308,33 +308,32 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dispenserService.getPreviousGallons(this.digitizeForm.value)
       .subscribe(({ previousNoGallons }) => {
         this.dispenserReaderG = previousNoGallons
-        console.log(previousNoGallons)
 
       })
   }
 
   getPreviuosNoMechanic() {
     this.dispenserService.getPreviousMechanic(this.digitizeForm.value)
-      .subscribe(({ previousNoMechanic }) => {
+      .subscribe(({ previousNoMechanic})  => {
         this.dispenserReaderM = previousNoMechanic
-        console.log(previousNoMechanic)
+       
 
       })
   }
 
   getPreviuosNoMoney() {
     this.dispenserService.getPreviousMoney(this.digitizeForm.value)
-      .subscribe(({ previousNoMoney }) => {
+      .subscribe(({previousNoMoney}) => {
         this.dispenserReaderMY = previousNoMoney
-        console.log(previousNoMoney)
+       
 
       })
   }
 
-
+/*
   getPreviuosNoGallonsSuper() {
     this.dispenserService.getPreviousGallonsSuper(this.digitizeForm.value)
-      .subscribe(({ previousNoGallons }) => {
+      .subscribe( previousNoGallons  => {
         this.dispenserReaderG = previousNoGallons
 
       })
@@ -342,7 +341,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoMechanicSuper() {
     this.dispenserService.getPreviousMechanicSuper(this.digitizeForm.value)
-      .subscribe(({ previousNoMechanic }) => {
+      .subscribe( previousNoMechanic  => {
         this.dispenserReaderM = previousNoMechanic
 
       })
@@ -350,7 +349,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoMoneySuper() {
     this.dispenserService.getPreviousMoneySuper(this.digitizeForm.value)
-      .subscribe(({ previousNoMoney }) => {
+      .subscribe(previousNoMoney  => {
         this.dispenserReaderMY = previousNoMoney
 
       })
@@ -359,7 +358,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoGallonsDiesel() {
     this.dispenserService.getPreviousGallonsDiesel(this.digitizeForm.value)
-      .subscribe(({ previousNoGallons }) => {
+      .subscribe(previousNoGallons  => {
         this.dispenserReaderG = previousNoGallons
 
       })
@@ -367,7 +366,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoMechanicDiesel() {
     this.dispenserService.getPreviousMechanicDiesel(this.digitizeForm.value)
-      .subscribe(({ previousNoMechanic }) => {
+      .subscribe(previousNoMechanic  => {
         this.dispenserReaderM = previousNoMechanic
 
       })
@@ -375,7 +374,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoMoneyDiesel() {
     this.dispenserService.getPreviousMoneyDiesel(this.digitizeForm.value)
-      .subscribe(({ previousNoMoney }) => {
+      .subscribe( previousNoMoney  => {
         this.dispenserReaderMY = previousNoMoney
 
       })
@@ -384,7 +383,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoGallonsVpower() {
     this.dispenserService.getPreviousGallonsVpower(this.digitizeForm.value)
-      .subscribe(({ previousNoGallons }) => {
+      .subscribe( previousNoGallons  => {
         this.dispenserReaderG = previousNoGallons
 
       })
@@ -392,7 +391,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoMechanicVpower() {
     this.dispenserService.getPreviousMechanicVpower(this.digitizeForm.value)
-      .subscribe(({ previousNoMechanic }) => {
+      .subscribe(previousNoMechanic => {
         this.dispenserReaderM = previousNoMechanic
 
       })
@@ -400,12 +399,12 @@ export class DigitizeDispenserComponent implements OnInit {
 
   getPreviuosNoMoneyVpower() {
     this.dispenserService.getPreviousMoneyVpower(this.digitizeForm.value)
-      .subscribe(({ previousNoMoney }) => {
+      .subscribe( previousNoMoney=> {
         this.dispenserReaderMY = previousNoMoney
 
       })
   }
-
+*/
 
 
   regular1A() {
@@ -445,7 +444,7 @@ export class DigitizeDispenserComponent implements OnInit {
   /*  this.getPreviuosNoGallons();
     this.getPreviuosNoMechanic();
     this.getPreviuosNoMoney();*/
-    console.log(this.digitizeForm.value)
+    //console.log(this.digitizeForm.value)
       }
 
     })
@@ -456,9 +455,9 @@ export class DigitizeDispenserComponent implements OnInit {
   super1A() {
 
     this.sideA();
-    this.getPreviuosNoGallonsSuper();
-    this.getPreviuosNoMechanicSuper();
-    this.getPreviuosNoMoneySuper();
+    //this.getPreviuosNoGallonsSuper();
+   // this.getPreviuosNoMechanicSuper();
+   // this.getPreviuosNoMoneySuper();
     this.getAssignmentHoseIdSuperA1();
     this.buttonDisableSuper = false
     this.showMeSuper1A = !this.showMeSuper1A
@@ -472,9 +471,9 @@ export class DigitizeDispenserComponent implements OnInit {
 
   diesel1A() {
     this.sideA();
-    this.getPreviuosNoGallonsDiesel();
-    this.getPreviuosNoMechanicDiesel();
-    this.getPreviuosNoMoneyDiesel();
+   // this.getPreviuosNoGallonsDiesel();
+   // this.getPreviuosNoMechanicDiesel();
+//this.getPreviuosNoMoneyDiesel();
     this.getAssignmentHoseIdDieselA1();
     this.buttonDisableDiesel = false
     this.showMeDiesel1A = !this.showMeDiesel1A
