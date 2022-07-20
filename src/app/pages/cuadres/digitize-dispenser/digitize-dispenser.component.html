@@ -49,9 +49,14 @@
                         </tr>
 
                         <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
-                        <button *ngIf="buttonacierre" mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
                         
+                       <div *ngIf="buttonacierre">
                         
+                        <mat-progress-bar mode="indeterminate"><h1>Registrando</h1></mat-progress-bar>
+                        <h3>Registrando Numeracíon</h3>
+                        <mat-progress-bar mode="query"></mat-progress-bar>
+                        <button  mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
+                       </div>
 
                     </table>
                 </div>
@@ -62,9 +67,9 @@
                     <mat-tab label="lado A">
                         
                         
-                            <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> -> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
+                            <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
                             <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado A Aperturado</button>
-                       
+                            
 
                         <hr>
                         <label>
@@ -105,9 +110,7 @@
                                                 <mat-icon matSuffix> local_gas_station</mat-icon>
                                                 <mat-hint>Lectura Anterior</mat-hint>
                                             </mat-form-field>
-                                        </td>
-        
-                               
+                                        </td>           
                                 
                             </tr>
                          
@@ -121,10 +124,7 @@
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
 
-
-
                                 </td>
-
 
                                 <td id="tablaTd">
 
@@ -147,8 +147,6 @@
                                 </td>
 
                             </tr><br>
-
-
 
                             <div>
                                 <tr> 
@@ -208,8 +206,6 @@
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
 
-
-
                                 </td>
 
 
@@ -251,32 +247,32 @@
                         <!-- tabla para registro de Diesel-->
                         <table *ngIf="showMeDiesel1A" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly=""[(ngModel)]="dispenserReader.actualNoGallons">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
                                 </td>
 
 
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderM">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
 
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderMY">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -291,8 +287,6 @@
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
-
-
 
                                 </td>
 
@@ -321,12 +315,11 @@
 
                             <div>
                                 <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDieselA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
+                                    <button  [disabled]="buttonDisableDiesel" mat-raised-button color="warn" (click)="cancelarDieselA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
                                     <button [disabled]="buttonDisableDiesel" mat-raised-button color="primary" (click)="guardarDieselA1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
                                 </tr>
                             </div><br>
                         </table>
-
 
                     </mat-tab>
 
@@ -349,7 +342,6 @@
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
                                 </td>
-
 
                                 <td id="tablaTd">
 
@@ -381,10 +373,7 @@
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
 
-
-
                                 </td>
-
 
                                 <td id="tablaTd">
 
@@ -434,7 +423,6 @@
                                     </mat-form-field>
                                 </td>
 
-
                                 <td id="tablaTd">
 
                                     <mat-form-field appearance="legacy">
@@ -464,8 +452,6 @@
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
-
-
 
                                 </td>
 
@@ -549,10 +535,7 @@
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
 
-
-
                                 </td>
-
 
                                 <td id="tablaTd">
 

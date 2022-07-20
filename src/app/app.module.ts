@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { DialogModule } from '@angular/cdk/dialog';
@@ -58,7 +60,9 @@ import { ConfirmationsComponent } from './pages/dialogs/confirmations/confirmati
     ScrollingModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
    
     
   ],

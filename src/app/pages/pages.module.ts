@@ -24,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { UpdatePriceComponent } from './dialogs/fuels/update-price/update-price.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
+
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { DeleteFuelDialogComponent } from './dialogs/fuels/delete-fuel-dialog/delete-fuel-dialog.component';
@@ -50,6 +51,9 @@ import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitiz
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ConfirmationsComponent } from './dialogs/confirmations/confirmations.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 
 
@@ -108,7 +112,10 @@ import { ConfirmationsComponent } from './dialogs/confirmations/confirmations.co
     MatTabsModule,
     ScrollingModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
+
 
 
   ],
