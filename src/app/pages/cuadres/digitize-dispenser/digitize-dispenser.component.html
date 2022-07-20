@@ -52,9 +52,9 @@
                         
                        <div *ngIf="buttonacierre">
                         
-                        <mat-progress-bar mode="indeterminate"><h1>Registrando</h1></mat-progress-bar>
+                        <mat-progress-bar  id="progressBar" mode="indeterminate"><h1>Registrando</h1></mat-progress-bar>
                         <h3>Registrando Numeracíon</h3>
-                        <mat-progress-bar mode="query"></mat-progress-bar>
+                        <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
                         <button  mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
                        </div>
 
@@ -324,7 +324,11 @@
                     </mat-tab>
 
                     <mat-tab label="lado B">
-                        <h1>Lado B</h1>
+
+                       
+                        <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarB();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado B</button>
+                        <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado B Aperturado</button>
+                        
                         <hr>
                         <label>
                             <h2> Regular: <button [disabled]="btnDisableRegularR1B"id="botondigitar" mat-raised-button color="accent" (click)="regular1B();"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
@@ -333,31 +337,31 @@
                         <!-- tabla para registro de Regular-->
                         <table *ngIf="showMeRegular1B" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="">
+                                        <input type="number" id="fName"  matInput readonly="" formControlName="previuosNoGallons" matInput readonly=""[(ngModel)]="dispenserReader.actualNoGallons">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderM">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
 
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -413,31 +417,31 @@
                         <!-- tabla para registro de Super-->
                         <table *ngIf="showMeSuper1B" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderG">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons"  matInput readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderM">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
 
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName"  formControlName="previuosNoMoney" matInput readonly="">
+                                        <input type="number" id="fName"  formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
@@ -494,32 +498,32 @@
                         <!-- tabla para registro de Diesel-->
                         <table *ngIf="showMeDiesel1B" id="tabla" class="example-full-width" cellspacing="0">
                             <tr id="tablaTr">
-                                <td id="tablaTd">
+                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly=""[(ngModel)]="dispenserReader.actualNoGallons">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
                                 </td>
 
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderM">
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>
 
                                 </td>
 
-                                <td id="tablaTd">
+                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName"  formControlName="previuosNoMoney" matInput readonly="">
+                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura Anterior</mat-hint>
                                     </mat-form-field>

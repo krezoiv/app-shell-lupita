@@ -160,3 +160,8 @@ table, th, tr {
     margin-right: 25px;
 
   }
+
+  #progressBar{
+    width: 300%;
+
+  }

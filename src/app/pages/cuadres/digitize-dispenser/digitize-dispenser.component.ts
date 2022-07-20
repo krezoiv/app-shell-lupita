@@ -141,7 +141,7 @@ export class DigitizeDispenserComponent implements OnInit {
       })
   }
 
- // seleccion de lado A de la bomba
+  // seleccion de lado A de la bomba
   sideA() {
     this.dispenserService.getSideA()
       .subscribe(({ sideDispenser }) => {
@@ -216,7 +216,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //manguera del lado B de la bomba 1 isla 1
   getAssignmentHoseIdRegularB1() {
-    this.sideA();
+    this.sideB();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(1);
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
@@ -229,8 +229,9 @@ export class DigitizeDispenserComponent implements OnInit {
       })
   }
 
+  //manguera del lado BAde la bomba 1 isla 1
   getAssignmentHoseIdSuperA1() {
-    this.sideA();
+    this.sideB();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(2);
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
@@ -243,6 +244,22 @@ export class DigitizeDispenserComponent implements OnInit {
       })
   }
 
+  //manguera del lado BAde la bomba 1 isla 1
+  getAssignmentHoseIdSuperB1() {
+    this.sideB();
+    this.getIdAssignment();
+    this.digitizeForm.controls['position'].setValue(2);
+    this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
+      .subscribe((data) => {
+        this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+
+      })
+  }
+
+  //manguera del lado A de la bomba 1 isla 1
   getAssignmentHoseIdDieselA1() {
     this.sideA();
     this.getIdAssignment();
@@ -260,6 +277,23 @@ export class DigitizeDispenserComponent implements OnInit {
       })
   }
 
+  //manguera del lado B de la bomba 1 isla 1
+  getAssignmentHoseIdDieselB1() {
+    this.sideB();
+    this.getIdAssignment();
+    this.digitizeForm.controls['position'].setValue(3);
+
+
+    this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
+      .subscribe((data) => {
+        this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
+
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+
+      })
+  }
 
 
   //apertura de dia
@@ -269,22 +303,15 @@ export class DigitizeDispenserComponent implements OnInit {
       return
     }
 
-
     this.getIdAssignment();
-
-
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
         this.creatGeneralAssignmentDispenserReader();
-
       }
-
     })
-
-
   }
 
   cierre() {
@@ -306,19 +333,31 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableRegularR1A = false
         this.btnDisableSuperR1A = false
         this.btnDisableDisableR1A = false
-        
+
       }
 
     })
 
   }
 
-  /*habilitarB() {
-
+  habilitarB() {
     this.sideB();
-    this.buttonDisableSideA = true
-    this.buttonDisableSideB = false
-  }*/
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.buttonDisableSideA = false
+        this.buttonDisableSideB = true
+        this.btnDisableRegularR1B = false
+        this.btnDisableSuperR1B = false
+        this.btnDisableDieselR1B = false
+      }
+    })
+
+
+
+  }
 
   getPreviuosNoGallons() {
     this.dispenserService.getPreviousGallons(this.digitizeForm.value)
@@ -350,7 +389,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dispenserService.getPreviousGallonsSuper(this.digitizeForm.value)
       .subscribe(({ previousNoGallons }) => {
         this.dispenserReaderG = previousNoGallons
-       
+
       })
   }
 
@@ -358,7 +397,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dispenserService.getPreviousMechanicSuper(this.digitizeForm.value)
       .subscribe(({ previousNoMechanic }) => {
         this.dispenserReaderM = previousNoMechanic
-       
+
       })
   }
 
@@ -366,7 +405,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dispenserService.getPreviousMoneySuper(this.digitizeForm.value)
       .subscribe(({ previousNoMoney }) => {
         this.dispenserReaderMY = previousNoMoney
-       
+
 
 
       })
@@ -423,7 +462,7 @@ export class DigitizeDispenserComponent implements OnInit {
   }
 
 
-
+  //aperturar manguera Regular lado A Isla 1
   regular1A() {
     this.getAssignmentHoseIdRegularA1();
     this.getGeneralAssignmentDispenserReaderId();
@@ -457,15 +496,49 @@ export class DigitizeDispenserComponent implements OnInit {
 
   }
 
-  super1A() {
-    this.getAssignmentHoseIdSuperA1();
-    this.getGeneralAssignmentDispenserReaderId();
-    
+  
+//aperturar manguera Regular lado B Isla 1
+  regular1B() {
+    this.getAssignmentHoseIdRegularB1();
+    this, this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
-      if(resp){
+      this.getPreviuosNoGallons();
+      this.getPreviuosNoMechanic();
+      this.getPreviuosNoMoney();
+      this.getAssignmentHoseIdRegularB1();
+      this.buttonDisableRegular = false
+      this.buttonDisableRegularB = false
+      this.showMeRegular1B = !this.showMeRegular1B
+      this.btnDisableRegularR1A = true
+      this.btnDisableSuperR1A = true
+      this.btnDisableDisableR1A = true
+      this.btnDisableSuperR1B = true
+      this.btnDisableDieselR1B = true
+      this.btnDisableSuperR1A = true
+      this.btnDisableDisableR1A = true
+      this.btnDisableRegularR1B = true
+      this.btnDisableSuperR1B = true
+      this.btnDisableDieselR1B = true
+    })
+
+
+
+
+  }
+
+//aperturar manguera Super lado A Isla 1
+  super1A() {
+    this.getAssignmentHoseIdSuperA1();
+    this.getGeneralAssignmentDispenserReaderId();
+
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
         this.getPreviuosNoGallonsSuper();
         this.getPreviuosNoMechanicSuper();
         this.getPreviuosNoMoneySuper();
@@ -478,24 +551,61 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableDieselR1B = true
         this.buttonDisableRegular = false
         this.showMeSuper1A = !this.showMeSuper1A
-        this.btnDisableSuperR1A = true
+       this.buttonDisableSuper = false
+        this.btnDisableRegularR1A = true
         this.btnDisableDisableR1A = true
         this.btnDisableRegularR1B = true
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
+        this.buttonDisableRegular = false
       }
     })
   }
 
-  diesel1A(){
+  //aperturar manguera Regular lado B Isla 1
+  super1B() {
+    this.getAssignmentHoseIdSuperB1();
+    this.getGeneralAssignmentDispenserReaderId();
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if(resp){
+        this.getPreviuosNoGallonsSuper();
+        this.getPreviuosNoMechanicSuper();
+        this.getPreviuosNoMoneySuper();
+        this.getAssignmentHoseIdSuperB1();
+        this.buttonDisableSuper = false
+        this.btnDisableRegularR1A = true
+        this.btnDisableDisableR1A = true
+        this.btnDisableRegularR1B = true
+        this.btnDisableSuperR1B = true
+        this.btnDisableDieselR1B = true
+        this.buttonDisableRegular = false
+        this.showMeSuper1B = !this.showMeSuper1B
+        this.buttonDisableSuperB = false
+        this.btnDisableRegularR1A = true
+        this.btnDisableDisableR1A = true
+        this.btnDisableRegularR1B = true
+        this.btnDisableSuperR1B = true
+        this.btnDisableDieselR1B = true
+        this.buttonDisableRegular = false
+       
+      }
+    })
+
+   
+  }
+
+  diesel1A() {
     this.getAssignmentHoseIdDieselA1();
     this.getGeneralAssignmentDispenserReaderId();
 
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
-    dialogRef.afterClosed().subscribe(resp=> {
-      if(resp){
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
         this.getPreviuosNoGallonsDiesel();
         this.getPreviuosNoMechanicDiesel();
         this.getPreviuosNoMoneyDiesel();
@@ -517,6 +627,39 @@ export class DigitizeDispenserComponent implements OnInit {
     })
   }
 
+  diesel1B() {
+    this.getAssignmentHoseIdDieselB1();
+    this.getGeneralAssignmentDispenserReaderId();
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.getPreviuosNoGallonsDiesel();
+        this.getPreviuosNoMechanicDiesel();
+        this.getPreviuosNoMoneyDiesel();
+        this.getAssignmentHoseIdDieselB1();
+        this.buttonDisableDieselB = false
+        this.buttonDisableSuper = true
+        this.btnDisableDisableR1A = true
+        this.btnDisableRegularR1A = true
+        this.btnDisableSuperR1B = true
+        this.btnDisableDieselR1B = true
+        this.buttonDisableRegular = false
+        this.showMeDiesel1B = !this.showMeDiesel1B
+        this.btnDisableSuperR1A = true
+        this.btnDisableRegularR1B = true
+        this.btnDisableSuperR1B = true
+        this.btnDisableDieselR1B = true
+
+
+      }
+    })
+
+    
+
+  }
+
   vpower1A() {
     this.buttonDisableVpower = false
     this.showMeVPower1A = !this.showMeVPower1A
@@ -525,39 +668,7 @@ export class DigitizeDispenserComponent implements OnInit {
   }
 
 
-  regular1B() {
-    this.buttonDisableRegularB = false
-    this.showMeRegular1B = !this.showMeRegular1B
-    this.btnDisableRegularR1A = true
-    this.btnDisableSuperR1A = true
-    this.btnDisableDisableR1A = true
-    this.btnDisableSuperR1B = true
-    this.btnDisableDieselR1B = true
-
-
-  }
-
-  super1B() {
-    this.buttonDisableSuperB = false
-    this.showMeSuper1B = !this.showMeSuper1B
-    this.btnDisableRegularR1A = true
-    this.btnDisableSuperR1A = true
-    this.btnDisableDisableR1A = true
-    this.btnDisableRegularR1B = true
-    this.btnDisableDieselR1B = true
-  }
-
-  diesel1B() {
-    this.buttonDisableDieselB = false
-    this.showMeDiesel1B = !this.showMeDiesel1B
-    this.btnDisableRegularR1A = true
-    this.btnDisableSuperR1A = true
-    this.btnDisableDisableR1A = true
-    this.btnDisableRegularR1B = true
-    this.btnDisableSuperR1B = true
-
-
-  }
+  
 
   vpower1B() {
 
