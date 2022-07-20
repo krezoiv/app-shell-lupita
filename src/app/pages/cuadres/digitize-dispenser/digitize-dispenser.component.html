@@ -6,9 +6,51 @@
         <h3>
             <mat-icon> local_gas_station</mat-icon> &nbsp; Numeración de Bombas
         </h3>
-
-
         <hr>
+        <div>
+            <table class="example-full-width" cellSpacing="0">
+                <tr>
+                    <td>
+                        <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field color="accent" appearance="fill">
+                            <input formControlName="readingDate" required matInput
+                                [matDatepicker]="readingDate">
+                            <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #readingDate></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <label>Seleccione Bomba : &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Seleccione Bomba</mat-label>
+                            <mat-select formControlName="dispenserId" required>
+
+                                <mat-option *ngFor="let dispenser of selectedDispenser"
+                                    [value]="dispenser.dispenserId">
+                                    {{dispenser.dispenserCode | titlecase}}
+                                </mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </td>
+
+
+                </tr>
+
+                <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
+                
+               <div *ngIf="buttonacierre">
+                
+                <mat-progress-bar  id="progressBar" mode="indeterminate"><h1>Registrando</h1></mat-progress-bar>
+                <h3>Registrando Numeracíon</h3>
+                <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
+                <button  mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
+               </div>
+
+            </table>
+        </div>
+
 
 
         <mat-tab-group backgroundColor="primary" [color]="color">
@@ -17,50 +59,7 @@
 
                 <h1>Isla 1</h1>
 
-                <div>
-                    <table class="example-full-width" cellSpacing="0">
-                        <tr>
-                            <td>
-                                <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
-                                <mat-form-field color="accent" appearance="fill">
-                                    <input formControlName="readingDate" required matInput
-                                        [matDatepicker]="readingDate">
-                                    <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
-                                    <mat-datepicker #readingDate></mat-datepicker>
-                                </mat-form-field>
-                            </td>
-
-                            <td>
-                                <label>Seleccione Bomba : &nbsp; &nbsp; &nbsp;</label>
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Seleccione Bomba</mat-label>
-                                    <mat-select formControlName="dispenserId" required>
-
-                                        <mat-option *ngFor="let dispenser of selectedDispenser"
-                                            [value]="dispenser.dispenserId">
-                                            {{dispenser.dispenserCode | titlecase}}
-                                        </mat-option>
-                                    </mat-select>
-
-                                </mat-form-field>
-                            </td>
-
-
-                        </tr>
-
-                        <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
-                        
-                       <div *ngIf="buttonacierre">
-                        
-                        <mat-progress-bar  id="progressBar" mode="indeterminate"><h1>Registrando</h1></mat-progress-bar>
-                        <h3>Registrando Numeracíon</h3>
-                        <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
-                        <button  mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
-                       </div>
-
-                    </table>
-                </div>
-
+                
 
                 <mat-tab-group backgroundColor="accent">
 
