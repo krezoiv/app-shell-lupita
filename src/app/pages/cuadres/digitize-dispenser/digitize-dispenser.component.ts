@@ -234,7 +234,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //manguera del lado BAde la bomba 1 isla 1
   getAssignmentHoseIdSuperA1() {
-    this.sideB();
+    this.sideA();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(2);
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
@@ -515,7 +515,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableRegularR1B = true
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
-
+       
       };
     });
   };
@@ -578,6 +578,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
         this.buttonDisableRegular = false
+       
       };
     });
   };
@@ -640,7 +641,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableRegularR1B = true
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
-
+        console.log(this.digitizeForm.value)
       };
     });
   };
