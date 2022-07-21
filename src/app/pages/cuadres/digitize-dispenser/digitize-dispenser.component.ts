@@ -28,10 +28,10 @@ export class DigitizeDispenserComponent implements OnInit {
 
   buttonDisableSideA: boolean = false
   buttonDisableSideAClosed: boolean = false
-  buttonDisableSideA1 : boolean = false
-  buttonDisableSideB1 : boolean = false
-  buttonDisableSideB1C : boolean = false
-  buttonDisableSideA1C : boolean = false
+  buttonDisableSideA1: boolean = false
+  buttonDisableSideB1: boolean = false
+  buttonDisableSideB1C: boolean = false
+  buttonDisableSideA1C: boolean = false
 
   showMeRegular1A: boolean = false;
   showMeSuper1A: boolean = false;
@@ -364,7 +364,7 @@ export class DigitizeDispenserComponent implements OnInit {
   }
 
   //cierra el lado A isla 1
-  closedSideA(){
+  closedSideA() {
     this.buttonDisableSideA = false
     this.btnDisableRegularR1A = true
     this.btnDisableSuperR1A = true
@@ -373,19 +373,19 @@ export class DigitizeDispenserComponent implements OnInit {
     this.buttonDisableSideA1 = true
     this.buttonDisableSideA1C = true
     this.buttonDisableSideAClosed = true
-   
+
 
   }
 
-  closedSideB(){
+  closedSideB() {
     this.buttonDisableSideA1 = false;
     this.buttonDisableSideB1 = false;
     this.buttonDisableSideB1C = true;
-    this.btnDisableRegularR1B= true
-    this.btnDisableSuperR1B= true
-    this.btnDisableDieselR1B= true
-    
-  
+    this.btnDisableRegularR1B = true
+    this.btnDisableSuperR1B = true
+    this.btnDisableDieselR1B = true
+
+
   }
 
   getPreviuosNoGallons() {
@@ -515,7 +515,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableRegularR1B = true
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
-       
+
       };
     });
   };
@@ -578,7 +578,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
         this.buttonDisableRegular = false
-       
+
       };
     });
   };
@@ -702,24 +702,24 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
-       this.resetFormValuesNumbering();
+        this.resetFormValuesNumbering();
       };
     });
   };
 
-   //guarda el detalle de numeracion de bomba de regular lado B isla 1
+  //guarda el detalle de numeracion de bomba de regular lado B isla 1
   guardarRegularB1(): void {
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
-     if(resp){
-      this.createDispenserReader();
-      this.HideMeDiv();
-      this.showdigitButton();
-    this.resetFormValuesNumbering();
-     };
+      if (resp) {
+        this.createDispenserReader();
+        this.HideMeDiv();
+        this.showdigitButton();
+        this.resetFormValuesNumbering();
+      };
     });
   };
 
@@ -748,17 +748,17 @@ export class DigitizeDispenserComponent implements OnInit {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
-     if(resp){
-      this.createDispenserReader();
-      this.HideMeDiv();
-      this.showdigitButton();
-      this.resetFormValuesNumbering();
-     };
+      if (resp) {
+        this.createDispenserReader();
+        this.HideMeDiv();
+        this.showdigitButton();
+        this.resetFormValuesNumbering();
+      };
     });
   };
 
-  
-//guarda el detalle de numeracion de bomba de diesel lado A Isla 1
+
+  //guarda el detalle de numeracion de bomba de diesel lado A Isla 1
   guardarDieselA1(): void {
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
@@ -782,7 +782,7 @@ export class DigitizeDispenserComponent implements OnInit {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
-      if(resp){
+      if (resp) {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
@@ -848,15 +848,17 @@ export class DigitizeDispenserComponent implements OnInit {
     this.btnDisableDieselR1B = false
   };
 
-//resetea los valores de numeracion a 0 del fomulario para que pueda ser reutilizable otros metodos
-  resetFormValuesNumbering() : void {
+  //resetea los valores de numeracion a 0 del fomulario para que pueda ser reutilizable otros metodos
+  resetFormValuesNumbering(): void {
     this.digitizeForm.controls['previuosNoGallons'].setValue(0);
     this.digitizeForm.controls['actualNoGallons'].setValue(0);
     this.digitizeForm.controls['previuosNoMechanic'].setValue(0);
     this.digitizeForm.controls['actualNoMechanic'].setValue(0);
     this.digitizeForm.controls['previuosNoMoney'].setValue(0);
     this.digitizeForm.controls['actualNoMoney'].setValue(0);
-   
+
   }
   ;
 };
+
+//
