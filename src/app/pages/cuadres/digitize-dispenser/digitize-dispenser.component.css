@@ -162,6 +162,7 @@ table, th, tr {
   }
 
   #progressBar{
-    width: 700%;
+    width: auto;
+   
 
   }

@@ -97,20 +97,6 @@ export class DispensersService {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   //obtener el ultimo registo de numeraciond de la bomba de gallones de regular
   getPreviousGallons(formData : DispenserReader ): Observable<PreviousGallons_I> {
     return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonRegular`, formData, this.headers);

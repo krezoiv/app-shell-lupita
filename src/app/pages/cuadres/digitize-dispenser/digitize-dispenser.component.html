@@ -4,7 +4,7 @@
 
     <form id="formulario" [formGroup]="digitizeForm"  class="mat-elevation-z8">
         <h3>
-            <mat-icon> local_gas_station</mat-icon> &nbsp; Numeración de Bombas
+            <mat-icon> local_gas_station</mat-icon> &nbsp; Numeracíon de Bombas
         </h3>
         <hr>
         <div>
@@ -67,7 +67,8 @@
                         
                         
                             <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
-                            <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado A Aperturado</button>
+                            <button  *ngIf="buttonDisableSideAClosed" mat-button color="primary" (click)="closedSideA();" ><mat-icon>close</mat-icon>&nbsp; Cerrar Lado A</button>
+                            <button  *ngIf="buttonDisableSideA1C" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp;Lado A Cerrado</button>
                             
 
                         <hr>
@@ -325,8 +326,9 @@
                     <mat-tab label="lado B">
 
                        
-                        <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarB();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado B</button>
-                        <button  *ngIf="buttonDisableSideB" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp; Lado B Aperturado</button>
+                        <button  *ngIf="buttonDisableSideA1" mat-button color="primary" (click)="habilitarB();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado B</button>
+                        <button  *ngIf="buttonDisableSideB1" mat-button color="primary" (click)=" closedSideB();"><mat-icon>check</mat-icon>&nbsp; Cerrar Lado B</button>
+                        <button  *ngIf="buttonDisableSideB1C" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp;Lado B Cerrado</button>
                         
                         <hr>
                         <label>
