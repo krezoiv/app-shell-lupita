@@ -18,6 +18,9 @@ import { ConfirmationsComponent } from '../../dialogs/confirmations/confirmation
 })
 export class DigitizeDispenserComponent implements OnInit {
 
+  operandoA! : Number | any
+  operandoB! : Number | any
+  resultado! : Number | any
   color = 'accent';
 
   public columns: string[] = ['fuelId', 'sideId', 'actualNoGallons', 'actualNoMechanic', 'actualNoMoney', 'actions']
@@ -720,19 +723,34 @@ export class DigitizeDispenserComponent implements OnInit {
   //guarda el detalle de numeracion de bomba de regular lado A isla 1
   guardarRegularA1(): void {
 
+    this.operandoA = this.digitizeForm.get('previuosNoGallons')?.value
+    this.operandoB = this.digitizeForm.get('actualNoGallons')?.value
+
+    this.resultado = this.operandoB - this.operandoA
+   
+    console.log(this.resultado)
+    this.digitizeForm.controls['totalNoGallons'].setValue(this.resultado);
+    console.log(this.digitizeForm.value)
+    //this.resultado = this.operandoB - this.operandoA
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
+
+        
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
 
         this.resetFormValuesNumbering();
-        // console.log(this.digitizeForm.value)
+        console.log(this.digitizeForm.value)
+       
+
+
+       
 
       };
 
