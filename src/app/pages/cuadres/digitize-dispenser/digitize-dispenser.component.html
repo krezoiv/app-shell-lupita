@@ -85,7 +85,7 @@
 
                                             <mat-form-field appearance="legacy">
                                                 <mat-label>Lectura Galones:</mat-label>
-                                                <input   type="number" name="operandoA"   formControlName="previuosNoGallons" matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <input   type="number" name="gallonA"   formControlName="previuosNoGallons" matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
                                                 <mat-icon matSuffix> local_gas_station</mat-icon>
                                                 <mat-hint>Lectura Anterior</mat-hint>
                                             </mat-form-field>
@@ -119,7 +119,7 @@
 
                                     <mat-form-field appearance="legacy">
                                         <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" name="operandoB" id="operandoA" formControlName="actualNoGallons" matInput>
+                                        <input type="number" name="gallonP<" id="operandoA" formControlName="actualNoGallons" matInput>
                                         <mat-icon matSuffix> local_gas_station</mat-icon>
                                         <mat-hint>Lectura de día</mat-hint>
                                     </mat-form-field>
@@ -656,8 +656,8 @@
                         <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
                         <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>     
                         <td>{{ data.actualNoGallons | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp; {{data.totalNoGallons | number }}</td>
-                        <td>{{ data.actualNoMechanic | number }}</td>
-                        <td>{{ data.actualNoMoney | number }}</td>
+                        <td>{{ data.actualNoMechanic | number }}  &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp; {{data.totalNoMechanic | number }}</td>
+                        <td>{{ data.actualNoMoney | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp; {{data.totalNoMoney | number }}</td>
                        
                     </tr>
                   

@@ -18,9 +18,19 @@ import { ConfirmationsComponent } from '../../dialogs/confirmations/confirmation
 })
 export class DigitizeDispenserComponent implements OnInit {
 
-  operandoA! : Number | any
-  operandoB! : Number | any
-  resultado! : Number | any
+  /**
+   * variables que permitiran la cantidad total de galones 
+   * vendidos por dia 
+   */
+  gallonA! : Number | any
+  gallonP! : Number | any
+  mechanicA! : Number | any
+  mechanicP! : Number | any
+  moneyA! : Number | any
+  moneyP! : Number | any
+  resultadoG! : Number | any
+  resultadoM! : Number | any
+  resultadoMY! : Number | any
   color = 'accent';
 
   public columns: string[] = ['fuelId', 'sideId', 'actualNoGallons', 'actualNoMechanic', 'actualNoMoney', 'actions']
@@ -723,15 +733,7 @@ export class DigitizeDispenserComponent implements OnInit {
   //guarda el detalle de numeracion de bomba de regular lado A isla 1
   guardarRegularA1(): void {
 
-    this.operandoA = this.digitizeForm.get('previuosNoGallons')?.value
-    this.operandoB = this.digitizeForm.get('actualNoGallons')?.value
-
-    this.resultado = this.operandoB - this.operandoA
-   
-    console.log(this.resultado)
-    this.digitizeForm.controls['totalNoGallons'].setValue(this.resultado);
-    console.log(this.digitizeForm.value)
-    //this.resultado = this.operandoB - this.operandoA
+    this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -759,6 +761,9 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //guarda el detalle de numeracion de bomba de regular lado B isla 1
   guardarRegularB1(): void {
+
+    this.gallonageResults();
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -782,6 +787,8 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //guarda el detalle de numeracion de bomba de super lado A Isla 1
   guardarSuperA1(): void {
+    
+    this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -798,6 +805,9 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //guarda el detalle de numeracion de bomba de super lado B Isla 1
   guardarSuperB1(): void {
+    
+    this.gallonageResults();
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -815,6 +825,8 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //guarda el detalle de numeracion de bomba de diesel lado A Isla 1
   guardarDieselA1(): void {
+    
+    this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -832,6 +844,9 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //guarda el detalle de numeracion de bomba de diesel lado B Isla 1
   guardarDieselB1(): void {
+
+    this.gallonageResults();
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -941,6 +956,24 @@ export class DigitizeDispenserComponent implements OnInit {
     });*/
 
   }
+
+  //obtenemos el resultado de galonaje vendido de dia actual vs dia anterior
+  gallonageResults(){
+    this.gallonP= this.digitizeForm.get('previuosNoGallons')?.value
+    this.gallonA = this.digitizeForm.get('actualNoGallons')?.value
+    this.mechanicP= this.digitizeForm.get('previuosNoMechanic')?.value
+    this.mechanicA = this.digitizeForm.get('actualNoMechanic')?.value
+    this.moneyP= this.digitizeForm.get('previuosNoMoney')?.value
+    this.moneyA = this.digitizeForm.get('actualNoMoney')?.value
+
+    this.resultadoG = this.gallonA - this.gallonP
+    this.resultadoM = this.mechanicA - this.mechanicP
+    this.resultadoMY = this.moneyA - this.moneyP
+ 
+    this.digitizeForm.controls['totalNoGallons'].setValue(this.resultadoG);
+    this.digitizeForm.controls['totalNoMechanic'].setValue(this.resultadoM);
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
+  };
 }
 
 
