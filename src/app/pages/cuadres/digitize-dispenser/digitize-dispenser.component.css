@@ -112,11 +112,15 @@ mat-hint {
 }
 
 table,
-th,
+
 tr {
     width: 100%;
     margin: 0 auto;
     border: 1px solid;
+}
+
+table, th {
+    text-align: center;
 }
 
 #tabla {
