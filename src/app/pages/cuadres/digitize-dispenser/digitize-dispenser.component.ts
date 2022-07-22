@@ -1,16 +1,13 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router, TitleStrategy } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ConfirmationDialog } from 'src/app/interfaces/fuelstation/confirmation-dialog.interface';
+import { MatDialog } from '@angular/material/dialog'
+
 import { AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers } from 'src/app/models/fuelstation/dispensers.model';
 import { Island } from 'src/app/models/fuelstation/island.models';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
-import { ConfirmationsService } from 'src/app/services/functions/confirmations.service';
 import Swal from 'sweetalert2';
 import { ConfirmationsComponent } from '../../dialogs/confirmations/confirmations.component';
 
@@ -23,9 +20,9 @@ export class DigitizeDispenserComponent implements OnInit {
 
   color = 'accent';
 
+  public columns: string[] = ['fuelId', 'sideId', 'actualNoGallons', 'actualNoMechanic', 'actualNoMoney', 'actions']
+
   //ocular/mostrar table de super, regular, diesel y vpower
-
-
   buttonDisableSideA: boolean = false
   buttonDisableSideAClosed: boolean = false
   buttonDisableSideA1: boolean = false
@@ -71,6 +68,7 @@ export class DigitizeDispenserComponent implements OnInit {
   public dispenserReaderG: DispenserReader[] = [];
   public dispenserReaderM: DispenserReader[] = [];
   public dispenserReaderMY: DispenserReader[] = [];
+  public dispenserReader: DispenserReader[] = [];
 
 
 
@@ -110,6 +108,8 @@ export class DigitizeDispenserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDispenser();
+    this.listNumerationDispenser();
+
 
 
   }
@@ -222,9 +222,12 @@ export class DigitizeDispenserComponent implements OnInit {
     this.sideB();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(1);
+
+
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
+
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -365,26 +368,47 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //cierra el lado A isla 1
   closedSideA() {
-    this.buttonDisableSideA = false
-    this.btnDisableRegularR1A = true
-    this.btnDisableSuperR1A = true
-    this.btnDisableDisableR1A = true
-    this.buttonDisableSideAClosed = false
-    this.buttonDisableSideA1 = true
-    this.buttonDisableSideA1C = true
-    this.buttonDisableSideAClosed = true
+
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.listNumerationDispenser();
+        this.buttonDisableSideA = false
+        this.btnDisableRegularR1A = true
+        this.btnDisableSuperR1A = true
+        this.btnDisableDisableR1A = true
+        this.buttonDisableSideAClosed = false
+        this.buttonDisableSideA1 = true
+        this.buttonDisableSideA1C = true
+        this.buttonDisableSideAClosed = true
+
+      };
+    });
+
+
 
 
   }
 
   closedSideB() {
-    this.buttonDisableSideA1 = false;
-    this.buttonDisableSideB1 = false;
-    this.buttonDisableSideB1C = true;
-    this.btnDisableRegularR1B = true
-    this.btnDisableSuperR1B = true
-    this.btnDisableDieselR1B = true
 
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+        this.listNumerationDispenser();
+        this.buttonDisableSideA1 = false;
+        this.buttonDisableSideB1 = false;
+        this.buttonDisableSideB1C = true;
+        this.btnDisableRegularR1B = true
+        this.btnDisableSuperR1B = true
+        this.btnDisableDieselR1B = true
+
+      };
+    });
 
   }
 
@@ -529,6 +553,8 @@ export class DigitizeDispenserComponent implements OnInit {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
+      if(resp){
+
       this.getPreviuosNoGallons();
       this.getPreviuosNoMechanic();
       this.getPreviuosNoMoney();
@@ -546,6 +572,7 @@ export class DigitizeDispenserComponent implements OnInit {
       this.btnDisableRegularR1B = true
       this.btnDisableSuperR1B = true
       this.btnDisableDieselR1B = true
+      }
     });
   };
 
@@ -699,11 +726,16 @@ export class DigitizeDispenserComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
+        this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+
         this.resetFormValuesNumbering();
+        // console.log(this.digitizeForm.value)
+
       };
+
     });
   };
 
@@ -715,11 +747,16 @@ export class DigitizeDispenserComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
+        this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+
         this.resetFormValuesNumbering();
+        // console.log(this.digitizeForm.value)
+
       };
+
     });
   };
 
@@ -857,8 +894,35 @@ export class DigitizeDispenserComponent implements OnInit {
     this.digitizeForm.controls['previuosNoMoney'].setValue(0);
     this.digitizeForm.controls['actualNoMoney'].setValue(0);
 
-  }
-  ;
-};
+  };
 
-//
+  //mostar en tabla los registros actuales del dia almacenado
+  listNumerationDispenser() {
+    this.dispenserService.getActualListNumeration(this.digitizeForm.value)
+      .subscribe(({ listNumerationDispenser }) => {
+        this.dispenserReader = listNumerationDispenser
+
+      })
+
+
+
+    /*const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp) {
+
+        this.dispenserService.getActualListNumeration(this.digitizeForm.value)
+          .subscribe( listNumerationDispenser => {
+            this.dispenserReaderG = listNumerationDispenser
+
+            console.log(listNumerationDispenser)
+          })
+
+      };
+    });*/
+
+  }
+}
+
+

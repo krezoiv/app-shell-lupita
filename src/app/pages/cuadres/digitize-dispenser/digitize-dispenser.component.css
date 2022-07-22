@@ -1,24 +1,29 @@
-body { min-height: 200vh; }
+
+body {
+    min-height: 200vh;
+    min-width: none;
+}
 form{
     border: 1px solid #101010;
     border-radius: 10px ;
-    background-color :white;
     padding: 10px;
-    width: 950px;
-    height:fit-content;
+    width: 1300px;
     position: absolute;
-    top: 15%;
-    left: 1%;
-
+    top: 20%;
+    left: 2%;
 }
+
+
+
+
 
 #formulario2 {
     border: 1px solid #101010;
-    border-radius: 10px ;
-    background-color :white;
+    border-radius: 10px;
+    background-color: white;
     padding: 5px;
-    width: 700px;
-    height:fit-content;
+
+    height: fit-content;
     position: absolute;
     top: 15%;
     left: 45%;
@@ -28,36 +33,40 @@ h1 {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
 }
+
 h3 {
-    font-size:30px;
+    font-size: 30px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
 }
-input{
-    font-size:200%;
+
+input {
+    font-size: 200%;
     text-align: center;
     text-transform: capitalize;
 }
 
-label{
+label {
     font-size: 15px;
 }
-mat-label{
-    font-size:20px;
+
+mat-label {
+    font-size: 20px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
 }
 
-mat-hint{
-    font-size:15px;
+mat-hint {
+    font-size: 15px;
     color: blue;
     font-family: 'Courier New', Courier, monospace;
 }
 
-mat-form-field{
+mat-form-field {
     margin-right: 10px;
-        
+
 }
+
 #bomba {
     width: 50%;
 }
@@ -69,100 +78,118 @@ h4 {
     color: blue;
 
 }
-input{
-    font-size:200%;
+
+input {
+    font-size: 200%;
     text-align: center;
 }
 
-mat-label{
+mat-label {
     font-size: 15px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
 }
 
-mat-hint{
-    font-size:15px;
+mat-hint {
+    font-size: 15px;
     color: blue;
     font-family: 'Courier New', Courier, monospace;
 }
 
-#check{
+#check {
     font-size: 50px;
     height: 70px;
     width: 70px;
     color: blueviolet;
     cursor: pointer;
- 
+
 }
 
-#posiciones{
+#posiciones {
     background-color: cadetblue;
     color: #fff;
     height: 20px;
 }
 
-table, th, tr {
+table,
+th,
+tr {
     width: 100%;
     margin: 0 auto;
     border: 1px solid;
 }
 
-#tabla{
+#tabla {
     width: 100%;
     margin: 0 auto;
     border: 1px solid;
-  }
-  
-  #tablaTr{
-    
+}
+
+#tablaTr {
+
     margin: 0 auto;
     border: 1px solid;
-  }
-  
-  #tablaTd{
-    
+}
+
+#tablaTd {
+
     margin: 0 auto;
     border: 1px solid;
-  }
-  
-  .fa-solid {
-      cursor: pointer;
-  }
-  
-  th {
-      background-color: blueviolet;
-      font-family: 'Courier New', Courier, monospace;
-      font-size : 20px;
-      color: white;
-      
-      border: 1px solid rgb(57, 57, 58);
-  }
-  
-  td{
+}
+
+.fa-solid {
+    cursor: pointer;
+}
+
+#th {
+    background-color: blueviolet;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    color: white;
+
+    border: 1px solid rgb(57, 57, 58);
+}
+
+td {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: italic;
-    font-size : 20px;
+    font-size: 20px;
     text-align: center;
-  }
+}
 
-  
-  #encabezado{
+
+#encabezado {
     text-align: center;
-  }
+}
 
-  #asignacion{
+#asignacion {
     background-color: teal;
     color: #fff;
 
-  }
+}
 
 #dateAssignment {
     margin-right: 25px;
 
-  }
+}
 
-  #progressBar{
+#progressBar {
     width: auto;
-   
 
-  }
+
+}
+
+
+div#wrapper {
+    background-color: #cccccc;
+    width: 510px;
+    height: 1010px;
+}
+
+div.content {
+    height: 150px;
+    width: 150px;
+    border: 5px solid #000000;
+    float: left;
+    margin: 20px;
+}

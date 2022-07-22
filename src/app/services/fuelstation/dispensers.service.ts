@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -154,6 +154,12 @@ export class DispensersService {
   //obtener el ultimo registo de numeraciond de la bomba de dinero de Vpower
   getPreviousMoneyVpower(formData:DispenserReader ): Observable<PreviousMoney_I> {
     return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyVpower`, formData, this.headers);
+  }
+
+  //obtener el detalle de lo registrado de numeracion de bombas
+
+  getActualListNumeration(formData : DispenserReader):Observable<ListNumerationDispenser_I> {
+    return this.http.post<ListNumerationDispenser_I>(`${api_url}/dispenserReaders/listResumNumerationDispenser`, formData, this.headers);
   }
 
 }
