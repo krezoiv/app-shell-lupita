@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -61,7 +61,6 @@ export class DispensersService {
     return this.http.put<Dispensers[]>(`${api_url}/dispensers/${dispenser.dispenserId}`, dispenser, this.headers);
   }
 
-
   createAssignment(assignment: Assignment): Observable<Assignment[]> {
     return this.http.post<Assignment[]>(`${api_url}/assignment`, assignment, this.headers);
   }
@@ -111,8 +110,6 @@ export class DispensersService {
     return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyRegular`,  formData, this.headers);
   }
 
-
-
   //obtener el ultimo registo de numeraciond de la bomba de gallones de super
   getPreviousGallonsSuper(formData : DispenserReader): Observable<PreviousGallons_I> {
     return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonSuper`, formData,  this.headers);
@@ -126,9 +123,6 @@ export class DispensersService {
     return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneySuper`, formData, this.headers);
   }
 
-
-
-  
   //obtener el ultimo registo de numeraciond de la bomba de gallones de diesl
   getPreviousGallonsDiesel(formData :DispenserReader ): Observable<PreviousGallons_I> {
     return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonDiesel`, formData,  this.headers);
@@ -141,7 +135,6 @@ export class DispensersService {
   getPreviousMoneyDiesel(formData :DispenserReader ): Observable<PreviousMoney_I> {
     return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyDiesel`, formData, this.headers);
   }
-
 
   //obtener el ultimo registo de numeraciond de la bomba de gallones de Vpower
   getPreviousGallonsVpower(formData : DispenserReader): Observable<PreviousGallons_I> {
@@ -161,6 +154,16 @@ export class DispensersService {
   getActualListNumeration(formData : DispenserReader):Observable<ListNumerationDispenser_I> {
     return this.http.post<ListNumerationDispenser_I>(`${api_url}/dispenserReaders/listResumNumerationDispenser`, formData, this.headers);
   }
+
+  getTotalNoGallons (formData : GeneralDispenserReader) : Observable<TotalGallons_I>{
+    return this.http.post<TotalGallons_I>(`${api_url}/generalDispenserReader/getTotalGallons`, formData, this.headers);
+  }
+
+  //to update the number of gallons that dispenser reader has
+  updateTotalGallons(generalDispenserReader : GeneralDispenserReader) : Observable<GeneralDispenserReader[]>{
+    return this.http.put<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/totalGallons/${generalDispenserReader.generalDispenserReaderId}`, generalDispenserReader, this.headers);
+  }
+
 
 }
 

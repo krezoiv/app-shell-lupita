@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { Router } from '@angular/router';
 
 import { AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
-import { DispenserReader, Dispensers } from 'src/app/models/fuelstation/dispensers.model';
+import { DispenserReader, Dispensers, GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { Island } from 'src/app/models/fuelstation/island.models';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
@@ -29,6 +29,15 @@ export class DigitizeDispenserComponent implements OnInit {
   mechanicP!: Number | any;
   moneyA!: Number | any;
   moneyP!: Number | any;
+  RegularDB! : Number | any;
+  SuperDB! : Number | any;
+  DieselDB! : Number | any;
+  VpowerDB! : Number | any;
+  Regular! : Number | any;
+  Super! : Number | any;
+  Diesel! : Number | any;
+  Vpower! : Number | any
+  result!: Number | any;
   resultadoG!: Number | any;
   resultadoM!: Number | any;
   resultadoMY!: Number | any;
@@ -116,6 +125,7 @@ export class DigitizeDispenserComponent implements OnInit {
   public dispenserReaderM: DispenserReader[] = [];
   public dispenserReaderMY: DispenserReader[] = [];
   public dispenserReader: DispenserReader[] = [];
+  public generalDispenserReader : GeneralDispenserReader[]= [];
 
 
 
@@ -511,7 +521,7 @@ export class DigitizeDispenserComponent implements OnInit {
   habilitarA() {
 
     this.sideA();
-
+    this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -789,20 +799,44 @@ export class DigitizeDispenserComponent implements OnInit {
       });
   };
 
+  getTotalGallons(){
+    this.getGeneralAssignmentDispenserReaderId();
+    this.dispenserService.getTotalNoGallons(this.digitizeForm.value)
+      .subscribe(({noGallons}) => {
+        this.digitizeForm.controls['totalGallonRegular'].setValue(noGallons.totalGallonRegular);
+        this.digitizeForm.controls['totalMechanicRegular'].setValue(noGallons.totalMechanicRegular);
+        this.digitizeForm.controls['totalMoneyRegular'].setValue(noGallons.totalMoneyRegular);
+        this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
+        this.digitizeForm.controls['totalMechanicSuper'].setValue(noGallons.totalMechanicSuper);
+        this.digitizeForm.controls['totalMoneySuper'].setValue(noGallons.totalMoneySuper);
+        this.digitizeForm.controls['totalGallonDiesel'].setValue(noGallons.totalGallonDiesel);
+        this.digitizeForm.controls['totalMechanicDiesel'].setValue(noGallons.totalMechanicDiesel);
+        this.digitizeForm.controls['totalMoneyDiesel'].setValue(noGallons.totalMoneyDiesel);
+        this.digitizeForm.controls['totalGallonVpower'].setValue(noGallons.totalGallonVpower);
+        this.digitizeForm.controls['totalMechanicVpower'].setValue(noGallons.totalMechanicVpower);
+        this.digitizeForm.controls['totalMoneyVpower'].setValue(noGallons.totalMoneyVpower);
+
+        console.log(noGallons.totalGallonRegular)
+      })
+  }
+
 
   //aperturar manguera Regular lado A Isla 1
   regular1A() {
     this.getAssignmentHoseIdRegularA1();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
-        this.getPreviuosNoGallons();
+      this.getPreviuosNoGallons();
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularA1();
+       
+        console.log(this.digitizeForm.value)
         this.btnDisableRegularR1A = true;
         this.btnDisableSuperR1A = true;
         this.btnDisableDisableR1A = true;
@@ -831,6 +865,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMechanicSuper();
         this.getPreviuosNoMoneySuper();
         this.getAssignmentHoseIdSuperA1();
+
         this.buttonDisableSuper = false
         this.btnDisableRegularR1A = true
         this.btnDisableDisableR1A = true
@@ -896,6 +931,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularB1();
+
         this.buttonDisableRegular = false
         this.buttonDisableRegularB = false
         this.showMeRegular1B = !this.showMeRegular1B
@@ -1200,7 +1236,7 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarRegularA1(): void {
 
     this.gallonageResults();
-    this.totalGallon();
+   
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1212,6 +1248,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+        this.totalGallons();
+        this.updateGallons();
         console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
 
@@ -1263,7 +1301,7 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarRegularB1(): void {
 
     this.gallonageResults();
-    this.totalGallon();
+
     this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
@@ -1275,6 +1313,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+        this.totalGallons();
         console.log(this.digitizeForm.value);
         this.resetFormValuesNumbering();
         //e)
@@ -1614,15 +1653,57 @@ export class DigitizeDispenserComponent implements OnInit {
     this.digitizeForm.controls['totalNoGallons'].setValue(this.resultadoG);
     this.digitizeForm.controls['totalNoMechanic'].setValue(this.resultadoM);
     this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
+
+  /*
+    this.digitizeForm.controls['totalGallonRegular'].setValue(noGallons.totalGallonRegular);
+    this.digitizeForm.controls['totalMechanicRegular'].setValue(noGallons.totalMechanicRegular);
+    this.digitizeForm.controls['totalMoneyRegular'].setValue(noGallons.totalMoneyRegular);
+    this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
+    this.digitizeForm.controls['totalMechanicSuper'].setValue(noGallons.totalMechanicSuper);
+    this.digitizeForm.controls['totalMoneySuper'].setValue(noGallons.totalMoneySuper);
+    this.digitizeForm.controls['totalGallonDiesel'].setValue(noGallons.totalGallonDiesel);
+    this.digitizeForm.controls['totalMechanicDiesel'].setValue(noGallons.totalMechanicDiesel);
+    this.digitizeForm.controls['totalMoneyDiesel'].setValue(noGallons.totalMoneyDiesel);
+    this.digitizeForm.controls['totalGallonVpower'].setValue(noGallons.totalGallonVpower);
+    this.digitizeForm.controls['totalMechanicVpower'].setValue(noGallons.totalMechanicVpower);
+    this.digitizeForm.controls['totalMoneyVpower'].setValue(noGallons.totalMoneyVpower);
+    */
   };
 
-  totalGallon(){
+  /*totalGallon(){
     this.gallonP = this.digitizeForm.get('totalGallonRegular')?.value
     this.gallonA = this.digitizeForm.get('actualNoGallons')?.value
 
     this.resultadoG = this.gallonA + this.gallonP
     this.digitizeForm.controls['totalGallonRegular'].setValue(this.resultadoG);
+  }*/
+
+  totalGallons(){
+  
+    this.RegularDB = this.digitizeForm.get('totalGallonRegular')?.value;
+    this.Regular = this.digitizeForm.get('totalNoGallons')?.value;
+
+    this.result = this.RegularDB + this.Regular
+
+    this.digitizeForm.controls['totalGallonRegular'].setValue(this.result);
+
+    console.log(this.result)
+
   }
+
+  updateGallons(){
+    const data = {
+      ...this.digitizeForm.value,
+     
+    }
+
+    this.dispenserService.updateTotalGallons(data)
+        .subscribe(resp => {
+
+        })
+  }
+
+
 }
 
 

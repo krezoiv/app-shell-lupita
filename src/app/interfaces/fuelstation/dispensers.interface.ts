@@ -46,6 +46,11 @@ export interface PreviousMoney_I {
     previousNoMoney : [];
 }
 
+//interface to General Dispenser Reader
+export interface TotalGallons_I {
+    noGallons : GeneralDispenserReader;
+}
+
 
 export interface ListNumerationDispenser_I {
     listNumerationDispenser : [];
