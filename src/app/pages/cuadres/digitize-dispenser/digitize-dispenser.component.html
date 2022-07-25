@@ -1,723 +1,1348 @@
 <app-cuadres-navbar></app-cuadres-navbar>
 
 <body>
-    
-    <form id="formulario" [formGroup]="digitizeForm"  class="mat-elevation-z8">
-        <h3>
-            <mat-icon> local_gas_station</mat-icon> &nbsp; Numeracíon de Bombas
-        </h3>
-        <hr>
-        <div>
-            <table class="example-full-width" cellSpacing="0">
-                <tr>
-                    <td>
-                        <label>Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
-                        <mat-form-field color="accent" appearance="fill">
-                            <input formControlName="readingDate" required matInput
-                                [matDatepicker]="readingDate">
-                            <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
-                            <mat-datepicker #readingDate></mat-datepicker>
-                        </mat-form-field>
-                    </td>
 
-                    <td>
-                        <label>Seleccione Bomba : &nbsp; &nbsp; &nbsp;</label>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Seleccione Bomba</mat-label>
-                            <mat-select formControlName="dispenserId" required>
+    <div class="contenedor">
+        <form class="formulario" [formGroup]="digitizeForm" class="mat-elevation-z8">
+            <h3 id="titulo">
+                <mat-icon> local_gas_station</mat-icon> Numeracíon de Bombas
+            </h3>
+            <hr>
+            <div>
+                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                    <br><tr>
+                        <td id="parametrosPrincipales">
+                            <label id="label1">Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-registros" id="matFiel-heards"color="accent" appearance="fill">
+                               <input id="input-registros"  formControlName="readingDate" required matInput [matDatepicker]="readingDate">
+                                <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                                <mat-datepicker #readingDate></mat-datepicker>
+                            </mat-form-field>
+                        </td>
 
-                                <mat-option *ngFor="let dispenser of selectedDispenser"
-                                    [value]="dispenser.dispenserId">
-                                    {{dispenser.dispenserCode | titlecase}}
-                                </mat-option>
-                            </mat-select>
+                        <td id="parametrosPrincipales">
+                            <label id="label1">Seleccione Bomba : &nbsp; &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-registros" id="matFiel-heards" appearance="fill">
+                                <mat-label>Seleccione Bomba</mat-label>
+                                <mat-select formControlName="dispenserId" required>
 
-                        </mat-form-field>
-                    </td>
+                                    <mat-option *ngFor="let dispenser of selectedDispenser"
+                                        [value]="dispenser.dispenserId">
+                                        {{dispenser.dispenserCode | titlecase}}
+                                    </mat-option>
+                                </mat-select>
+                              
 
-
-                </tr>
-
-                <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();"><mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día</button>
-                
-               <div *ngIf="buttonacierre">
-                
-                <mat-progress-bar  id="progressBar" mode="indeterminate"><h1>Registrando</h1></mat-progress-bar>
-                <h3>Registrando Numeracíon</h3>
-                <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
-                <button  mat-button color="primary" (click)="cierre();"><mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día</button>
-               </div>
-
-            </table>
-        </div>
-
-
-
-        <mat-tab-group backgroundColor="primary" [color]="color">
-
-            <mat-tab label="Isla 1 ">
-
-                <h1>Isla 1</h1>
-
-                
-
-                <mat-tab-group backgroundColor="accent">
-
-                    <mat-tab label="lado A">
+                            </mat-form-field>&nbsp;
                         
-                        
-                            <button  *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A</button>
-                            <button  *ngIf="buttonDisableSideAClosed" mat-button color="primary" (click)="closedSideA();" ><mat-icon>close</mat-icon>&nbsp; Cerrar Lado A</button>
-                            <button  *ngIf="buttonDisableSideA1C" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp;Lado A Cerrado</button>
+                            <button (click)="dispenser2Selected();" *ngIf="buttonDispenser2" mat-raised-button color="primary">Seleccionar</button>
                             
+                        </td>
 
-                        <hr>
-                        <label>
-                            <h2> Regular : <button [disabled]="btnDisableRegularR1A" id="botondigitar"   mat-raised-button color="accent" (click)="regular1A();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
-                        </label>
 
-
-                        <!-- tabla para registro de Regular-->
-                        <table  *ngIf="showMeRegular1A" id="tabla" class="example-full-width" cellspacing="0">
-                            <tr id="tablaTr"   >
-                                
-                                        <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
-
-                                            <mat-form-field appearance="legacy">
-                                                <mat-label>Lectura Galones:</mat-label>
-                                                <input   type="number" name="gallonA"   formControlName="previuosNoGallons" matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
-                                                <mat-icon matSuffix> local_gas_station</mat-icon>
-                                                <mat-hint>Lectura Anterior</mat-hint>
-                                            </mat-form-field>
-                                        </td>
-        
-        
-                                        <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderM">
-        
-                                            <mat-form-field appearance="legacy">
-                                                <mat-label>Lectura Mecánica:</mat-label>
-                                                <input  type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
-                                                <mat-icon matSuffix> local_gas_station</mat-icon>
-                                                <mat-hint>Lectura Anterior</mat-hint>
-                                            </mat-form-field>
-        
-                                        </td>
-        
-                                        <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderMY">
-                                            <mat-form-field appearance="legacy">
-                                                <mat-label>Lectura Dinero:</mat-label>
-                                                <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
-                                                <mat-icon matSuffix> local_gas_station</mat-icon>
-                                                <mat-hint>Lectura Anterior</mat-hint>
-                                            </mat-form-field>
-                                        </td>           
-                                
-                            </tr>
-                         
-                            <tr>
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" name="gallonP<" id="operandoA" formControlName="actualNoGallons" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
-
-                            <div>
-                                <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegularA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="primary" (click)="guardarRegularA1();">	<mat-icon>save</mat-icon>&nbsp; Guardar</button>         
-                                      
-                                </tr>
-                            </div><br>
-                        </table>
-                        <br>
-                        <hr>
-                        <label>
-                            <h2> Super : <button [disabled]="btnDisableSuperR1A" id="botondigitar" mat-raised-button color="accent" (click)="super1A();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
-                        </label>
-
-                        <!-- tabla para registro de Super-->
-                        <table *ngIf="showMeSuper1A" id="tabla" class="example-full-width" cellspacing="0">
-                            <tr id="tablaTr">
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons"  matInput readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderM" >
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
-
-                            <div>
-                                <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuperA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp; 
-                                    <button [disabled]="buttonDisableSuper"mat-raised-button color="primary" (click)="guardarSuperA1();"><mat-icon>save</mat-icon>&nbsp;   Guardar</button>              
-                                </tr>
-                            </div><br>
-                        </table><br>
-                        <hr>
-
-                        <label>
-                            <h2> Diesel: <button [disabled]="btnDisableDisableR1A" id="botondigitar" mat-raised-button color="accent" (click)="diesel1A();"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
-                        </label>
-
-                        <!-- tabla para registro de Diesel-->
-                        <table *ngIf="showMeDiesel1A" id="tabla" class="example-full-width" cellspacing="0">
-                            <tr id="tablaTr">
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly=""[(ngModel)]="dispenserReader.actualNoGallons">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderM">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderMY">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput >
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
-
-                            <div>
-                                <tr> 
-                                    <button  [disabled]="buttonDisableDiesel" mat-raised-button color="warn" (click)="cancelarDieselA1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableDiesel" mat-raised-button color="primary" (click)="guardarDieselA1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
-                                </tr>
-                            </div><br>
-                        </table>
-
-                    </mat-tab>
-
-                    <mat-tab label="lado B">
-
-                       
-                        <button  *ngIf="buttonDisableSideA1" mat-button color="primary" (click)="habilitarB();"><mat-icon>lock</mat-icon> <mat-icon>forward</mat-icon> <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado B</button>
-                        <button  *ngIf="buttonDisableSideB1" mat-button color="primary" (click)=" closedSideB();"><mat-icon>check</mat-icon>&nbsp; Cerrar Lado B</button>
-                        <button  *ngIf="buttonDisableSideB1C" mat-button color="primary" ><mat-icon>check</mat-icon>&nbsp;Lado B Cerrado</button>
-                        
-                        <hr>
-                        <label>
-                            <h2> Regular: <button [disabled]="btnDisableRegularR1B"id="botondigitar" mat-raised-button color="accent" (click)="regular1B();"><mat-icon> border_color</mat-icon> &nbsp; Digitar</button> </h2>
-                        </label>
-
-                        <!-- tabla para registro de Regular-->
-                        <table *ngIf="showMeRegular1B" id="tabla" class="example-full-width" cellspacing="0">
-                            <tr id="tablaTr">
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName"  matInput readonly="" formControlName="previuosNoGallons" matInput readonly=""[(ngModel)]="dispenserReader.actualNoGallons">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderM">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput >
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput >
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
-
-                            <div>
-                                <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarRegularB1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableRegularB" mat-raised-button color="primary" (click)="guardarRegularB1();" ><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
-                                </tr>
-                            </div><br>
-                        </table>
-                        <br>
-                        <hr>
-                        <label>
-                            <h2> Super : <button [disabled]="btnDisableSuperR1B" id="botondigitar" mat-raised-button color="accent" (click)="super1B();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
-                        </label>
-
-                        <!-- tabla para registro de Super-->
-                        <table *ngIf="showMeSuper1B" id="tabla" class="example-full-width" cellspacing="0">
-                            <tr id="tablaTr">
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderG">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons"  matInput readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderM">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName"  formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
-
-                            <div>
-                                <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarSuperB1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableSuperB" mat-raised-button color="primary" (click)="guardarSuperB1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
-                                </tr>
-                            </div><br>
-                        </table><br>
-                        <hr>
-
-                        <label>
-                            <h2> Diesel : <button  [disabled]="btnDisableDieselR1B" id="botondigitar" mat-raised-button color="accent" (click)="diesel1B();"><mat-icon> border_color</mat-icon>&nbsp; Digitar</button> </h2>
-                        </label>
-
-                        <!-- tabla para registro de Diesel-->
-                        <table *ngIf="showMeDiesel1B" id="tabla" class="example-full-width" cellspacing="0">
-                            <tr id="tablaTr">
-                                <td id="tablaTd" *ngFor="let dispenserReader of dispenserReaderG">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoGallons" matInput readonly=""[(ngModel)]="dispenserReader.actualNoGallons">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderM">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMechanic" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd"  *ngFor="let dispenserReader of dispenserReaderMY">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="previuosNoMoney" matInput readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura Anterior</mat-hint>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Galones:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoGallons" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Mecánica:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMechanic" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-
-                                </td>
-
-                                <td id="tablaTd">
-                                    <mat-form-field appearance="legacy">
-                                        <mat-label>Lectura Dinero:</mat-label>
-                                        <input type="number" id="fName" formControlName="actualNoMoney" matInput>
-                                        <mat-icon matSuffix> local_gas_station</mat-icon>
-                                        <mat-hint>Lectura de día</mat-hint>
-                                    </mat-form-field>
-                                </td>
-
-                            </tr><br>
-
-                            <div>
-                                <tr> 
-                                    <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn" (click)="cancelarDieselB1();">	<mat-icon>cancel</mat-icon>&nbsp; Cancelar</button>  &nbsp;  
-                                    <button [disabled]="buttonDisableDieselB" mat-raised-button color="primary" (click)="guardarDieselB1();"><mat-icon>save</mat-icon>&nbsp;Guardar</button>              
-                                </tr>
-                            </div><br>
-                        </table>
-
-                    </mat-tab>
-
-                </mat-tab-group>
-
-            </mat-tab>
-
-            <mat-tab label="Isla 2 ">
-                <h1>Isla 2</h1>
-                <hr>
-
-                <mat-tab-group backgroundColor="accent">
-
-                    <mat-tab label="lado A">
-                        <h1>Lado A</h1>
-                        <label>
-                            <h2> Regular :</h2>
-                        </label>
-
-                        <hr>
-                        <label>
-                            <h2> Super :</h2>
-                        </label>
-
-                        <hr>
-                        <label>
-                            <h2> Diesel :</h2>
-                        </label>
-
-                    </mat-tab>
-
-                    <mat-tab label="lado B">
-                        <h1>Lado B</h1>
-                        <label>
-                            <h2> Regular :</h2>
-                        </label>
-
-                        <hr>
-                        <label>
-                            <h2> Super :</h2>
-                        </label>
-
-                        <hr>
-                        <label>
-                            <h2> Diesel :</h2>
-                        </label>
-
-                    </mat-tab>
-
-                </mat-tab-group>
-
-            </mat-tab>
-
-        </mat-tab-group>
-
-        <hr color="blue">
-
-        <div>
-
-
-           
-
-
-            
-
-            <table class="table" class="mat-elevation-z8">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">Isla</th>
-                    <th scope="col">Bomba</th>
-                    <th scope="col">Lado</th>
-                    <th scope="col">Combustible</th>
-                    <th scope="col">Numeración de Galonaje</th>
-                    <th scope="col">Numeracíon Mecánica</th>
-                    <th scope="col">Numeracíon Dinero</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let data of dispenserReader">
-                        <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
-                        <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>
-                        <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
-                        <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>     
-                        <td>{{ data.actualNoGallons | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp; {{data.totalNoGallons | number }}</td>
-                        <td>{{ data.actualNoMechanic | number }}  &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp; {{data.totalNoMechanic | number }}</td>
-                        <td>{{ data.actualNoMoney | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp; {{data.totalNoMoney | number }}</td>
-                       
                     </tr>
-                  
-                </tbody>
-              </table>
 
-            
-           
+                    <button *ngIf="buttonaperturar" mat-button color="primary" (click)="aperturar();">
+                        <mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día
+                    </button>
 
-            <!-- 
+                    <div *ngIf="buttonacierre">
 
-             <table mat-table [dataSource]="dispenserReader" class="mat-elevation-z8">
-          
-            
-                <ng-container matColumnDef="dispenserCode">
-                  <th  id="encabezado" mat-header-cell *matHeaderCellDef> Dispensador </th>
-                  <td mat-cell *matCellDef="let element of dR"> {{element.assignmentHoseId?.hoseId | titlecase}} </td>
-                </ng-container>
-    
-            
-                 
-                <ng-container matColumnDef="islandId">
-                    <th id="encabezado" mat-header-cell *matHeaderCellDef> Isla </th>
-                    <td mat-cell *matCellDef="let element"> {{element.islandId.islandNumber | titlecase}} </td>
-                  </ng-container>
-    
-                  <ng-container matColumnDef="statusId">
-                    <th id="encabezado" mat-header-cell *matHeaderCellDef> Status </th>
-                    <td mat-cell *matCellDef="let element"> {{element.statusId.statusName | titlecase}} </td>
-                  </ng-container>
-    
-                    
-                <ng-container matColumnDef="accions">
-                    <th id="encabezado" mat-header-cell *matHeaderCellDef> Acciones </th>
-                    <td mat-cell *matCellDef="let element"> 
+                        <mat-progress-bar id="progressBar" mode="indeterminate">
+                            <h1>Registrando</h1>
+                        </mat-progress-bar>
+                        <h3>Registrando Numeracíon</h3>
+                        <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
+                        <button mat-button color="primary" (click)="closeDay();">
+                            <mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día
+                        </button>
+                    </div>
+
+                </table>
+            </div><br>
+
+
+
+            <mat-tab-group backgroundColor="primary" [color]="color">
+
+                <div *ngIf="matTabIsla1">
+
+                    <mat-tab  label="Isla 1">
+                        <br>
+                       <h1 id="nombreIslas">Isla 1</h1>
                        
-                        <button id="asignacion" mat-raised-button routerLink="/dashboard/infrastructure/assignmentsHoses"> <mat-icon>assignment</mat-icon>Asignacíon</button>
+                        <mat-tab-group backgroundColor="accent">
     
-                    </td>
-                  </ng-container>
+                            <mat-tab label="lado A">
     
-                
-              
-                <tr mat-header-row *matHeaderRowDef="columns"></tr>
-                <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-              
-                
-              </table>
+    
+                                <button *ngIf="buttonDisableSideA" mat-button color="primary" (click)="habilitarA();">
+                                    <mat-icon>lock</mat-icon>
+                                    <mat-icon>forward</mat-icon>
+                                    <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A
+                                </button>
+                                <button *ngIf="buttonDisableSideAClosed" mat-button color="primary"
+                                    (click)="closedSideA();">
+                                    <mat-icon>close</mat-icon>&nbsp; Cerrar Lado A
+                                </button>
+                                <button *ngIf="buttonDisableSideA1C" mat-button color="primary">
+                                    <mat-icon>check</mat-icon>&nbsp;Lado A Cerrado
+                                </button>
+    
+    
+                                <hr>
+                                <label>
+                                    <h2> Regular : <button [disabled]="btnDisableRegularR1A" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="regular1A();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+    
+                                <!-- tabla para registro de Regular-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"  *ngIf="showMeRegular1A" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" id="input-registros" type="number" name="gallonA" formControlName="previuosNoGallons"
+                                                    matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint><br>
+                                            </mat-form-field><br>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint><br>
+                                            </mat-form-field><br>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint><br>
+                                            </mat-form-field><br>
+    
+                                    </tr>
+    
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" id="input-registros" type="number" name="gallonP<" id="operandoA"
+                                                    formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint><br>
+                                            </mat-form-field><br>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint><br>
+                                            </mat-form-field><br>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" id="input-registros" id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint><br>
+                                            </mat-form-field><br>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr id="tr-td-registros">
+                                            <div>
+                                                <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                (click)="cancelarRegularA1();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="primary"
+                                                (click)="guardarRegularA1();">
+                                                <mat-icon>save</mat-icon>&nbsp; Guardar
+                                            </button>
+                                            </div>
+    
+                                        </tr>
+                                    </div><br>
+                                </table>
+                                <br>
+                                <hr>
+                                <label>
+                                    <h2> Super : <button [disabled]="btnDisableSuperR1A" id="botondigitar" mat-raised-button
+                                            color="accent" (click)="super1A();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Super-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeSuper1A" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td  id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros"> 
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                (click)="cancelarSuperA1();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableSuper" mat-raised-button color="primary"
+                                                (click)="guardarSuperA1();">
+                                                <mat-icon>save</mat-icon>&nbsp; Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table><br>
+                                <hr>
+    
+                                <label>
+                                    <h2> Diesel: <button [disabled]="btnDisableDisableR1A" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="diesel1A();">
+                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Diesel-->
+                                <table  id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeDiesel1A" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" >
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableDiesel" mat-raised-button color="warn"
+                                                (click)="cancelarDieselA1();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableDiesel" mat-raised-button color="primary"
+                                                (click)="guardarDieselA1();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table>
+    
+                            </mat-tab>
+    
+                            <mat-tab label="lado B">
+    
+    
+                                <button *ngIf="buttonDisableSideA1" mat-button color="primary" (click)="habilitarB();">
+                                    <mat-icon>lock</mat-icon>
+                                    <mat-icon>forward</mat-icon>
+                                    <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado B
+                                </button>
+                                <button *ngIf="buttonDisableSideB1" mat-button color="primary" (click)="closedSideB();">
+                                    <mat-icon>check</mat-icon>&nbsp; Cerrar Lado B
+                                </button>
+                                <button *ngIf="buttonDisableSideB1C" mat-button color="primary">
+                                    <mat-icon>check</mat-icon>&nbsp;Lado B Cerrado
+                                </button>
+    
+                                <hr>
+                                <label>
+                                    <h2> Regular: <button [disabled]="btnDisableRegularR1B" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="regular1B();">
+                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Regular-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeRegular1B" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" matInput readonly=""
+                                                    formControlName="previuosNoGallons" matInput readonly=""
+                                                    [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" >
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                (click)="cancelarRegularB1();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableRegularB" mat-raised-button color="primary"
+                                                (click)="guardarRegularB1();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table>
+                                <br>
+                                <hr>
+                                <label>
+                                    <h2> Super : <button [disabled]="btnDisableSuperR1B" id="botondigitar" mat-raised-button
+                                            color="accent" (click)="super1B();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Super-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeSuper1B" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td>
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                (click)="cancelarSuperB1();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableSuperB" mat-raised-button color="primary"
+                                                (click)="guardarSuperB1();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table><br>
+                                <hr>
+    
+                                <label>
+                                    <h2> Diesel : <button [disabled]="btnDisableDieselR1B" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="diesel1B();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Diesel-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeDiesel1B" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                (click)="cancelarDieselB1();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableDieselB" mat-raised-button color="primary"
+                                                (click)="guardarDieselB1();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table>
+    
+                            </mat-tab>
+    
+                        </mat-tab-group>
+    
+                    </mat-tab>
 
-            -->
-            
-           
-        
-        
-        </div>
-
-        <button type="button" class="btn btn-primary">Primary</button>
-    </form>
+                </div>
 
 
+                <div *ngIf="matTabIsla2">
+                    <mat-tab label="Isla 2 ">
+
+                        <div>
+                            <h1>Isla 2</h1>
+    
+                        </div>
+    
+    
+                        <mat-tab-group backgroundColor="accent">
+    
+                            <mat-tab label="lado A">
+    
+    
+                                <button *ngIf="buttonDisableSide2A" mat-button color="primary" (click)="habilitar2A();">
+                                    <mat-icon>lock</mat-icon>
+                                    <mat-icon>forward</mat-icon>
+                                    <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado A
+                                </button>
+                                <button *ngIf="buttonDisableSide2AClosed" mat-button color="primary"
+                                    (click)="closedSide2A();">
+                                    <mat-icon>close</mat-icon>&nbsp; Cerrar Lado A
+                                </button>
+                                <button *ngIf="buttonDisableSideA21C" mat-button color="primary">
+                                    <mat-icon>check</mat-icon>&nbsp;Lado A Cerrado
+                                </button>
+    
+    
+                                <hr>
+                                <label>
+                                    <h2> Regular : <button [disabled]="btnDisableRegularR2A" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="regular2A();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+    
+                                <!-- tabla para registro de Regular-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeRegular2A" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" name="gallonA" formControlName="previuosNoGallons"
+                                                    matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr>
+    
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" name="gallonP" id="operandoA"
+                                                    formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros"> 
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
+                                                (click)="cancelarRegularA2();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="primary"
+                                                (click)="guardarRegularA2();">
+                                                <mat-icon>save</mat-icon>&nbsp; Guardar
+                                            </button>
+    
+                                        </tr>
+                                    </div><br>
+                                </table>
+                                <br>
+                                <hr>
+                                <label>
+                                    <h2> Super : <button [disabled]="btnDisableSuperR2A" id="botondigitar" mat-raised-button
+                                            color="accent" (click)="super2A();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Super-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeSuper2A" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                         <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                        <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                            <mat-label>Lectura Galones:</mat-label>
+                                           <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                                            <mat-hint>Lectura Anterior</mat-hint>
+                                        </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
+                                                (click)="cancelarSuperA2();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableSuper2" mat-raised-button color="primary"
+                                                (click)="guardarSuperA2();">
+                                                <mat-icon>save</mat-icon>&nbsp; Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table><br>
+                                <hr>
+    
+                                <label>
+                                    <h2> Diesel: <button [disabled]="btnDisableDisableR2A" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="diesel2A();">
+                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Diesel-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeDiesel2A" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                        <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                            <mat-label>Lectura Galones:</mat-label>
+                                           <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                                            <mat-hint>Lectura Anterior</mat-hint>
+                                        </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros"> 
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableDiesel2" mat-raised-button color="warn"
+                                                (click)="cancelarDieselA2();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableDiesel2" mat-raised-button color="primary"
+                                                (click)="guardarDieselA2();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table>
+    
+                            </mat-tab>
+    
+                            <mat-tab label="lado B">
+    
+    
+                                <button *ngIf="buttonDisableSide2B" mat-button color="primary" (click)="habilitar2B();">
+                                    <mat-icon>lock</mat-icon>
+                                    <mat-icon>forward</mat-icon>
+                                    <mat-icon>lock_open</mat-icon>&nbsp; Habilitar Lado B
+                                </button>
+                                <button *ngIf="buttonDisableSideB2" mat-button color="primary" (click)="closedSide2B();">
+                                    <mat-icon>check</mat-icon>&nbsp; Cerrar Lado B
+                                </button>
+                                <button *ngIf="buttonDisableSideB21C" mat-button color="primary">
+                                    <mat-icon>check</mat-icon>&nbsp;Lado B Cerrado
+                                </button>
+    
+                                <hr>
+                                <label>
+                                    <h2> Regular: <button [disabled]="btnDisableRegularR2B" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="regular2B();">
+                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Regular-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeRegular2B" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                         <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                        <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                            <mat-label>Lectura Galones:</mat-label>
+                                           <input id="input-registros" type="number" id="fName" matInput readonly=""
+                                                formControlName="previuosNoGallons" matInput readonly=""
+                                                [(ngModel)]="dispenserReader.actualNoGallons">
+                                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                                            <mat-hint>Lectura Anterior</mat-hint>
+                                        </mat-form-field>
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
+                                                (click)="cancelarRegularB2();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableRegularB2" mat-raised-button color="primary"
+                                                (click)="guardarRegularB2();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table>
+                                <br>
+                                <hr>
+                                <label>
+                                    <h2> Super : <button [disabled]="btnDisableSuperR2B" id="botondigitar" mat-raised-button
+                                            color="accent" (click)="super2B();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Super-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeSuper2B" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                         <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                        <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                            <mat-label>Lectura Galones:</mat-label>
+                                           <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                                            <mat-hint>Lectura Anterior</mat-hint>
+                                        </mat-form-field>
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
+                                                (click)="cancelarSuperB2();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableSuperB2" mat-raised-button color="primary"
+                                                (click)="guardarSuperB2();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table><br>
+                                <hr>
+    
+                                <label>
+                                    <h2> Diesel : <button [disabled]="btnDisableDieselR2B" id="botondigitar"
+                                            mat-raised-button color="accent" (click)="diesel2B();">
+                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                        </button> </h2>
+                                </label>
+    
+                                <!-- tabla para registro de Diesel-->
+                                <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeDiesel2B" class="example-full-width" cellspacing="0">
+                                    <tr id="tr-td-registros">
+                                         <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderG">
+    
+                                        <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                            <mat-label>Lectura Galones:</mat-label>
+                                           <input id="input-registros" type="number" id="fName" formControlName="previuosNoGallons" matInput
+                                                readonly="" [(ngModel)]="dispenserReader.actualNoGallons">
+                                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                                            <mat-hint>Lectura Anterior</mat-hint>
+                                        </mat-form-field>
+                                        </td>
+    
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderM">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMechanic"
+                                                    matInput readonly="" [(ngModel)]="dispenserReader.actualNoMechanic">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros" *ngFor="let dispenserReader of dispenserReaderMY">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="previuosNoMoney" matInput
+                                                    readonly="" [(ngModel)]="dispenserReader.actualNoMoney">
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura Anterior</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                    <tr id="tr-td-registros">
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Galones:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoGallons" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+    
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Mecánica:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMechanic" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+    
+                                        </td>
+    
+                                        <td id="tr-td-registros">
+                                            <mat-form-field id="mat-form-field-registros" appearance="legacy">
+                                                <mat-label>Lectura Dinero:</mat-label>
+                                               <input id="input-registros" type="number" id="fName" formControlName="actualNoMoney" matInput>
+                                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                                <mat-hint>Lectura de día</mat-hint>
+                                            </mat-form-field>
+                                        </td>
+    
+                                    </tr><br>
+    
+                                    <div>
+                                        <tr>
+                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
+                                                (click)="cancelarDieselB2();">
+                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                            </button> &nbsp;
+                                            <button [disabled]="buttonDisableDieselB2" mat-raised-button color="primary"
+                                                (click)="guardarDieselB2();">
+                                                <mat-icon>save</mat-icon>&nbsp;Guardar
+                                            </button>
+                                        </tr>
+                                    </div><br>
+                                </table>
+    
+                            </mat-tab>
+    
+                        </mat-tab-group>
+    
+                    </mat-tab>
+    
+                </div>
+
+            </mat-tab-group>
+
+            <hr color="blue">
+
+            <div>
+
+                <table  id="tableData" class="table table-dark" class="mat-elevation-z8">
+                    <thead class="thead-dark">
+                        <tr id="border-header-table-data">
+                            <th scope="col">Isla</th>
+                            <th scope="col">Bomba</th>
+                            <th scope="col">Lado</th>
+                            <th scope="col">Combustible</th>
+                            <th scope="col">Numeración de Galonaje</th>
+                            <th scope="col">Numeracíon Mecánica</th>
+                            <th scope="col">Numeracíon Dinero</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of dispenserReader">
+                            <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
+                            <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>
+                            <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
+                            <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>
+                            <td>{{ data.actualNoGallons | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp;
+                                {{data.totalNoGallons | number }}</td>
+                            <td>{{ data.actualNoMechanic | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp;
+                                {{data.totalNoMechanic | number }}</td>
+                            <td>{{ data.actualNoMoney | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp;
+                                {{data.totalNoMoney | number }}</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </form>
+
+    </div>
 
 </body>
 
