@@ -29,10 +29,57 @@ export class DigitizeDispenserComponent implements OnInit {
   mechanicP!: Number | any;
   moneyA!: Number | any;
   moneyP!: Number | any;
-  RegularDB! : Number | any;
-  SuperDB! : Number | any;
+
+  RegularGDB!: Number | any;
+  RegularGInput!: Number | any;
+  RegularMDB!: Number | any;
+  RegulaMGInput!: Number | any;
+  RegularMYDB!: Number | any;
+  RegularMYInput!: Number | any;
+  ResultRG!: Number | any;
+  ResultRM!: Number | any;
+  ResultRMY!: Number | any;
+
+  SuperGDB!: Number | any;
+  SuperGInput!: Number | any;
+  SuperMDB!: Number | any;
+  SuperMGInput!: Number | any;
+  SuperMYDB!: Number | any;
+  SuperMYInput!: Number | any;
+  ResultSG!: Number | any;
+  ResultSM!: Number | any;
+  ResultSMY!: Number | any;
+
+  DieselGDB!: Number | any;
+  DieselGInput!: Number | any;
+  DieselMDB!: Number | any;
+  DieselMGInput!: Number | any;
+  DieselMYDB!: Number | any;
+  DieselMYInput!: Number | any;
+  ResultDG!: Number | any;
+  ResultDM!: Number | any;
+  ResultDMY!: Number | any;
+
+  VpowerGDB!: Number | any;
+  VpowerGInput!: Number | any;
+  VpowerMDB!: Number | any;
+  VpowerMGInput!: Number | any;
+  VpowerMYDB!: Number | any;
+  VpowerMYInput!: Number | any;
+  ResultVpG!: Number | any;
+  ResultVpM!: Number | any;
+  ResultVpMY!: Number | any;
+
+  ResultG!: Number | any;
+  ResultM!: Number | any;
+  ResultMY!: Number | any;
+
+  /*SuperDB! : Number | any;
+  SuperInput! : Number | any;
   DieselDB! : Number | any;
+  DieselInput! : Number | any;
   VpowerDB! : Number | any;
+  VpowerInput! : Number | any;
   Regular! : Number | any;
   Super! : Number | any;
   Diesel! : Number | any;
@@ -41,6 +88,7 @@ export class DigitizeDispenserComponent implements OnInit {
   resultadoG!: Number | any;
   resultadoM!: Number | any;
   resultadoMY!: Number | any;
+  */
   color = 'accent';
 
   public columns: string[] = ['fuelId', 'sideId', 'actualNoGallons', 'actualNoMechanic', 'actualNoMoney', 'actions']
@@ -125,7 +173,7 @@ export class DigitizeDispenserComponent implements OnInit {
   public dispenserReaderM: DispenserReader[] = [];
   public dispenserReaderMY: DispenserReader[] = [];
   public dispenserReader: DispenserReader[] = [];
-  public generalDispenserReader : GeneralDispenserReader[]= [];
+  public generalDispenserReader: GeneralDispenserReader[] = [];
 
 
 
@@ -799,14 +847,14 @@ export class DigitizeDispenserComponent implements OnInit {
       });
   };
 
-  getTotalGallons(){
+  getTotalGallons() {
     this.getGeneralAssignmentDispenserReaderId();
     this.dispenserService.getTotalNoGallons(this.digitizeForm.value)
-      .subscribe(({noGallons}) => {
+      .subscribe(({ noGallons }) => {
         this.digitizeForm.controls['totalGallonRegular'].setValue(noGallons.totalGallonRegular);
         this.digitizeForm.controls['totalMechanicRegular'].setValue(noGallons.totalMechanicRegular);
         this.digitizeForm.controls['totalMoneyRegular'].setValue(noGallons.totalMoneyRegular);
-        this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
+        /*this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
         this.digitizeForm.controls['totalMechanicSuper'].setValue(noGallons.totalMechanicSuper);
         this.digitizeForm.controls['totalMoneySuper'].setValue(noGallons.totalMoneySuper);
         this.digitizeForm.controls['totalGallonDiesel'].setValue(noGallons.totalGallonDiesel);
@@ -815,8 +863,11 @@ export class DigitizeDispenserComponent implements OnInit {
         this.digitizeForm.controls['totalGallonVpower'].setValue(noGallons.totalGallonVpower);
         this.digitizeForm.controls['totalMechanicVpower'].setValue(noGallons.totalMechanicVpower);
         this.digitizeForm.controls['totalMoneyVpower'].setValue(noGallons.totalMoneyVpower);
+        */
 
-        console.log(noGallons.totalGallonRegular)
+        console.log('lo que viende de bd g' + noGallons.totalGallonRegular)
+        console.log('lo que viende de bd m' + noGallons.totalMechanicRegular)
+        console.log('lo que viende de bd My' +noGallons.totalMoneyRegular)
       })
   }
 
@@ -826,16 +877,17 @@ export class DigitizeDispenserComponent implements OnInit {
     this.getAssignmentHoseIdRegularA1();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
-      this.getPreviuosNoGallons();
+        this.getPreviuosNoGallons();
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularA1();
-       
+
         console.log(this.digitizeForm.value)
         this.btnDisableRegularR1A = true;
         this.btnDisableSuperR1A = true;
@@ -855,7 +907,7 @@ export class DigitizeDispenserComponent implements OnInit {
   super1A() {
     this.getAssignmentHoseIdSuperA1();
     this.getGeneralAssignmentDispenserReaderId();
-
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -889,7 +941,7 @@ export class DigitizeDispenserComponent implements OnInit {
   diesel1A() {
     this.getAssignmentHoseIdDieselA1();
     this.getGeneralAssignmentDispenserReaderId();
-
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -921,6 +973,8 @@ export class DigitizeDispenserComponent implements OnInit {
   regular1B() {
     this.getAssignmentHoseIdRegularB1();
     this, this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -931,7 +985,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularB1();
-
+        console.log(this.digitizeForm.value)
         this.buttonDisableRegular = false
         this.buttonDisableRegularB = false
         this.showMeRegular1B = !this.showMeRegular1B
@@ -954,6 +1008,7 @@ export class DigitizeDispenserComponent implements OnInit {
   super1B() {
     this.getAssignmentHoseIdSuperB1();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -986,6 +1041,7 @@ export class DigitizeDispenserComponent implements OnInit {
   diesel1B() {
     this.getAssignmentHoseIdDieselB1();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1017,6 +1073,8 @@ export class DigitizeDispenserComponent implements OnInit {
   regular2A() {
     this.getAssignmentHoseIdRegularA2();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1026,6 +1084,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularA2();
+        console.log(this.digitizeForm.value)
         this.showMeRegular2A = this.showMeRegular1A
         this.btnDisableRegularR2A = true
         this.btnDisableSuperR2A = true
@@ -1050,7 +1109,7 @@ export class DigitizeDispenserComponent implements OnInit {
   super2A() {
     this.getAssignmentHoseIdSuperA2();
     this.getGeneralAssignmentDispenserReaderId();
-
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1084,7 +1143,7 @@ export class DigitizeDispenserComponent implements OnInit {
   diesel2A() {
     this.getAssignmentHoseIdDieselA2();
     this.getGeneralAssignmentDispenserReaderId();
-
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1115,6 +1174,7 @@ export class DigitizeDispenserComponent implements OnInit {
   regular2B() {
     this.getAssignmentHoseIdRegularB2();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1148,6 +1208,7 @@ export class DigitizeDispenserComponent implements OnInit {
   super2B() {
     this.getAssignmentHoseIdSuperB2();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1181,6 +1242,7 @@ export class DigitizeDispenserComponent implements OnInit {
   diesel2B() {
     this.getAssignmentHoseIdDieselB2();
     this.getGeneralAssignmentDispenserReaderId();
+    this.getTotalGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1236,8 +1298,8 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarRegularA1(): void {
 
     this.gallonageResults();
-   
     this.getGeneralAssignmentDispenserReaderId();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1248,7 +1310,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
-        this.totalGallons();
+        this.totalGallonsRegular();
         this.updateGallons();
         console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
@@ -1272,6 +1334,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+        this.totalGallonsSuper();
+        this.updateGallons();
         this.resetFormValuesNumbering();
       };
     });
@@ -1291,6 +1355,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+        this.totalGallonsDiesel();
+        this.updateGallons();
         this.resetFormValuesNumbering();
 
       };
@@ -1301,9 +1367,8 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarRegularB1(): void {
 
     this.gallonageResults();
-
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1313,8 +1378,9 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
-        this.totalGallons();
-        console.log(this.digitizeForm.value);
+        this.totalGallonsRegular();
+        this.updateGallons();
+        console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
         //e)
 
@@ -1327,7 +1393,7 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarSuperB1(): void {
 
     this.gallonageResults();
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
+    //this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1337,6 +1403,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+        this.totalGallonsSuper();
+        this.updateGallons();
         this.resetFormValuesNumbering();
       };
     });
@@ -1347,7 +1415,6 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarDieselB1(): void {
 
     this.gallonageResults();
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1357,6 +1424,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv();
         this.showdigitButton();
+        this.totalGallonsDiesel();
+        this.updateGallons();
         this.resetFormValuesNumbering();
 
       };
@@ -1369,6 +1438,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1378,7 +1448,9 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showdigitButton2();
-
+        this.totalGallonsRegular();
+        this.updateGallons();
+        console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
 
       };
@@ -1400,12 +1472,17 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showdigitButton2();
+        this.totalGallonsSuper();
+        this.updateGallons();
         this.resetFormValuesNumbering();
       };
     });
   }
 
-  //guarda el detalle de numeracion de bomba de diesel lado A Isla 2
+  /**
+   * guarda el detalle de numeracion de bomba de diesel lado A Isla 2
+   * 
+   * */
   guardarDieselA2(): void {
 
     this.gallonageResults();
@@ -1418,6 +1495,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showdigitButton2();
+        this.totalGallonsDiesel();
+        this.updateGallons();
         this.resetFormValuesNumbering();
 
       };
@@ -1428,7 +1507,7 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarRegularB2(): void {
 
     this.gallonageResults();
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
+    //this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1439,7 +1518,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showdigitButton2();
-
+        this.totalGallonsRegular();
+        this.updateGallons();
         this.resetFormValuesNumbering();
 
       };
@@ -1451,7 +1531,6 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarSuperB2(): void {
 
     this.gallonageResults();
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1461,6 +1540,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showdigitButton2();
+        this.totalGallonsSuper();
+        this.updateGallons();
         this.resetFormValuesNumbering();
       };
     });
@@ -1471,7 +1552,7 @@ export class DigitizeDispenserComponent implements OnInit {
   guardarDieselB2(): void {
 
     this.gallonageResults();
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.ResultMY);
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1481,6 +1562,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showdigitButton2();
+        this.totalGallonsDiesel();
+        this.updateGallons();
         this.resetFormValuesNumbering();
 
       };
@@ -1606,6 +1689,19 @@ export class DigitizeDispenserComponent implements OnInit {
     this.digitizeForm.controls['actualNoMechanic'].setValue(0);
     this.digitizeForm.controls['previuosNoMoney'].setValue(0);
     this.digitizeForm.controls['actualNoMoney'].setValue(0);
+/*
+    this.digitizeForm.controls['totalGallonRegular'].setValue(0);
+    this.digitizeForm.controls['totalMechanicRegular'].setValue(0);
+    this.digitizeForm.controls['totalMoneyRegular'].setValue(0);
+    this.digitizeForm.controls['totalGallonSuper'].setValue(0);
+    this.digitizeForm.controls['totalMechanicSuper'].setValue(0);
+    this.digitizeForm.controls['totalMoneySuper'].setValue(0);
+    this.digitizeForm.controls['totalGallonDiesel'].setValue(0);
+    this.digitizeForm.controls['totalMechanicDiesel'].setValue(0);
+    this.digitizeForm.controls['totalMoneyDiesel'].setValue(0);
+    this.digitizeForm.controls['totalGallonVpower'].setValue(0);
+    this.digitizeForm.controls['totalMechanicVpower'].setValue(0);
+    this.digitizeForm.controls['totalMoneyVpower'].setValue(0);*/
 
   };
 
@@ -1639,68 +1735,139 @@ export class DigitizeDispenserComponent implements OnInit {
 
   //obtenemos el resultado de galonaje vendido de dia actual vs dia anterior
   gallonageResults() {
-    this.gallonP = this.digitizeForm.get('previuosNoGallons')?.value
-    this.gallonA = this.digitizeForm.get('actualNoGallons')?.value
-    this.mechanicP = this.digitizeForm.get('previuosNoMechanic')?.value
-    this.mechanicA = this.digitizeForm.get('actualNoMechanic')?.value
-    this.moneyP = this.digitizeForm.get('previuosNoMoney')?.value
-    this.moneyA = this.digitizeForm.get('actualNoMoney')?.value
+    this.gallonP = this.digitizeForm.get('previuosNoGallons')?.value;
+    this.gallonA = this.digitizeForm.get('actualNoGallons')?.value;
+    this.mechanicP = this.digitizeForm.get('previuosNoMechanic')?.value;
+    this.mechanicA = this.digitizeForm.get('actualNoMechanic')?.value;
+    this.moneyP = this.digitizeForm.get('previuosNoMoney')?.value;
+    this.moneyA = this.digitizeForm.get('actualNoMoney')?.value;
 
-    this.resultadoG = this.gallonA - this.gallonP
-    this.resultadoM = this.mechanicA - this.mechanicP
-    this.resultadoMY = this.moneyA - this.moneyP
+    this.ResultG = this.gallonA - this.gallonP;
+    this.ResultM = this.mechanicA - this.mechanicP;
+    this.ResultMY = this.moneyA - this.moneyP;
 
-    this.digitizeForm.controls['totalNoGallons'].setValue(this.resultadoG);
-    this.digitizeForm.controls['totalNoMechanic'].setValue(this.resultadoM);
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
-
-  /*
-    this.digitizeForm.controls['totalGallonRegular'].setValue(noGallons.totalGallonRegular);
-    this.digitizeForm.controls['totalMechanicRegular'].setValue(noGallons.totalMechanicRegular);
-    this.digitizeForm.controls['totalMoneyRegular'].setValue(noGallons.totalMoneyRegular);
-    this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
-    this.digitizeForm.controls['totalMechanicSuper'].setValue(noGallons.totalMechanicSuper);
-    this.digitizeForm.controls['totalMoneySuper'].setValue(noGallons.totalMoneySuper);
-    this.digitizeForm.controls['totalGallonDiesel'].setValue(noGallons.totalGallonDiesel);
-    this.digitizeForm.controls['totalMechanicDiesel'].setValue(noGallons.totalMechanicDiesel);
-    this.digitizeForm.controls['totalMoneyDiesel'].setValue(noGallons.totalMoneyDiesel);
-    this.digitizeForm.controls['totalGallonVpower'].setValue(noGallons.totalGallonVpower);
-    this.digitizeForm.controls['totalMechanicVpower'].setValue(noGallons.totalMechanicVpower);
-    this.digitizeForm.controls['totalMoneyVpower'].setValue(noGallons.totalMoneyVpower);
-    */
+    this.digitizeForm.controls['totalNoGallons'].setValue(this.ResultG);
+    this.digitizeForm.controls['totalNoMechanic'].setValue(this.ResultM);
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.ResultMY);
+    console.log('diferencia entre actual y  bd G' + this.ResultG);
+    console.log('diferencia entre actual y  bd M' +this.ResultM);
+    console.log('diferencia entre actual y  bd MY' +this.ResultMY);
   };
 
-  /*totalGallon(){
-    this.gallonP = this.digitizeForm.get('totalGallonRegular')?.value
-    this.gallonA = this.digitizeForm.get('actualNoGallons')?.value
 
-    this.resultadoG = this.gallonA + this.gallonP
-    this.digitizeForm.controls['totalGallonRegular'].setValue(this.resultadoG);
-  }*/
+  totalGallonsRegular() {
 
-  totalGallons(){
-  
-    this.RegularDB = this.digitizeForm.get('totalGallonRegular')?.value;
-    this.Regular = this.digitizeForm.get('totalNoGallons')?.value;
+    //sum of current data regular gallons with bd 
+    this.RegularGDB = this.digitizeForm.get('totalGallonRegular')?.value;
+    this.RegularGInput = this.digitizeForm.get('totalNoGallons')?.value;
+    this.ResultRG = this.RegularGDB + this.RegularGInput;
+    this.digitizeForm.controls['totalGallonRegular'].setValue(this.ResultRG);
+    console.log('regular bd + actual G' + this.ResultRG);
 
-    this.result = this.RegularDB + this.Regular
+    //sum of current data regular mechanic with bd 
+    this.RegularMDB = this.digitizeForm.get('totalMechanicRegular')?.value;
+    this.RegulaMGInput = this.digitizeForm.get('totalNoMechanic')?.value;
+    this.ResultRM = this.RegularMDB + this.RegulaMGInput;
+    this.digitizeForm.controls['totalMechanicRegular'].setValue(this.ResultRM);
+    console.log('regular bd + actual M' +this.ResultRM);
 
-    this.digitizeForm.controls['totalGallonRegular'].setValue(this.result);
-
-    console.log(this.result)
+    //sum of current data regular money with bd 
+    this.RegularMYDB = this.digitizeForm.get('totalMechanicRegular')?.value;
+    this.RegularMYInput = this.digitizeForm.get('totalNoMechanic')?.value;
+    this.ResultRMY = this.RegularMYDB + this.RegularMYInput;
+    this.digitizeForm.controls['totalNoMoney'].setValue(this.ResultRMY);
+    console.log('regular bd + actual Y' + this.ResultRMY);
 
   }
 
-  updateGallons(){
+  totalGallonsSuper() {
+
+    //sum of current data super gallons with bd 
+    this.SuperGDB = this.digitizeForm.get('totalGallonSuper')?.value;
+    this.SuperGInput = this.digitizeForm.get('totalNoGallons')?.value;
+    this.ResultSG = this.SuperGDB + this.SuperGInput;
+    this.digitizeForm.controls['totalGallonSuper'].setValue(this.ResultSG);
+    console.log(this.ResultSG);
+
+    //sum of current data super mechanic with bd 
+    this.SuperMDB = this.digitizeForm.get('totalMechanicSuper')?.value;
+    this.SuperMGInput = this.digitizeForm.get('totalNoMechanic')?.value;
+    this.ResultSM = this.SuperMDB + this.SuperMGInput;
+    this.digitizeForm.controls['totalMechanicSuper'].setValue(this.ResultSM);
+    console.log(this.ResultSM);
+
+    //sum of current data super money with bd 
+    this.SuperMYDB = this.digitizeForm.get('totalMoneySuper')?.value;
+    this.SuperMYInput = this.digitizeForm.get('totalNoMoney')?.value;
+    this.ResultSMY = this.SuperMYDB + this.SuperMYInput;
+    this.digitizeForm.controls['totalMoneySuper'].setValue(this.ResultSMY);
+    console.log(this.ResultSMY);
+
+  }
+
+
+  totalGallonsDiesel() {
+
+    //sum of current data diesel gallons with bd 
+    this.DieselGDB = this.digitizeForm.get('totalGallonDiesel')?.value;
+    this.DieselGInput = this.digitizeForm.get('totalNoGallons')?.value;
+    this.ResultDG = this.DieselGDB + this.DieselGInput;
+    this.digitizeForm.controls['totalGallonDiesel'].setValue(this.ResultDG);
+    console.log(this.ResultDG);
+
+    //sum of current data diesel mechanic with bd 
+    this.DieselMDB = this.digitizeForm.get('totalMechanicDiesel')?.value;
+    this.DieselMGInput = this.digitizeForm.get('totalNoMechanic')?.value;
+    this.ResultDM = this.DieselMDB + this.DieselMGInput;
+    this.digitizeForm.controls['totalMechanicDiesel'].setValue(this.ResultDM);
+    console.log(this.ResultDM);
+
+    //sum of current data diesel money with bd 
+    this.DieselMYDB = this.digitizeForm.get('totalMoneyDiesel')?.value;
+    this.DieselMYInput = this.digitizeForm.get('totalNoMoney')?.value;
+    this.ResultDMY = this.DieselMYDB + this.DieselMYInput;
+    this.digitizeForm.controls['totalMoneyDiesel'].setValue(this.ResultDMY);
+    console.log(this.ResultDMY);
+
+  }
+
+  totalGallonsVpower() {
+
+    //sum of current data vpower gallons with bd 
+    this.VpowerGDB = this.digitizeForm.get('totalGallonVpower')?.value;
+    this.VpowerGInput = this.digitizeForm.get('totalNoGallons')?.value;
+    this.ResultVpG = this.VpowerGDB + this.VpowerGInput;
+    this.digitizeForm.controls['totalGallonVpower'].setValue(this.ResultVpG);
+    console.log(this.ResultVpG);
+
+    //sum of current data vpower mechanic with bd 
+    this.VpowerMDB = this.digitizeForm.get('totalMechanicVpower')?.value;
+    this.VpowerMGInput = this.digitizeForm.get('totalNoMechanic')?.value;
+    this.ResultVpM = this.VpowerMDB + this.VpowerMGInput;
+    this.digitizeForm.controls['totalMechanicVpower'].setValue(this.ResultVpM);
+    console.log(this.ResultVpM);
+
+    //sum of current data vpower money with bd 
+    this.VpowerMYDB = this.digitizeForm.get('totalMoneyVpower')?.value;
+    this.VpowerMYInput = this.digitizeForm.get('totalNoMoney')?.value;
+    this.ResultVpMY = this.VpowerMYDB + this.VpowerMYInput;
+    this.digitizeForm.controls['totalMoneyVpower'].setValue(this.ResultVpMY);
+    console.log(this.ResultVpMY);
+
+  }
+
+
+
+  updateGallons() {
     const data = {
       ...this.digitizeForm.value,
-     
+
     }
 
     this.dispenserService.updateTotalGallons(data)
-        .subscribe(resp => {
+      .subscribe(resp => {
 
-        })
+      })
   }
 
 
