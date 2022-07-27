@@ -11,6 +11,7 @@ import { DispensersService } from 'src/app/services/fuelstation/dispensers.servi
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
 import Swal from 'sweetalert2';
 import { ConfirmationsComponent } from '../../dialogs/confirmations/confirmations.component';
+import { UpdateDispenserReaderDialogComponent } from '../../dialogs/dispensers/update-dispenser-reader-dialog/update-dispenser-reader-dialog.component';
 
 @Component({
   selector: 'app-digitize-dispenser',
@@ -1877,8 +1878,11 @@ export class DigitizeDispenserComponent implements OnInit {
       })
   }
 
-  editDisepnserReader(){
-    console.log('edit dispenser')
+  editDisepnserReader(data : DispenserReader){
+    this.dialog.open(UpdateDispenserReaderDialogComponent, {
+      width: '30%',
+      data: data
+    })
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
@@ -24,6 +24,23 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.updateDispenserReaderForm = this.fb.group({
+         previousNoGallons :['', Validators.required],
+         actualNoGallons :['', Validators.required],
+         totalNoGallons :['', Validators.required],
+         previousNoMechanic :['', Validators.required],
+         actualNoMechanic :['', Validators.required],
+         totalNoMechanic :['', Validators.required],
+         previousNoMoney :['', Validators.required],
+         actualNoMoney :['', Validators.required],
+         totalNoMoney :['', Validators.required],
+    });
+    if(this.dispenserReader){
+      this.updateDispenserReaderForm.controls['actualNoGallons'].setValue(this.dispenserReader.actualNoGallons);
+      this.updateDispenserReaderForm.controls['actualNoMechanic'].setValue(this.dispenserReader.actualNoMechanic);
+      this.updateDispenserReaderForm.controls['actualNoMoney'].setValue(this.dispenserReader.actualNoMoney);
+    }
   }
 
 }
