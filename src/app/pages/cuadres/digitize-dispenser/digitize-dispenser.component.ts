@@ -1301,6 +1301,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
+  
     console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1316,6 +1317,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.showdigitButton();
         this.totalGallonsRegular();
         this.updateGallons();
+  
         console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
 
@@ -1714,6 +1716,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dispenserService.getActualListNumeration(this.digitizeForm.value)
       .subscribe(({ listNumerationDispenser }) => {
         this.dispenserReader = listNumerationDispenser
+        console.log(this.dispenserReader)
 
       })
 
@@ -1872,6 +1875,10 @@ export class DigitizeDispenserComponent implements OnInit {
       .subscribe(resp => {
 
       })
+  }
+
+  editDisepnserReader(){
+    console.log('edit dispenser')
   }
 
 

@@ -94,3 +94,8 @@ label{
 #mat-icon-check {
     color: green;
 }
+
+#editButton {
+    color: darkturquoise;
+    cursor: pointer;
+}

@@ -53,6 +53,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ConfirmationsComponent } from './dialogs/confirmations/confirmations.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress-bar';
+import { UpdateDispenserReaderDialogComponent } from './dialogs/dispensers/update-dispenser-reader-dialog/update-dispenser-reader-dialog.component';
 
 
 
@@ -91,6 +92,7 @@ import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress
     CuadresComponent,
     DigitizeDispenserComponent,
     ConfirmationsComponent,
+    UpdateDispenserReaderDialogComponent,
 
    
     
