@@ -91,13 +91,16 @@
     
     
                                 <hr>
+                               <div *ngIf="showMeRegularCheck">
                                 <label>
                                     <h2> Regular : <button [disabled]="btnDisableRegularR1A" id="botondigitar"
                                             mat-raised-button color="accent" (click)="regular1A();">
                                             <mat-icon> border_color</mat-icon>&nbsp; Digitar
                                         </button> </h2>
                                 </label>
-    
+                               </div>
+
+                                <label *ngIf="showMeCheck"> <mat-icon id="mat-icon-check">done_outline</mat-icon><h2> Regular : Registro Guardado</h2></label>
     
                                 <!-- tabla para registro de Regular-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"  *ngIf="showMeRegular1A" class="example-full-width" cellspacing="0">
@@ -196,6 +199,8 @@
                                             color="accent" (click)="super1A();">
                                             <mat-icon> border_color</mat-icon>&nbsp; Digitar
                                         </button> </h2>
+
+                                      
                                 </label>
     
                                 <!-- tabla para registro de Super-->

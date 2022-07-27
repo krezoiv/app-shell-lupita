@@ -128,6 +128,8 @@ export class DigitizeDispenserComponent implements OnInit {
   showMeDiesel1B: boolean = false;
   showMeVPower1B: boolean = false;
   showMeVPower2B: boolean = false;
+  showMeCheck : boolean = false;
+  showMeRegularCheck : boolean = true;
 
 
   //mostar/ocultar botono para digitar
@@ -528,7 +530,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
       return
     };
-
+    this.getTotalGallons();
     this.getIdAssignment();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -848,13 +850,13 @@ export class DigitizeDispenserComponent implements OnInit {
   };
 
   getTotalGallons() {
-    this.getGeneralAssignmentDispenserReaderId();
-    this.dispenserService.getTotalNoGallons(this.digitizeForm.value)
+   // this.getGeneralAssignmentDispenserReaderId();
+    this.dispenserService.getTotalNoGallons()
       .subscribe(({ noGallons }) => {
         this.digitizeForm.controls['totalGallonRegular'].setValue(noGallons.totalGallonRegular);
         this.digitizeForm.controls['totalMechanicRegular'].setValue(noGallons.totalMechanicRegular);
         this.digitizeForm.controls['totalMoneyRegular'].setValue(noGallons.totalMoneyRegular);
-        /*this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
+        this.digitizeForm.controls['totalGallonSuper'].setValue(noGallons.totalGallonSuper);
         this.digitizeForm.controls['totalMechanicSuper'].setValue(noGallons.totalMechanicSuper);
         this.digitizeForm.controls['totalMoneySuper'].setValue(noGallons.totalMoneySuper);
         this.digitizeForm.controls['totalGallonDiesel'].setValue(noGallons.totalGallonDiesel);
@@ -863,7 +865,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.digitizeForm.controls['totalGallonVpower'].setValue(noGallons.totalGallonVpower);
         this.digitizeForm.controls['totalMechanicVpower'].setValue(noGallons.totalMechanicVpower);
         this.digitizeForm.controls['totalMoneyVpower'].setValue(noGallons.totalMoneyVpower);
-        */
+        
 
         console.log('lo que viende de bd g' + noGallons.totalGallonRegular)
         console.log('lo que viende de bd m' + noGallons.totalMechanicRegular)
@@ -1309,6 +1311,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
+        this.showMeCheck = true;
+        this.showMeRegularCheck = false;
         this.showdigitButton();
         this.totalGallonsRegular();
         this.updateGallons();
@@ -1772,10 +1776,10 @@ export class DigitizeDispenserComponent implements OnInit {
     console.log('regular bd + actual M' +this.ResultRM);
 
     //sum of current data regular money with bd 
-    this.RegularMYDB = this.digitizeForm.get('totalMechanicRegular')?.value;
-    this.RegularMYInput = this.digitizeForm.get('totalNoMechanic')?.value;
+    this.RegularMYDB = this.digitizeForm.get('totalMoneyRegular')?.value;
+    this.RegularMYInput = this.digitizeForm.get('totalNoMoney')?.value;
     this.ResultRMY = this.RegularMYDB + this.RegularMYInput;
-    this.digitizeForm.controls['totalNoMoney'].setValue(this.ResultRMY);
+    this.digitizeForm.controls['totalMoneyRegular'].setValue(this.ResultRMY);
     console.log('regular bd + actual Y' + this.ResultRMY);
 
   }

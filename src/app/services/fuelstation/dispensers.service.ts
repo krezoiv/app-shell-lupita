@@ -155,14 +155,20 @@ export class DispensersService {
     return this.http.post<ListNumerationDispenser_I>(`${api_url}/dispenserReaders/listResumNumerationDispenser`, formData, this.headers);
   }
 
-  getTotalNoGallons (formData : GeneralDispenserReader) : Observable<TotalGallons_I>{
+  /*getTotalNoGallons (formData : GeneralDispenserReader) : Observable<TotalGallons_I>{
     return this.http.post<TotalGallons_I>(`${api_url}/generalDispenserReader/getTotalGallons`, formData, this.headers);
+  }*/
+
+  getTotalNoGallons () : Observable<TotalGallons_I>{
+    return this.http.get<TotalGallons_I>(`${api_url}/generalDispenserReader/getTotalGallons`, this.headers);
   }
 
   //to update the number of gallons that dispenser reader has
   updateTotalGallons(generalDispenserReader : GeneralDispenserReader) : Observable<GeneralDispenserReader[]>{
     return this.http.put<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/totalGallons/${generalDispenserReader.generalDispenserReaderId}`, generalDispenserReader, this.headers);
   }
+
+  
 
 
 }
