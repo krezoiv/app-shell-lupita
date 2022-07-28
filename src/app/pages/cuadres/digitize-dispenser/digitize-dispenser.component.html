@@ -1320,6 +1320,7 @@
                             <th scope="col">Bomba</th>
                             <th scope="col">Lado</th>
                             <th scope="col">Combustible</th>
+                            <th scope="col">Numeración de Galonaje Anterior</th>
                             <th scope="col">Numeración de Galonaje</th>
                             <th scope="col">Numeracíon Mecánica</th>
                             <th scope="col">Numeracíon Dinero</th>
@@ -1327,17 +1328,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of dispenserReader">
+                        <tr *ngFor="let data of dispenserReader ;let data1 of dispenserReader" >
                             <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
                             <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>
                             <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
                             <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>
-                            <td>{{ data.actualNoGallons | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp;
-                                {{data.totalNoGallons | number }}</td>
-                            <td>{{ data.actualNoMechanic | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp;
-                                {{data.totalNoMechanic | number }}</td>
-                            <td>{{ data.actualNoMoney | number }} &nbsp; <mat-icon>keyboard_tab</mat-icon> &nbsp;
-                                {{data.totalNoMoney | number }}</td>
+                            <td>{{ data1.previousNoGallons | number }}</td>
+                            <td>{{ data.actualNoGallons | number }}</td>
+                            <td>{{ data.actualNoMechanic | number }}</td>
+                            <td>{{ data.actualNoMoney | number }} </td>
                             <td>
                                
                                     <mat-icon id="editButton"(click)="editDisepnserReader(data);">edit</mat-icon><label>Editar</label>

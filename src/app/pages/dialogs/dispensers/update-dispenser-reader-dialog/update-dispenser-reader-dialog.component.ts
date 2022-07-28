@@ -13,6 +13,7 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
 
   updateDispenserReaderForm! : FormGroup;
   selectedDispenserReader: DispenserReader[]=[];
+  public dispenserReaderG: DispenserReader[] = [];
   public dr: DispenserReader[]=[];
 
   constructor(
@@ -35,12 +36,23 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
          previousNoMoney :['', Validators.required],
          actualNoMoney :['', Validators.required],
          totalNoMoney :['', Validators.required],
+         assignmentHoseId : ['', Validators.required],
     });
     if(this.dispenserReader){
+      this.updateDispenserReaderForm.controls['previousNoGallons'].setValue(this.dispenserReader.previousNoGallons);
       this.updateDispenserReaderForm.controls['actualNoGallons'].setValue(this.dispenserReader.actualNoGallons);
       this.updateDispenserReaderForm.controls['actualNoMechanic'].setValue(this.dispenserReader.actualNoMechanic);
       this.updateDispenserReaderForm.controls['actualNoMoney'].setValue(this.dispenserReader.actualNoMoney);
     }
   }
+
+  getPreviuosNoGallons() {
+    this._dispenserService.getPreviousGallons(this.updateDispenserReaderForm.value)
+      .subscribe(({ previousNoGallons }) => {
+        this.dispenserReaderG = previousNoGallons
+
+
+      });
+  };
 
 }

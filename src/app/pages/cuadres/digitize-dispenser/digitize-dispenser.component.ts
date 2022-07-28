@@ -201,6 +201,7 @@ export class DigitizeDispenserComponent implements OnInit {
     totalMechanicVpower: [0, Validators.required],
     totalMoneyVpower: [0, Validators.required],
 
+    
     previuosNoGallons: [0],
     actualNoGallons: [0],
     totalNoGallons: [0],

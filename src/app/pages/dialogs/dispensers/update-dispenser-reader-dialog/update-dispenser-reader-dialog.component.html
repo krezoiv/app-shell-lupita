@@ -1,1 +1,67 @@
-<p>update-dispenser-reader-dialog works!</p>
+<h3 mat-dialog-title>
+    <mat-icon>sync</mat-icon>&nbsp; "Editar Registro"
+</h3>
+<hr>
+
+<div mat-dialog-content>
+    <form [formGroup]="updateDispenserReaderForm">
+
+        <table>
+          
+            <tr>
+
+                <td>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Numeracíon Galonaje Anterior</mat-label>
+                        <input type="text" formControlName="previousNoGallons" matInput>
+                        <mat-icon matSuffix>local-gas-station</mat-icon>
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </td>
+                
+                <td>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Numeracíon Galonaje</mat-label>
+                        <input type="text" formControlName="actualNoGallons" matInput>
+                        <mat-icon matSuffix>local-gas-station</mat-icon>
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Numeracíon Mecánica</mat-label>
+                        <input id="fName" formControlName="actualNoMechanic" matInput>
+                        <mat-icon matSuffix>local-gas-station</mat-icon>
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Numeracíon Dinero</mat-label>
+                        <input id="fName" formControlName="actualNoMoney" matInput>
+                        <mat-icon matSuffix>local-gas-station</mat-icon>
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+    
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+<!--
+   
+
+
+       
+
+
+-->
