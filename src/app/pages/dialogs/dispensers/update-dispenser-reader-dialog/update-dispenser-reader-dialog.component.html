@@ -7,13 +7,24 @@
     <form [formGroup]="updateDispenserReaderForm">
 
         <table>
+
+            <tr>
+                <td>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>id</mat-label>
+                        <input type="text" formControlName="dispenserReaderId"  readonly="" matInput>
+                        <mat-icon matSuffix>local-gas-station</mat-icon>
+                        <mat-hint></mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
           
             <tr>
 
                 <td>
                     <mat-form-field appearance="legacy">
                         <mat-label>Numeracíon Galonaje Anterior</mat-label>
-                        <input type="text" formControlName="previousNoGallons" matInput>
+                        <input type="text" formControlName="previousNoGallons"  readonly="" matInput>
                         <mat-icon matSuffix>local-gas-station</mat-icon>
                         <mat-hint></mat-hint>
                     </mat-form-field>
@@ -51,6 +62,15 @@
                     </mat-form-field>
     
                 </td>
+            </tr>
+
+            <tr>
+                <div mat-dialog-actions [align]="'end'">
+                    <button mat-raised-button color="warn" mat-dialog-close>
+                        <mat-icon>close</mat-icon>&nbsp; Cerrar</button>
+                    <button mat-raised-button color="primary" (click)="update();">
+                        <mat-icon>save</mat-icon> &nbsp; Guardar</button>
+                </div>
             </tr>
         </table>
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -101,6 +101,11 @@ export class DispensersService {
     return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonRegular`, formData, this.headers);
   }
 
+  getPenultimateGallons(formData : DispenserReader ): Observable<PenultimateGallons_I> {
+    return this.http.post<PenultimateGallons_I>(`${api_url}/dispenserReaders/penultimateGallonRegular`, formData, this.headers);
+  }
+
+
   //obtener el ultimo registo de numeraciond de la bomba de mecanica de regular
   getPreviousMechanic(formData : DispenserReader): Observable<PreviousMechanic_I> {
     return this.http.post<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicRegular`, formData,  this.headers);
@@ -168,7 +173,9 @@ export class DispensersService {
     return this.http.put<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/totalGallons/${generalDispenserReader.generalDispenserReaderId}`, generalDispenserReader, this.headers);
   }
 
-  
+  updateDispenserReader(dispenserReader : DispenserReader): Observable<DispenserReader[]>{
+    return this.http.put<DispenserReader[]>(`${api_url}/dispenserReaders/update/${dispenserReader.dispenserReaderId}`, dispenserReader, this.headers);
+  }
 
 
 }

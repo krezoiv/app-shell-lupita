@@ -19,6 +19,9 @@ import { UpdateDispenserReaderDialogComponent } from '../../dialogs/dispensers/u
   styleUrls: ['./digitize-dispenser.component.css']
 })
 export class DigitizeDispenserComponent implements OnInit {
+  static listNumerationDispenser() {
+    throw new Error('Method not implemented.');
+  }
 
   /**
    * variables que permitiran la cantidad total de galones 
@@ -30,6 +33,7 @@ export class DigitizeDispenserComponent implements OnInit {
   mechanicP!: Number | any;
   moneyA!: Number | any;
   moneyP!: Number | any;
+  
 
   RegularGDB!: Number | any;
   RegularGInput!: Number | any;
@@ -177,6 +181,7 @@ export class DigitizeDispenserComponent implements OnInit {
   public dispenserReaderMY: DispenserReader[] = [];
   public dispenserReader: DispenserReader[] = [];
   public generalDispenserReader: GeneralDispenserReader[] = [];
+  public dispenserReaderPenultimateG : DispenserReader[]=[];
 
 
 
@@ -769,6 +774,15 @@ export class DigitizeDispenserComponent implements OnInit {
 
       });
   };
+
+  getPenultimateNoGallons() {
+    this.dispenserService.getPenultimateGallons(this.digitizeForm.value)
+      .subscribe(({ penultimateNoGallons }) => {
+        this.dispenserReaderPenultimateG = penultimateNoGallons;
+
+      });
+  };
+
 
   getPreviuosNoMechanic() {
     this.dispenserService.getPreviousMechanic(this.digitizeForm.value)
@@ -1881,7 +1895,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
   editDisepnserReader(data : DispenserReader){
     this.dialog.open(UpdateDispenserReaderDialogComponent, {
-      width: '30%',
+      width: '45%',
       data: data
     })
   }

@@ -38,6 +38,10 @@ export interface PreviousGallons_I {
     previousNoGallons : [];
 }
 
+export interface PenultimateGallons_I {
+    penultimateNoGallons : [];
+}
+
 export interface PreviousMechanic_I {
     previousNoMechanic : [];
 }

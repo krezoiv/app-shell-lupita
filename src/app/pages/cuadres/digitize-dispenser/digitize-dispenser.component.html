@@ -1328,12 +1328,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of dispenserReader ;let data1 of dispenserReader" >
+                        <tr *ngFor="let data of dispenserReader ;let data1 of dispenserReaderPenultimateG" >
                             <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
                             <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>
                             <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
                             <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>
-                            <td>{{ data1.previousNoGallons | number }}</td>
+                            <td>{{ gallonP | number}}</td>
                             <td>{{ data.actualNoGallons | number }}</td>
                             <td>{{ data.actualNoMechanic | number }}</td>
                             <td>{{ data.actualNoMoney | number }} </td>

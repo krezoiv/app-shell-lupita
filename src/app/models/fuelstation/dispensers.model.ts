@@ -54,8 +54,8 @@ export class DispenserReader {
         public actualNoMoney?: number,
         public totalNoMoney?: number,
         public assignmentHoseId?: AssignmentHose,
-        public generalDispenserReaderId?: GeneralDispenserReader
-
+        public generalDispenserReaderId?: GeneralDispenserReader,
+        public dispenserReaderId? : number
 
     ) { }
 }
