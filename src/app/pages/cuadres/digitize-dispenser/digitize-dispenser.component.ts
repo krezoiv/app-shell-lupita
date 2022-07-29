@@ -1,8 +1,9 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog'
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
@@ -18,15 +19,14 @@ import { UpdateDispenserReaderDialogComponent } from '../../dialogs/dispensers/u
   templateUrl: './digitize-dispenser.component.html',
   styleUrls: ['./digitize-dispenser.component.css']
 })
-export class DigitizeDispenserComponent implements OnInit {
-  static listNumerationDispenser() {
-    throw new Error('Method not implemented.');
-  }
+export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
+  suscription! : Subscription ;
+  suscription2! : Subscription ;
   /**
    * variables que permitiran la cantidad total de galones 
    * vendidos por dia 
-   */
+   */ 
   gallonA!: Number | any;
   gallonP!: Number | any;
   mechanicA!: Number | any;
@@ -220,6 +220,8 @@ export class DigitizeDispenserComponent implements OnInit {
 
   });
 
+
+
   constructor(
     private fb: FormBuilder,
     private islandService: IslandsService,
@@ -233,9 +235,28 @@ export class DigitizeDispenserComponent implements OnInit {
   ngOnInit(): void {
     this.getDispenser();
     this.listNumerationDispenser();
+    this.suscription = this.dispenserService.refresh$.subscribe(() => {
+      this.listNumerationDispenser();
+     
+    })
+
+    this.suscription2 = this.dispenserService.refreshDetail$.subscribe(() => {
+      this.listNumerationDispenser();
+     
+    })
+
+
+
+    
 
   };
 
+  ngOnDestroy() :void {
+    this.suscription.unsubscribe();
+    this.suscription2.unsubscribe(); 
+  }
+
+ 
 
   //crear el total de numercion englobado de todas las mangueras
   creatGeneralAssignmentDispenserReader() {
@@ -895,7 +916,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.getAssignmentHoseIdRegularA1();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
-    console.log(this.digitizeForm.value)
+    
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -906,7 +927,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularA1();
 
-        console.log(this.digitizeForm.value)
+        
         this.btnDisableRegularR1A = true;
         this.btnDisableSuperR1A = true;
         this.btnDisableDisableR1A = true;
@@ -992,7 +1013,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.getAssignmentHoseIdRegularB1();
     this, this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
-    console.log(this.digitizeForm.value)
+    
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1003,7 +1024,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularB1();
-        console.log(this.digitizeForm.value)
+        
         this.buttonDisableRegular = false
         this.buttonDisableRegularB = false
         this.showMeRegular1B = !this.showMeRegular1B
@@ -1092,7 +1113,7 @@ export class DigitizeDispenserComponent implements OnInit {
     this.getAssignmentHoseIdRegularA2();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
-    console.log(this.digitizeForm.value)
+    
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1102,7 +1123,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularA2();
-        console.log(this.digitizeForm.value)
+        
         this.showMeRegular2A = this.showMeRegular1A
         this.btnDisableRegularR2A = true
         this.btnDisableSuperR2A = true
@@ -1318,7 +1339,6 @@ export class DigitizeDispenserComponent implements OnInit {
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
   
-    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1333,8 +1353,6 @@ export class DigitizeDispenserComponent implements OnInit {
         this.showdigitButton();
         this.totalGallonsRegular();
         this.updateGallons();
-  
-        console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
 
 
@@ -1390,7 +1408,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
-    console.log(this.digitizeForm.value)
+    
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1402,7 +1420,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.showdigitButton();
         this.totalGallonsRegular();
         this.updateGallons();
-        console.log(this.digitizeForm.value)
+        
         this.resetFormValuesNumbering();
         //e)
 
@@ -1460,7 +1478,7 @@ export class DigitizeDispenserComponent implements OnInit {
 
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
-    console.log(this.digitizeForm.value)
+    
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1472,7 +1490,7 @@ export class DigitizeDispenserComponent implements OnInit {
         this.showdigitButton2();
         this.totalGallonsRegular();
         this.updateGallons();
-        console.log(this.digitizeForm.value)
+        
         this.resetFormValuesNumbering();
 
       };
@@ -1711,11 +1729,11 @@ export class DigitizeDispenserComponent implements OnInit {
     this.digitizeForm.controls['actualNoMechanic'].setValue(0);
     this.digitizeForm.controls['previuosNoMoney'].setValue(0);
     this.digitizeForm.controls['actualNoMoney'].setValue(0);
-/*
+
     this.digitizeForm.controls['totalGallonRegular'].setValue(0);
     this.digitizeForm.controls['totalMechanicRegular'].setValue(0);
     this.digitizeForm.controls['totalMoneyRegular'].setValue(0);
-    this.digitizeForm.controls['totalGallonSuper'].setValue(0);
+    /*this.digitizeForm.controls['totalGallonSuper'].setValue(0);
     this.digitizeForm.controls['totalMechanicSuper'].setValue(0);
     this.digitizeForm.controls['totalMoneySuper'].setValue(0);
     this.digitizeForm.controls['totalGallonDiesel'].setValue(0);
@@ -1734,27 +1752,8 @@ export class DigitizeDispenserComponent implements OnInit {
         this.dispenserReader = listNumerationDispenser
         console.log(this.dispenserReader)
 
-      })
-
-
-
-    /*const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-
-        this.dispenserService.getActualListNumeration(this.digitizeForm.value)
-          .subscribe( listNumerationDispenser => {
-            this.dispenserReaderG = listNumerationDispenser
-
-           r)
-          })
-
-      };
-    });*/
-
-  }
+      });
+  };
 
   //obtenemos el resultado de galonaje vendido de dia actual vs dia anterior
   gallonageResults() {
@@ -1877,37 +1876,22 @@ export class DigitizeDispenserComponent implements OnInit {
     this.digitizeForm.controls['totalMoneyVpower'].setValue(this.ResultVpMY);
     console.log(this.ResultVpMY);
 
-  }
+  };
+
 
 
 
   updateGallons() {
-    this.listNumerationDispenser();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
+    const data = {
+      ...this.digitizeForm.value,
 
-    dialogRef.afterClosed().subscribe(resp =>{
-      if(resp){
-        const data = {
-          ...this.digitizeForm.value,
-    
-        }
-    
-        this.dispenserService.updateTotalGallons(data)
-          .subscribe(resp => {
-            
-          })
-       
-         this.listNumerationDispenser();
+    };
 
-      
-      }
-    })
+    this.dispenserService.updateTotalGallons(data)
+      .subscribe(resp => {
 
-   
-   
-  }
+      });
+  };
 
 
   editDisepnserReader(data : DispenserReader){
@@ -1915,13 +1899,13 @@ export class DigitizeDispenserComponent implements OnInit {
     this.dialog.open(UpdateDispenserReaderDialogComponent, {
       width: '45%',
       data: data
-    })
+    });
     
-
+    this.updateGallons();
     this.listNumerationDispenser();
+    this.resetFormValuesNumbering();
    
-   
-  }
+  };
 
   save(){
 
@@ -1934,11 +1918,9 @@ export class DigitizeDispenserComponent implements OnInit {
         this.listNumerationDispenser();
       }
     }
-   ) }
-    
-
-
-}
+   )};
+  
+};
 
 
 //TODO: pending disable the buttons on side b of both islands

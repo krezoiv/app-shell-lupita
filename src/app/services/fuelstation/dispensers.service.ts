@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
@@ -13,13 +13,26 @@ const api_url = environment.api_url;
 })
 export class DispensersService {
 
+  private _refresh$ = new Subject<void>();
+  private _refreshDetail$ = new Subject<void>();
   constructor(
     private http: HttpClient
   ) { }
 
+  get refresh$(){
+    return this._refresh$
+  };
+
+  get refreshDetail$(){
+    return this._refreshDetail$
+  };
+
+
+
+
   get token(): string {
     return localStorage.getItem('token') || '';
-  }
+  }; 
 
   get headers() {
     return {
@@ -92,7 +105,12 @@ export class DispensersService {
   }
 
   createDispenserReader(formData: DispenserReader): Observable<DispenserReader> {
-    return this.http.post<DispenserReader>(`${api_url}/dispenserReaders`, formData, this.headers);
+    return this.http.post<DispenserReader>(`${api_url}/dispenserReaders`, formData, this.headers)
+    .pipe(
+      tap(() => {
+        this._refreshDetail$.next();
+      })
+    );
   }
 
 
@@ -174,7 +192,12 @@ export class DispensersService {
   }
 
   updateDispenserReader(dispenserReader : DispenserReader): Observable<DispenserReader[]>{
-    return this.http.put<DispenserReader[]>(`${api_url}/dispenserReaders/update/${dispenserReader.dispenserReaderId}`, dispenserReader, this.headers);
+    return this.http.put<DispenserReader[]>(`${api_url}/dispenserReaders/update/${dispenserReader.dispenserReaderId}`, dispenserReader, this.headers)
+      .pipe(
+        tap(() => {
+          this._refresh$.next();
+        })
+      );
   }
 
 

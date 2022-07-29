@@ -6,6 +6,13 @@
 <div mat-dialog-content>
     <form [formGroup]="updateDispenserReaderForm">
 
+        <mat-form-field appearance="legacy">
+            <mat-label>id</mat-label>
+            <input type="text" formControlName="fuelName"  readonly="" matInput>
+            <mat-icon matSuffix>local-gas-station</mat-icon>
+            <mat-hint></mat-hint>
+        </mat-form-field>
+        <hr>
         <table>
 
             <tr>
