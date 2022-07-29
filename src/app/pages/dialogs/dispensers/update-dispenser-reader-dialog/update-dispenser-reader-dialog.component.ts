@@ -19,6 +19,10 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
   RegularGPrevious!: Number | any;
   DieselMY!: Number | any;
 
+  a!: Number | any;
+  b!: Number | any;
+  c!: Number | any;
+
   gallonA!: Number | any;
   gallonP!: Number | any;
   ResultG!: Number | any;
@@ -42,24 +46,26 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
   ngOnInit(): void {
 
     this.updateDispenserReaderForm = this.fb.group({
-      previousNoGallons: ['', Validators.required],
-      actualNoGallons: ['', Validators.required],
-      totalNoGallons: ['', Validators.required],
-      previousNoMechanic: ['', Validators.required],
-      actualNoMechanic: ['', Validators.required],
-      totalNoMechanic: ['', Validators.required],
-      previousNoMoney: ['', Validators.required],
-      actualNoMoney: ['', Validators.required],
-      totalNoMoney: ['', Validators.required],
-      dispenserReaderId: ['', Validators.required],
-      fuelName :['', Validators.required],
+      previousNoGallons: [''],
+      actualNoGallons: [''],
+      totalNoGallons: [''],
+      previousNoMechanic: [''],
+      actualNoMechanic: [''],
+      totalNoMechanic: [''],
+      previousNoMoney: [''],
+      actualNoMoney: [''],
+      totalNoMoney: [''],
+      dispenserReaderId: [''],
+      fuelName :[''],
+      totalGallonRegular :[''],
+      generalDispenserReaderId : [''],
      
  
 
     });
     if (this.dispenserReader) {
 
-
+      this.updateDispenserReaderForm.controls['generalDispenserReaderId'].setValue(this.dispenserReader.generalDispenserReaderId);
       this.updateDispenserReaderForm.controls['totalNoGallons'].setValue(this.dispenserReader.totalNoGallons);
       this.updateDispenserReaderForm.controls['actualNoGallons'].setValue(this.dispenserReader.actualNoGallons);
       this.updateDispenserReaderForm.controls['actualNoMechanic'].setValue(this.dispenserReader.actualNoMechanic);
@@ -80,6 +86,8 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
 
   updateDispenserReader() {
 
+    this.gallonageResults();
+    this.calculateTotalGeneralGallons();
     this._dispenserService.updateDispenserReader
       (this.updateDispenserReaderForm.value).subscribe(resp => {
         
@@ -93,27 +101,26 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
   };
 
   update() {
-    //this.getData();
+    
     this.gallonageResults();
+    this.calculateTotalGeneralGallons();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
-      //  this.getData();
-        this.updateDispenserReader();
+     
+    this.gallonageResults();
+    this.calculateTotalGeneralGallons();
+       this.updateDispenserReader();
         this.updateTotalGallons();
-      
+        this.updateGallons();
+  
+       console.log(this.updateDispenserReaderForm.value)
       };
     });
   };
-
-/*
-  getData() {
-    this.updateDispenserReaderForm.get('actualNoGallons')?.value;
-    this.updateDispenserReaderForm.get('dispenserReaderId')?.value
-  };*/
 
   updateTotalGallons(){
     const data = {
@@ -124,6 +131,8 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
     this._dispenserService.updateTotalGallons(data)
       .subscribe(resp => {
       });
+      
+    console.log(this.updateDispenserReaderForm.value)
   };
 
   gallonageResults(){
@@ -133,10 +142,31 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
     this.ResultG = this.gallonA - this.gallonP;
     this.updateDispenserReaderForm.controls['totalNoGallons'].setValue(this.ResultG);
 
-    
+    console.log(this.updateDispenserReaderForm.value)
 
-    
-    
   }
+
+  calculateTotalGeneralGallons(){
+
+    this.a = this.updateDispenserReaderForm.get('actualNoGallons')?.value;
+    this.b = this.updateDispenserReaderForm.get('previousNoGallons')?.value;
+    this.c = this.a - this.b;
+
+    this.updateDispenserReaderForm.controls['totalGallonRegular'].setValue(this.c);
+  }
+
+  updateGallons() {
+    const data = {
+      ...this.updateDispenserReaderForm.value,
+
+    };
+
+    this._dispenserService.updateTotalGallons(data)
+      .subscribe(resp => {
+
+      });
+  };
+
+
 
 };

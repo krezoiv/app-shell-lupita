@@ -233,11 +233,12 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.digitizeForm.value)
+    
     this.getDispenser();
     this.listNumerationDispenser();
     this.suscription = this.dispenserService.refresh$.subscribe(() => {
-      this.listNumerationDispenser();
-     
+      this.listNumerationDispenser();    
     })
 
     this.suscription2 = this.dispenserService.refreshDetail$.subscribe(() => {
@@ -246,13 +247,14 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
 
 
-
-    
-
   };
 
   ngOnDestroy() :void {
     this.suscription.unsubscribe();
+
+  }
+
+  ngOnDestroyI() :void {
     this.suscription2.unsubscribe(); 
   }
 
@@ -260,6 +262,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   //crear el total de numercion englobado de todas las mangueras
   creatGeneralAssignmentDispenserReader() {
+    console.log(this.digitizeForm.value);
     this.dispenserService.createGeneralDispenserReader(this.digitizeForm.value)
       .subscribe((data) => {
         Swal.fire('Creado', `Apertura de día...`, 'success');
@@ -1878,9 +1881,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
-
-
-
   updateGallons() {
     const data = {
       ...this.digitizeForm.value,
@@ -1893,7 +1893,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
-
   editDisepnserReader(data : DispenserReader){
     
     this.dialog.open(UpdateDispenserReaderDialogComponent, {
@@ -1901,9 +1900,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       data: data
     });
     
-    this.updateGallons();
+    //this.updateGallons();
     this.listNumerationDispenser();
-    this.resetFormValuesNumbering();
+ 
    
   };
 
