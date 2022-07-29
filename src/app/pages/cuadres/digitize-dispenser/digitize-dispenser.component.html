@@ -1316,11 +1316,11 @@
                 <table  id="tableData" class="table table-dark" class="mat-elevation-z8">
                     <thead class="thead-dark">
                         <tr id="border-header-table-data">
-                            <th scope="col">Isla</th>
+                            <th style="display:none;" scope="col">Isla</th>
                             <th scope="col">Bomba</th>
                             <th scope="col">Lado</th>
                             <th scope="col">Combustible</th>
-                            <th scope="col">Numeración de Galonaje Anterior</th>
+                            <th style="display:none;" scope="col">Numeración de Galonaje Anterior</th>
                             <th scope="col">Numeración de Galonaje</th>
                             <th scope="col">Numeracíon Mecánica</th>
                             <th scope="col">Numeracíon Dinero</th>
@@ -1328,12 +1328,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of dispenserReader ;let data1 of dispenserReaderPenultimateG" >
-                            <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
+                        <tr *ngFor="let data of dispenserReader" >
+                            <td style="display:none;">{{ data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
                             <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>
                             <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
                             <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>
-                            <td>{{ gallonP | number}}</td>
+                            <td  style="display:none;">{{ gallonP | number}}</td>
                             <td>{{ data.actualNoGallons | number }}</td>
                             <td>{{ data.actualNoMechanic | number }}</td>
                             <td>{{ data.actualNoMoney | number }} </td>

@@ -1882,23 +1882,60 @@ export class DigitizeDispenserComponent implements OnInit {
 
 
   updateGallons() {
-    const data = {
-      ...this.digitizeForm.value,
+    this.listNumerationDispenser();
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
 
-    }
+    dialogRef.afterClosed().subscribe(resp =>{
+      if(resp){
+        const data = {
+          ...this.digitizeForm.value,
+    
+        }
+    
+        this.dispenserService.updateTotalGallons(data)
+          .subscribe(resp => {
+            
+          })
+       
+         this.listNumerationDispenser();
 
-    this.dispenserService.updateTotalGallons(data)
-      .subscribe(resp => {
+      
+      }
+    })
 
-      })
+   
+   
   }
 
+
   editDisepnserReader(data : DispenserReader){
+    
     this.dialog.open(UpdateDispenserReaderDialogComponent, {
       width: '45%',
       data: data
     })
+    
+
+    this.listNumerationDispenser();
+   
+   
   }
+
+  save(){
+
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(resp =>{
+      if(resp){
+        this.listNumerationDispenser();
+      }
+    }
+   ) }
+    
 
 
 }
