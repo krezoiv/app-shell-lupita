@@ -791,10 +791,21 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   }
 
 
+  
   getPreviuosNoGallons() {
     this.dispenserService.getPreviousGallons(this.digitizeForm.value)
       .subscribe(({ previousNoGallons }) => {
         this.dispenserReaderG = previousNoGallons
+        console.log(previousNoGallons)
+
+
+      });
+  };
+
+  getPreviuosNoGallons1() {
+    this.dispenserService.getPreviousGallons1(this.digitizeForm.value)
+      .subscribe( (previousNoGallons)  => {
+        this.digitizeForm.controls['actualNoGallons'].setValue(previousNoGallons.previousNoGallons.actualNoGallons);
         console.log(previousNoGallons)
 
 
@@ -1936,7 +1947,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   }
 
   updateRegularA1() {
-    this.getPreviuosNoGallons();
+    this.getPreviuosNoGallons1();
     this.getTotalGallons();
     console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {

@@ -38,6 +38,10 @@ export interface PreviousGallons_I {
     previousNoGallons : [];
 }
 
+export interface DispenserReader_I {
+    previousNoGallons :DispenserReader;
+}
+
 export interface PenultimateGallons_I {
     penultimateNoGallons : [];
 }
