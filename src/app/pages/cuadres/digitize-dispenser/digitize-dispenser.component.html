@@ -100,7 +100,7 @@
                                 </label>
                                </div>
 
-                               <button (click)="updateRegularA1();">Actualizar</button>
+                               <button (click)="editDisepnserReader(dispenserReader);">Actualizar</button>
                                 <label *ngIf="showMeCheck"> <mat-icon id="mat-icon-check">done_outline</mat-icon><h2> Regular : Registro Guardado</h2></label>
     
                                 <!-- tabla para registro de Regular-->
@@ -112,7 +112,7 @@
                                             <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                                                 <mat-label>Lectura Galones:</mat-label>
                                                <input id="input-registros" id="input-registros" type="number" name="gallonA" formControlName="previuosNoGallons"
-                                                    matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
+                                                    matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">{{result}}
                                                 <mat-icon matSuffix> local_gas_station</mat-icon>
                                                 <mat-hint>Lectura Anterior</mat-hint><br>
                                             </mat-form-field><br>
@@ -1353,6 +1353,8 @@
         </form>
 
     </div>
+
+    <label> {{result}}</label>
 
 </body>
 

@@ -1914,11 +1914,11 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
-  editDisepnserReader(data: DispenserReader) {
+  editDisepnserReader(dispenserReader: DispenserReader) {
 
     this.dialog.open(UpdateDispenserReaderDialogComponent, {
       width: '45%',
-      data: data
+      data: dispenserReader
     });
 
     //this.updateGallons();
@@ -1947,14 +1947,17 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   }
 
   updateRegularA1() {
+
     this.getPreviuosNoGallons1();
     this.getTotalGallons();
     console.log(this.digitizeForm.value)
+    this.showMeRegular1A = !this.showMeRegular1A;
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
+
         this.gallonA = this.digitizeForm.get('actualNoGallons')?.value;
         this.gallonP = this.digitizeForm.get('totalNoGallons')?.value;
         this.result = this.gallonA - this.gallonP;
