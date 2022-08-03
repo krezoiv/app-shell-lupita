@@ -27,6 +27,22 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
    * variables que permitiran la cantidad total de galones 
    * vendidos por dia 
    */
+
+   a!: Number | any;
+   b!: Number | any;
+   c!: Number | any;
+
+  calculate_gallonA!: Number | any;
+  calculate_gallonP!: Number | any;
+  calculate_result_g!: Number | any;
+  calculate_mechanicA!: Number | any;
+  calculate_mechanicP!: Number | any;
+  calculate_result_m!: Number | any;
+  calculate_moneyA!: Number | any;
+  calculate_moneyP!: Number | any;
+  calculate_result_my!: Number | any;
+ 
+
   gallonA!: Number | any;
   gallonP!: Number | any;
   result_g!: Number | any;
@@ -819,7 +835,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getPreviousGallonsMechanic1(this.digitizeForm.value)
     .subscribe( (previousNoMechanic)  => {
       this.digitizeForm.controls['actualNoMechanic'].setValue(previousNoMechanic.previousNoMechanic.actualNoMechanic);
-      console.log(previousNoMechanic)
+    
 
 
       });
@@ -829,7 +845,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getPreviousGallonsMoney1(this.digitizeForm.value)
     .subscribe( (previousNoMoney)  => {
       this.digitizeForm.controls['actualNoMoney'].setValue(previousNoMoney.previousNoMoney.actualNoMoney);
-      console.log(previousNoMoney)
+    
 
       });
   };
@@ -943,9 +959,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.digitizeForm.controls['totalGallonVpower'].setValue(noGallons.totalGallonVpower);
         this.digitizeForm.controls['totalMechanicVpower'].setValue(noGallons.totalMechanicVpower);
         this.digitizeForm.controls['totalMoneyVpower'].setValue(noGallons.totalMoneyVpower);
-
-        console.log(noGallons.totalGallonRegular)
-        console.log(this.digitizeForm.value);
       })
   }
 
@@ -955,7 +968,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.getAssignmentHoseIdRegularA1();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
-    console.log(this.digitizeForm.value)
+   
 
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -975,8 +988,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.btnDisableDieselR1B = true;
         this.buttonDisableRegular = false;
         this.showMeRegular1A = !this.showMeRegular1A;
-
-
         this.resetFormValuesNumbering();
       };
     });
@@ -1051,7 +1062,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.btnDisableRegularR1B = true
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
-
         this.resetFormValuesNumbering();
       }
     })
@@ -1394,8 +1404,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
-    console.log(this.digitizeForm.value)
-
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1409,7 +1417,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.showdigitButton();
         this.totalGallonsRegular();
         this.updateGallons();
-        console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
       };
 
@@ -1826,7 +1833,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.digitizeForm.controls['totalNoGallons'].setValue(this.ResultG);
     this.digitizeForm.controls['totalNoMechanic'].setValue(this.ResultM);
     this.digitizeForm.controls['totalNoMoney'].setValue(this.ResultMY);
-
   };
 
 
@@ -1954,9 +1960,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
-   pp(){
-    
-   }
 
   save() {
 
@@ -1986,7 +1989,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.getPreviuosNoGallonsMechanicRegular1();
     this.getPreviuosNoGallonsMoneyRegular1();
     this.getTotalGallons();
-    console.log(this.digitizeForm.value)
     this.showMeRegular1A = !this.showMeRegular1A;
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -2006,8 +2008,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.digitizeForm.controls['previuosNoGallons'].setValue(this.result_g);
         this.digitizeForm.controls['previuosNoMechanic'].setValue(this.result_m);
         this.digitizeForm.controls['previuosNoMoney'].setValue(this.result_my);
-
-        console.log(this.digitizeForm.value)
       }
     })
 
@@ -2026,6 +2026,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.updateDispenserReader();
       this.updaTotalGallons();
       this.updateGallons();
+   
     })
 
   }
@@ -2046,20 +2047,23 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   calculateTotalGeneralGallons(){
 
-    this.gallonA = this.digitizeForm.get('actualNoGallons')?.value;
-    this.gallonP = this.digitizeForm.get('previousNoGallons')?.value;
-    this.result_g = this.gallonA - this.gallonP;
-    this.digitizeForm.controls['totalGallonRegular'].setValue(this.result_g);
+    this.calculate_gallonA = this.digitizeForm.get('actualNoGallons')?.value
+    this.calculate_gallonP = this.digitizeForm.get('previuosNoGallons')?.value
+    this.calculate_result_g = this.calculate_gallonA - this.calculate_gallonP;
+    this.digitizeForm.controls['totalGallonRegular'].setValue(this.calculate_result_g);
+   
   
-    this.mechanicA = this.digitizeForm.get('actualNoMechanic')?.value;
-    this.mechanicP = this.digitizeForm.get('previousNoMechanic')?.value;
-    this.result_m = this.mechanicA - this.mechanicP;
-    this.digitizeForm.controls['totalMechanicRegular'].setValue(this.result_m);
+    this.calculate_mechanicA = this.digitizeForm.get('actualNoMechanic')?.value;
+    this.calculate_mechanicP = this.digitizeForm.get('previuosNoMechanic')?.value;
+    this.calculate_result_m = this.calculate_mechanicA - this.calculate_mechanicP;
+    this.digitizeForm.controls['totalMechanicRegular'].setValue(this.calculate_result_m);
+ 
 
-    this.moneyA = this.digitizeForm.get('actualNoMoney')?.value;
-    this.moneyP = this.digitizeForm.get('previousNoMoney')?.value;
-    this.result_my = this.mechanicA - this.mechanicP;
-    this.digitizeForm.controls['totalMoneyRegular'].setValue(this.result_my);
+    this.calculate_moneyA = this.digitizeForm.get('actualNoMoney')?.value;
+    this.calculate_moneyP = this.digitizeForm.get('previuosNoMoney')?.value;
+    this.calculate_result_my = this.calculate_moneyA - this.calculate_moneyP;
+    this.digitizeForm.controls['totalMoneyRegular'].setValue(this.calculate_result_my);
+
   }
 
   updaTotalGallons(){
@@ -2075,7 +2079,4 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   }
 };
-
-
-//TODO: pending disable the buttons on side b of both islands
 

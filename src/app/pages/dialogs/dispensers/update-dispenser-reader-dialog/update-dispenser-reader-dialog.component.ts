@@ -167,6 +167,4 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
       });
   };
 
-
-
 };
