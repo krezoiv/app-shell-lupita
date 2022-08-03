@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, DispenserReader_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, DispenserReaderM_I, DispenserReaderRM_I, DispenserReader_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -114,16 +114,28 @@ export class DispensersService {
   }
 
 
-  //obtener el ultimo registo de numeraciond de la bomba de gallones de regular
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de regular 
   getPreviousGallons(formData : DispenserReader ): Observable<PreviousGallons_I> {
     return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonRegular`, formData, this.headers);
   }
 
 
-  //obtener el ultimo registo de numeraciond de la bomba de gallones de regular
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de regular  para calcular el penultimo registro
   getPreviousGallons1(formData : DispenserReader ): Observable<DispenserReader_I> {
     return this.http.post<DispenserReader_I>(`${api_url}/dispenserReaders/previousGallonRegular1`, formData, this.headers);
   }
+
+   //obtener el ultimo registo de numeraciond de la bomba de gallones de regular  para calcular el penultimo registro
+   getPreviousGallonsMechanic1(formData : DispenserReader ): Observable<DispenserReaderRM_I> {
+    return this.http.post<DispenserReaderRM_I>(`${api_url}/dispenserReaders/previousMechanicRegular1`, formData, this.headers);
+  }
+
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de regular  para calcular el penultimo registro
+  getPreviousGallonsMoney1(formData : DispenserReader ): Observable<DispenserReaderM_I> {
+    return this.http.post<DispenserReaderM_I>(`${api_url}/dispenserReaders/previousMoneyRegular1`, formData, this.headers);
+  }
+
+
 
   getPenultimateGallons(formData : DispenserReader ): Observable<PenultimateGallons_I> {
     return this.http.post<PenultimateGallons_I>(`${api_url}/dispenserReaders/penultimateGallonRegular`, formData, this.headers);

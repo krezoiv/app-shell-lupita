@@ -42,6 +42,14 @@ export interface DispenserReader_I {
     previousNoGallons :DispenserReader;
 }
 
+export interface DispenserReaderRM_I {
+    previousNoMechanic :DispenserReader;
+}
+
+export interface DispenserReaderM_I {
+    previousNoMoney :DispenserReader;
+}
+
 export interface PenultimateGallons_I {
     penultimateNoGallons : [];
 }

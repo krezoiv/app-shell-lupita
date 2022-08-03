@@ -29,11 +29,13 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
    */
   gallonA!: Number | any;
   gallonP!: Number | any;
-  result!: Number | any;
+  result_g!: Number | any;
   mechanicA!: Number | any;
   mechanicP!: Number | any;
+  result_m!: Number | any;
   moneyA!: Number | any;
   moneyP!: Number | any;
+  result_my!: Number | any;
 
 
   RegularGDB!: Number | any;
@@ -206,6 +208,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     totalGallonVpower: [0, Validators.required],
     totalMechanicVpower: [0, Validators.required],
     totalMoneyVpower: [0, Validators.required],
+    dispenserReaderId: [''],
 
 
     previuosNoGallons: [0],
@@ -796,7 +799,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getPreviousGallons(this.digitizeForm.value)
       .subscribe(({ previousNoGallons }) => {
         this.dispenserReaderG = previousNoGallons
-        console.log(previousNoGallons)
+       
 
 
       });
@@ -806,8 +809,27 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getPreviousGallons1(this.digitizeForm.value)
       .subscribe( (previousNoGallons)  => {
         this.digitizeForm.controls['actualNoGallons'].setValue(previousNoGallons.previousNoGallons.actualNoGallons);
-        console.log(previousNoGallons)
+        this.digitizeForm.controls['dispenserReaderId'].setValue(previousNoGallons.previousNoGallons.dispenserReaderId);
 
+
+      });
+  };
+
+  getPreviuosNoGallonsMechanicRegular1() {
+    this.dispenserService.getPreviousGallonsMechanic1(this.digitizeForm.value)
+    .subscribe( (previousNoMechanic)  => {
+      this.digitizeForm.controls['actualNoMechanic'].setValue(previousNoMechanic.previousNoMechanic.actualNoMechanic);
+      console.log(previousNoMechanic)
+
+
+      });
+  };
+
+  getPreviuosNoGallonsMoneyRegular1() {
+    this.dispenserService.getPreviousGallonsMoney1(this.digitizeForm.value)
+    .subscribe( (previousNoMoney)  => {
+      this.digitizeForm.controls['actualNoMoney'].setValue(previousNoMoney.previousNoMoney.actualNoMoney);
+      console.log(previousNoMoney)
 
       });
   };
@@ -827,6 +849,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.dispenserReaderM = previousNoMechanic
       });
   };
+
+  
 
   getPreviuosNoMoney() {
     this.dispenserService.getPreviousMoney(this.digitizeForm.value)
@@ -931,6 +955,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.getAssignmentHoseIdRegularA1();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
+    console.log(this.digitizeForm.value)
 
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1369,6 +1394,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
     this.gallonageResults();
     this.getGeneralAssignmentDispenserReaderId();
+    console.log(this.digitizeForm.value)
 
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1383,6 +1409,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.showdigitButton();
         this.totalGallonsRegular();
         this.updateGallons();
+        console.log(this.digitizeForm.value)
         this.resetFormValuesNumbering();
       };
 
@@ -1927,6 +1954,10 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
+   pp(){
+    
+   }
+
   save() {
 
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
@@ -1946,9 +1977,14 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   }
 
+
+  //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateRegularA1() {
 
     this.getPreviuosNoGallons1();
+    this.getPreviuosNoGallonsMechanicRegular1();
+    this.getPreviuosNoGallonsMoneyRegular1();
     this.getTotalGallons();
     console.log(this.digitizeForm.value)
     this.showMeRegular1A = !this.showMeRegular1A;
@@ -1960,21 +1996,86 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
         this.gallonA = this.digitizeForm.get('actualNoGallons')?.value;
         this.gallonP = this.digitizeForm.get('totalNoGallons')?.value;
-        this.result = this.gallonA - this.gallonP;
-        this.digitizeForm.controls['previuosNoGallons'].setValue(this.result);
+        this.result_g = this.gallonA - this.gallonP;
+        this.mechanicA = this.digitizeForm.get('actualNoMechanic')?.value
+        this.mechanicP = this.digitizeForm.get('totalNoMechanic')?.value
+        this.result_m = this.mechanicA - this.mechanicP;
+        this.moneyA = this.digitizeForm.get('actualNoMoney')?.value;
+        this.moneyP = this.digitizeForm.get('totalNoMoney')?.value;
+        this.result_my = this.moneyA - this.moneyP;
+        this.digitizeForm.controls['previuosNoGallons'].setValue(this.result_g);
+        this.digitizeForm.controls['previuosNoMechanic'].setValue(this.result_m);
+        this.digitizeForm.controls['previuosNoMoney'].setValue(this.result_my);
+
         console.log(this.digitizeForm.value)
       }
     })
 
   }
 
+  saveUpdateRegularA1(){
+    this.gallonageResults();
+    this.calculateTotalGeneralGallons();
+    
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      this.gallonageResults();
+      this.calculateTotalGeneralGallons();
+      this.updateDispenserReader();
+      this.updaTotalGallons();
+      this.updateGallons();
+    })
+
+  }
+
+  //it comes frome API
+  updateDispenserReader() {
+    this.gallonageResults();
+    this.calculateTotalGeneralGallons();
+    this.dispenserService.updateDispenserReader
+      (this.digitizeForm.value).subscribe(resp => {
+        
+        Swal.fire('Actualizado', 'Actualizado Correctamente', 'success');
+  
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      });
+  };
+
+  calculateTotalGeneralGallons(){
+
+    this.gallonA = this.digitizeForm.get('actualNoGallons')?.value;
+    this.gallonP = this.digitizeForm.get('previousNoGallons')?.value;
+    this.result_g = this.gallonA - this.gallonP;
+    this.digitizeForm.controls['totalGallonRegular'].setValue(this.result_g);
+  
+    this.mechanicA = this.digitizeForm.get('actualNoMechanic')?.value;
+    this.mechanicP = this.digitizeForm.get('previousNoMechanic')?.value;
+    this.result_m = this.mechanicA - this.mechanicP;
+    this.digitizeForm.controls['totalMechanicRegular'].setValue(this.result_m);
+
+    this.moneyA = this.digitizeForm.get('actualNoMoney')?.value;
+    this.moneyP = this.digitizeForm.get('previousNoMoney')?.value;
+    this.result_my = this.mechanicA - this.mechanicP;
+    this.digitizeForm.controls['totalMoneyRegular'].setValue(this.result_my);
+  }
+
+  updaTotalGallons(){
+
+    const data = {
+      ...this.digitizeForm.value,
+    };
+
+    this.dispenserService.updateTotalGallons(data)
+      .subscribe(resp => {
+
+      });
+
+  }
 };
 
 
 //TODO: pending disable the buttons on side b of both islands
 
-/*
-
- 
-
-    */

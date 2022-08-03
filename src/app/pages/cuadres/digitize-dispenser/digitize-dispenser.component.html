@@ -99,8 +99,9 @@
                                         </button> </h2>
                                 </label>
                                </div>
+                               <button (click)="updateRegularA1();">Editar</button>
 
-                               <button (click)="editDisepnserReader(dispenserReader);">Actualizar</button>
+                               
                                 <label *ngIf="showMeCheck"> <mat-icon id="mat-icon-check">done_outline</mat-icon><h2> Regular : Registro Guardado</h2></label>
     
                                 <!-- tabla para registro de Regular-->
@@ -112,7 +113,7 @@
                                             <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                                                 <mat-label>Lectura Galones:</mat-label>
                                                <input id="input-registros" id="input-registros" type="number" name="gallonA" formControlName="previuosNoGallons"
-                                                    matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">{{result}}
+                                                    matInput readonly=" " [(ngModel)]="dispenserReader.actualNoGallons">
                                                 <mat-icon matSuffix> local_gas_station</mat-icon>
                                                 <mat-hint>Lectura Anterior</mat-hint><br>
                                             </mat-form-field><br>
@@ -188,6 +189,10 @@
                                                 (click)="guardarRegularA1();">
                                                 <mat-icon>save</mat-icon>&nbsp; Guardar
                                             </button>
+                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="primary"
+                                            (click)="saveUpdateRegularA1();">
+                                            <mat-icon>save</mat-icon>&nbsp; Editar
+                                        </button>
                                             </div>
     
                                         </tr>
@@ -1354,7 +1359,7 @@
 
     </div>
 
-    <label> {{result}}</label>
+   
 
 </body>
 
