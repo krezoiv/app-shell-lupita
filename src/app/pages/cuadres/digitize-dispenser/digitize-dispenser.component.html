@@ -99,11 +99,13 @@
                                         </button> </h2>
                                 </label>
                                </div>
-                               <button (click)="updateRegularA1();">Editar</button>
+                              
 
-                               
-                                <label *ngIf="showMeCheck"> <mat-icon id="mat-icon-check">done_outline</mat-icon><h2> Regular : Registro Guardado</h2></label>
-    
+                                <label *ngIf="showMeCheck"><h2> Regular : Registro Guardado <mat-icon id="mat-icon-check">done_outline</mat-icon></h2> </label><br>
+                                <button  *ngIf="showMeUpdateRA1" (click)="updateRegularA1();" mat-icon-button color="primary"> <h2><mat-icon>edit</mat-icon> Modificar Regisrto ? </h2>
+                                   
+                                  </button>
+
                                 <!-- tabla para registro de Regular-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"  *ngIf="showMeRegular1A" class="example-full-width" cellspacing="0">
                                     <tr id="tr-td-registros">
@@ -181,15 +183,15 @@
                                     <div>
                                         <tr id="tr-td-registros">
                                             <div>
-                                                <button  [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                <button  mat-raised-button color="warn"
                                                 (click)="cancelarRegularA1();">
                                                 <mat-icon>cancel</mat-icon>&nbsp; Cancelar
                                             </button> &nbsp;
-                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="primary"
+                                            <button *ngIf="buttonDisableRegular" mat-raised-button color="primary"
                                                 (click)="guardarRegularA1();">
                                                 <mat-icon>save</mat-icon>&nbsp; Guardar
                                             </button>
-                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="primary"
+                                            <button *ngIf="buttonDisableRegularEdit" mat-raised-button color="primary"
                                             (click)="saveUpdateRegularA1();">
                                             <mat-icon>save</mat-icon>&nbsp; Editar
                                         </button>
