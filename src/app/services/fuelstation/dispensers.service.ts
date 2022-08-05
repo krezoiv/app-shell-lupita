@@ -135,6 +135,22 @@ export class DispensersService {
     return this.http.post<DispenserReaderM_I>(`${api_url}/dispenserReaders/previousMoneyRegular1`, formData, this.headers);
   }
 
+  
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de super  para calcular el penultimo registro
+  getPreviousGallonsSuper1(formData : DispenserReader ): Observable<DispenserReader_I> {
+    return this.http.post<DispenserReader_I>(`${api_url}/dispenserReaders/previousGallonSuper1`, formData, this.headers);
+  }
+
+   //obtener el ultimo registo de numeraciond de la bomba de gallones de super  para calcular el penultimo registro
+   getPreviousGallonsMechanicSuper1(formData : DispenserReader ): Observable<DispenserReaderRM_I> {
+    return this.http.post<DispenserReaderRM_I>(`${api_url}/dispenserReaders/previousMechanicSuper1`, formData, this.headers);
+  }
+
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de super  para calcular el penultimo registro
+  getPreviousGallonsMoneySuper1(formData : DispenserReader ): Observable<DispenserReaderM_I> {
+    return this.http.post<DispenserReaderM_I>(`${api_url}/dispenserReaders/previousMoneySuper1`, formData, this.headers);
+  }
+
 
 
   getPenultimateGallons(formData : DispenserReader ): Observable<PenultimateGallons_I> {

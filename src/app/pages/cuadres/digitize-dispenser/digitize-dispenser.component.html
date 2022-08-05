@@ -102,9 +102,7 @@
                               
 
                                 <label *ngIf="showMeCheck"><h2> Regular : Registro Guardado <mat-icon id="mat-icon-check">done_outline</mat-icon></h2> </label><br>
-                                <button  *ngIf="showMeUpdateRA1" (click)="updateRegularA1();" mat-icon-button color="primary"> <h2><mat-icon>edit</mat-icon> Modificar Regisrto ? </h2>
-                                   
-                                  </button>
+                                <button  *ngIf="showMeUpdateRA1" (click)="updateRegularA1();" mat-icon-button color="primary"> <h2><mat-icon>edit</mat-icon> Modificar Registro ? </h2></button>
 
                                 <!-- tabla para registro de Regular-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"  *ngIf="showMeRegular1A" class="example-full-width" cellspacing="0">
@@ -192,7 +190,7 @@
                                                 <mat-icon>save</mat-icon>&nbsp; Guardar
                                             </button>
                                             <button *ngIf="buttonDisableRegularEdit" mat-raised-button color="primary"
-                                            (click)="saveUpdateRegularA1();">
+                                            (click)="saveUpdateDispenserReader();">
                                             <mat-icon>save</mat-icon>&nbsp; Editar
                                         </button>
                                             </div>
@@ -202,14 +200,17 @@
                                 </table>
                                 <br>
                                 <hr>
+                               <div *ngIf="showMeSuperCheck">
                                 <label>
                                     <h2> Super : <button [disabled]="btnDisableSuperR1A" id="botondigitar" mat-raised-button
                                             color="accent" (click)="super1A();">
                                             <mat-icon> border_color</mat-icon>&nbsp; Digitar
-                                        </button> </h2>
-
-                                      
+                                        </button></h2>           
                                 </label>
+                               </div>
+
+                               <label *ngIf="showMeSCheck"><h2> Super : Registro Guardado <mat-icon id="mat-icon-check">done_outline</mat-icon></h2> </label><br>
+                               <button  *ngIf="showMeUpdateSA1" (click)="updateSuperA1();" mat-icon-button color="primary"> <h2><mat-icon>edit</mat-icon> Modificar Registro ? </h2></button>
     
                                 <!-- tabla para registro de Super-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8" *ngIf="showMeSuper1A" class="example-full-width" cellspacing="0">
@@ -285,7 +286,8 @@
     
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                            <div>
+                                                <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
                                                 (click)="cancelarSuperA1();">
                                                 <mat-icon>cancel</mat-icon>&nbsp; Cancelar
                                             </button> &nbsp;
@@ -293,6 +295,11 @@
                                                 (click)="guardarSuperA1();">
                                                 <mat-icon>save</mat-icon>&nbsp; Guardar
                                             </button>
+                                            <button *ngIf="buttonDisableSuperEdit" mat-raised-button color="primary"
+                                            (click)="saveUpdateDispenserReaderSuper();">
+                                            <mat-icon>save</mat-icon>&nbsp; Editar
+                                        </button>
+                                            </div>
                                         </tr>
                                     </div><br>
                                 </table><br>
