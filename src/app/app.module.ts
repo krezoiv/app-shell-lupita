@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { DialogModule } from '@angular/cdk/dialog';
@@ -23,6 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+
 
 import { Page404Component } from './page404/page404.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
@@ -62,7 +64,8 @@ import { ConfirmationsComponent } from './pages/dialogs/confirmations/confirmati
     MatNativeDateModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
    
     
   ],

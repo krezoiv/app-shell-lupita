@@ -54,6 +54,8 @@ import { ConfirmationsComponent } from './dialogs/confirmations/confirmations.co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress-bar';
 import { UpdateDispenserReaderDialogComponent } from './dialogs/dispensers/update-dispenser-reader-dialog/update-dispenser-reader-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TimerComponent } from '../shared/functions/timer/timer.component';
 
 
 
@@ -116,8 +118,9 @@ import { UpdateDispenserReaderDialogComponent } from './dialogs/dispensers/updat
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
-
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatSnackBarModule
 
 
   ],
@@ -126,7 +129,8 @@ import { UpdateDispenserReaderDialogComponent } from './dialogs/dispensers/updat
     UsersComponent,
     CouponsComponent,
     MaintenancesComponent,
-    CuadresNavbarComponent
+    CuadresNavbarComponent,
+    TimerComponent
   
   ]
 })

@@ -15,6 +15,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { CuadresNavbarComponent } from './cuadres-navbar/cuadres-navbar.component';
 import { CuadresComponent } from '../pages/cuadres/cuadres/cuadres.component';
+import { TimerComponent } from './functions/timer/timer.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { CuadresComponent } from '../pages/cuadres/cuadres/cuadres.component';
     FooterComponent,
     MaintenanceNavbarComponent,
     CuadresNavbarComponent,
+    TimerComponent,
  
   ],
   imports: [
@@ -35,14 +38,16 @@ import { CuadresComponent } from '../pages/cuadres/cuadres/cuadres.component';
     FormsModule,
     MatButtonModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ], exports : [
     MainHeaderComponent,
     MantenimientoUserHeaderComponent,
     SidebarComponent,
     FooterComponent,
     MaintenanceNavbarComponent,
-    CuadresNavbarComponent
+    CuadresNavbarComponent,
+    TimerComponent
   ]
 })
 export class SharedModule { }
