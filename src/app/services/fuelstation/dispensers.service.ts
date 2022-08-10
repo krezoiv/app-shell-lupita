@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, DispenserReaderM_I, DispenserReaderRM_I, DispenserReader_I, Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I, PreviousGallons_I, PreviousMechanic_I, PreviousMoney_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, DispenserReaderSuper_I,  Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I,  previousNoGallonsDiesel1_I,  previousNoGallonsDiesel_I,  previousNoGallonsRegular_I, previousNoGallonsSuper_I, previousNoGallons_I, previousNoMechanicDiesel1_I, previousNoMechanicDiesel_I, previousNoMechanicRegular_I, previousNoMechanicR_I, previousNoMechanicSuper1_I, previousNoMechanicSuper_I, previousNoMoneyDiesel1_I, previousNoMoneyDiesel_I, previousNoMoneyRegular_I, previousNoMoneyR_I, previousNoMoneySuper1_I, previousNoMoneySuper_I, SideA_I, SideB_I, TotalGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -115,84 +115,96 @@ export class DispensersService {
 
 
   //obtener el ultimo registo de numeraciond de la bomba de gallones de regular 
-  getPreviousGallons(formData : DispenserReader ): Observable<PreviousGallons_I> {
-    return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonRegular`, formData, this.headers);
+  getPreviousGallons(formData : DispenserReader ): Observable<previousNoGallons_I> {
+    return this.http.post<previousNoGallons_I>(`${api_url}/dispenserReaders/previousGallonRegular`, formData, this.headers);
   }
 
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de regular
+  getPreviousMechanic(formData : DispenserReader): Observable<previousNoMechanicR_I> {
+    return this.http.post<previousNoMechanicR_I>(`${api_url}/dispenserReaders/previousMechanicRegular`, formData,  this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de regular
+  getPreviousMoney(formData : DispenserReader): Observable<previousNoMoneyR_I> {
+    return this.http.post<previousNoMoneyR_I>(`${api_url}/dispenserReaders/previousMoneyRegular`,  formData, this.headers);
+  }
 
   //obtener el ultimo registo de numeraciond de la bomba de gallones de regular  para calcular el penultimo registro
-  getPreviousGallons1(formData : DispenserReader ): Observable<DispenserReader_I> {
-    return this.http.post<DispenserReader_I>(`${api_url}/dispenserReaders/previousGallonRegular1`, formData, this.headers);
+  getPreviousGallons1(formData : DispenserReader ): Observable<previousNoGallonsRegular_I> {
+    return this.http.post<previousNoGallonsRegular_I>(`${api_url}/dispenserReaders/previousGallonRegular1`, formData, this.headers);
   }
 
    //obtener el ultimo registo de numeraciond de la bomba de gallones de regular  para calcular el penultimo registro
-   getPreviousGallonsMechanic1(formData : DispenserReader ): Observable<DispenserReaderRM_I> {
-    return this.http.post<DispenserReaderRM_I>(`${api_url}/dispenserReaders/previousMechanicRegular1`, formData, this.headers);
+   getPreviousGallonsMechanic1(formData : DispenserReader ): Observable<previousNoMechanicRegular_I> {
+    return this.http.post<previousNoMechanicRegular_I>(`${api_url}/dispenserReaders/previousMechanicRegular1`, formData, this.headers);
   }
 
   //obtener el ultimo registo de numeraciond de la bomba de gallones de regular  para calcular el penultimo registro
-  getPreviousGallonsMoney1(formData : DispenserReader ): Observable<DispenserReaderM_I> {
-    return this.http.post<DispenserReaderM_I>(`${api_url}/dispenserReaders/previousMoneyRegular1`, formData, this.headers);
+  getPreviousGallonsMoney1(formData : DispenserReader ): Observable<previousNoMoneyRegular_I> {
+    return this.http.post<previousNoMoneyRegular_I>(`${api_url}/dispenserReaders/previousMoneyRegular1`, formData, this.headers);
   }
 
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de super
+  getPreviousGallonsSuper(formData : DispenserReader): Observable<previousNoGallonsSuper_I> {
+    return this.http.post<previousNoGallonsSuper_I>(`${api_url}/dispenserReaders/previousGallonSuper`, formData,  this.headers);
+  }
+
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de super
+  getPreviousMechanicSuper(formData : DispenserReader): Observable<previousNoMechanicSuper_I> {
+    return this.http.post<previousNoMechanicSuper_I>(`${api_url}/dispenserReaders/previousMechanicSuper`, formData,  this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de super
+  getPreviousMoneySuper(formData : DispenserReader): Observable<previousNoMoneySuper_I> {
+    return this.http.post<previousNoMoneySuper_I>(`${api_url}/dispenserReaders/previousMoneySuper`, formData, this.headers);
+  }
   
   //obtener el ultimo registo de numeraciond de la bomba de gallones de super  para calcular el penultimo registro
-  getPreviousGallonsSuper1(formData : DispenserReader ): Observable<DispenserReader_I> {
-    return this.http.post<DispenserReader_I>(`${api_url}/dispenserReaders/previousGallonSuper1`, formData, this.headers);
+  getPreviousGallonsSuper1(formData : DispenserReader ): Observable<DispenserReaderSuper_I> {
+    return this.http.post<DispenserReaderSuper_I>(`${api_url}/dispenserReaders/previousGallonSuper1`, formData, this.headers);
   }
 
    //obtener el ultimo registo de numeraciond de la bomba de gallones de super  para calcular el penultimo registro
-   getPreviousGallonsMechanicSuper1(formData : DispenserReader ): Observable<DispenserReaderRM_I> {
-    return this.http.post<DispenserReaderRM_I>(`${api_url}/dispenserReaders/previousMechanicSuper1`, formData, this.headers);
+   getPreviousGallonsMechanicSuper1(formData : DispenserReader ): Observable<previousNoMechanicSuper1_I> {
+    return this.http.post<previousNoMechanicSuper1_I>(`${api_url}/dispenserReaders/previousMechanicSuper1`, formData, this.headers);
   }
 
   //obtener el ultimo registo de numeraciond de la bomba de gallones de super  para calcular el penultimo registro
-  getPreviousGallonsMoneySuper1(formData : DispenserReader ): Observable<DispenserReaderM_I> {
-    return this.http.post<DispenserReaderM_I>(`${api_url}/dispenserReaders/previousMoneySuper1`, formData, this.headers);
+  getPreviousGallonsMoneySuper1(formData : DispenserReader ): Observable<previousNoMoneySuper1_I> {
+    return this.http.post<previousNoMoneySuper1_I>(`${api_url}/dispenserReaders/previousMoneySuper1`, formData, this.headers);
   }
-
-
 
   getPenultimateGallons(formData : DispenserReader ): Observable<PenultimateGallons_I> {
     return this.http.post<PenultimateGallons_I>(`${api_url}/dispenserReaders/penultimateGallonRegular`, formData, this.headers);
   }
 
-
-  //obtener el ultimo registo de numeraciond de la bomba de mecanica de regular
-  getPreviousMechanic(formData : DispenserReader): Observable<PreviousMechanic_I> {
-    return this.http.post<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicRegular`, formData,  this.headers);
-  }
-  //obtener el ultimo registo de numeraciond de la bomba de dinero de regular
-  getPreviousMoney(formData : DispenserReader): Observable<PreviousMoney_I> {
-    return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyRegular`,  formData, this.headers);
-  }
-
-  //obtener el ultimo registo de numeraciond de la bomba de gallones de super
-  getPreviousGallonsSuper(formData : DispenserReader): Observable<PreviousGallons_I> {
-    return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonSuper`, formData,  this.headers);
-  }
-  //obtener el ultimo registo de numeraciond de la bomba de mecanica de super
-  getPreviousMechanicSuper(formData : DispenserReader): Observable<PreviousMechanic_I> {
-    return this.http.post<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicSuper`, formData,  this.headers);
-  }
-  //obtener el ultimo registo de numeraciond de la bomba de dinero de super
-  getPreviousMoneySuper(formData : DispenserReader): Observable<PreviousMoney_I> {
-    return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneySuper`, formData, this.headers);
-  }
-
+  
   //obtener el ultimo registo de numeraciond de la bomba de gallones de diesl
-  getPreviousGallonsDiesel(formData :DispenserReader ): Observable<PreviousGallons_I> {
-    return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonDiesel`, formData,  this.headers);
+  getPreviousGallonsDiesel(formData :DispenserReader ): Observable<previousNoGallonsDiesel_I> {
+    return this.http.post<previousNoGallonsDiesel_I>(`${api_url}/dispenserReaders/previousGallonDiesel`, formData,  this.headers);
   }
   //obtener el ultimo registo de numeraciond de la bomba de mecanica de diesel
-  getPreviousMechanicDiesel(formData :DispenserReader): Observable<PreviousMechanic_I> {
-    return this.http.post<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicDiesel`, formData, this.headers);
+  getPreviousMechanicDiesel(formData :DispenserReader): Observable<previousNoMechanicDiesel_I> {
+    return this.http.post<previousNoMechanicDiesel_I>(`${api_url}/dispenserReaders/previousMechanicDiesel`, formData, this.headers);
   }
   //obtener el ultimo registo de numeraciond de la bomba de dinero de diesel
-  getPreviousMoneyDiesel(formData :DispenserReader ): Observable<PreviousMoney_I> {
-    return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyDiesel`, formData, this.headers);
+  getPreviousMoneyDiesel(formData :DispenserReader ): Observable<previousNoMoneyDiesel_I> {
+    return this.http.post<previousNoMoneyDiesel_I>(`${api_url}/dispenserReaders/previousMoneyDiesel`, formData, this.headers);
   }
 
+
+  //obtener el ultimo registo de numeraciond de la bomba de gallones de diesl
+  getPreviousGallonsDiesel1(formData :DispenserReader ): Observable<previousNoGallonsDiesel1_I> {
+    return this.http.post<previousNoGallonsDiesel1_I>(`${api_url}/dispenserReaders/previousGallonDiesel1`, formData,  this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de mecanica de diesel
+  getPreviousMechanicDiesel1(formData :DispenserReader): Observable<previousNoMechanicDiesel1_I> {
+    return this.http.post<previousNoMechanicDiesel1_I>(`${api_url}/dispenserReaders/previousMechanicDiesel1`, formData, this.headers);
+  }
+  //obtener el ultimo registo de numeraciond de la bomba de dinero de diesel
+  getPreviousMoneyDiesel1(formData :DispenserReader ): Observable<previousNoMoneyDiesel1_I> {
+    return this.http.post<previousNoMoneyDiesel1_I>(`${api_url}/dispenserReaders/previousMoneyDiesel1`, formData, this.headers);
+  }
+
+  /*
   //obtener el ultimo registo de numeraciond de la bomba de gallones de Vpower
   getPreviousGallonsVpower(formData : DispenserReader): Observable<PreviousGallons_I> {
     return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonVpower`, formData, this.headers);
@@ -205,6 +217,7 @@ export class DispensersService {
   getPreviousMoneyVpower(formData:DispenserReader ): Observable<PreviousMoney_I> {
     return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyVpower`, formData, this.headers);
   }
+  */
 
   //obtener el detalle de lo registrado de numeracion de bombas
 

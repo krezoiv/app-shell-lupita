@@ -34,34 +34,93 @@ export interface As_I{
    
 }
 
-export interface PreviousGallons_I {
+//ok
+export interface previousNoGallonsDiesel_I {
+    previousNoGallonsDiesel : [];
+}
+
+export interface previousNoMechanicDiesel_I {
+    previousNoMechanicDiesel : [];
+}
+
+export interface previousNoMoneyDiesel_I {
+    previousNoMoneyDiesel : [];
+}
+
+
+
+//ok
+export interface previousNoGallonsRegular_I {
+    previousNoGallonsRegular :DispenserReader;
+}
+//ok
+export interface DispenserReaderSuper_I {
+    previousNoGallonsSuper1 :DispenserReader;
+}
+
+//ok
+export interface previousNoMechanicSuper1_I {
+    previousNoMechanicSuper1 :DispenserReader;
+}
+//ok
+export interface previousNoMechanicRegular_I {
+    previousNoMechanicRegular :DispenserReader;
+}
+//ok
+export interface previousNoMoneySuper1_I {
+    previousNoMoneySuper1 :DispenserReader;
+}
+//ok
+export interface previousNoMoneyRegular_I {
+    previousNoMoneyRegular :DispenserReader;
+}
+
+//ok
+export interface previousNoGallonsSuper_I {
+    previousNoGallonsSuper : [];
+}
+
+//ok
+export interface previousNoGallons_I {
     previousNoGallons : [];
 }
 
-export interface DispenserReader_I {
-    previousNoGallons :DispenserReader;
+
+//ok
+export interface previousNoMechanicSuper_I {
+    previousNoMechanicSuper : [];
 }
 
-export interface DispenserReaderRM_I {
-    previousNoMechanic :DispenserReader;
+//ok
+export interface previousNoMoneySuper_I {
+    previousNoMoneySuper : [];
 }
 
-export interface DispenserReaderM_I {
-    previousNoMoney :DispenserReader;
-}
 
 export interface PenultimateGallons_I {
     penultimateNoGallons : [];
 }
-
-export interface PreviousMechanic_I {
-    previousNoMechanic : [];
+//ok
+export interface previousNoMechanicR_I {
+    previousNoMechanicR : [];
 }
 
-export interface PreviousMoney_I {
-    previousNoMoney : [];
+//ok
+export interface previousNoMoneyR_I {
+    previousNoMoneyR : [];
 }
 
+export interface previousNoGallonsDiesel1_I {
+    previousNoGallonsDiesel1 :DispenserReader;
+}
+
+export interface previousNoMechanicDiesel1_I {
+    previousNoMechanicDiesel1 :DispenserReader;
+}
+
+export interface previousNoMoneyDiesel1_I {
+    previousNoMoneyDiesel1 :DispenserReader;
+}
 //interface to General Dispenser Reader
 export interface TotalGallons_I {
     noGallons : GeneralDispenserReader;
