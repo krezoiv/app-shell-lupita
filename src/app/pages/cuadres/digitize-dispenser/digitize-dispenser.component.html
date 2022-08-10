@@ -345,12 +345,26 @@
                                 </table><br>
                                 <hr>
 
-                                <label>
-                                    <h2> Diesel: <button [disabled]="btnDisableDisableR1A" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="diesel1A();">
-                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
-                                        </button> </h2>
-                                </label>
+                                <div *ngIf="showMeDieselCheck">
+                                    <label>
+                                        <h2> Diesel: <button [disabled]="btnDisableDisableR1A" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="diesel1A();">
+                                                <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <label *ngIf="showMeDCheck">
+                                    <h2> Diesel : Registro Guardado <mat-icon id="mat-icon-check">done_outline
+                                        </mat-icon>
+                                    </h2>
+                                </label><br>
+                                <button *ngIf="showMeUpdateDA1" (click)="updateDieselA1();" mat-icon-button
+                                color="primary">
+                                <h2>
+                                    <mat-icon>edit</mat-icon> Modificar Registro ?
+                                </h2>
+                            </button>
 
                                 <!-- tabla para registro de Diesel-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
