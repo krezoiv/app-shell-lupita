@@ -327,11 +327,11 @@
                                     <div>
                                         <tr>
                                             <div>
-                                                <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                <button mat-raised-button color="warn"
                                                     (click)="cancelarSuperA1();">
                                                     <mat-icon>cancel</mat-icon>&nbsp; Cancelar
                                                 </button> &nbsp;
-                                                <button *ngIF="buttonDisableSuper" mat-raised-button color="primary"
+                                                <button *ngIf="buttonDisableSuper" mat-raised-button color="primary"
                                                     (click)="guardarSuperA1();">
                                                     <mat-icon>save</mat-icon>&nbsp; Guardar
                                                 </button>
@@ -863,8 +863,6 @@
                         <mat-tab-group backgroundColor="accent">
 
                             <mat-tab label="lado A">
-
-
                                 <button *ngIf="buttonDisableSide2A" mat-button color="primary" (click)="habilitar2A();">
                                     <mat-icon>lock</mat-icon>
                                     <mat-icon>forward</mat-icon>
@@ -877,16 +875,31 @@
                                 <button *ngIf="buttonDisableSideA21C" mat-button color="primary">
                                     <mat-icon>check</mat-icon>&nbsp;Lado A Cerrado
                                 </button>
-
-
                                 <hr>
-                                <label>
-                                    <h2> Regular : <button [disabled]="btnDisableRegularR2A" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="regular2A();">
-                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
-                                        </button> </h2>
-                                </label>
 
+                                <div *ngIf="showMeRegular3Check">
+                                    <label>
+                                        <h2> Regular : <button [disabled]="btnDisableRegularR2A" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="regular2A();">
+                                                <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <div *ngIf="showMeR3Check">
+                                    <label>
+                                        <h2> Regular : Registro Guardado <mat-icon id="mat-icon-check">done_outline
+                                            </mat-icon>
+                                        </h2>
+                                    </label>
+                                </div>
+                                <br>
+                                <button *ngIf="showMeUpdateRA2" (click)="updateRegularA2();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Regular-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -971,26 +984,48 @@
 
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
-                                                (click)="cancelarRegularA2();">
-                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
-                                            </button> &nbsp;
-                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="primary"
-                                                (click)="guardarRegularA2();">
-                                                <mat-icon>save</mat-icon>&nbsp; Guardar
-                                            </button>
-
+                                            <div>
+                                                <button mat-raised-button color="warn" (click)="cancelarRegularA2();">
+                                                    <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                                </button> &nbsp;
+                                                <button *ngIf="buttonDisableRegularA2" mat-raised-button color="primary"
+                                                    (click)="guardarRegularA2();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Guardar
+                                                </button>
+                                                <button *ngIf="buttonDisableRegular3Edit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReader3();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Editar
+                                                </button>
+                                            </div>
                                         </tr>
                                     </div><br>
                                 </table>
                                 <br>
                                 <hr>
-                                <label>
-                                    <h2> Super : <button [disabled]="btnDisableSuperR2A" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="super2A();">
-                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
-                                        </button> </h2>
-                                </label>
+
+                                <div *ngIf="showMeSuper3Check">
+                                    <label>
+                                        <h2> Super : <button [disabled]="btnDisableSuperR2A" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="super2A();">
+                                                <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <div *ngIf="showMeS3Check">
+                                    <label>
+                                        <h2> Super : Registro Guardado <mat-icon id="mat-icon-check">done_outline
+                                            </mat-icon>
+                                        </h2>
+                                    </label>
+                                </div>
+                                <br>
+                                <button *ngIf="showMeUpdateSA2" (click)="updateSuperA2();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Super-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -1073,25 +1108,48 @@
 
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableRegular2" mat-raised-button color="warn"
-                                                (click)="cancelarSuperA2();">
-                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
-                                            </button> &nbsp;
-                                            <button [disabled]="buttonDisableSuper2" mat-raised-button color="primary"
-                                                (click)="guardarSuperA2();">
-                                                <mat-icon>save</mat-icon>&nbsp; Guardar
-                                            </button>
+                                            <div>
+                                                <button [disabled]="buttonDisableRegular2" mat-raised-button
+                                                    color="warn" (click)="cancelarSuperA2();">
+                                                    <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                                </button> &nbsp;
+                                                <button *ngIf="buttonDisableSuperA2" mat-raised-button color="primary"
+                                                    (click)="guardarSuperA2();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Guardar
+                                                </button>
+                                                <button *ngIf="buttonDisableSuper3Edit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReaderSuper3();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Editar
+                                                </button>
+                                            </div>
                                         </tr>
                                     </div><br>
                                 </table><br>
                                 <hr>
 
-                                <label>
-                                    <h2> Diesel: <button [disabled]="btnDisableDisableR2A" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="diesel2A();">
-                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
-                                        </button> </h2>
-                                </label>
+                                <div *ngIf="showMeDiesel3Check">
+                                    <label>
+                                        <h2> Diesel: <button [disabled]="btnDisableDisableR2A" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="diesel2A();">
+                                                <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <div *ngIf="showMeD3Check">
+                                    <label>
+                                        <h2> Diesel : Registro Guardado <mat-icon id="mat-icon-check">done_outline
+                                            </mat-icon>
+                                        </h2>
+                                    </label>
+                                </div>
+                                <br>
+                                <button *ngIf="showMeUpdateDA2" (click)="updateDieselA2();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Diesel-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -1174,14 +1232,21 @@
 
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableDiesel2" mat-raised-button color="warn"
-                                                (click)="cancelarDieselA2();">
-                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
-                                            </button> &nbsp;
-                                            <button [disabled]="buttonDisableDiesel2" mat-raised-button color="primary"
-                                                (click)="guardarDieselA2();">
-                                                <mat-icon>save</mat-icon>&nbsp;Guardar
-                                            </button>
+                                            <div>
+                                                <button  mat-raised-button color="warn"
+                                                    (click)="cancelarDieselA2();">
+                                                    <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                                </button> &nbsp;
+                                                <button *ngIf="buttonDisableDieselA2" mat-raised-button
+                                                    color="primary" (click)="guardarDieselA2();">
+                                                    <mat-icon>save</mat-icon>&nbsp;Guardar
+                                                </button>
+                                                <button *ngIf="buttonDisableDiesel3Edit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReaderDiesel3();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Editar
+                                                </button>
+                                            </div>
+
                                         </tr>
                                     </div><br>
                                 </table>
