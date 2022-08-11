@@ -105,7 +105,7 @@
                                 </div>
 
 
-                                <label *ngIf="showMeCheck">
+                                <label *ngIf="showMeRCheck">
                                     <h2> Regular : Registro Guardado <mat-icon id="mat-icon-check">done_outline
                                         </mat-icon>
                                     </h2>
@@ -331,8 +331,8 @@
                                                     (click)="cancelarSuperA1();">
                                                     <mat-icon>cancel</mat-icon>&nbsp; Cancelar
                                                 </button> &nbsp;
-                                                <button [disabled]="buttonDisableSuper" mat-raised-button
-                                                    color="primary" (click)="guardarSuperA1();">
+                                                <button *ngIF="buttonDisableSuper" mat-raised-button color="primary"
+                                                    (click)="guardarSuperA1();">
                                                     <mat-icon>save</mat-icon>&nbsp; Guardar
                                                 </button>
                                                 <button *ngIf="buttonDisableSuperEdit" mat-raised-button color="primary"
@@ -360,11 +360,11 @@
                                     </h2>
                                 </label><br>
                                 <button *ngIf="showMeUpdateDA1" (click)="updateDieselA1();" mat-icon-button
-                                color="primary">
-                                <h2>
-                                    <mat-icon>edit</mat-icon> Modificar Registro ?
-                                </h2>
-                            </button>
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Diesel-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -456,8 +456,8 @@
                                                     color="primary" (click)="guardarDieselA1();">
                                                     <mat-icon>save</mat-icon>&nbsp;Guardar
                                                 </button>
-                                                <button *ngIf="buttonDisableDieselEdit" mat-raised-button color="primary"
-                                                    (click)="saveUpdateDispenserReaderDiesel();">
+                                                <button *ngIf="buttonDisableDieselEdit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReaderDiesel();">
                                                     <mat-icon>save</mat-icon>&nbsp; Editar
                                                 </button>
                                             </div>
@@ -483,12 +483,27 @@
                                 </button>
 
                                 <hr>
-                                <label>
-                                    <h2> Regular: <button [disabled]="btnDisableRegularR1B" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="regular1B();">
-                                            <mat-icon> border_color</mat-icon> &nbsp; Digitar
-                                        </button> </h2>
-                                </label>
+                                <div *ngIf="showMeRegular2Check">
+                                    <label>
+                                        <h2> Regular: <button [disabled]="btnDisableRegularR1B" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="regular1B();">
+                                                <mat-icon> border_color</mat-icon> &nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <label *ngIf="showMeR2Check">
+                                    <h2> Regular : Registro Guardado <mat-icon id="mat-icon-check">done_outline
+                                        </mat-icon>
+                                    </h2>
+                                </label><br>
+                                <button *ngIf="showMeUpdateRB1" (click)="updateRegularB1();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
+
 
                                 <!-- tabla para registro de Regular-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -569,25 +584,45 @@
 
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
-                                                (click)="cancelarRegularB1();">
-                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
-                                            </button> &nbsp;
-                                            <button [disabled]="buttonDisableRegularB" mat-raised-button color="primary"
-                                                (click)="guardarRegularB1();">
-                                                <mat-icon>save</mat-icon>&nbsp;Guardar
-                                            </button>
+                                            <div>
+                                                <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                    (click)="cancelarRegularB1();">
+                                                    <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                                </button> &nbsp;
+                                                <button *ngIf="buttonDisableRegularB" mat-raised-button color="primary"
+                                                    (click)="guardarRegularB1();">
+                                                    <mat-icon>save</mat-icon>&nbsp;Guardar
+                                                </button>
+                                                <button *ngIf="buttonDisableRegular2Edit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReader2();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Editar
+                                                </button>
+                                            </div>
                                         </tr>
                                     </div><br>
                                 </table>
                                 <br>
                                 <hr>
-                                <label>
-                                    <h2> Super : <button [disabled]="btnDisableSuperR1B" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="super1B();">
-                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
-                                        </button> </h2>
-                                </label>
+
+                                <div *ngIf="showMeSuper2Check">
+                                    <label>
+                                        <h2> Super : <button [disabled]="btnDisableSuperR1B" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="super1B();">
+                                                <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <label *ngIf="showMeS2Check">
+                                    <h2> Super : Registro Guardado <mat-icon id="mat-icon-check">done_outline</mat-icon>
+                                    </h2>
+                                </label><br>
+                                <button *ngIf="showMeUpdateSB1" (click)="updateSuperB1();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Super-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -669,25 +704,45 @@
 
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
-                                                (click)="cancelarSuperB1();">
-                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
-                                            </button> &nbsp;
-                                            <button [disabled]="buttonDisableSuperB" mat-raised-button color="primary"
-                                                (click)="guardarSuperB1();">
-                                                <mat-icon>save</mat-icon>&nbsp;Guardar
-                                            </button>
+                                            <div>
+                                                <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                    (click)="cancelarSuperB1();">
+                                                    <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                                </button> &nbsp;
+                                                <button *ngIf="buttonDisableSuperB" mat-raised-button color="primary"
+                                                    (click)="guardarSuperB1();">
+                                                    <mat-icon>save</mat-icon>&nbsp;Guardar
+                                                </button>
+                                                <button *ngIf="buttonDisableSuper2Edit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReaderSuper2();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Editar
+                                                </button>
+                                            </div>
                                         </tr>
                                     </div><br>
                                 </table><br>
                                 <hr>
 
-                                <label>
-                                    <h2> Diesel : <button [disabled]="btnDisableDieselR1B" id="botondigitar"
-                                            mat-raised-button color="accent" (click)="diesel1B();">
-                                            <mat-icon> border_color</mat-icon>&nbsp; Digitar
-                                        </button> </h2>
-                                </label>
+                                <div *ngIf="showMeDiesel2Check">
+                                    <label>
+                                        <h2> Diesel : <button [disabled]="btnDisableDieselR1B" id="botondigitar"
+                                                mat-raised-button color="accent" (click)="diesel1B();">
+                                                <mat-icon> border_color</mat-icon>&nbsp; Digitar
+                                            </button> </h2>
+                                    </label>
+                                </div>
+
+                                <label *ngIf="showMeD2Check">
+                                    <h2> Diesel : Registro Guardado <mat-icon id="mat-icon-check">done_outline
+                                        </mat-icon>
+                                    </h2>
+                                </label><br>
+                                <button *ngIf="showMeUpdateDB1" (click)="updateDieselB1();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Diesel-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
@@ -769,14 +824,20 @@
 
                                     <div>
                                         <tr>
-                                            <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
-                                                (click)="cancelarDieselB1();">
-                                                <mat-icon>cancel</mat-icon>&nbsp; Cancelar
-                                            </button> &nbsp;
-                                            <button [disabled]="buttonDisableDieselB" mat-raised-button color="primary"
-                                                (click)="guardarDieselB1();">
-                                                <mat-icon>save</mat-icon>&nbsp;Guardar
-                                            </button>
+                                            <div>
+                                                <button [disabled]="buttonDisableRegular" mat-raised-button color="warn"
+                                                    (click)="cancelarDieselB1();">
+                                                    <mat-icon>cancel</mat-icon>&nbsp; Cancelar
+                                                </button> &nbsp;
+                                                <button *ngIf="buttonDisableDieselB" mat-raised-button color="primary"
+                                                    (click)="guardarDieselB1();">
+                                                    <mat-icon>save</mat-icon>&nbsp;Guardar
+                                                </button>
+                                                <button *ngIf="buttonDisableDiesel2Edit" mat-raised-button
+                                                    color="primary" (click)="saveUpdateDispenserReaderDiesel2();">
+                                                    <mat-icon>save</mat-icon>&nbsp; Editar
+                                                </button>
+                                            </div>
                                         </tr>
                                     </div><br>
                                 </table>
