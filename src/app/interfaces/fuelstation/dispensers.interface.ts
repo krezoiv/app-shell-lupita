@@ -53,11 +53,47 @@ export interface previousNoMoneyDiesel_I {
 export interface previousNoGallonsRegular_I {
     previousNoGallonsRegular :DispenserReader;
 }
+
+export interface previousTotalNoMechanicRegular_I {
+    previousTotalNoMechanicRegular :DispenserReader;
+}
+
+
+export interface previousTotalNoMoneyRegular_I {
+    previousTotalNoMoneyRegular :DispenserReader;
+}
 //ok
 export interface DispenserReaderSuper_I {
     previousNoGallonsSuper1 :DispenserReader;
 }
 
+export interface previousTotalNoGallonRegular_I {
+    previousTotalNoGallonRegular :DispenserReader;
+}
+
+export interface previousTotalNoGallonsSuper_I {
+    previousTotalNoGallonsSuper :DispenserReader;
+}
+
+export interface previousTotalNoMoneySuper_I {
+    previousTotalNoMoneySuper :DispenserReader;
+}
+
+export interface previousTotalNoGallonsDiesel_I {
+    previousTotalNoGallonsDiesel :DispenserReader;
+}
+
+export interface previousTotalNoMechanicDiesel_I {
+    previousTotalNoMechanicDiesel :DispenserReader;
+}
+
+export interface previousTotalNoMoneyDiesel_I {
+    previousTotalNoMoneyDiesel :DispenserReader;
+}
+
+export interface previousTotalNoMechanicSuper_I {
+    previousTotalNoMechanicSuper :DispenserReader;
+}
 //ok
 export interface previousNoMechanicSuper1_I {
     previousNoMechanicSuper1 :DispenserReader;
