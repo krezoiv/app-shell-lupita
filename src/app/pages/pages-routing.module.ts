@@ -22,6 +22,7 @@ import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.co
 import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignments-hoses/assignments-hoses.component';
 import { CuadresComponent } from './cuadres/cuadres/cuadres.component';
 import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
+import { SalesControlComponent } from './cuadres/sales-control/sales-control.component';
 
 
 const routes: Routes =[
@@ -46,9 +47,8 @@ const routes: Routes =[
     {path : 'infrastructure/hoses/listHoses', component : ListHoseComponent},
     {path : 'infrastructure/assignmentsHoses', component : AssignmentsHosesComponent},
     {path : 'cuadres', component: CuadresComponent},
-    {path : 'cuadres/digitalizacionBombas', component: DigitizeDispenserComponent}
-
-
+    {path : 'cuadres/digitalizacionBombas', component: DigitizeDispenserComponent},
+    {path : 'cuadres/controlVentas', component: SalesControlComponent}
 
   ]},
   

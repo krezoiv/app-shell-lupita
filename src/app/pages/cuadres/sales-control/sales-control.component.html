@@ -1,0 +1,142 @@
+<app-cuadres-navbar></app-cuadres-navbar>
+
+<body>
+    <div class="contenedor">
+        <form class="formulario" [formGroup]="salesControlForm" class="mat-elevation-z8">
+            <h1>Control de Cuadre Diario</h1><br>
+            <hr>
+            <div>
+                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                    <br>
+                    <tr>
+                      
+                        <td id="parametrosPrincipales">
+                           <div>
+                            <label id="label1">Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
+                                appearance="fill">
+                                <input id="input-registros" formControlName="readingDate" required matInput
+                                    [matDatepicker]="readingDate">
+                                <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                                <mat-datepicker #readingDate></mat-datepicker>
+                            </mat-form-field>
+                           </div><br>
+                           <div>
+                            <button mat-raised-button color="primary" id="buttonDate">Aperturar</button>
+                           </div>
+                           <br>
+                        </td>
+                       
+                        <td>
+                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros"
+                                appearance="legacy">
+
+                                <mat-label>Número de Documento:</mat-label>
+
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="noDocument" matInput >
+                                <mat-icon matPrefix>numbers</mat-icon>
+                                <mat-hint>Número de documento del día</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <hr>
+            <h1>Precios Actuales</h1><br>
+
+            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0"><br>
+                <tr>
+                    <td id="tr-td-registros" >
+                        <label id="labelPrecios">Precio del Regular &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-prices"
+                            appearance="legacy">
+                            <mat-label>Precio Actual</mat-label>
+                            <input id="input-registros" id="input-registros" type="number"
+                                name="gallonA" formControlName="regularPrice" matInput>
+                
+                            <mat-hint>precio en valla</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+
+                    <td id="tr-td-registros">
+                        <label id="labelPrecios">Precio del Super &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-prices" 
+                            appearance="legacy">
+                            <mat-label>Precio Actual</mat-label>
+                            <input id="input-registros" id="input-registros" type="number"
+                                name="gallonA" formControlName="superPrice" matInput
+                                readonly=" " >
+                           
+                            <mat-hint>precio en valla</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+
+                    <td id="tr-td-registros" >
+                        <label id="labelPrecios">Precio del Diesel &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-prices" 
+                            appearance="legacy">
+                            <mat-label>Precio Actual</mat-label>
+                            <input id="input-registros" id="input-registros" type="number"
+                                name="gallonA" formControlName="dieselPrice" matInput
+                                readonly=" ">
+                           
+                            <mat-hint>precio en valla</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+                </tr>
+            </table>
+
+            <hr>
+            <h1>Galones Vendidos</h1><br>
+            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0"><br>
+                <tr>
+                    <td id="tr-td-registros" >
+                        <label id="labelPrecios">Venta de Regular &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-prices"
+                            appearance="legacy">
+                            <mat-label>Cantidad</mat-label>
+                            <input id="input-registros" id="input-registros" type="number"
+                                name="gallonA" formControlName="regularPrice" matInput>
+                
+                            <mat-hint>galones vendidos</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+
+                    <td id="tr-td-registros">
+                        <label id="labelPrecios">Venta de Super &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-prices" 
+                            appearance="legacy">
+                            <mat-label>Cantidad</mat-label>
+                            <input id="input-registros" id="input-registros" type="number"
+                                name="gallonA" formControlName="superPrice" matInput
+                                readonly=" " >
+                           
+                            <mat-hint>galones vendidos</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+
+                    <td id="tr-td-registros" >
+                        <label id="labelPrecios">Venta de Diesel &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-prices" 
+                            appearance="legacy">
+                            <mat-label>Cantidad</mat-label>
+                            <input id="input-registros" id="input-registros" type="number"
+                                name="gallonA" formControlName="dieselPrice" matInput
+                                readonly=" ">   
+                            <mat-hint>galones vendidos</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+                    
+                </tr><br><br>
+                <tr>
+                    <td colspan="3" scope="rowgroup" align="center">
+                        <button mat-raised-button id="buttonAceptTotalGallons">Confirmar venta de galones</button>
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+</body>

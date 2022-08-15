@@ -56,6 +56,7 @@ import { MatProgressBar, MatProgressBarModule } from '@angular/material/progress
 import { UpdateDispenserReaderDialogComponent } from './dialogs/dispensers/update-dispenser-reader-dialog/update-dispenser-reader-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TimerComponent } from '../shared/functions/timer/timer.component';
+import { SalesControlComponent } from './cuadres/sales-control/sales-control.component';
 
 
 
@@ -95,6 +96,7 @@ import { TimerComponent } from '../shared/functions/timer/timer.component';
     DigitizeDispenserComponent,
     ConfirmationsComponent,
     UpdateDispenserReaderDialogComponent,
+    SalesControlComponent,
 
    
     

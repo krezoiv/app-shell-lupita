@@ -3,14 +3,22 @@
    
     <button mat-button [matMenuTriggerFor]="dispenesers">Bombas</button>
     <mat-menu #dispenesers="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="digitizeDispenser"><mat-icon> directions</mat-icon><a>Digitilizar Numeracíon</a></button>
-      
+      <button mat-menu-item [matMenuTriggerFor]="digitizeDispenser"><mat-icon> directions</mat-icon><a>Digitilizar Numeracíon</a></button> 
     </mat-menu>
   
+   
     <mat-menu #digitizeDispenser="matMenu">
       <button mat-menu-item routerLink="/dashboard/cuadres/digitalizacionBombas"><mat-icon>add_circle</mat-icon><a>Crear</a></button>
       <button mat-menu-item routerLink="/dashboard/infrastructure/hoses/listHoses"><mat-icon> format_list_numbered</mat-icon><a>Listar</a></button>
     </mat-menu>
-   
+
+    <button mat-button [matMenuTriggerFor]="salesControl">Ventas</button>
+    <mat-menu #salesControl="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="sale"><mat-icon><mat-icon>calculate</mat-icon></mat-icon><a>Ventas</a></button>
+    </mat-menu>
+
+    <mat-menu #sale="matMenu">
+      <button mat-menu-item routerLink="/dashboard/cuadres/controlVentas"><mat-icon>content_paste</mat-icon><a>Operar Cuadre</a></button>
+    </mat-menu>
   
   </mat-toolbar>
