@@ -1,27 +1,8 @@
-<!--
-    <form >
-    <div class="header">
-        <h2 mat-dialog-title> {{data?.title}} </h2>
-        <button mat-icon-button [mat-dialog-close]="false"></button>
-        <mat-icon>close</mat-icon>
-        
-    </div>
-    
-    <div mat-dialog-content>
-        {{data?.message}}
-    </div>
-    <div mat-dialog-actions [align]="'end'">
-        <button mat-raised-button [mat-dialog-close]="false">{{data?.cancelText}}</button>
-        <button mat-raised-button color="primary" [mat-dialog-close]="true">{{data?.confirmText}}</button>
-    </div>
-</form>
--->
 
 <form >
     <div class="header">
         <h2 mat-dialog-title> Guardar </h2>
-        <button mat-icon-button [mat-dialog-close]="false"></button>
-        <mat-icon>close</mat-icon>
+       
         
     </div>
     
@@ -29,7 +10,7 @@
         Deseas Guardar Registro
     </div>
     <div mat-dialog-actions [align]="'end'">
-        <button mat-raised-button (click)="onClickNo();">cancelar</button>
+        
         <button mat-raised-button color="primary" [mat-dialog-close]="true">Guardar</button>
     </div>
 </form>

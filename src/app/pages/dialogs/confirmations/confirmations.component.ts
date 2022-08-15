@@ -19,8 +19,4 @@ export class ConfirmationsComponent implements OnInit {
 
   }
 
-
-  onClickNo(): void{
-    this.dialogRef.close
-  }
 }
