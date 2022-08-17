@@ -30,7 +30,7 @@ export class SalesControlComponent implements OnInit {
   getFuelPrices(){
     this._fuelService.getFuelPrices()
       .subscribe(data => {
-        console.log(data.fuels.)
+        console.log(data.fuels)
       })
   }
 }

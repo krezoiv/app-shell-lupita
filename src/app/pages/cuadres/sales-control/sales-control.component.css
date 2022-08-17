@@ -14,7 +14,7 @@ form {
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -60,6 +60,7 @@ hr {
 
 #buttonOthers{
     background-color: slategray;
+    height: 25px;
    
 }
 
@@ -70,10 +71,31 @@ hr {
     background-color: yellowgreen;
 }
 
-#mat-form-field-prices {
-    width: 40%;
-    font-size: 30px;
+#labelDate{
+   font-size: 75%;
+}
+input{
+    font-size: 100%;
+    height: 50%;
     text-align: center;
+
+}
+#mat-form-field-prices {
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+}
+
+#mat-form-field-accumulated{
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+}
+
+#mat-form-field-payment{
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
 }
 
 #mat-form-field-others {
@@ -88,35 +110,36 @@ hr {
     align-content: right;
 }
 
+
 #labelOthers {
     text-align: right;
     color: wheat;
-    font-size: 20px;
+    font-size: 10px;
 }
 
 
 #sectionAcumulativo{
-    width: 750px;
-    height: 568px;
+    width: 200px;
+    height: 300px;
     background: beige;
     float: left;
     display: flex;
 }
 
 
+
 #section1{
-    width: 1528px;
-    height: 530px;
+    width: 1000px;
+    height: 00px;
     background: beige;
     float: left;
     display: flex;
 }
 
 #sectionBalance {
-    width: 1900px;
+    width: 400px;
     height: 568px;
     background: beige;
     float: left;
     display: flex;
 }
-
