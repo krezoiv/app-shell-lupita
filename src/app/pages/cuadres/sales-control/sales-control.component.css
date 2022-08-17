@@ -1,5 +1,5 @@
 body {
-    min-height: 100vh;
+    min-height: 130vh;
     min-width: none;
 }
 
@@ -10,7 +10,7 @@ form {
     max-width: 100%;
     margin: auto;
     top: 30%;
-    min-height: 115vh;
+    min-height: 120vh;
 }
 
 h1 {
@@ -24,6 +24,12 @@ hr {
     height: 10px;
     background-color: aquamarine;
 
+}
+
+#hrAbonos{
+    color: purple;
+    height: 5px;
+    background-color: slateblue;
 }
 
 #tablaEncabezado {
@@ -52,6 +58,11 @@ hr {
     color: blue;
 }
 
+#buttonOthers{
+    background-color: slategray;
+   
+}
+
 #labelPrecios {
     text-align: right;
     color: blue;
@@ -66,22 +77,27 @@ hr {
 }
 
 #mat-form-field-others {
-    width: 13%;
+    width: 100%;
     font-size: 20px;
     text-align: center;
 }
 
+#mat-form-field-othersA {
+    width: 50%;
+    font-size: 20px;
+    align-content: right;
+}
+
 #labelOthers {
     text-align: right;
-    color: blue;
+    color: wheat;
     font-size: 20px;
-    background-color: yellowgreen;
 }
 
 
 #sectionAcumulativo{
     width: 750px;
-    height: 450px;
+    height: 568px;
     background: beige;
     float: left;
     display: flex;
@@ -89,9 +105,18 @@ hr {
 
 
 #section1{
-    width: 1535px;
-    height: 450px;
+    width: 1528px;
+    height: 530px;
     background: beige;
     float: left;
     display: flex;
 }
+
+#sectionBalance {
+    width: 1900px;
+    height: 568px;
+    background: beige;
+    float: left;
+    display: flex;
+}
+

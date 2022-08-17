@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FuelsService } from 'src/app/services/fuelstation/fuels.service';
 
 @Component({
   selector: 'app-sales-control',
@@ -17,10 +18,19 @@ export class SalesControlComponent implements OnInit {
 
   })
   constructor(
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private _fuelService : FuelsService
   ) { }
 
   ngOnInit(): void {
+    this.getFuelPrices();
   }
 
+
+  getFuelPrices(){
+    this._fuelService.getFuelPrices()
+      .subscribe(data => {
+        console.log(data.fuels.)
+      })
+  }
 }
