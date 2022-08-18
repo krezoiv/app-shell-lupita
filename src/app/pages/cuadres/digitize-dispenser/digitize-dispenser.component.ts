@@ -3512,8 +3512,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   calculateTotalGeneralGallons() {
 
-    this.calculate_gallonA = this.digitizeForm.get('actualNoGallons')?.value
-    this.calculate_gallonP = this.digitizeForm.get('previuosNoGallons')?.value
+    this.calculate_gallonA = this.digitizeForm.get('actualNoGallons')?.value;
+    this.calculate_gallonP = this.digitizeForm.get('previuosNoGallons')?.value;
     this.calculate_result_g = this.calculate_gallonA - this.calculate_gallonP;
     this.digitizeForm.controls['totalGallonRegular'].setValue(this.calculate_result_g);
 
@@ -3531,8 +3531,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   calculateTotalGeneralGallonsSuper() {
 
-    this.calculate_gallonAS = this.digitizeForm.get('actualNoGallons')?.value
-    this.calculate_gallonPS = this.digitizeForm.get('previuosNoGallons')?.value
+    this.calculate_gallonAS = this.digitizeForm.get('actualNoGallons')?.value;
+    this.calculate_gallonPS = this.digitizeForm.get('previuosNoGallons')?.value;
     this.calculate_result_gS = this.calculate_gallonAS - this.calculate_gallonPS;
     this.digitizeForm.controls['totalGallonSuper'].setValue(this.calculate_result_gS);
 
@@ -3550,8 +3550,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   calculateTotalGeneralGallonsDiesel() {
 
-    this.calculate_gallonAD = this.digitizeForm.get('actualNoGallons')?.value
-    this.calculate_gallonPD = this.digitizeForm.get('previuosNoGallons')?.value
+    this.calculate_gallonAD = this.digitizeForm.get('actualNoGallons')?.value;
+    this.calculate_gallonPD = this.digitizeForm.get('previuosNoGallons')?.value;
     this.calculate_result_gD = this.calculate_gallonAD - this.calculate_gallonPD;
     this.digitizeForm.controls['totalGallonDiesel'].setValue(this.calculate_result_gD);
 

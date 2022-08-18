@@ -2,7 +2,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FuelPrice_I } from 'src/app/interfaces/fuelstation/fuels.interface';
 import { environment } from 'src/environments/environment';
 
 const api_url = environment.api_url;
@@ -28,7 +27,5 @@ export class FuelsService {
     };
   };
 
-  getFuelPrices(){
-    return this.http.get<FuelPrice_I>(`${api_url}/fuels`, this.headers);
-  }
+ 
 }

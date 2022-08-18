@@ -22,7 +22,8 @@
                                 </mat-form-field>
                             </div><br>
                             <div>
-                                <button mat-raised-button color="primary" id="buttonDate">Aperturar</button>
+                                <button mat-raised-button color="primary" id="buttonDate"
+                                    (click)="openDay();">Aperturar</button>
                             </div>
                             <br>
                         </td>
@@ -44,88 +45,109 @@
                 </table>
             </div>
             <hr>
-            <h1>Precios Actuales</h1>
 
-            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0"><br>
-                <tr>
-                    <td id="tr-td-registros">
-                       
-                        <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                            <mat-label>Precio Actual</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="regularPrice" matInput>
+            <section id="sectionPrices">
+                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                    <br>
+                    <tr>
+                        <td colspan="3" scope="rowgroup" align="center">
+                            <h1>Precios Actuales</h1>
+                            <hr>
+                        </td>
+                    </tr>
 
-                            <mat-hint>precio en valla</mat-hint><br>
-                        </mat-form-field><br>
-                    </td>
+                    <tr>
+                        <td id="tr-td-registros">
 
-                    <td id="tr-td-registros">
-                       
-                        <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                            <mat-label>Precio Actual</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="superPrice" matInput readonly=" ">
+                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                <mat-label>Super</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="regularPrice" matInput readonly=" ">
 
-                            <mat-hint>precio en valla</mat-hint><br>
-                        </mat-form-field><br>
-                    </td>
+                                <mat-hint>precio en valla</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
 
-                    <td id="tr-td-registros">
-                      
-                        <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                            <mat-label>Precio Actual</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="dieselPrice" matInput readonly=" ">
+                        <td id="tr-td-registros">
 
-                            <mat-hint>precio en valla</mat-hint><br>
-                        </mat-form-field><br>
-                    </td>
-                </tr>
-            </table>
+                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                <mat-label>Super</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="superPrice" matInput readonly=" ">
 
-            <hr>
-            <h1>Galones Vendidos</h1>
-            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0"><br>
-                <tr>
-                    <td id="tr-td-registros">
-                       
-                        <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                            <mat-label>Cantidad</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="regularPrice" matInput>
+                                <mat-hint>precio en valla</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
 
-                            <mat-hint>galones vendidos</mat-hint><br>
-                        </mat-form-field><br>
-                    </td>
+                        <td id="tr-td-registros">
 
-                    <td id="tr-td-registros">
-                        
-                        <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                            <mat-label>Cantidad</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="superPrice" matInput readonly=" ">
+                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                <mat-label>Diesel</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="dieselPrice" matInput readonly=" ">
 
-                            <mat-hint>galones vendidos</mat-hint><br>
-                        </mat-form-field><br>
-                    </td>
+                                <mat-hint>precio en valla</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+                    </tr>
+                    <br><br>
+                </table>
+            </section>
 
-                    <td id="tr-td-registros">
-                      
-                        <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                            <mat-label>Cantidad</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="dieselPrice" matInput readonly=" ">
-                            <mat-hint>galones vendidos</mat-hint><br>
-                        </mat-form-field><br>
-                    </td>
+            <section id="sectionSales">
+                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                    <br>
+                    <tr>
+                        <td colspan="3" scope="rowgroup" align="center">
+                            <h1>Galones Vendidos</h1>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="tr-td-registros">
 
-                </tr><br><br><br>
-                <tr>
-                    <td colspan="3" scope="rowgroup" align="center">
-                        <button mat-raised-button id="buttonAceptTotalGallons">Confirmar venta de galones</button>
-                    </td>
-                </tr>
-            </table>
+                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros"
+                                appearance="legacy">
+                                <mat-label>Regular:</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="totalGallonRegular" matInput readonly="">
+                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                <mat-hint>Lectura Anterior</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+
+                        <td id="tr-td-registros">
+
+                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                <mat-label>Super</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="totalGallonSuper" matInput readonly=" ">
+
+                                <mat-hint>galones vendidos</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+
+                        <td id="tr-td-registros">
+
+                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                <mat-label>Diesel</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="totalGallonDiesel" matInput readonly=" ">
+                                <mat-hint>galones vendidos</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+
+                    </tr><br><br>
+                    <tr>
+                        <td colspan="3" scope="rowgroup" align="center">
+                            <button mat-raised-button id="buttonAceptTotalGallons" (click)="confirmSale();">Confirmar venta de galones</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </section>
+
+            <br><br><br><br><br><br><br><br><br>
             <hr>
 
             <section id="sectionAcumulativo">
@@ -138,44 +160,44 @@
                     </tr>
                     <tr>
                         <td id="tr-td-registros">
-                           
-                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
-                                <mat-label>Acumulativo</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
 
-                                <mat-hint>acumulativo del mes</mat-hint><br>
-                            </mat-form-field><br>
+                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
+                                <mat-label>Regular</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="regularAccumulatedGallons" matInput>
+
+                                <mat-hint>acumulativo del mes</mat-hint>
+                            </mat-form-field>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="tr-td-registros">
-                          
-                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
-                                <mat-label>Acumulativo</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
 
-                                <mat-hint>acumulativo del mes</mat-hint><br>
-                            </mat-form-field><br>
+                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
+                                <mat-label>Diesel</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="superAccumulatedGallons" matInput>
+
+                                <mat-hint>acumulativo del mes</mat-hint>
+                            </mat-form-field>
                         </td>
                     </tr>
 
                     <tr>
                         <td id="tr-td-registros">
                             <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
-                                <mat-label>Acumulativo</mat-label>
+                                <mat-label>Super</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="dieselAccumulatedGallons" matInput>
 
-                                <mat-hint>acumulativo del mes</mat-hint><br>
-                            </mat-form-field><br>
+                                <mat-hint>acumulativo del mes</mat-hint>
+                            </mat-form-field>
                         </td>
                     </tr>
                 </table>
             </section>
-            <section id="section1">
+            <section id="seccionAbonos">
                 <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
                     <tr>
                         <td colspan="3" scope="rowgroup" align="center">
@@ -185,24 +207,21 @@
                     </tr>
                     <tr>
                         <td id="tr-td-registros">
-                            <button  id="buttonOthers" mat-raised-button><label id="labelOthers"> &nbsp; &nbsp; &nbsp; Asignar<mat-icon>attach_money</mat-icon></label></button>
-                            
                             <mat-form-field id="mat-form-field-payment" appearance="legacy">
                                 <mat-label>Gastos</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="bills" matInput>
 
                                 <mat-hint>gatos generados</mat-hint><br>
                             </mat-form-field>
                         </td>
 
                         <td id="tr-td-registros">
-                            <button id="buttonOthers" mat-raised-button><label id="labelOthers"><mat-icon>card_giftcard</mat-icon> &nbsp; &nbsp; &nbsp; Asignar</label></button>
-                            
+
                             <mat-form-field id="mat-form-field-payment" appearance="legacy">
                                 <mat-label>Vales</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="vales" matInput>
 
                                 <mat-hint>vales recibidos</mat-hint>
                             </mat-form-field>
@@ -211,63 +230,56 @@
                     </tr>
                     <tr>
                         <td colspan="3" scope="rowgroup" align="center">
-                           
+
                             <hr id="hrAbonos">
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td id="tr-td-registros">
-                            <button  id="buttonOthers" mat-raised-button><label id="labelOthers"><mat-icon>event_note</mat-icon> &nbsp; &nbsp; &nbsp; Asignar</label></button>
-                            
                             <mat-form-field id="mat-form-field-payment" appearance="legacy">
                                 <mat-label>Cupones</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="cupones" matInput>
 
                                 <mat-hint>cupones recibidos</mat-hint><br>
                             </mat-form-field><br>
                         </td>
 
                         <td id="tr-td-registros">
-                            <button id="buttonOthers" mat-raised-button> <label id="labelOthers"><mat-icon>chrome_reader_mode</mat-icon> &nbsp; &nbsp; &nbsp; Asignar</label></button>
-                           
+
                             <mat-form-field id="mat-form-field-payment" appearance="legacy">
                                 <mat-label>Vouchers</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="vouchers" matInput>
 
-                                <mat-hint>vouchers recibidps</mat-hint><br>
+                                <mat-hint>vouchers recibidos</mat-hint><br>
                             </mat-form-field><br>
                         </td>
 
                     </tr>
                     <tr>
                         <td colspan="3" scope="rowgroup" align="center">
-                           
+
                             <hr id="hrAbonos">
                         </td>
                     </tr>
                     <tr>
                         <td id="tr-td-registros">
-                            <button id="buttonOthers" mat-raised-button><label id="labelOthers"><mat-icon>account_balance</mat-icon> &nbsp; &nbsp; &nbsp; Asignar</label></button>
-                           
                             <mat-form-field id="mat-form-field-payment" appearance="legacy">
                                 <mat-label>Depósitos</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="deposits" matInput>
 
                                 <mat-hint>total depositado</mat-hint><br>
                             </mat-form-field><br>
                         </td>
 
                         <td id="tr-td-registros">
-                            <button  id="buttonOthers" mat-raised-button>   <label id="labelOthers"><mat-icon>currency_exchange</mat-icon> &nbsp; &nbsp; &nbsp; Asignar</label></button>
-                          
                             <mat-form-field id="mat-form-field-payment" appearance="legacy">
                                 <mat-label>Créditos</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput>
+                                    formControlName="credits" matInput>
 
                                 <mat-hint>crédito otorgado</mat-hint><br>
                             </mat-form-field><br>
@@ -275,65 +287,62 @@
                     </tr><br><br>
                     <tr>
                         <td colspan="3" scope="rowgroup" align="center">
-                            <button mat-raised-button id="buttonAceptTotalGallons">Aceptar</button>
+                            <button mat-raised-button id="buttonAceptTotalGallons" (click)="getTotalAbono();">Aplicar</button>
                         </td>
                     </tr>
                 </table>
+            </section>
 
-                <section id="sectionBalance">
-                    <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width"
-                        cellSpacing="0">
-                        <tr>
-                            <td colspan="3" scope="rowgroup" align="center">
-                                <h1>Balance</h1>
-                                <hr>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="tr-td-registros" colspan="3" scope="rowgroup" align="right">
-                                <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
-                                <mat-form-field id="mat-form-field-othersA" appearance="legacy">
-                                    <mat-label>Total</mat-label>
-                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                        formControlName="regularPrice" matInput>
+            <section id="sectionBalance">
+                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                    <tr>
+                        <td colspan="3" scope="rowgroup" align="center">
+                            <h1>Balance</h1>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="tr-td-registros" colspan="3" scope="rowgroup" align="right">
+                            <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-othersA" appearance="legacy">
+                                <mat-label>Total</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName='total' matInput readonly="">
 
-                                    <mat-hint>cuadre del día</mat-hint><br>
-                                </mat-form-field><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="tr-td-registros">
-                                <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
-                                <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                                    <mat-label>Acumulativo</mat-label>
-                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                        formControlName="regularPrice" matInput>
-    
-                                    <mat-hint>acumulativo del mes</mat-hint><br>
-                                </mat-form-field><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="tr-td-registros" colspan="3" scope="rowgroup" align="right">
-                                <label id="labelOthers">Saldo: &nbsp; &nbsp; &nbsp;</label>
-                                <mat-form-field id="mat-form-field-othersA" appearance="legacy">
-                                    <mat-label>Saldo</mat-label>
-                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                        formControlName="regularPrice" matInput>
+                                <mat-hint>cuadre del día</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="tr-td-registros" colspan="1" scope="rowgroup" align="left">
+                            <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-othersA" appearance="legacy">
+                                <mat-label>Abonos</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="abonos" matInput>
 
-                                    <mat-hint>cuadre del día</mat-hint><br>
-                                </mat-form-field><br>
-                            </td>
-                        </tr><br><br>
-                        <tr>
-                            <td colspan="3" scope="rowgroup" align="center">
-                                <button mat-raised-button id="buttonAceptTotalGallons">Aceptar</button>
-                            </td>
-                        </tr>
-                    </table>
-                </section>
+                                <mat-hint>total de abonos</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="tr-td-registros" colspan="3" scope="rowgroup" align="right">
+                            <label id="labelOthers">Saldo: &nbsp; &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-othersA" appearance="legacy">
+                                <mat-label>Saldo</mat-label>
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="balance" matInput>
 
-
+                                <mat-hint>cuadre del día</mat-hint><br>
+                            </mat-form-field><br>
+                        </td>
+                    </tr><br><br>
+                    <tr>
+                        <td colspan="3" scope="rowgroup" align="center">
+                            <button mat-raised-button id="buttonAceptTotalGallons" (click)="saveSalesControl();">Aceptar</button>
+                        </td>
+                    </tr>
+                </table>
             </section>
         </form>
     </div>

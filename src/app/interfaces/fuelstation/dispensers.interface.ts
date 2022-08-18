@@ -169,3 +169,15 @@ export interface ListNumerationDispenser_I {
 export interface GeneralDispenserReader_I{
     generalDispenserReader: GeneralDispenserReader;
 }
+
+export interface TotalRegularGallons_I {
+    totalRegularGallons : GeneralDispenserReader;
+}
+
+export interface TotalSuperGallons_I {
+    totalSuperGallons : GeneralDispenserReader;
+}
+
+export interface TotalDieselGallons_I {
+    totalDieselGallons : GeneralDispenserReader;
+}
