@@ -148,9 +148,6 @@ export class SalesControlComponent implements OnInit {
     };
     this.dateControl = this.salesControlForm.get('readingDate')?.value;
     this.salesControlForm.controls['salesDate'].setValue(this.dateControl);
-
-    
-    
       this.getRegularPrices();
       this.getSuperPrices();
       this.getDiselPrices();
