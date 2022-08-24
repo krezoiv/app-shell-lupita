@@ -2,8 +2,8 @@ html {
     height: 100%;
 }
 body {
-    height: 100%;
-    margin: 0px auto;
+    min-height: 100vh;
+    min-width: none;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -194,4 +194,12 @@ body {
     font-weight: 800;
     letter-spacing: -10px;
     margin-bottom: 0;
+}
+
+.logo {
+    width:200px;
+    height:200px;
+    border-radius:160px;
+    border:10px solid #666;
+
 }

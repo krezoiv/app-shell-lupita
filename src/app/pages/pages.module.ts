@@ -57,6 +57,8 @@ import { UpdateDispenserReaderDialogComponent } from './dialogs/dispensers/updat
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TimerComponent } from '../shared/functions/timer/timer.component';
 import { SalesControlComponent } from './cuadres/sales-control/sales-control.component';
+import { PurchasesComponent } from './purchase/purchases/purchases.component';
+import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
 
 
 
@@ -97,6 +99,8 @@ import { SalesControlComponent } from './cuadres/sales-control/sales-control.com
     ConfirmationsComponent,
     UpdateDispenserReaderDialogComponent,
     SalesControlComponent,
+    PurchasesComponent,
+    PurchasesOrderComponent,
 
    
     

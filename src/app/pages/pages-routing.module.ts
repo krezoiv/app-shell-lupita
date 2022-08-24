@@ -23,6 +23,8 @@ import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignmen
 import { CuadresComponent } from './cuadres/cuadres/cuadres.component';
 import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
 import { SalesControlComponent } from './cuadres/sales-control/sales-control.component';
+import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
+import { PurchasesComponent } from './purchase/purchases/purchases.component';
 
 
 const routes: Routes =[
@@ -48,7 +50,9 @@ const routes: Routes =[
     {path : 'infrastructure/assignmentsHoses', component : AssignmentsHosesComponent},
     {path : 'cuadres', component: CuadresComponent},
     {path : 'cuadres/digitalizacionBombas', component: DigitizeDispenserComponent},
-    {path : 'cuadres/controlVentas', component: SalesControlComponent}
+    {path : 'cuadres/controlVentas', component: SalesControlComponent},
+    {path : 'compras/ordenPedido', component: PurchasesOrderComponent},
+    {path : 'compras/nuevaCompra', component: PurchasesComponent}
 
   ]},
   

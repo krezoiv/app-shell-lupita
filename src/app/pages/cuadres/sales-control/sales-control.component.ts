@@ -83,10 +83,7 @@ export class SalesControlComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCountGallonsRegular();
-    this.getCountGallonsSuper();
-    this.getCountGallonsDiesel();
-    this.getLastNoDocumento();
+    
   }
 
 
@@ -160,7 +157,10 @@ export class SalesControlComponent implements OnInit {
     this.getTotalGallonRegular();
     this.getTotalGallonSuper();
     this.getTotalGallonDiesel();
-   
+    this.getCountGallonsRegular();
+    this.getCountGallonsSuper();
+    this.getCountGallonsDiesel();
+    this.getLastNoDocumento();
 
 
   };
