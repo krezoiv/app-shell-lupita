@@ -63,7 +63,6 @@ export class SalesControlComponent implements OnInit {
     vouchers: ['', Validators.required],
     deposits: ['', Validators.required],
     credits: ['', Validators.required],
-    applied :[true , Validators.required],
     abonos:['', Validators.required],
 
    

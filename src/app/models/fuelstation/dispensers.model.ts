@@ -24,6 +24,7 @@ export class SideDispenser {
 export class GeneralDispenserReader {
 
     constructor(
+        public applied? : boolean,
         public totalGallonRegular?: number,
         public totalMechanicRegular?: number,
         public totalMoneyRegular?: number,
@@ -36,7 +37,8 @@ export class GeneralDispenserReader {
         public totalGallonVpower?: number,
         public totalMechanicVpower?: number,
         public totalMoneyVpower?: number,
-        public generalDispenserReaderId?: string
+        public generalDispenserReaderId?: string,
+       
     ) { }
 }
 

@@ -288,7 +288,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     position: ['', Validators.required],
     islaNombre: ['', Validators.required],
     readingDate: ['', Validators.required],
-    totalGallonRegular: ['0', Validators.required],
+    totalGallonRegular: ['1', Validators.required],
     totalMechanicRegular: ['0', Validators.required],
     totalMoneyRegular: ['0', Validators.required],
     totalGallonSuper: ['0', Validators.required],
@@ -310,7 +310,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     previuosNoMoney: [0],
     actualNoMoney: [0],
     totalNoMoney: [0],
-    generalDispenserReaderId: ['', Validators.required]
+    generalDispenserReaderId: ['', Validators.required],
+    applied: [false, Validators.required],
 
   });
 
@@ -365,6 +366,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.buttonDisableSideA1 = false;
         this.buttonaperturar = false;
         this.buttonacierre = true;
+        console.log(this.digitizeForm.value)
 
 
       }, err => {
