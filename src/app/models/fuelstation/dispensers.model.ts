@@ -38,6 +38,7 @@ export class GeneralDispenserReader {
         public totalMechanicVpower?: number,
         public totalMoneyVpower?: number,
         public generalDispenserReaderId?: string,
+        public count?: number
        
     ) { }
 }

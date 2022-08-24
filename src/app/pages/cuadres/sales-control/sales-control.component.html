@@ -159,12 +159,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td id="tr-td-registros">
+                        <td id="tr-td-registros" *ngFor="let a of countGallonsRegular">
 
                             <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
                                 <mat-label>Regular</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularAccumulatedGallons" matInput>
+                                    formControlName="regularAccumulatedGallons"  [(ngModel)]="a.count" matInput>
 
                                 <mat-hint>acumulativo del mes</mat-hint>
                             </mat-form-field>
@@ -172,12 +172,12 @@
                     </tr>
 
                     <tr>
-                        <td id="tr-td-registros">
+                        <td id="tr-td-registros" *ngFor="let sup of countGallonsSuper" >
 
                             <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
                                 <mat-label>Diesel</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="superAccumulatedGallons" matInput>
+                                    formControlName="superAccumulatedGallons" [(ngModel)]="sup.count" matInput>
 
                                 <mat-hint>acumulativo del mes</mat-hint>
                             </mat-form-field>
@@ -185,11 +185,11 @@
                     </tr>
 
                     <tr>
-                        <td id="tr-td-registros">
+                        <td id="tr-td-registros"  *ngFor="let diesel of countGallonsDiesel">
                             <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
                                 <mat-label>Super</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="dieselAccumulatedGallons" matInput>
+                                    formControlName="dieselAccumulatedGallons" [(ngModel)]="diesel.count" matInput>
 
                                 <mat-hint>acumulativo del mes</mat-hint>
                             </mat-form-field>

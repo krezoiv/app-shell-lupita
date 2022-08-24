@@ -181,3 +181,14 @@ export interface TotalSuperGallons_I {
 export interface TotalDieselGallons_I {
     totalDieselGallons : GeneralDispenserReader;
 }
+
+export interface countGallonsRegular_I {
+    countGallonsRegular : []
+}
+
+export interface countGallonsSuper_I {
+    countGallonsSuper : []
+}
+export interface countGallonsDiesel_I {
+    countGallonsDiesel : []
+}
