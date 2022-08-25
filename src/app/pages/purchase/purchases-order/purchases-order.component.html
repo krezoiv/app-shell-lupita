@@ -1,1 +1,117 @@
-<p>purchases-order works!</p>
+<app-purchase-navbar></app-purchase-navbar>
+
+<body>
+    <div class="contenedor">
+        <form class="formulario" [formGroup]="orderForm" class="mat-elevationz-8">
+            <h3 id="titulo">
+                <mat-icon> local_offer</mat-icon> Orden de Pedido
+            </h3>
+            <hr>
+            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                <br>
+
+                <tr>
+                    <td id="parametrosPrincipales">
+                        <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
+                            appearance="fill">
+                            <input id="input-registros" required matInput [matDatepicker]="readingDate">
+                            <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #readingDate></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td id="parametrosPrincipales">
+                        <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
+                            appearance="fill">
+                            <input id="input-registros" required matInput [matDatepicker]="readingDate">
+                            <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #readingDate></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="label1">Nombre de Planta: &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-registros" appearance="fill">
+                            <mat-label>Combustible</mat-label>
+                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                            <mat-select>
+                                <mat-option>--</mat-option>
+                                <mat-option>
+
+
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>Por favor selecciones una opcíon</mat-error>
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <label id="label1">Nombre de Vehículo: &nbsp; &nbsp;</label>
+                        <mat-form-field id="mat-form-field-registros" appearance="fill">
+                            <mat-label>Combustible</mat-label>
+                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                            <mat-select>
+                                <mat-option>--</mat-option>
+                                <mat-option>
+
+
+                                </mat-option>
+                            </mat-select>
+                            <mat-error>Por favor selecciones una opcíon</mat-error>
+                            <mat-hint></mat-hint>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <br>
+                <tr>
+                    <td>
+                        <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                            <mat-label>Turno No:</mat-label>
+                            <input id="input-registros" id="input-registros" type="number" id="fName" matInput>
+                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                            <mat-hint>turno de despacho</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+
+                    <td>
+                        <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                            <mat-label>Número de Orden:</mat-label>
+                            <input id="input-registros" id="input-registros" type="number" id="fName" matInput>
+                            <mat-icon matSuffix> local_gas_station</mat-icon>
+                            <mat-hint>número de orden generado</mat-hint><br>
+                        </mat-form-field><br>
+                    </td>
+                </tr><br>
+            </table>
+            <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
+                <thead>
+                    <th id="thead" scope="col"> Combustible</th>
+                    <th id="thead" scope="col"> Cantidad</th>
+                    <th id="thead" scope="col"> Precio</th>
+                    <th id="thead" scope="col"> Total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="td">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                    </tr>
+                </tbody>
+                <button>guardar</button>
+
+            </table>
+        </form>
+    </div>
+</body>

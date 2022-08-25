@@ -1,0 +1,56 @@
+body {
+    min-height: 120vh;
+    min-width: none;
+   
+}
+
+form {
+    border: 1px solid #101010;
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    top: 30%;
+    min-height: 120vh;
+    
+}
+
+h3{
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+hr {
+    color: purple;
+    height: 10px;
+    background-color: aquamarine;
+   
+
+}
+
+#tablaEncabezado {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid;
+}
+
+#mat-form-field-registros {
+    width: 100%;
+}
+
+#td {
+    border: 1px solid black;
+   
+}
+
+#thead {
+    border: 1px solid black;
+   
+}
+
+#tblDetail {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid;
+}

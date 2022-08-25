@@ -1,0 +1,23 @@
+
+<mat-toolbar>
+   
+    <button mat-button [matMenuTriggerFor]="order">Ordenes</button>
+    <mat-menu #order="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="newOrder"><mat-icon> directions</mat-icon><a>Ordenes</a></button> 
+    </mat-menu>
+  
+   
+    <mat-menu #newOrder="matMenu">
+      <button mat-menu-item routerLink="/dashboard/compras/ordenPedido"><mat-icon>add_circle</mat-icon><a>Nueva Orden</a></button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="purchase">Ventas</button>
+    <mat-menu #purchase="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="newPurchase"><mat-icon><mat-icon>calculate</mat-icon></mat-icon><a>Compras</a></button>
+    </mat-menu>
+
+    <mat-menu #newPurchase="matMenu">
+      <button mat-menu-item routerLink="/dashboard/compras/nuevaCompra"><mat-icon>content_paste</mat-icon><a>Compra</a></button>
+    </mat-menu>
+  
+  </mat-toolbar>

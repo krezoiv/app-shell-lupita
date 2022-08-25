@@ -25,6 +25,7 @@ import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitiz
 import { SalesControlComponent } from './cuadres/sales-control/sales-control.component';
 import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
 import { PurchasesComponent } from './purchase/purchases/purchases.component';
+import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.component';
 
 
 const routes: Routes =[
@@ -52,7 +53,8 @@ const routes: Routes =[
     {path : 'cuadres/digitalizacionBombas', component: DigitizeDispenserComponent},
     {path : 'cuadres/controlVentas', component: SalesControlComponent},
     {path : 'compras/ordenPedido', component: PurchasesOrderComponent},
-    {path : 'compras/nuevaCompra', component: PurchasesComponent}
+    {path : 'compras/nuevaCompra', component: PurchasesComponent},
+    {path : 'compras', component: MainPurchaseComponent}
 
   ]},
   
