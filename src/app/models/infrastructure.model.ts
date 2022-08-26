@@ -1,3 +1,4 @@
+import { Taxes } from "./purchase/taxes.model";
 import { Status } from "./status.model";
 
 export class Fuels {
@@ -8,7 +9,8 @@ export class Fuels {
         public costPrice? : number,
         public salePrice? : number,
         public statusId? : Status,
-        public fuelId? : string
+        public fuelId? : string,
+        public taxesId? : Taxes
       
     ){}
 }

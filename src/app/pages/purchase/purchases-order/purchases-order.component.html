@@ -101,98 +101,37 @@
                 <tbody>
                     <tr>
                         <td id="td">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-control" aria-label="Default select example"  selected formControlName="fuelId" >
+                                <option *ngFor="let fuel of  fuelSelected" [value]="fuel.fuelId">{{fuel.fuelName}}</option>
+                               
                               </select>
                         </td>
+
                         <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                    </tr>
-                </tbody>
-                <button  id="butonSave" mat-raised-button color="primary">Primary</button>
-            </table>
-            <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
-                <thead>
-                    <th id="thead" scope="col"> Combustible</th>
-                    <th id="thead" scope="col"> IDP</th>
-                    <th id="thead" scope="col"> Cantidad</th>
-                    <th id="thead" scope="col"> Precio</th>
-                    <th id="thead" scope="col"> Total</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="td">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-control" aria-label="Default select example"  selected formControlName="taxesId" >
+                                <option>{{idpRegular}}</option>
+                               
                               </select>
                         </td>
+
                         <td id="td">
                             <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </td>
+
                         <td id="td">
                             <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </td>
+
                         <td id="td">
                             <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
+                        
                     </tr>
                 </tbody>
                 <button  id="butonSave" mat-raised-button color="primary">Primary</button>
             </table>
 
-            <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
-                <thead>
-                    <th id="thead" scope="col"> Combustible</th>
-                    <th id="thead" scope="col"> IDP</th>
-                    <th id="thead" scope="col"> Cantidad</th>
-                    <th id="thead" scope="col"> Precio</th>
-                    <th id="thead" scope="col"> Total</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="td">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                        <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        </td>
-                    </tr>
-                </tbody>
-                <button  id="butonSave" mat-raised-button color="primary">Primary</button>
-            </table>
+        
             <br>
             <section id="sectionTotals">
                 <table  class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">

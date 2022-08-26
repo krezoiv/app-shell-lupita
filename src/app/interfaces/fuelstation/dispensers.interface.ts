@@ -1,6 +1,8 @@
 import { Assignment, AssignmentHose } from "src/app/models/fuelstation/assignment.model"
 import { DispenserReader, GeneralDispenserReader, SideDispenser } from "src/app/models/fuelstation/dispensers.model"
 import { Hoses } from "src/app/models/fuelstation/hoses.models"
+import { Fuels } from "src/app/models/infrastructure.model"
+import { Taxes } from "src/app/models/purchase/taxes.model"
 import { Status } from "src/app/models/status.model"
 
 
@@ -191,4 +193,8 @@ export interface countGallonsSuper_I {
 }
 export interface countGallonsDiesel_I {
     countGallonsDiesel : []
+}
+
+export interface fuel_I {
+    fuels :Taxes
 }

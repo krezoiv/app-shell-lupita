@@ -1,3 +1,5 @@
+import { Fuels } from "../models/infrastructure.model";
+import { Taxes } from "../models/purchase/taxes.model";
 
 
 export interface getFuels {
@@ -14,7 +16,11 @@ export interface newFuel {
 }
 
 export interface Fuels_I {
-    fuels:[],
+    fuels: [],
+}
+
+export interface TaxesId_I{
+  fuels : Fuels
 }
 
 export interface updatePriceFuel_I{
@@ -25,4 +31,8 @@ export interface updatePriceFuel_I{
 
 export interface deleteFuel_I {
     fuelId : string
+}
+
+export interface FuelsIpd_I {
+    fuels: Fuels,
 }
