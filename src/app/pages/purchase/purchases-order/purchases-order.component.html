@@ -15,18 +15,18 @@
                         <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
                             appearance="fill">
-                            <input id="input-registros" required matInput [matDatepicker]="readingDate">
-                            <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
-                            <mat-datepicker #readingDate></mat-datepicker>
+                            <input id="input-registros" required matInput [matDatepicker]="orderDate"  formControlName="orderDate">
+                            <mat-datepicker-toggle [for]="orderDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #orderDate></mat-datepicker>
                         </mat-form-field>
                     </td>
                     <td id="parametrosPrincipales">
                         <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
                             appearance="fill">
-                            <input id="input-registros" required matInput [matDatepicker]="readingDate">
-                            <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
-                            <mat-datepicker #readingDate></mat-datepicker>
+                            <input id="input-registros" required matInput [matDatepicker]="deliveryDate"  formControlName="deliveryDate">
+                            <mat-datepicker-toggle [for]="deliveryDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #deliveryDate></mat-datepicker>
                         </mat-form-field>
                     </td>
                 </tr>
@@ -34,13 +34,12 @@
                     <td>
                         <label id="label1">Nombre de Planta: &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" appearance="fill">
-                            <mat-label>Combustible</mat-label>
+                            <mat-label>Planta</mat-label>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
-                            <mat-select>
-                                <mat-option>--</mat-option>
-                                <mat-option>
-
-
+                            <mat-select formControlName="storeId" required>
+                                <mat-option *ngFor="let store of storeSelected"
+                                [value]="store.storeId">
+                                {{store.storeName | titlecase}}
                                 </mat-option>
                             </mat-select>
                             <mat-error>Por favor selecciones una opcíon</mat-error>
@@ -51,14 +50,12 @@
                     <td>
                         <label id="label1">Nombre de Vehículo: &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" appearance="fill">
-                            <mat-label>Combustible</mat-label>
+                            <mat-label>Vehículo</mat-label>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
-                            <mat-select>
-                                <mat-option>--</mat-option>
-                                <mat-option>
-
-
-                                </mat-option>
+                            <mat-select  formControlName="vehicleId" required>
+                                <mat-option  *ngFor="let vehicle of vehicleSelected"
+                                [value]="vehicle.vehicleId">
+                                {{vehicle.vehicleName | titlecase}}</mat-option>      
                             </mat-select>
                             <mat-error>Por favor selecciones una opcíon</mat-error>
                             <mat-hint></mat-hint>
@@ -70,7 +67,7 @@
                     <td>
                         <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                             <mat-label>Turno No:</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" id="fName" matInput>
+                            <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="turn" matInput>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
                             <mat-hint>turno de despacho</mat-hint><br>
                         </mat-form-field><br>
@@ -79,16 +76,24 @@
                     <td>
                         <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                             <mat-label>Número de Orden:</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" id="fName" matInput>
+                            <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="orderNumber" matInput>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
                             <mat-hint>número de orden generado</mat-hint><br>
                         </mat-form-field><br>
                     </td>
                 </tr><br>
-            </table>
+                <tr>
+                    <td colspan="3" scope="rowgroup" align="center">
+                        <button id="aprturaOrden" mat-raised-button color="primary" (click)="aperturaOrden();">Guardar</button>
+                       
+                    </td>
+                </tr>
+            </table><br>
+
             <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
                 <thead>
                     <th id="thead" scope="col"> Combustible</th>
+                    <th id="thead" scope="col"> IDP</th>
                     <th id="thead" scope="col"> Cantidad</th>
                     <th id="thead" scope="col"> Precio</th>
                     <th id="thead" scope="col"> Total</th>
@@ -96,22 +101,129 @@
                 <tbody>
                     <tr>
                         <td id="td">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
                         </td>
                         <td id="td">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </td>
                         <td id="td">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </td>
                         <td id="td">
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </td>
                     </tr>
                 </tbody>
-                <button>guardar</button>
-
+                <button  id="butonSave" mat-raised-button color="primary">Primary</button>
             </table>
+            <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
+                <thead>
+                    <th id="thead" scope="col"> Combustible</th>
+                    <th id="thead" scope="col"> IDP</th>
+                    <th id="thead" scope="col"> Cantidad</th>
+                    <th id="thead" scope="col"> Precio</th>
+                    <th id="thead" scope="col"> Total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="td">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                    </tr>
+                </tbody>
+                <button  id="butonSave" mat-raised-button color="primary">Primary</button>
+            </table>
+
+            <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
+                <thead>
+                    <th id="thead" scope="col"> Combustible</th>
+                    <th id="thead" scope="col"> IDP</th>
+                    <th id="thead" scope="col"> Cantidad</th>
+                    <th id="thead" scope="col"> Precio</th>
+                    <th id="thead" scope="col"> Total</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="td">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select>
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                        <td id="td">
+                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </td>
+                    </tr>
+                </tbody>
+                <button  id="butonSave" mat-raised-button color="primary">Primary</button>
+            </table>
+            <br>
+            <section id="sectionTotals">
+                <table  class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
+                    <thead>
+                        <th  scope="col"> Combustible</th>
+                        <th  scope="col"> Cantidad</th>
+                        <th  scope="col"> Idp</th>
+                        <th  scope="col"> Total</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="td">
+                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </td>
+                            <td id="td">
+                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </td>
+                            <td id="td">
+                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </td>
+                            <td id="td">
+                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </td>
+                            <td id="td">
+                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </td>
+                        </tr><br>
+
+                    </tbody>
+                </table>
+            </section>
         </form>
     </div>
 </body>

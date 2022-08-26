@@ -1,6 +1,7 @@
 body {
     min-height: 120vh;
     min-width: none;
+    background-color: aliceblue;
    
 }
 
@@ -53,4 +54,32 @@ hr {
     width: 100%;
     margin: 0 auto;
     border: 1px solid;
+}
+
+#butonSave {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+#sectionTotals{
+    width: 810px;
+    height: 300px;
+    float: right;
+    padding-right: 15px;
+    padding-left: 100px;
+    border: 1px solid;
+
+}
+
+#aprturaOrden {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: green;
+    width: 50%;
 }
