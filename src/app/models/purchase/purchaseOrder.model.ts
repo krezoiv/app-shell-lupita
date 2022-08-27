@@ -1,3 +1,5 @@
+import { Fuels } from "../infrastructure.model";
+
 export class PurchaseOrder {
 
    constructor(
@@ -6,11 +8,28 @@ export class PurchaseOrder {
    public orderNumber : string,   
    public orderDate: string,   
    public deliveryDate: string,   
-   public total : string,   
+   public total : number,   
    public storeId : string,   
    public vehicleId : string,   
-   public applied : string,   
    public turn : string,   
+   public applied? : boolean,
 
     ) { }
 }
+
+export class DetailPurchaseOrder {
+
+    constructor(
+     
+    public detailPurchaseOrderId : string,    
+    public amount : number,   
+    public price: number,   
+    public fuelId: Fuels,   
+    public purchaseOrderId : PurchaseOrder,   
+    public total : number,   
+    public idpTotal : number,
+    public aplicado : boolean
+  
+ 
+     ) { }
+ }

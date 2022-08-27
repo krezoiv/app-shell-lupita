@@ -106,13 +106,13 @@ body {
     margin-top: 150px;
 }
 .margin-t-sm {
-    margin-top: 100px;
+    margin-top: 1px;
 }
 .margin-t-md {
-    margin-top: 200px;
+    margin-top: 2px;
 }
 .margin-t-lg {
-    margin-top: 300px;
+    margin-top: 3px;
 }
 
 .margin-b {
@@ -170,36 +170,43 @@ body {
 
 .main-bg {
     
-    background: #424242;
-    background: linear-gradient( #424242, #212121);
+    background-image: url('src/assets/images/fondo.jpeg');
+    min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
 /* Login & Register Pages*/
 
 .login-container {
     max-width: 400px;
-    z-index: 100;
+    height: 100%;
+    z-index: 100%;
     margin: 0 auto;
-    padding-top: 100px;
+    padding-top: 80px;
 }
 .login.login-container {
     width: 300px;
 }
 .wrapper.login-container {
-    margin-top: 140px;
+    margin-top: 100px;
 }
 .logo-badge {
     color: #e6e6e6;
     font-size: 80px;
-    font-weight: 800;
+    font-weight: 800px;
     letter-spacing: -10px;
     margin-bottom: 0;
 }
 
 .logo {
-    width:200px;
-    height:200ngpx;
-    border-radius:160px;
-    border:10px solid #666;
+    width:100px;
+    height:100px;
+    border-radius:150px;
+    border:5px solid #666;
 
 }

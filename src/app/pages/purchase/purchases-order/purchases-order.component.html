@@ -108,27 +108,30 @@
                         </td>
 
                         <td id="td">
-                            <select class="form-control" aria-label="Default select example"  selected formControlName="taxesId" >
-                                <option>{{idpRegular}}</option>
+                            <select type="number" class="form-control" aria-label="Default select example"  selected formControlName="taxesId" >
+                                <option>{{idp}}</option>
                                
                               </select>
                         </td>
 
                         <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="amount">
                         </td>
 
                         <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input id="input"type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="price">
                         </td>
 
                         <td id="td">
-                            <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            formControlName="total">
                         </td>
                         
                     </tr>
                 </tbody>
-                <button  id="butonSave" mat-raised-button color="primary">Primary</button>
+                <button  id="butonSave" mat-raised-button color="primary" (click)="saveOrderDetail();">Primary</button>
             </table>
 
         
@@ -142,22 +145,12 @@
                         <th  scope="col"> Total</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td id="td">
-                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </td>
-                            <td id="td">
-                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </td>
-                            <td id="td">
-                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </td>
-                            <td id="td">
-                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </td>
-                            <td id="td">
-                                <input id="input" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            </td>
+                        <tr *ngFor="let data of PurchaseDetOrder">
+                            <td>{{data.fuelId.fuelName}}</td>
+                            <td>{{data.amount | number}}</td>
+                            <td>{{data.idpTotal | number}}</td>
+                            <td>{{data.total | number}}</td>
+                            
                         </tr><br>
 
                     </tbody>

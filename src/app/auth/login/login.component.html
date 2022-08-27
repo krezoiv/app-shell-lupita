@@ -2,12 +2,7 @@
   
 
     <div class="login-container text-c animated flipInX">
-        <div>
-            
-            <h1 class="logo-badge text-whitesmoke"> <img class="logo" src="../../../assets/images/shell_logo.jpg" alt="" ></h1>
-        </div>
         
-            <h3 class="text-whitesmoke">Shell Lupita</h3>
             
         <div class="container-content">
             <form class="margin-t"
@@ -15,6 +10,12 @@
                   [formGroup]="loginForm"
                   (ngSubmit)="login()">
 
+                  <div>
+            
+                    <h1 class="logo-badge text-whitesmoke"> <img class="logo" src="../../../assets/images/shell_logo.jpg" alt="" ></h1>
+                </div>
+                
+                    <h3 class="text-whitesmoke">Shell Lupita</h3>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Email"  formControlName="email">
                 </div>
@@ -25,7 +26,7 @@
     
                
             </form>
-            <p class="margin-t text-whitesmoke"><small> kzi Systems <&copy; 2022</small> </p>
+            <p class="margin-t text-whitesmoke"><small> kzi Systems &copy; 2022</small> </p>
         </div>
     </div>
 

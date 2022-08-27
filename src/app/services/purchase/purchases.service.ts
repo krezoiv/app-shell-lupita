@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
+import { ListPurchaseDetailOrder_I, PurchaseOrder_I } from 'src/app/interfaces/fuelstation/purchase.interface';
+import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
+import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { environment } from 'src/environments/environment';
 
 const api_url = environment.api_url;
@@ -45,4 +47,22 @@ export class PurchasesService {
       })
     );
   }
+
+  createDetailOrder(formData : DetailPurchaseOrder): Observable<DetailPurchaseOrder>{
+    return this._http.post<DetailPurchaseOrder>(`${api_url}/detailPurchaseOrder`, formData, this.headers)
+      .pipe(
+        tap(() => {
+          this._refresh$.next();
+        })
+      )
+  }
+
+  getPurchaseOrderId(purchaseOrderId : string): Observable<PurchaseOrder_I>{
+    return this._http.post<PurchaseOrder_I>(`${api_url}/purchaseOrders/PurchaseOrderId`, purchaseOrderId, this.headers);
+  }
+
+  getListPurchaseDetailOrder(formData : DispenserReader): Observable<ListPurchaseDetailOrder_I>{
+    return this._http.post<ListPurchaseDetailOrder_I>(`${api_url}/detailPurchaseOrder/listPurchaseDetail`, formData, this.headers);
+  }
+
 }
