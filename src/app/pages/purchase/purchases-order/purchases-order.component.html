@@ -2,7 +2,7 @@
 
 <body>
     <div class="contenedor">
-        <form class="formulario" [formGroup]="orderForm" class="mat-elevationz-8">
+        <form class="formulario" [formGroup]="orderForm" class="mat-elevation-z8">
             <h3 id="titulo">
                 <mat-icon> local_offer</mat-icon> Orden de Pedido
             </h3>
@@ -84,7 +84,7 @@
                 </tr><br>
                 <tr>
                     <td colspan="3" scope="rowgroup" align="center">
-                        <button id="aprturaOrden" mat-raised-button color="primary" (click)="aperturaOrden();">Guardar</button>
+                        <button *ngIf="buttonDisableApertura" id="aprturaOrden" mat-raised-button color="primary" (click)="aperturaOrden();">Guardar</button>
                        
                     </td>
                 </tr>
@@ -126,12 +126,13 @@
 
                         <td id="td">
                             <input id="input" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            formControlName="total">
+                            formControlName="total" readOnly="">
                         </td>
                         
                     </tr>
                 </tbody>
-                <button  id="butonSave" mat-raised-button color="primary" (click)="saveOrderDetail();">Primary</button>
+                <button  *ngIf="buttonDisableOrderDetail" id="butonSave" mat-raised-button color="primary" (click)="saveOrderDetail();">Guardar</button>&nbsp;
+                <button *ngIf="buttonDisableNewOrderDetail" id="butonSave" mat-raised-button color="primary" (click)="newOrderDetail();">Nuevo</button>
             </table>
 
         
@@ -139,20 +140,42 @@
             <section id="sectionTotals">
                 <table  class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
                     <thead>
-                        <th  scope="col"> Combustible</th>
-                        <th  scope="col"> Cantidad</th>
-                        <th  scope="col"> Idp</th>
-                        <th  scope="col"> Total</th>
+                        <th  scope="col"> <u>Combustible</u></th>
+                        <th  scope="col"><u> Cantidad</u></th>
+                        <th  scope="col"><u> Idp</u></th>
+                        <th  scope="col"> <u>Total</u></th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let data of PurchaseDetOrder">
                             <td>{{data.fuelId.fuelName}}</td>
                             <td>{{data.amount | number}}</td>
                             <td>{{data.idpTotal | number}}</td>
-                            <td>{{data.total | number}}</td>
+                            <td >{{data.total | number}}</td>
                             
                         </tr><br>
 
+                    </tbody>
+                </table>
+                <hr>
+                <table class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
+                    <thead > 
+                        <th  id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Total</u></th>   
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="tdTotal"  *ngFor="let total of totaPurchases">
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                formControlName="totalPurchaseOrder"  [(ngModel)]="total.count" matInput>
+                            </td>
+                        </tr>
+                        <hr>
+                        <tr>
+                            <td  id="tdTotal">
+                                
+                                <button *ngIf="buttonDisableSaveAll" mat-raised-button color="primary" (click)="saveOrder();">Guardar Orden</button>
+                                
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </section>

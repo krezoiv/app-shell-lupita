@@ -8,7 +8,7 @@ export class PurchaseOrder {
    public orderNumber : string,   
    public orderDate: string,   
    public deliveryDate: string,   
-   public total : number,   
+   public totalPurchaseOrder : number,   
    public storeId : string,   
    public vehicleId : string,   
    public turn : string,   
@@ -28,7 +28,8 @@ export class DetailPurchaseOrder {
     public purchaseOrderId : PurchaseOrder,   
     public total : number,   
     public idpTotal : number,
-    public aplicado : boolean
+    public aplicado : boolean,
+    public count? : number
   
  
      ) { }

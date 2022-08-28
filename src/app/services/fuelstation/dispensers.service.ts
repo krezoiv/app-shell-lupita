@@ -242,21 +242,7 @@ export class DispensersService {
     return this.http.post<previousTotalNoMoneyDiesel_I>(`${api_url}/dispenserReaders/previousTotalNoMoneyDiesel`, formData, this.headers);
   };
 
-  /*
-  //obtener el ultimo registo de numeraciond de la bomba de gallones de Vpower
-  getPreviousGallonsVpower(formData : DispenserReader): Observable<PreviousGallons_I> {
-    return this.http.post<PreviousGallons_I>(`${api_url}/dispenserReaders/previousGallonVpower`, formData, this.headers);
-  }
-  //obtener el ultimo registo de numeraciond de la bomba de mecanica de Vpower
-  getPreviousMechanicVpower(formData :DispenserReader): Observable<PreviousMechanic_I> {
-    return this.http.post<PreviousMechanic_I>(`${api_url}/dispenserReaders/previousMechanicVpower`, formData, this.headers);
-  }
-  //obtener el ultimo registo de numeraciond de la bomba de dinero de Vpower
-  getPreviousMoneyVpower(formData:DispenserReader ): Observable<PreviousMoney_I> {
-    return this.http.post<PreviousMoney_I>(`${api_url}/dispenserReaders/previousMoneyVpower`, formData, this.headers);
-  }
-  */
-
+  
   //obtener el detalle de lo registrado de numeracion de bombas
 
   getActualListNumeration(formData : DispenserReader):Observable<ListNumerationDispenser_I> {

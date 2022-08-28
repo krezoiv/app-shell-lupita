@@ -2213,6 +2213,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.updateTotalGallons(data)
       .subscribe(resp => {
 
+      },err => {
+        Swal.fire('Error', err.error.msg, 'error')
       });
   };
 

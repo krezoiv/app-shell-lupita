@@ -42,11 +42,13 @@ hr {
 
 #td {
     border: 1px solid black;
+  
    
 }
 
 #thead {
     border: 1px solid black;
+    border: 1px solid #000;
    
 }
 
@@ -82,4 +84,9 @@ hr {
     margin-bottom: 10px;
     background-color: green;
     width: 50%;
+}
+
+#tdTotal {
+    padding: 5px;
+    text-align: right;
 }

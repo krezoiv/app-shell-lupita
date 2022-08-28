@@ -1,1 +1,23 @@
-<p>purchases works!</p>
+<app-purchase-navbar></app-purchase-navbar>
+<body>
+    <div class="contenedor">
+        <form class="formulario" [formGroup]="purchaseForm" class="mat-elevation-z8">
+            <h3 id="titulo">
+                <mat-icon> local_offer</mat-icon> Compras
+            </h3>
+            <hr>
+            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                            <mat-label>Número de Orden</mat-label>
+                            <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="turn" matInput>
+                            <mat-hint>Ingrese número de orden</mat-hint><br>
+                        </mat-form-field><br>
+                        <button>Nuevo</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>

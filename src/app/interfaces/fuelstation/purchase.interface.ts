@@ -7,3 +7,7 @@ export interface PurchaseOrder_I {
 export interface ListPurchaseDetailOrder_I {
     listPurchaseOrder : [];
 }
+
+export interface totalPurchase_I {
+    totalDetailPurchaseOrder : []
+}

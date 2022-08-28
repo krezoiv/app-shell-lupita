@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { ListPurchaseDetailOrder_I, PurchaseOrder_I } from 'src/app/interfaces/fuelstation/purchase.interface';
+import { ListPurchaseDetailOrder_I, PurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/fuelstation/purchase.interface';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { environment } from 'src/environments/environment';
@@ -46,7 +46,7 @@ export class PurchasesService {
         this._refreshDetail$.next();
       })
     );
-  }
+  };
 
   createDetailOrder(formData : DetailPurchaseOrder): Observable<DetailPurchaseOrder>{
     return this._http.post<DetailPurchaseOrder>(`${api_url}/detailPurchaseOrder`, formData, this.headers)
@@ -54,15 +54,30 @@ export class PurchasesService {
         tap(() => {
           this._refresh$.next();
         })
-      )
-  }
+      );
+  };
 
   getPurchaseOrderId(purchaseOrderId : string): Observable<PurchaseOrder_I>{
     return this._http.post<PurchaseOrder_I>(`${api_url}/purchaseOrders/PurchaseOrderId`, purchaseOrderId, this.headers);
-  }
+  };
 
   getListPurchaseDetailOrder(formData : DispenserReader): Observable<ListPurchaseDetailOrder_I>{
     return this._http.post<ListPurchaseDetailOrder_I>(`${api_url}/detailPurchaseOrder/listPurchaseDetail`, formData, this.headers);
+  };
+
+  getTotalPurchase(): Observable<totalPurchase_I>{
+    return this._http.get<totalPurchase_I>(`${api_url}/detailPurchaseOrder/totalDetailPurchase`, this.headers);
+  };
+
+  uptdateAplicarDetailOrder(): Observable<DetailPurchaseOrder>{
+    return this._http.get<DetailPurchaseOrder>(`${api_url}/detailPurchaseOrder/aplicarDetailOrder`, this.headers);
   }
 
-}
+  updateTotalPurchaseOrder(purchaseOrder : PurchaseOrder) : Observable<PurchaseOrder>{
+    return this._http.put<PurchaseOrder>(`${api_url}/purchaseOrders/${purchaseOrder.purchaseOrderId}`, purchaseOrder, this.headers);
+  }
+
+  getTotalPurchaseOrder(purchaseOrder : PurchaseOrder) :Observable<PurchaseOrder>{
+    return this._http.post<PurchaseOrder>(`${api_url}/purchaseOrders/totalPurchase`, purchaseOrder, this.headers);
+  }
+};

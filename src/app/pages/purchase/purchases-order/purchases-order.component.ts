@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TitleStrategy } from '@angular/router';
+import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { taxesByFuel } from 'src/app/interfaces/fuelstation/fuels.interface';
 import { PurchaseOrder_I } from 'src/app/interfaces/fuelstation/purchase.interface';
@@ -29,24 +29,36 @@ export class PurchasesOrderComponent implements OnInit {
   suscription!: Subscription;
   suscription2!: Subscription;
 
-  idp! : Number | any;
+  idp!: Number | any;
   amountDetail !: Number | any;
-  priceDetail! : Number | any;
-  totalDetail! : Number | any;
+  priceDetail!: Number | any;
+  totalDetail!: Number | any;
   idpTotal!: Number | any;
-  idpDetail! : Number | any;
+  idpDetail!: Number | any;
+  purchaseTotal!: Number | any;
+  totalPurchaseDB!: Number | any;
+  tlTotal!: Number | any;
+  tlToUpdate!: Number | any;
+
+  buttonDisableNewOrderDetail: boolean = false;
+  buttonDisableOrderDetail: boolean = false;
+  buttonDisableSaveAll: boolean = false;
+  buttonDisableApertura: boolean = true;
+
+
   public storeSelected: Store[] = [];
   public vehicleSelected: Vehicle[] = [];
   public fuelSelected: Fuels[] = [];
   public fuelSelected2: Fuels[] = [];
   public taxesSelected: TaxesId_I[] = [];
-  public PurchaseDetOrder : DetailPurchaseOrder[]=[];
+  public PurchaseDetOrder: DetailPurchaseOrder[] = [];
+  public totaPurchases: DetailPurchaseOrder[] = [];
 
   orderForm: FormGroup = this.fb.group({
     orderNumber: ['', Validators.required],
     orderDate: ['', Validators.required],
     deliveryDate: ['', Validators.required],
-    total: ['0', Validators.required],
+    total: [0, Validators.required],
     storeId: ['', Validators.required],
     vehicleId: ['', Validators.required],
     userId: ['', Validators.required],
@@ -56,9 +68,11 @@ export class PurchasesOrderComponent implements OnInit {
     taxesId: ['', Validators.required],
     amount: ['', Validators.required],
     price: ['', Validators.required],
-    purchaseOrderId : ['', Validators.required],
-    idpTotal : [0, Validators.required],
+    purchaseOrderId: ['', Validators.required],
+    idpTotal: [0, Validators.required],
     aplicado: [false, Validators.required],
+    tl: [0, Validators.required],
+    totalPurchaseOrder: [0, Validators.required],
 
 
   });
@@ -69,24 +83,29 @@ export class PurchasesOrderComponent implements OnInit {
     private _vehicleService: VehicleService,
     private _purchaseOrderService: PurchasesService,
     private _fuelService: FuelsService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+
   ) { }
 
   ngOnInit(): void {
     this.getStore();
     this.getVehicle();
     this.getFuels();
-   
-    this.getTaxes();   
-    this.listDetailPurchaseOrder();   
-    this.suscription = this._purchaseOrderService.refresh$.subscribe(()=> {
+    this.getTotalDetailPurchaseOrder();
+    this.getTotalPurchaseOrder();
+
+    this.getTaxes();
+
+    this.suscription = this._purchaseOrderService.refresh$.subscribe(() => {
       this.listDetailPurchaseOrder();
     })
-         
+
   }
 
-  getListPurchaseDetailOrder(){
-   
+  getListPurchaseDetailOrder() {
+
   }
   ngOnDestroy(): void {
     this.suscription.unsubscribe();
@@ -116,29 +135,41 @@ export class PurchasesOrderComponent implements OnInit {
       });
   };
 
-  getTaxes(){
-    
+  getTaxes() {
+
     this.orderForm.get('fuelId')?.valueChanges
       .subscribe(fuels => {
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
         snackBarRef.afterDismissed().subscribe(() => {
-          console.log(fuels)
+
           this._fuelService.getIdpFuels(this.orderForm.value)
-            .subscribe(({fuels})  => {
+            .subscribe(({ fuels }) => {
               this.idp = fuels.taxesId?.idpAmount
-             console.log(fuels.taxesId?.idpAmount)
-             this.orderForm.controls['taxesId'].setValue(fuels.taxesId?.idpAmount);
-              console.log(this.orderForm.value)
+
+              this.orderForm.controls['taxesId'].setValue(fuels.taxesId?.idpAmount);
+
+
             })
         })
       })
   }
-  
-  getPurchaseOrderId(){
+
+
+
+  getTotalDetailPurchaseOrder() {
+    this._purchaseOrderService.getTotalPurchase()
+      .subscribe(({ totalDetailPurchaseOrder }) => {
+        this.totaPurchases = totalDetailPurchaseOrder
+      })
+
+
+  }
+
+  getPurchaseOrderId() {
     this._purchaseOrderService.getPurchaseOrderId(this.orderForm.value)
-      .subscribe(({purchaseOrder}) => {
+      .subscribe(({ purchaseOrder }) => {
         this.orderForm.controls['purchaseOrderId'].setValue(purchaseOrder.purchaseOrderId);
-        console.log(purchaseOrder.purchaseOrderId)
+
       })
   }
 
@@ -147,16 +178,18 @@ export class PurchasesOrderComponent implements OnInit {
     this._purchaseOrderService.createPurchaseOrder(this.orderForm.value)
       .subscribe((data) => {
         Swal.fire('Creado', `Numeracíon registrada Correctamente`, 'success');
+
+
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });
   };
 
-  creatDetailPurchaseOrder(){
+  creatDetailPurchaseOrder() {
     this._purchaseOrderService.createDetailOrder(this.orderForm.value)
       .subscribe((data) => {
         Swal.fire('Creado', `Numeracíon registrada Correctamente`, 'success');
-        console.log(this.orderForm.value)
+
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });
@@ -164,23 +197,54 @@ export class PurchasesOrderComponent implements OnInit {
 
 
   aperturaOrden() {
+
+    if (this.orderForm.get('orderDate')?.value == "" || this.orderForm.get('deliveryDate')?.value == ""
+      || this.orderForm.get('storeId')?.value == "" || this.orderForm.get('vehicleId')?.value == ""
+      || this.orderForm.get('orderNumber')?.value == "" || this.orderForm.get('turn')?.value == ""
+    ) {
+      Swal.fire('Error', `Campos vacios`, 'error');
+      return;
+    }
     this.createPurchaseOrder();
-    console.log(this.orderForm.value)
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getPurchaseOrderId();
+
+      this.buttonDisableOrderDetail = true;
+      this.buttonDisableApertura = false;
+
     })
-   
+
   }
 
-  saveOrderDetail(){
-    this.getTotalDetail();
-    this.creatDetailPurchaseOrder();
-   
-    console.log(this.orderForm.value)
+  saveOrderDetail() {
+
+    const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.getTotalDetail();
+      this.creatDetailPurchaseOrder();
+      this.getTotalDetailPurchaseOrder();
+      this.listDetailPurchaseOrder();
+      this.buttonDisableNewOrderDetail = true;
+      this.buttonDisableOrderDetail = false;
+      this.getTotalPurchaseOrder();
+      this.calculateOrdersTotal();
+      this.updateTotalPurchaseOrder();   
+      this.buttonDisableSaveAll= true;
+
+    });
+
+  };
+
+  newOrderDetail() {
+    this.resetDetailOrderValues();
+    this.buttonDisableNewOrderDetail = false;
+    this.buttonDisableOrderDetail = true;
+
+
   }
 
-  getTotalDetail(){
+  getTotalDetail() {
     this.amountDetail = this.orderForm.get('amount')?.value;
     this.priceDetail = this.orderForm.get('price')?.value;
     this.idpDetail = this.orderForm.get('taxesId')?.value;
@@ -190,16 +254,72 @@ export class PurchasesOrderComponent implements OnInit {
     this.orderForm.controls['total'].setValue(this.totalDetail);
   }
 
-  listDetailPurchaseOrder(){
-    this._purchaseOrderService.getListPurchaseDetailOrder(this.orderForm.value)
-    .subscribe(({listPurchaseOrder})=> {
-      this.PurchaseDetOrder = listPurchaseOrder
-      console.log(listPurchaseOrder)
-    })
+  calculateOrdersTotal() {
+    this.totalPurchaseDB = this.orderForm.get('total')?.value;
+    this.tlTotal = this.orderForm.get('totalPurchaseOrder')?.value;
+    this.tlToUpdate = this.totalPurchaseDB + this.tlTotal
+    this.orderForm.controls['totalPurchaseOrder'].setValue(this.tlToUpdate);
+    console.log(this.tlToUpdate)
   }
 
-  getTotalDetailPurchaseOrder(){
+  listDetailPurchaseOrder() {
+    this._purchaseOrderService.getListPurchaseDetailOrder(this.orderForm.value)
+      .subscribe(({ listPurchaseOrder }) => {
+        this.PurchaseDetOrder = listPurchaseOrder
 
+      })
+  };
+
+  updateAplicarDetailOrder() {
+    this._purchaseOrderService.uptdateAplicarDetailOrder()
+      .subscribe(data => {
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+  };
+
+  saveOrder() {
+    this.updateAplicarDetailOrder();
+    this.reload();
+  }
+
+  reload() {
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/dashboard/compras/ordenPedido']);
+    });
+  }
+
+
+  resetDetailOrderValues() {
+    this.orderForm.controls['fuelId'].setValue('');
+    this.orderForm.controls['taxesId'].setValue('');
+    this.orderForm.controls['amount'].setValue('');
+    this.orderForm.controls['price'].setValue('');
+    this.orderForm.controls['total'].setValue('');
+  }
+
+  updateTotalPurchaseOrder() {
+    const data = {
+      ...this.orderForm.value
+    };
+    this._purchaseOrderService.updateTotalPurchaseOrder(data)
+      .subscribe(resp => {
+
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+
+      });
+  };
+
+  getTotalPurchaseOrder() {
+    const data = {
+      ...this.orderForm.value
+    };
+    this._purchaseOrderService.getTotalPurchaseOrder(data)
+      .subscribe(resp => {
+
+      })
   }
 
 }
