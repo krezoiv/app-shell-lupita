@@ -136,23 +136,18 @@ export class PurchasesOrderComponent implements OnInit {
   };
 
   getTaxes() {
-
     this.orderForm.get('fuelId')?.valueChanges
       .subscribe(fuels => {
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
         snackBarRef.afterDismissed().subscribe(() => {
-
           this._fuelService.getIdpFuels(this.orderForm.value)
             .subscribe(({ fuels }) => {
               this.idp = fuels.taxesId?.idpAmount
-
               this.orderForm.controls['taxesId'].setValue(fuels.taxesId?.idpAmount);
-
-
-            })
-        })
-      })
-  }
+            });
+        });
+      });
+  };
 
 
 

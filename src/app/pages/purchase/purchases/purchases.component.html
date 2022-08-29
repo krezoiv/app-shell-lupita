@@ -1,4 +1,5 @@
 <app-purchase-navbar></app-purchase-navbar>
+
 <body>
     <div class="contenedor">
         <form class="formulario" [formGroup]="purchaseForm" class="mat-elevation-z8">
@@ -11,13 +12,123 @@
                     <td>
                         <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                             <mat-label>Número de Orden</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="turn" matInput>
+                            <input id="input-registros" id="input-registros" type="text" id="fName"
+                                formControlName="orderNumber" matInput>
                             <mat-hint>Ingrese número de orden</mat-hint><br>
                         </mat-form-field><br>
-                        <button>Nuevo</button>
+                        <button id="btnFindorder" mat-raised-button color="primary" (click)="findOrder();">Buscar</button>
                     </td>
                 </tr>
+            </table><br>
+
+            <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
+                <tr>
+                    <tr>
+                        <td id="tdTotal">
+                            <label for="exampleInputEmail1">Fecha de Orden</label>
+                            <input  type="text" class="form-control"
+                                   aria-describedby="emailHelp" 
+                                   formControlName="orderDate"
+                                   readonly="">    
+                        </td>
+
+                        <td id="tdTotal">
+                            <label for="exampleInputEmail1">Fecha de Despacho</label>
+                            <input type="text" class="form-control"
+                                   aria-describedby="emailHelp" 
+                                   formControlName="deliveryDate"
+                                   readonly="">    
+                        </td>
+
+                        <td id="tdTotal">
+                            <label for="exampleInputEmail1">Planta</label>
+                            <input type="text" class="form-control"
+                                   aria-describedby="emailHelp" 
+                                   formControlName="storeId"
+                                   readonly="">    
+                        </td>
+
+                        <td id="tdTotal">
+                            <label for="exampleInputEmail1">Vehículo</label>
+                            <input type="text" class="form-control"
+                                   aria-describedby="emailHelp" 
+                                   formControlName="vehicleId"
+                                   readonly="">    
+                        </td>
+      
+                </tr>
+                <tr>
+                    <td id="tdTotal">
+                        <label for="exampleInputEmail1">Serie de Factura</label>
+                        <input type="text" class="form-control"
+                               aria-describedby="emailHelp" 
+                               formControlName="invoiceSerie">    
+                    </td>
+                    <td id="tdTotal">
+                        <label for="exampleInputEmail1">Número de Factura</label>
+                        <input type="text" class="form-control"
+                               aria-describedby="emailHelp" 
+                               formControlName="invoiceDocument">    
+                    </td>
+                </tr>
+
+                <tr>
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label "> Forma de Pago</label>
+                        <div class="col-sm-9">
+                            <label id="label1">Forma de Pago: &nbsp; &nbsp;</label>
+                            <mat-form-field id="mat-form-field-formaPago" appearance="fill">
+
+                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                <mat-select formControlName="paymentMethodId" required>
+                                    <mat-option *ngFor="let formas of paymentMethodSelected"
+                                    [value]="formas.paymentMethodId">
+                                    {{formas.method | titlecase}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Por favor seleccione forma de pago</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </tr>
             </table>
+            <br>
+            <div>
+                <section id="sectionDetail"><br>
+                    <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width"
+                        cellSpacing="0">
+                        <thead>
+                            <th scope="col"> <u>Combustible</u></th>
+                            <th scope="col"><u> Cantidad</u></th>
+                            <th scope="col"><u> Idp</u></th>
+                            <th scope="col"> <u>Total</u></th>
+                        </thead>
+                    </table>
+                    <hr>
+                    <table class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
+                        <thead > 
+                            <th  id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Total</u></th>   
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="tdTotal" >
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                    formControlName="totalPurchase"   matInput>
+                                </td>
+                            </tr>
+                            <hr>
+                            <tr>
+                                <td  id="tdTotal">
+                                    
+                                    <button  mat-raised-button color="primary">Aplicar Compra</button>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
         </form>
     </div>
 </body>

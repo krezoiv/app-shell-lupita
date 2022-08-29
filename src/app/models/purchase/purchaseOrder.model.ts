@@ -1,4 +1,7 @@
 import { Fuels } from "../infrastructure.model";
+import { Store } from "../persons/store.model";
+import { Vehicle } from "../persons/vehicle.model";
+import { PaymentMethods } from "./paymentMethods.models";
 
 export class PurchaseOrder {
 
@@ -9,8 +12,8 @@ export class PurchaseOrder {
    public orderDate: string,   
    public deliveryDate: string,   
    public totalPurchaseOrder : number,   
-   public storeId : string,   
-   public vehicleId : string,   
+   public storeId : Store,   
+   public vehicleId : Vehicle,   
    public turn : string,   
    public applied? : boolean,
 
@@ -30,6 +33,23 @@ export class DetailPurchaseOrder {
     public idpTotal : number,
     public aplicado : boolean,
     public count? : number
+  
+ 
+     ) { }
+ }
+
+ export class Purchase {
+
+    constructor(
+     
+        public deliveryDate : string,
+        public totalPurchase : number,
+        public invoiceSerie: number,
+        public invoiceDocument : number,
+        public purchaseOrderId: number,
+        public applied : boolean,
+        public paymentMethodId : PaymentMethods,
+    
   
  
      ) { }

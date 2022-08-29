@@ -880,6 +880,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousNoGallonsRegular) => {
         this.digitizeForm.controls['actualNoGallons'].setValue(previousNoGallonsRegular.previousNoGallonsRegular.actualNoGallons);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousNoGallonsRegular.previousNoGallonsRegular.dispenserReaderId);
+        
       });
   };
 

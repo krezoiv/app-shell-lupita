@@ -1,0 +1,70 @@
+body {
+    min-height: 120vh;
+    min-width: none;  
+}
+
+form {
+    border: 1px solid #101010;
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    top: 30%;
+    min-height: 120vh;
+    
+}
+
+h3{
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+hr {
+    color: purple;
+    height: 10px;
+    background-color: aquamarine;
+   
+
+}
+#tablaEncabezado {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid;
+}
+
+#btnFindorder{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    width:8% !important;
+    
+}
+
+#mat-form-field-registros {
+    width: 100%;
+}
+
+#mat-form-field-formaPago{
+    width: 50%;
+}
+
+#td {
+    border: 1px solid black;
+  
+   
+}
+
+#sectionDetail{
+    width: 810px;
+    height: 300px;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: 1px solid;
+
+}
+
+input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

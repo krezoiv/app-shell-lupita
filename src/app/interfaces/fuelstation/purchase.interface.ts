@@ -11,3 +11,7 @@ export interface ListPurchaseDetailOrder_I {
 export interface totalPurchase_I {
     totalDetailPurchaseOrder : []
 }
+
+export interface infoPurchaseOrder_I {
+    infoPurchaseOrder: PurchaseOrder,
+}
