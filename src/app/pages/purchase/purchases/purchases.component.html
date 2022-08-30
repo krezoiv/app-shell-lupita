@@ -104,6 +104,14 @@
                             <th scope="col"><u> Idp</u></th>
                             <th scope="col"> <u>Total</u></th>
                         </thead>
+                        <tbody>
+                            <tr *ngFor="let data of ditailOrder">
+                                <td>{{data.fuelId.fuelName}}</td>
+                                <td>{{data.amount}}</td>
+                                <td>{{data.idpTotal}}</td>
+                                <td>{{data.total}}</td>
+                            </tr>
+                        </tbody>
                     </table>
                     <hr>
                     <table class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
-import { PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
+import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { PurchasesService } from 'src/app/services/purchase/purchases.service';
 import Swal from 'sweetalert2';
 
@@ -14,6 +14,7 @@ export class PurchasesComponent implements OnInit {
  
   public paymentMethodSelected : PaymentMethods[] = [];
   public purchaseOrderSelected : PurchaseOrder[] = [];
+  public ditailOrder :DetailPurchaseOrder[]=[];
 
  
 
@@ -25,10 +26,16 @@ export class PurchasesComponent implements OnInit {
     invoiceDocument: ['', Validators.required],
     paymentMethodId: ['', Validators.required],
     applied :  [false, Validators.required],
-    totalPurchase : [0, Validators.required],
+    totalPurchase : [, Validators.required],
     turn : ['', Validators.required],
     vehicleId : ['', Validators.required],
     storeId : ['', Validators.required],
+    purchaseOrderId : ['630ac226c82f054c9cc07fa0', Validators.required],
+    fuelId: ['', Validators.required],
+    amount:  ['', Validators.required],
+    idp:  ['', Validators.required],
+    total : ['', Validators.required],
+   
   })
   constructor(
     private fb : FormBuilder,
@@ -37,6 +44,7 @@ export class PurchasesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPaymentMethdos();
+    this.getdetailPurchaseOderInfo();
   }
 
   findOrder(){
@@ -46,7 +54,8 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['orderDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.orderDate);
         this.purchaseForm.controls['deliveryDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.deliveryDate);
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
- 
+        this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
+       
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       })
@@ -56,7 +65,15 @@ export class PurchasesComponent implements OnInit {
     this._purchaseService.getPaymentMethods()
         .subscribe(({paymentMethod}) => {
           this.paymentMethodSelected = paymentMethod;
-          console.log(paymentMethod)
+         
         })
+  }
+
+  getdetailPurchaseOderInfo(){
+    this._purchaseService.getDetailPurchaseOrder(this.purchaseForm.value)   
+        .subscribe(({detailPurchaseOderInfo}) => {
+         this.ditailOrder = detailPurchaseOderInfo
+        })
+
   }
 };

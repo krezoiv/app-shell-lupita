@@ -9,6 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import {HashLocationStrategy, LocationStrategy} from '@angular/common'
 
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { DialogModule } from '@angular/cdk/dialog';
@@ -70,7 +71,9 @@ import { ConfirmationsComponent } from './pages/dialogs/confirmations/confirmati
     
   ],
   entryComponents: [ConfirmationsComponent],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy, useClass:HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

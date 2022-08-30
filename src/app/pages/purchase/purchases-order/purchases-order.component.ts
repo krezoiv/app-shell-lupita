@@ -39,7 +39,13 @@ export class PurchasesOrderComponent implements OnInit {
   totalPurchaseDB!: Number | any;
   tlTotal!: Number | any;
   tlToUpdate!: Number | any;
-
+  purchaseIDOTotal!: Number | any;
+  totalIDPPurchaseDB!: Number | any;
+  tlIDPTotal!: Number | any;
+  tlIDPToUpdate!: Number | any;
+  subtotalIDP!: Number | any;
+  subtotalPurchase!: Number | any;
+  SB!: Number | any;
   buttonDisableNewOrderDetail: boolean = false;
   buttonDisableOrderDetail: boolean = false;
   buttonDisableSaveAll: boolean = false;
@@ -53,6 +59,7 @@ export class PurchasesOrderComponent implements OnInit {
   public taxesSelected: TaxesId_I[] = [];
   public PurchaseDetOrder: DetailPurchaseOrder[] = [];
   public totaPurchases: DetailPurchaseOrder[] = [];
+  public totaIDPPurchases: DetailPurchaseOrder[] = [];
 
   orderForm: FormGroup = this.fb.group({
     orderNumber: ['', Validators.required],
@@ -73,7 +80,8 @@ export class PurchasesOrderComponent implements OnInit {
     aplicado: [false, Validators.required],
     tl: [0, Validators.required],
     totalPurchaseOrder: [0, Validators.required],
-
+    totalIDPPurchaseOrder :[0, Validators.required],
+    subtotal:[0, Validators.required],
 
   });
 
@@ -155,10 +163,18 @@ export class PurchasesOrderComponent implements OnInit {
     this._purchaseOrderService.getTotalPurchase()
       .subscribe(({ totalDetailPurchaseOrder }) => {
         this.totaPurchases = totalDetailPurchaseOrder
-      })
+        console.log(totalDetailPurchaseOrder)
+      });
+  };
+
+  getTotalIDPDetailPurchaseOrder() {
+    this._purchaseOrderService.getTotalIDPPurchase()
+      .subscribe(({ totalDetailIDPPurchaseOrder }) => {
+        this.totaIDPPurchases = totalDetailIDPPurchaseOrder
+      });
+  };
 
 
-  }
 
   getPurchaseOrderId() {
     this._purchaseOrderService.getPurchaseOrderId(this.orderForm.value)
@@ -219,6 +235,7 @@ export class PurchasesOrderComponent implements OnInit {
       this.getTotalDetail();
       this.creatDetailPurchaseOrder();
       this.getTotalDetailPurchaseOrder();
+      this.getTotalIDPDetailPurchaseOrder();
       this.listDetailPurchaseOrder();
       this.buttonDisableNewOrderDetail = true;
       this.buttonDisableOrderDetail = false;
@@ -252,9 +269,19 @@ export class PurchasesOrderComponent implements OnInit {
   calculateOrdersTotal() {
     this.totalPurchaseDB = this.orderForm.get('total')?.value;
     this.tlTotal = this.orderForm.get('totalPurchaseOrder')?.value;
+    this.totalIDPPurchaseDB = this.orderForm.get('idpTotal')?.value;
+    this.tlIDPTotal = this.orderForm.get('totalIDPPurchaseOrder')?.value;
     this.tlToUpdate = this.totalPurchaseDB + this.tlTotal
+    this.tlIDPToUpdate = this.totalIDPPurchaseDB + this.tlIDPTotal
     this.orderForm.controls['totalPurchaseOrder'].setValue(this.tlToUpdate);
-    console.log(this.tlToUpdate)
+    this.orderForm.controls['totalIDPPurchaseOrder'].setValue(this.tlIDPToUpdate);
+   /*
+    this.subtotalPurchase = this.orderForm.get('totalPurchaseOrder')?.value;
+    this.subtotalIDP = this.orderForm.get('totalIDPPurchaseOrder')?.value;
+    this.SB = this.subtotalPurchase - this.subtotalIDP;
+    this.orderForm.controls['subtotal'].setValue(this.SB);
+   */
+
   }
 
   listDetailPurchaseOrder() {

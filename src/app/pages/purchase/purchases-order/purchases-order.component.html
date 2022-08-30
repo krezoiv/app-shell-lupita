@@ -159,22 +159,43 @@
                 <hr>
                 <table class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
                     <thead > 
-                        <th  id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Total</u></th>   
+                        <th  id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Totales</u></th>   
                     </thead>
                     <tbody>
                         <tr>
+                            <td align="right" style="width:70%">
+                                <label >Sub Total</label>
+                            </td>
+                            <td id="tdTotal"  *ngFor="let totalIDP of totaIDPPurchases">
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                formControlName="subtotal"  [(ngModel)]="totalIDP.count" matInput>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width:70%">
+                                <label >Total IDP</label>
+                            </td>
+                            <td id="tdTotal"  *ngFor="let totalIDP of totaIDPPurchases">
+                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                formControlName="totalIDPPurchaseOrder"  [(ngModel)]="totalIDP.count" matInput>
+                            </td>
+                        </tr>
+                        <hr>
+                        <tr>
+                            <td align="right" style="width:70%"><label> total</label></td>
                             <td id="tdTotal"  *ngFor="let total of totaPurchases">
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
                                 formControlName="totalPurchaseOrder"  [(ngModel)]="total.count" matInput>
                             </td>
                         </tr>
-                        <hr>
-                        <tr>
-                            <td  id="tdTotal">
+                        
+                        <tr >
+                            <td id="tdTotal">
                                 
                                 <button *ngIf="buttonDisableSaveAll" mat-raised-button color="primary" (click)="saveOrder();">Guardar Orden</button>
                                 
                             </td>
+                            <hr>
                         </tr>
                     </tbody>
                 </table>

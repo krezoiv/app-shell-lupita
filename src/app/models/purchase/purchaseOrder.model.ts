@@ -12,6 +12,7 @@ export class PurchaseOrder {
    public orderDate: string,   
    public deliveryDate: string,   
    public totalPurchaseOrder : number,   
+   public totalIDPPurchaseOrder : number,
    public storeId : Store,   
    public vehicleId : Vehicle,   
    public turn : string,   

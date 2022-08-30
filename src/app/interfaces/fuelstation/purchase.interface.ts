@@ -15,3 +15,11 @@ export interface totalPurchase_I {
 export interface infoPurchaseOrder_I {
     infoPurchaseOrder: PurchaseOrder,
 }
+
+export interface detailPurchaseOderInfo_I {
+    detailPurchaseOderInfo : [];
+}
+
+export interface totalDetailIDPPurchaseOrder_I {
+    totalDetailIDPPurchaseOrder : []
+}
