@@ -33,7 +33,8 @@ export class DetailPurchaseOrder {
     public total : number,   
     public idpTotal : number,
     public aplicado : boolean,
-    public count? : number
+    public count? : number,
+ 
   
  
      ) { }

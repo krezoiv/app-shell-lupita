@@ -162,13 +162,15 @@
                         <th  id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Totales</u></th>   
                     </thead>
                     <tbody>
-                        <tr>
+                        
+
+                            <tr>
                             <td align="right" style="width:70%">
                                 <label >Sub Total</label>
                             </td>
-                            <td id="tdTotal"  *ngFor="let totalIDP of totaIDPPurchases">
+                            <td id="tdTotal"  *ngFor="let subtotal of totaPurchases">
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="subtotal"  [(ngModel)]="totalIDP.count" matInput>
+                                formControlName="subtotal"   matInput>
                             </td>
                         </tr>
                         <tr>
@@ -181,6 +183,7 @@
                             </td>
                         </tr>
                         <hr>
+                        
                         <tr>
                             <td align="right" style="width:70%"><label> total</label></td>
                             <td id="tdTotal"  *ngFor="let total of totaPurchases">

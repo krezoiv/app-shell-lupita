@@ -30,7 +30,7 @@ export class PurchasesComponent implements OnInit {
     turn : ['', Validators.required],
     vehicleId : ['', Validators.required],
     storeId : ['', Validators.required],
-    purchaseOrderId : ['630ac226c82f054c9cc07fa0', Validators.required],
+    purchaseOrderId : ['', Validators.required],
     fuelId: ['', Validators.required],
     amount:  ['', Validators.required],
     idp:  ['', Validators.required],
@@ -55,7 +55,7 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['deliveryDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.deliveryDate);
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
-       
+        console.log(this.purchaseForm.value);
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       })
@@ -73,7 +73,11 @@ export class PurchasesComponent implements OnInit {
     this._purchaseService.getDetailPurchaseOrder(this.purchaseForm.value)   
         .subscribe(({detailPurchaseOderInfo}) => {
          this.ditailOrder = detailPurchaseOderInfo
-        })
 
-  }
+        });
+  };
+
+
+
+
 };

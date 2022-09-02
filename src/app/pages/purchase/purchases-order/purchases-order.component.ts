@@ -102,6 +102,7 @@ export class PurchasesOrderComponent implements OnInit {
     this.getVehicle();
     this.getFuels();
     this.getTotalDetailPurchaseOrder();
+    this.getTotalIDPDetailPurchaseOrder();
     this.getTotalPurchaseOrder();
 
     this.getTaxes();
@@ -163,7 +164,7 @@ export class PurchasesOrderComponent implements OnInit {
     this._purchaseOrderService.getTotalPurchase()
       .subscribe(({ totalDetailPurchaseOrder }) => {
         this.totaPurchases = totalDetailPurchaseOrder
-        console.log(totalDetailPurchaseOrder)
+       
       });
   };
 
@@ -236,13 +237,24 @@ export class PurchasesOrderComponent implements OnInit {
       this.creatDetailPurchaseOrder();
       this.getTotalDetailPurchaseOrder();
       this.getTotalIDPDetailPurchaseOrder();
-      this.listDetailPurchaseOrder();
-      this.buttonDisableNewOrderDetail = true;
-      this.buttonDisableOrderDetail = false;
-      this.getTotalPurchaseOrder();
       this.calculateOrdersTotal();
       this.updateTotalPurchaseOrder();   
-      this.buttonDisableSaveAll= true;
+      this.getTotalPurchaseOrder();
+      console.log(this.orderForm.value)
+      const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
+      snackBarRef.afterDismissed().subscribe(()=> {
+        this.getTotalDetailPurchaseOrder();
+        this.getTotalIDPDetailPurchaseOrder();
+        this.listDetailPurchaseOrder();
+        this.buttonDisableNewOrderDetail = true;
+        this.buttonDisableOrderDetail = false;
+        this.getTotalPurchaseOrder();
+       
+        console.log(this.orderForm.value)
+        this.updateTotalPurchaseOrder();   
+        this.buttonDisableSaveAll= true;
+      })
+     
 
     });
 
@@ -275,12 +287,19 @@ export class PurchasesOrderComponent implements OnInit {
     this.tlIDPToUpdate = this.totalIDPPurchaseDB + this.tlIDPTotal
     this.orderForm.controls['totalPurchaseOrder'].setValue(this.tlToUpdate);
     this.orderForm.controls['totalIDPPurchaseOrder'].setValue(this.tlIDPToUpdate);
-   /*
-    this.subtotalPurchase = this.orderForm.get('totalPurchaseOrder')?.value;
-    this.subtotalIDP = this.orderForm.get('totalIDPPurchaseOrder')?.value;
-    this.SB = this.subtotalPurchase - this.subtotalIDP;
-    this.orderForm.controls['subtotal'].setValue(this.SB);
-   */
+   
+    const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
+    snackBarRef.afterDismissed().subscribe(() =>{
+      this.subtotalPurchase = this.orderForm.get('totalPurchaseOrder')?.value;
+      this.subtotalIDP = this.orderForm.get('totalIDPPurchaseOrder')?.value;
+      this.SB = this.subtotalPurchase - this.subtotalIDP;
+      this.orderForm.controls['subtotal'].setValue(this.SB);
+     console.log('totalp ' +this.subtotalPurchase)
+     console.log('totalIDp ' +this.subtotalIDP)
+     console.log('subtotal '+this.SB)
+    })
+    
+
 
   }
 
