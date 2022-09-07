@@ -1,7 +1,7 @@
-import { PurchaseOrder } from "src/app/models/purchase/purchaseOrder.model";
+import { DetailPurchaseOrder, PurchaseOrder } from "src/app/models/purchase/purchaseOrder.model";
 
 export interface PurchaseOrder_I {
-    purchaseOrder: PurchaseOrder,
+    purchaseOrderId: PurchaseOrder,
 }
 
 export interface ListPurchaseDetailOrder_I {
@@ -22,4 +22,8 @@ export interface detailPurchaseOderInfo_I {
 
 export interface totalDetailIDPPurchaseOrder_I {
     totalDetailIDPPurchaseOrder : []
+}
+
+export interface AmountFuel_I {
+    amountFuel: DetailPurchaseOrder,
 }

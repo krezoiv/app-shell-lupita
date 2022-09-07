@@ -35,7 +35,11 @@ export class LoginComponent implements OnInit {
     this.authService.login( this.loginForm.value as LoginForm )
     .subscribe( resp => {
       this.router.navigateByUrl('/dashboard');
-      Swal.fire('Bienvenido', 'A Shell Lupita');
+      Swal.fire({
+        title: "Bienvenido!",
+        text: "Shell Lupita",
+        timer:1000
+      })
       
     }, ( err ) => {
       Swal.fire('Error', err.error.msg, 'error');

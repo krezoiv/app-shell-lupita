@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { PurchasesService } from 'src/app/services/purchase/purchases.service';
+import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,43 +13,45 @@ import Swal from 'sweetalert2';
   styleUrls: ['./purchases.component.css']
 })
 export class PurchasesComponent implements OnInit {
- 
-  public paymentMethodSelected : PaymentMethods[] = [];
-  public purchaseOrderSelected : PurchaseOrder[] = [];
-  public ditailOrder :DetailPurchaseOrder[]=[];
 
- 
+  public paymentMethodSelected: PaymentMethods[] = [];
+  public purchaseOrderSelected: PurchaseOrder[] = [];
+  public ditailOrder: DetailPurchaseOrder[] = [];
 
-  purchaseForm : FormGroup = this.fb.group({
-    orderNumber : ['', Validators.required],
-    orderDate : ['', Validators.required],
-    deliveryDate : ['', Validators.required],
+
+
+  purchaseForm: FormGroup = this.fb.group({
+    orderNumber: ['', Validators.required],
+    orderDate: ['', Validators.required],
+    deliveryDate: ['', Validators.required],
     invoiceSerie: ['', Validators.required],
     invoiceDocument: ['', Validators.required],
     paymentMethodId: ['', Validators.required],
-    applied :  [false, Validators.required],
-    totalPurchase : [, Validators.required],
-    turn : ['', Validators.required],
-    vehicleId : ['', Validators.required],
-    storeId : ['', Validators.required],
-    purchaseOrderId : ['', Validators.required],
+    applied: [false, Validators.required],
+    totalPurchase: [, Validators.required],
+    turn: ['', Validators.required],
+    vehicleId: ['', Validators.required],
+    storeId: ['', Validators.required],
+    purchaseOrderId: ['', Validators.required],
     fuelId: ['', Validators.required],
-    amount:  ['', Validators.required],
-    idp:  ['', Validators.required],
-    total : ['', Validators.required],
-   
+    amount: ['', Validators.required],
+    idp: ['', Validators.required],
+    total: ['', Validators.required],
+    fuelTankId : ['', Validators.required],
+
   })
   constructor(
-    private fb : FormBuilder,
-    private _purchaseService : PurchasesService
+    private fb: FormBuilder,
+    private _purchaseService: PurchasesService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.getPaymentMethdos();
-    this.getdetailPurchaseOderInfo();
+   
   }
 
-  findOrder(){
+  findOrder() {
     this._purchaseService.getInfoPurchaseOrder(this.purchaseForm.value)
       .subscribe((infoPurchaseOrder) => {
         this.purchaseForm.controls['vehicleId'].setValue(infoPurchaseOrder.infoPurchaseOrder.vehicleId.vehicleName);
@@ -55,29 +59,55 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['deliveryDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.deliveryDate);
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
-        console.log(this.purchaseForm.value);
+        this.getPurchaseOrderId();
+        const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
+        snackBarRef.afterDismissed().subscribe(() => {
+          this.getPurchaseOrderId();
+          this.getdetailPurchaseOderInfo();
+         
+        })
+       
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       })
   };
 
-  getPaymentMethdos(){
+  getPaymentMethdos() {
     this._purchaseService.getPaymentMethods()
-        .subscribe(({paymentMethod}) => {
-          this.paymentMethodSelected = paymentMethod;
-         
-        })
+      .subscribe(({ paymentMethod }) => {
+        this.paymentMethodSelected = paymentMethod;
+
+      })
   }
 
-  getdetailPurchaseOderInfo(){
-    this._purchaseService.getDetailPurchaseOrder(this.purchaseForm.value)   
-        .subscribe(({detailPurchaseOderInfo}) => {
-         this.ditailOrder = detailPurchaseOderInfo
-
-        });
+  getdetailPurchaseOderInfo() {
+    this._purchaseService.getDetailPurchaseOrder(this.purchaseForm.value)
+      .subscribe(({ detailPurchaseOderInfo }) => {
+        this.ditailOrder = detailPurchaseOderInfo
+        console.log(detailPurchaseOderInfo)
+        
+      });
   };
 
+  getPurchaseOrderId() {
+    this._purchaseService.getPurchaseOrderId(this.purchaseForm.value)
+      .subscribe(({ purchaseOrderId }) => {
+        this.purchaseForm.controls['purchaseOrderId'].setValue(purchaseOrderId.purchaseOrderId);
+      });
+  };
 
-
+  savePurchase(){
+    this._purchaseService.createPurchase(this.purchaseForm.value)
+      .subscribe((data) => {
+        Swal.fire({
+          title: "Creado Exitoso!",
+          text: "Factura Guardada",
+          timer:1000
+        })
+      }, err=> {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+  }
+  
 
 };

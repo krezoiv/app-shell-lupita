@@ -179,18 +179,20 @@ export class PurchasesOrderComponent implements OnInit {
 
   getPurchaseOrderId() {
     this._purchaseOrderService.getPurchaseOrderId(this.orderForm.value)
-      .subscribe(({ purchaseOrder }) => {
-        this.orderForm.controls['purchaseOrderId'].setValue(purchaseOrder.purchaseOrderId);
-
-      })
-  }
+      .subscribe(({ purchaseOrderId }) => {
+        this.orderForm.controls['purchaseOrderId'].setValue(purchaseOrderId.purchaseOrderId);    
+      });
+  };
 
 
   createPurchaseOrder() {
     this._purchaseOrderService.createPurchaseOrder(this.orderForm.value)
       .subscribe((data) => {
-        Swal.fire('Creado', `Numeracíon registrada Correctamente`, 'success');
-
+        Swal.fire({
+          title: "Creado Exitoso!",
+          text: "Orden Generada",
+          timer:1000
+        })
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -200,8 +202,11 @@ export class PurchasesOrderComponent implements OnInit {
   creatDetailPurchaseOrder() {
     this._purchaseOrderService.createDetailOrder(this.orderForm.value)
       .subscribe((data) => {
-        Swal.fire('Creado', `Numeracíon registrada Correctamente`, 'success');
-
+        Swal.fire({
+          title: "Almacenado!",
+          text: "Detalle Agreda a la Orden",
+          timer:1000
+        })
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });

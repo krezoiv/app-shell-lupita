@@ -99,17 +99,21 @@
                     <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width"
                         cellSpacing="0">
                         <thead>
+                            <th scope="col"> <u>id</u></th>
                             <th scope="col"> <u>Combustible</u></th>
                             <th scope="col"><u> Cantidad</u></th>
                             <th scope="col"><u> Idp</u></th>
                             <th scope="col"> <u>Total</u></th>
+                            <th scope="col"> <u>id</u></th>
                         </thead>
                         <tbody>
                             <tr *ngFor="let data of ditailOrder">
-                                <td>{{data.fuelId.fuelName}}</td>
+                                <td>{{data.fuelId.fuelId}}</td>
+                                <td>{{data.fuelId.fuelName}} {{data.fuelId.fuelId}}</td>
                                 <td>{{data.amount}}</td>
                                 <td>{{data.idpTotal}}</td>
                                 <td>{{data.total}}</td>
+                                <td>{{data.fuelId.fuelId}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -129,7 +133,7 @@
                             <tr>
                                 <td  id="tdTotal">
                                     
-                                    <button  mat-raised-button color="primary">Aplicar Compra</button>
+                                    <button  mat-raised-button color="primary" (click)="savePurchase();">Aplicar Compra</button>
                                     
                                 </td>
                             </tr>

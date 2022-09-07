@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/fuelstation/purchase.interface';
+import { AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/fuelstation/purchase.interface';
 import { PaymentMethods_I } from 'src/app/interfaces/paymentMethods.interface';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
-import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
+import { DetailPurchaseOrder, Purchase, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { environment } from 'src/environments/environment';
 
 const api_url = environment.api_url;
@@ -59,9 +59,21 @@ export class PurchasesService {
       );
   };
 
+  createPurchase(formData: Purchase): Observable<Purchase>{
+    return this._http.post<Purchase>(`${api_url}/purchases`, formData, this.headers)
+  }
+
   getPurchaseOrderId(purchaseOrderId : string): Observable<PurchaseOrder_I>{
     return this._http.post<PurchaseOrder_I>(`${api_url}/purchaseOrders/PurchaseOrderId`, purchaseOrderId, this.headers);
   };
+
+  /**
+   * *service that brings the amount of fuel of the order
+   * *servicio que trae la cantidad de combustible de la orden
+   */
+  getAmountfuel(formData : DetailPurchaseOrder) : Observable<AmountFuel_I>{
+    return this._http.post<AmountFuel_I>(`${api_url}/detailPurchaseOrder/amountFuel`, formData, this.headers);
+  }
 
   getListPurchaseDetailOrder(formData : DispenserReader): Observable<ListPurchaseDetailOrder_I>{
     return this._http.post<ListPurchaseDetailOrder_I>(`${api_url}/detailPurchaseOrder/listPurchaseDetail`, formData, this.headers);
