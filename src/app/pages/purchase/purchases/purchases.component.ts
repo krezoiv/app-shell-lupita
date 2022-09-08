@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
+import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
 import { PurchasesService } from 'src/app/services/purchase/purchases.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
@@ -38,16 +39,20 @@ export class PurchasesComponent implements OnInit {
     idp: ['', Validators.required],
     total: ['', Validators.required],
     fuelTankId : ['', Validators.required],
+    inventoryCode : ['', Validators.required],
 
   })
   constructor(
     private fb: FormBuilder,
     private _purchaseService: PurchasesService,
+    private _fuelInventoryService : FuelInventoryService,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.getPaymentMethdos();
+   
+   
    
   }
 
@@ -60,10 +65,13 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
         this.getPurchaseOrderId();
+        
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
         snackBarRef.afterDismissed().subscribe(() => {
           this.getPurchaseOrderId();
           this.getdetailPurchaseOderInfo();
+         
+          console.log(this.purchaseForm.value);
          
         })
        
@@ -95,6 +103,34 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['purchaseOrderId'].setValue(purchaseOrderId.purchaseOrderId);
       });
   };
+
+  getfuelIdRegular() {
+    this._fuelInventoryService.getFuelIdRegular()
+      .subscribe(({fuelIdRegular}) => {
+        this.purchaseForm.controls['fuelId'].setValue(fuelIdRegular.fuelId);
+      });
+  };
+
+  getfuelIdSuper() {
+    this._fuelInventoryService.getFuelIdSuper()
+      .subscribe(({fuelIdSuper}) => {
+        this.purchaseForm.controls['fuelId'].setValue(fuelIdSuper.fuelId);
+      });
+  };
+
+  getfuelIdDiesel() {
+    this._fuelInventoryService.getFuelIdDiesel()
+      .subscribe(({fuelIdDiesel}) => {
+        this.purchaseForm.controls['fuelId'].setValue(fuelIdDiesel.fuelId);
+      });
+  };
+
+  getinventoryCode(){
+    this._fuelInventoryService.getinventoryCode(this.purchaseForm.value)
+      .subscribe(({inventoryCode}) => {
+        this.purchaseForm.controls['inventoryCode'].setValue(inventoryCode.inventoryCode);
+      })
+  }
 
   savePurchase(){
     this._purchaseService.createPurchase(this.purchaseForm.value)

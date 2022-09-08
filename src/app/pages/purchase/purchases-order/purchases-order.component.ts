@@ -11,6 +11,7 @@ import { Store } from 'src/app/models/persons/store.model';
 import { Vehicle } from 'src/app/models/persons/vehicle.model';
 import { DetailPurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { Taxes } from 'src/app/models/purchase/taxes.model';
+import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
 import { FuelsService } from 'src/app/services/fuelstation/fuels.service';
 import { StoreService } from 'src/app/services/persons/store.service';
 import { VehicleService } from 'src/app/services/persons/vehicle.service';
@@ -46,6 +47,8 @@ export class PurchasesOrderComponent implements OnInit {
   subtotalIDP!: Number | any;
   subtotalPurchase!: Number | any;
   SB!: Number | any;
+  amountPendingDB! : Number | any;
+  newAmount! : | any;
   buttonDisableNewOrderDetail: boolean = false;
   buttonDisableOrderDetail: boolean = false;
   buttonDisableSaveAll: boolean = false;
@@ -80,8 +83,11 @@ export class PurchasesOrderComponent implements OnInit {
     aplicado: [false, Validators.required],
     tl: [0, Validators.required],
     totalPurchaseOrder: [0, Validators.required],
-    totalIDPPurchaseOrder :[0, Validators.required],
-    subtotal:[0, Validators.required],
+    totalIDPPurchaseOrder: [0, Validators.required],
+    subtotal: [0, Validators.required],
+    fuelTankId: ['', Validators.required],
+    fuelInventoryId: ['', Validators.required],
+    amountPending: [0, Validators.required],
 
   });
 
@@ -91,6 +97,7 @@ export class PurchasesOrderComponent implements OnInit {
     private _vehicleService: VehicleService,
     private _purchaseOrderService: PurchasesService,
     private _fuelService: FuelsService,
+    private _fuelInventoryService: FuelInventoryService,
     private _snackBar: MatSnackBar,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -164,7 +171,7 @@ export class PurchasesOrderComponent implements OnInit {
     this._purchaseOrderService.getTotalPurchase()
       .subscribe(({ totalDetailPurchaseOrder }) => {
         this.totaPurchases = totalDetailPurchaseOrder
-       
+
       });
   };
 
@@ -180,8 +187,37 @@ export class PurchasesOrderComponent implements OnInit {
   getPurchaseOrderId() {
     this._purchaseOrderService.getPurchaseOrderId(this.orderForm.value)
       .subscribe(({ purchaseOrderId }) => {
-        this.orderForm.controls['purchaseOrderId'].setValue(purchaseOrderId.purchaseOrderId);    
+        this.orderForm.controls['purchaseOrderId'].setValue(purchaseOrderId.purchaseOrderId);
       });
+  };
+
+  /**
+ * *get fuel inventory id 
+ */
+  getFuelInventoryId() {
+    const data = {
+      ...this.orderForm.value
+    };
+
+    this._fuelInventoryService.getFuelInventoryId(data)
+      .subscribe(({ fuelInventoryId }) => {
+        this.orderForm.controls['fuelInventoryId'].setValue(fuelInventoryId.fuelInventoryId);
+      })
+  };
+
+
+  /**
+   * * get amount pending on fuel inventory
+   */
+  getAmountPending() {
+    const data = {
+      ...this.orderForm.value
+    };
+
+    this._fuelInventoryService.getFuelInventoryAmountPending(data)
+      .subscribe(({ fuelInventoryAmountPending }) => {
+        this.orderForm.controls['amountPending'].setValue(fuelInventoryAmountPending.amountPending);
+      })
   };
 
 
@@ -191,7 +227,7 @@ export class PurchasesOrderComponent implements OnInit {
         Swal.fire({
           title: "Creado Exitoso!",
           text: "Orden Generada",
-          timer:1000
+          timer: 1000
         })
 
       }, err => {
@@ -205,7 +241,7 @@ export class PurchasesOrderComponent implements OnInit {
         Swal.fire({
           title: "Almacenado!",
           text: "Detalle Agreda a la Orden",
-          timer:1000
+          timer: 1000
         })
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
@@ -243,23 +279,27 @@ export class PurchasesOrderComponent implements OnInit {
       this.getTotalDetailPurchaseOrder();
       this.getTotalIDPDetailPurchaseOrder();
       this.calculateOrdersTotal();
-      this.updateTotalPurchaseOrder();   
+      this.updateTotalPurchaseOrder();
       this.getTotalPurchaseOrder();
+      this.getFuelInventoryId();
       console.log(this.orderForm.value)
       const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
-      snackBarRef.afterDismissed().subscribe(()=> {
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.getAmountPending();
         this.getTotalDetailPurchaseOrder();
         this.getTotalIDPDetailPurchaseOrder();
         this.listDetailPurchaseOrder();
+        this.sumAmountPendingAndAmountOrder();
+        this.updateAmountPending();
         this.buttonDisableNewOrderDetail = true;
         this.buttonDisableOrderDetail = false;
         this.getTotalPurchaseOrder();
-       
+
         console.log(this.orderForm.value)
-        this.updateTotalPurchaseOrder();   
-        this.buttonDisableSaveAll= true;
+        this.updateTotalPurchaseOrder();
+        this.buttonDisableSaveAll = true;
       })
-     
+
 
     });
 
@@ -292,19 +332,28 @@ export class PurchasesOrderComponent implements OnInit {
     this.tlIDPToUpdate = this.totalIDPPurchaseDB + this.tlIDPTotal
     this.orderForm.controls['totalPurchaseOrder'].setValue(this.tlToUpdate);
     this.orderForm.controls['totalIDPPurchaseOrder'].setValue(this.tlIDPToUpdate);
-   
+
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
-    snackBarRef.afterDismissed().subscribe(() =>{
+    snackBarRef.afterDismissed().subscribe(() => {
       this.subtotalPurchase = this.orderForm.get('totalPurchaseOrder')?.value;
       this.subtotalIDP = this.orderForm.get('totalIDPPurchaseOrder')?.value;
       this.SB = this.subtotalPurchase - this.subtotalIDP;
       this.orderForm.controls['subtotal'].setValue(this.SB);
-     console.log('totalp ' +this.subtotalPurchase)
-     console.log('totalIDp ' +this.subtotalIDP)
-     console.log('subtotal '+this.SB)
+      console.log('totalp ' + this.subtotalPurchase)
+      console.log('totalIDp ' + this.subtotalIDP)
+      console.log('subtotal ' + this.SB)
     })
-    
 
+  };
+
+  /**
+   ** sum of amount pending of inventory and amount of order
+   */
+  sumAmountPendingAndAmountOrder(){
+    this.amountPendingDB = this.orderForm.get('amountPending')?.value;
+    this.amountDetail = this.orderForm.get('amount')?.value;
+    this.newAmount = (this.amountPendingDB + this.amountDetail);
+    this.orderForm.controls['amountPending'].setValue(this.newAmount);
 
   }
 
@@ -324,6 +373,18 @@ export class PurchasesOrderComponent implements OnInit {
         Swal.fire('Error', err.error.msg, 'error')
       })
   };
+
+updateAmountPending(){
+  const data = {
+    ...this.orderForm.value
+  };
+  this._fuelInventoryService.updateAmountPending(data)
+    .subscribe(data => {
+
+    }, err => {
+      Swal.fire('Error', err.error.msg, 'error')
+    })
+}
 
   saveOrder() {
     this.updateAplicarDetailOrder();
@@ -358,6 +419,8 @@ export class PurchasesOrderComponent implements OnInit {
       });
   };
 
+  
+
   getTotalPurchaseOrder() {
     const data = {
       ...this.orderForm.value
@@ -365,7 +428,7 @@ export class PurchasesOrderComponent implements OnInit {
     this._purchaseOrderService.getTotalPurchaseOrder(data)
       .subscribe(resp => {
 
-      })
-  }
+      });
+  };
 
 }
