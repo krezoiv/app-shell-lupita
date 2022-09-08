@@ -167,19 +167,79 @@ export class PurchasesComponent implements OnInit {
         this.releaseFunction();
         this.releaseAmountRegular();
         console.log(this.purchaseForm.value)
-      })
-    })
-  }
+      });
+    });
+  };
 
-  
+  loadSupertoTank() {
+    this.getfuelIdSuper();
+    console.log(this.purchaseForm.value)
+    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.getfuelIdSuper();
+      this.getinventoryCode();
+      this.getAmountPending();
+      this.getAvailable();
+      console.log(this.purchaseForm.value)
+      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.getfuelIdSuper();
+        this.getinventoryCode();
+        this.getAmountPending();
+        this.getAvailable();
+        this.releaseFunction();
+        this.releaseAmountSuper();
+        console.log(this.purchaseForm.value)
+      });
+    });
+  };
+
+  loadDieseltoTank() {
+    this.getfuelIdDiesel();
+    console.log(this.purchaseForm.value)
+    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.getfuelIdDiesel();
+      this.getinventoryCode();
+      this.getAmountPending();
+      this.getAvailable();
+      console.log(this.purchaseForm.value)
+      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.getfuelIdDiesel();
+        this.getinventoryCode();
+        this.getAmountPending();
+        this.getAvailable();
+        this.releaseFunction();
+        this.releaseAmountDiesel();
+        console.log(this.purchaseForm.value)
+      });
+    });
+  };
 
   save() {
     
     this.loadRegulartoTank();
+    this.loadSupertoTank();
+    this.loadDieseltoTank();
   }
 
   releaseAmountRegular(){
     this._fuelInventoryService.updateAvailableRegular(this.purchaseForm.value)
+      .subscribe(data => {
+
+      });
+  };
+
+  releaseAmountSuper(){
+    this._fuelInventoryService.updateAvailableSuper(this.purchaseForm.value)
+      .subscribe(data => {
+
+      });
+  };
+
+  releaseAmountDiesel(){
+    this._fuelInventoryService.updateAvailableDiesel(this.purchaseForm.value)
       .subscribe(data => {
 
       })
