@@ -5,6 +5,7 @@ import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
 import { PurchasesService } from 'src/app/services/purchase/purchases.service';
+import { LoadingComponent } from 'src/app/shared/functions/loading/loading.component';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
 
@@ -15,11 +16,12 @@ import Swal from 'sweetalert2';
 })
 export class PurchasesComponent implements OnInit {
 
+  availableDB! : Number | any;
+  newAvailable! : Number | any;
+  amountPendingDB !  : Number | any;
   public paymentMethodSelected: PaymentMethods[] = [];
   public purchaseOrderSelected: PurchaseOrder[] = [];
   public ditailOrder: DetailPurchaseOrder[] = [];
-
-
 
   purchaseForm: FormGroup = this.fb.group({
     orderNumber: ['', Validators.required],
@@ -38,22 +40,22 @@ export class PurchasesComponent implements OnInit {
     amount: ['', Validators.required],
     idp: ['', Validators.required],
     total: ['', Validators.required],
-    fuelTankId : ['', Validators.required],
-    inventoryCode : ['', Validators.required],
+    fuelTankId: ['', Validators.required],
+    inventoryCode: ['', Validators.required],
+    amountPending: ['', Validators.required],
+    available: ['', Validators.required],
 
   })
   constructor(
     private fb: FormBuilder,
     private _purchaseService: PurchasesService,
-    private _fuelInventoryService : FuelInventoryService,
+    private _fuelInventoryService: FuelInventoryService,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.getPaymentMethdos();
-   
-   
-   
+
   }
 
   findOrder() {
@@ -65,16 +67,13 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
         this.getPurchaseOrderId();
-        
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
         snackBarRef.afterDismissed().subscribe(() => {
           this.getPurchaseOrderId();
           this.getdetailPurchaseOderInfo();
-         
-          console.log(this.purchaseForm.value);
-         
+
         })
-       
+
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       })
@@ -93,7 +92,7 @@ export class PurchasesComponent implements OnInit {
       .subscribe(({ detailPurchaseOderInfo }) => {
         this.ditailOrder = detailPurchaseOderInfo
         console.log(detailPurchaseOderInfo)
-        
+
       });
   };
 
@@ -106,44 +105,127 @@ export class PurchasesComponent implements OnInit {
 
   getfuelIdRegular() {
     this._fuelInventoryService.getFuelIdRegular()
-      .subscribe(({fuelIdRegular}) => {
+      .subscribe(({ fuelIdRegular }) => {
         this.purchaseForm.controls['fuelId'].setValue(fuelIdRegular.fuelId);
       });
   };
 
   getfuelIdSuper() {
     this._fuelInventoryService.getFuelIdSuper()
-      .subscribe(({fuelIdSuper}) => {
+      .subscribe(({ fuelIdSuper }) => {
         this.purchaseForm.controls['fuelId'].setValue(fuelIdSuper.fuelId);
       });
   };
 
   getfuelIdDiesel() {
     this._fuelInventoryService.getFuelIdDiesel()
-      .subscribe(({fuelIdDiesel}) => {
+      .subscribe(({ fuelIdDiesel }) => {
         this.purchaseForm.controls['fuelId'].setValue(fuelIdDiesel.fuelId);
       });
   };
 
-  getinventoryCode(){
+  getinventoryCode() {
     this._fuelInventoryService.getinventoryCode(this.purchaseForm.value)
-      .subscribe(({inventoryCode}) => {
+      .subscribe(({ inventoryCode }) => {
         this.purchaseForm.controls['inventoryCode'].setValue(inventoryCode.inventoryCode);
+        console.log(inventoryCode.inventoryCode)
+      });
+  };
+
+  getAmountPending() {
+    this._fuelInventoryService.getAmountPending(this.purchaseForm.value)
+      .subscribe(({ fuelInventoryAmountPending }) => {
+        this.purchaseForm.controls['amountPending'].setValue(fuelInventoryAmountPending.amountPending);
+
+      });
+  };
+
+  getAvailable() {
+    this._fuelInventoryService.getFuelInventoryAvailable(this.purchaseForm.value)
+      .subscribe(({ fuelInventoryAvailable }) => {
+        this.purchaseForm.controls['available'].setValue(fuelInventoryAvailable.available);
+
+      });
+  };
+
+  loadRegulartoTank() {
+    this.getfuelIdRegular();
+    console.log(this.purchaseForm.value)
+    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.getfuelIdRegular();
+      this.getinventoryCode();
+      this.getAmountPending();
+      this.getAvailable();
+      console.log(this.purchaseForm.value)
+      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.getfuelIdRegular();
+        this.getinventoryCode();
+        this.getAmountPending();
+        this.getAvailable();
+        this.releaseFunction();
+        this.releaseAmountRegular();
+        console.log(this.purchaseForm.value)
+      })
+    })
+  }
+
+  
+
+  save() {
+    
+    this.loadRegulartoTank();
+  }
+
+  releaseAmountRegular(){
+    this._fuelInventoryService.updateAvailableRegular(this.purchaseForm.value)
+      .subscribe(data => {
+
       })
   }
 
-  savePurchase(){
+  savePurchase() {
+    this.getfuelIdRegular();
+    console.log(this.purchaseForm.value);
+
     this._purchaseService.createPurchase(this.purchaseForm.value)
       .subscribe((data) => {
-        Swal.fire({
+        this.getfuelIdRegular();
+        const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
+        snackBarRef.afterDismissed().subscribe(() => {
+          this.getinventoryCode();
+          const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
+          snackBarRef.afterDismissed().subscribe(() => {
+            this.getinventoryCode();
+          })
+        })
+
+
+        console.log(this.purchaseForm.value);
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      })
+  };
+
+  releaseFunction(){
+    this.availableDB = this.purchaseForm.get('available')?.value;
+    this.amountPendingDB = this.purchaseForm.get('amountPending')?.value;
+    this.newAvailable = (this.availableDB + this.amountPendingDB);
+    this.purchaseForm.controls['available'].setValue(this.newAvailable);
+
+  }
+
+
+};
+
+
+/*
+
+Swal.fire({
           title: "Creado Exitoso!",
           text: "Factura Guardada",
           timer:1000
         })
-      }, err=> {
-        Swal.fire('Error', err.error.msg, 'error')
-      })
-  }
-  
 
-};
+*/

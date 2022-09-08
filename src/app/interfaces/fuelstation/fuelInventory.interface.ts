@@ -31,3 +31,6 @@ export interface fuelInventoryAvailable_I {
     fuelInventoryAvailable: FuelInventory
 };
 
+export interface AmountPending_I {
+    fuelInventoryAmountPending: FuelInventory
+};

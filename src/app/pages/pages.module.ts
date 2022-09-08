@@ -60,6 +60,7 @@ import { SalesControlComponent } from './cuadres/sales-control/sales-control.com
 import { PurchasesComponent } from './purchase/purchases/purchases.component';
 import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
 import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.component';
+import { LoadingComponent } from '../shared/functions/loading/loading.component';
 
 
 
@@ -138,7 +139,8 @@ import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.co
     CouponsComponent,
     MaintenancesComponent,
     CuadresNavbarComponent,
-    TimerComponent
+    TimerComponent,
+    LoadingComponent
   
   ]
 })

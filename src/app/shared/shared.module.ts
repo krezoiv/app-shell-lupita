@@ -18,6 +18,7 @@ import { CuadresComponent } from '../pages/cuadres/cuadres/cuadres.component';
 import { TimerComponent } from './functions/timer/timer.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PurchaseNavbarComponent } from './purchase-navbar/purchase-navbar.component';
+import { LoadingComponent } from './functions/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PurchaseNavbarComponent } from './purchase-navbar/purchase-navbar.compo
     CuadresNavbarComponent,
     TimerComponent,
     PurchaseNavbarComponent,
+    LoadingComponent,
  
   ],
   imports: [
@@ -50,7 +52,8 @@ import { PurchaseNavbarComponent } from './purchase-navbar/purchase-navbar.compo
     MaintenanceNavbarComponent,
     CuadresNavbarComponent,
     TimerComponent,
-    PurchaseNavbarComponent
+    PurchaseNavbarComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }
