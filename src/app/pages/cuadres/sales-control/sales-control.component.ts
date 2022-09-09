@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
+import { FuelInventory } from 'src/app/models/fuelstation/fuelInventory.model';
 import { Hoses } from 'src/app/models/fuelstation/hoses.models';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
+import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
 import { HosesService } from 'src/app/services/fuelstation/hoses.service';
 import { SalesControlService } from 'src/app/services/sales/sales-control.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
@@ -68,6 +70,8 @@ export class SalesControlComponent implements OnInit {
     deposits: ['', Validators.required],
     credits: ['', Validators.required],
     abonos: ['', Validators.required],
+    available: ['', Validators.required],
+    fuelId:['', Validators.required],
 
 
 
@@ -78,7 +82,8 @@ export class SalesControlComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _hosesService: HosesService,
     private _dispenserService: DispensersService,
-    private _salesControlService: SalesControlService
+    private _salesControlService: SalesControlService,
+    private _fuelInventoryService : FuelInventoryService
 
   ) { }
 
@@ -86,6 +91,19 @@ export class SalesControlComponent implements OnInit {
     
   }
 
+prueba(){
+  this.getfuelIdRegular();
+  this.getAvailable();
+console.log(this.salesControlForm.value)
+};
+
+getAvailable() {
+  this._fuelInventoryService.getFuelInventoryAvailable(this.salesControlForm.value)
+    .subscribe(({ fuelInventoryAvailable }) => {
+      this.salesControlForm.controls['available'].setValue(fuelInventoryAvailable.available);
+
+    });
+};
 
   getRegularPrices() {
     this._hosesService.getRegularPrices()
@@ -116,7 +134,37 @@ export class SalesControlComponent implements OnInit {
     this._dispenserService.getTotalGallonsRegular(this.salesControlForm.value)
       .subscribe(({ totalRegularGallons }) => {
         this.salesControlForm.controls['totalGallonRegular'].setValue(totalRegularGallons.totalGallonRegular);
+       
+      });
+  };
 
+  /**
+   ** get id regular fuel
+   */
+  getfuelIdRegular() {
+    this._fuelInventoryService.getFuelIdRegular()
+      .subscribe(({ fuelIdRegular }) => {
+        this.salesControlForm.controls['fuelId'].setValue(fuelIdRegular.fuelId);
+      });
+  };
+
+  /**
+   ** get id super fuel
+   */
+  getfuelIdSuper() {
+    this._fuelInventoryService.getFuelIdSuper()
+      .subscribe(({ fuelIdSuper }) => {
+        this.salesControlForm.controls['fuelId'].setValue(fuelIdSuper.fuelId);
+      });
+  };
+
+  /**
+   ** get id diesel fuel
+   */
+  getfuelIdDiesel() {
+    this._fuelInventoryService.getFuelIdDiesel()
+      .subscribe(({ fuelIdDiesel }) => {
+        this.salesControlForm.controls['fuelId'].setValue(fuelIdDiesel.fuelId);
       });
   };
 
