@@ -22,7 +22,7 @@ export class SalesControlComponent implements OnInit {
   public countGallonsRegular: GeneralDispenserReader[] = [];
   public countGallonsSuper: GeneralDispenserReader[] = [];
   public countGallonsDiesel: GeneralDispenserReader[] = [];
-  
+
   totalBalance!: Number | any;
   abonoBalanbce!: Number | any;
   result_total_abono!: Number | any;
@@ -45,7 +45,13 @@ export class SalesControlComponent implements OnInit {
   abono_credits!: Number | any;
   totalAbonos!: Number | any;
   dateControl!: string;
-
+  totalForm!: Number | any;
+  newTotal!: Number | any;
+  balanceForm!: Number | any;
+  newBanlance!: Number | any;
+  totalA: Number | any;
+  availableregularDB! :Number | any;
+  NewAvailableRegular! :Number | any;
 
   salesControlForm: FormGroup = this.fb.group({
     readingDate: ['', Validators.required],
@@ -60,8 +66,8 @@ export class SalesControlComponent implements OnInit {
     regularAccumulatedGallons: ['', Validators.required],
     superAccumulatedGallons: ['', Validators.required],
     dieselAccumulatedGallons: ['', Validators.required],
-    total: ['', Validators.required],
-    balance: ['', Validators.required],
+    total: [0, Validators.required],
+    balance: [0, Validators.required],
     totalAbonosBalance: ['', Validators.required],
     bills: ['', Validators.required],
     vales: ['', Validators.required],
@@ -69,9 +75,10 @@ export class SalesControlComponent implements OnInit {
     vouchers: ['', Validators.required],
     deposits: ['', Validators.required],
     credits: ['', Validators.required],
-    abonos: ['', Validators.required],
+    abonos: [0, Validators.required],
     available: ['', Validators.required],
-    fuelId:['', Validators.required],
+    fuelId: ['', Validators.required],
+    inventoryCode :['', Validators.required],
 
 
 
@@ -83,33 +90,35 @@ export class SalesControlComponent implements OnInit {
     private _hosesService: HosesService,
     private _dispenserService: DispensersService,
     private _salesControlService: SalesControlService,
-    private _fuelInventoryService : FuelInventoryService
+    private _fuelInventoryService: FuelInventoryService
 
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
-prueba(){
-  this.getfuelIdRegular();
-  this.getAvailable();
-console.log(this.salesControlForm.value)
-};
+  getinventoryCode() {
+    this._fuelInventoryService.getinventoryCode(this.salesControlForm.value)
+      .subscribe(({ inventoryCode }) => {
+        this.salesControlForm.controls['inventoryCode'].setValue(inventoryCode.inventoryCode);
+       
+      });
+  };
 
-getAvailable() {
-  this._fuelInventoryService.getFuelInventoryAvailable(this.salesControlForm.value)
-    .subscribe(({ fuelInventoryAvailable }) => {
-      this.salesControlForm.controls['available'].setValue(fuelInventoryAvailable.available);
+  getAvailable() {
+    this._fuelInventoryService.getFuelInventoryAvailable(this.salesControlForm.value)
+      .subscribe(({ fuelInventoryAvailable }) => {
+        this.salesControlForm.controls['available'].setValue(fuelInventoryAvailable.available);
 
-    });
-};
+      });
+  };
 
   getRegularPrices() {
     this._hosesService.getRegularPrices()
       .subscribe((regularPrice) => {
         this.salesControlForm.controls['regularPrice'].setValue(regularPrice.regularPrice.fuelId?.salePrice);
-        console.log(regularPrice)
+
       });
   };
 
@@ -134,7 +143,7 @@ getAvailable() {
     this._dispenserService.getTotalGallonsRegular(this.salesControlForm.value)
       .subscribe(({ totalRegularGallons }) => {
         this.salesControlForm.controls['totalGallonRegular'].setValue(totalRegularGallons.totalGallonRegular);
-       
+
       });
   };
 
@@ -215,31 +224,61 @@ getAvailable() {
 
 
 
-  calculateTotals() {
+  calculateRegularTotals() {
+
     this.gallonsRegular = this.salesControlForm.get('totalGallonRegular')?.value;
     this.pricerRegular = this.salesControlForm.get('regularPrice')?.value;
     this.totalRegular = (this.gallonsRegular * this.pricerRegular);
-
-    this.gallonsSuper = this.salesControlForm.get('totalGallonSuper')?.value;
-    this.priceSuper = this.salesControlForm.get('superPrice')?.value;
-    this.totalSuper = (this.gallonsSuper * this.priceSuper);
-
-
-    this.gallonsDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
-    this.priceDiesel = this.salesControlForm.get('dieselPrice')?.value;
-    this.totalDiesel = (this.gallonsDiesel * this.priceDiesel);
-
-    this.total = (this.totalRegular + this.totalSuper + this.totalDiesel);
-
+    this.totalForm = this.salesControlForm.get('total')?.value;
+    this.balanceForm = this.salesControlForm.get('balance')?.value;
+    /* this.gallonsSuper = this.salesControlForm.get('totalGallonSuper')?.value;
+     this.priceSuper = this.salesControlForm.get('superPrice')?.value;
+     this.totalSuper = (this.gallonsSuper * this.priceSuper);
+ 
+ 
+     this.gallonsDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
+     this.priceDiesel = this.salesControlForm.get('dieselPrice')?.value;
+     this.totalDiesel = (this.gallonsDiesel * this.priceDiesel);
+ 
+     this.total = (this.totalRegular + this.totalSuper + this.totalDiesel);*/
+    this.total = (this.totalForm + this.totalRegular);
+    this.newBanlance = (this.balanceForm + this.total);
     this.salesControlForm.controls['total'].setValue(this.total.toFixed(2));
     this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
     this.salesControlForm.controls['totalAbonosBalance'].setValue(0.00);
 
+  };
+
+  calculateSuperTotals() {
+    this.gallonsSuper = this.salesControlForm.get('totalGallonSuper')?.value;
+    this.priceSuper = this.salesControlForm.get('superPrice')?.value;
+    this.totalSuper = (this.gallonsSuper * this.priceSuper);
+    this.totalForm = this.salesControlForm.get('total')?.value;
+
+    this.total = (parseFloat(this.totalSuper) + parseFloat(this.totalForm))
+
+
+    this.salesControlForm.controls['total'].setValue(this.total);
+    this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
+
+
+  };
+
+
+  calculateDieselTotals() {
+
+    this.gallonsDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
+    this.priceDiesel = this.salesControlForm.get('dieselPrice')?.value;
+    this.totalDiesel = (this.gallonsDiesel * this.priceDiesel);
+    this.totalForm = this.salesControlForm.get('total')?.value;
+
+    this.total = (parseFloat(this.totalDiesel) + parseFloat(this.totalForm))
+    this.salesControlForm.controls['total'].setValue(this.total);
+    this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
   }
 
+
   calulcateAbonos() {
-
-
 
     this.abono_bills = this.salesControlForm.get('bills')?.value;
     this.abono_vales = this.salesControlForm.get('vales')?.value;
@@ -257,11 +296,51 @@ getAvailable() {
     this.salesControlForm.controls['balance'].setValue(this.result_total_abono.toFixed(2));
 
 
-
   };
 
-  confirmSale() {
-    this.calculateTotals();
+  restAvailableRegular(){
+    this.availableregularDB = this.salesControlForm.get('available')?.value;
+    this.totalRegular = this.salesControlForm.get('totalGallonRegular')?.value;
+    this.NewAvailableRegular = ((this.availableregularDB) - (this.totalRegular));
+    this.salesControlForm.controls['available'].setValue(parseFloat(this.NewAvailableRegular));
+    console.log(this.NewAvailableRegular)
+  }
+
+  confirmRegularSale() {
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+      this.getAvailable();
+      this.getinventoryCode();
+    })
+
+    this.getfuelIdRegular();
+    const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.getfuelIdRegular();
+      this.calculateRegularTotals();
+      this.getAvailable();
+      this.getinventoryCode();
+     
+    
+      console.log(this.salesControlForm.value)
+    })
+
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef2.afterDismissed().subscribe(() => {
+      this.restAvailableRegular();
+      this.updateAvailableRegular();
+
+      console.log(this.salesControlForm.value)
+    })
+  };
+
+  confirmSuperSale() {
+    this.calculateSuperTotals();
+   
+  };
+
+  confirmDieselSale() {
+    this.calculateDieselTotals();
   };
 
   getTotalAbono() {
@@ -303,13 +382,25 @@ getAvailable() {
       });
   };
 
-  getLastNoDocumento(){
+  getLastNoDocumento() {
     this._salesControlService.getLastNoDocumentSale()
       .subscribe((noDocumentSale) => {
         this.salesControlForm.controls['noDocument'].setValue(noDocumentSale.noDocumentSale.noDocument + 1);
-        
-        console.log(noDocumentSale.noDocumentSale.noDocument + 1)
-      })
+      });
+  };
+
+
+  updateAvailableRegular(){
+    this._fuelInventoryService.updateAvailableRegularSale(this.salesControlForm.value)
+        .subscribe((data) =>{
+          Swal.fire({
+            title: "Descontado!",
+            text: "Combustible descontado de tanque",
+            timer:400
+          })
+        }, err => {
+          Swal.fire('Error', err.error.msg, 'error')
+        })
   }
 
 }

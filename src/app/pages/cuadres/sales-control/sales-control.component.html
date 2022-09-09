@@ -25,7 +25,6 @@
                                 <button mat-raised-button color="primary" id="buttonDate"
                                     (click)="openDay();">Aperturar</button>
 
-                                    <button (click)="prueba();">prueba</button>
                             </div>
                             <br>
                         </td>
@@ -115,8 +114,8 @@
                                     formControlName="totalGallonRegular" matInput readonly="">
                                 <mat-icon matSuffix> local_gas_station</mat-icon>
                                 <mat-hint>Lectura Anterior</mat-hint><br>
-                            </mat-form-field><br>
-                            
+                            </mat-form-field><br><br>
+                            <button (click)="confirmRegularSale();">Confirmar venta de galones</button>
                         </td>
 
                         <td id="tr-td-registros">
@@ -127,7 +126,8 @@
                                     formControlName="totalGallonSuper" matInput readonly=" ">
 
                                 <mat-hint>galones vendidos</mat-hint><br>
-                            </mat-form-field><br>
+                            </mat-form-field><br><br>
+                            <button (click)="confirmSuperSale();">Confirmar venta de galones</button>
                         </td>
 
                         <td id="tr-td-registros">
@@ -137,13 +137,14 @@
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
                                     formControlName="totalGallonDiesel" matInput readonly=" ">
                                 <mat-hint>galones vendidos</mat-hint><br>
-                            </mat-form-field><br>
+                            </mat-form-field><br><br>
+                            <button (click)="confirmDieselSale();">Confirmar venta de galones</button>
                         </td>
 
                     </tr><br><br>
                     <tr>
                         <td colspan="3" scope="rowgroup" align="center">
-                            <button mat-raised-button id="buttonAceptTotalGallons" (click)="confirmSale();">Confirmar venta de galones</button>
+                          <!--   <button mat-raised-button id="buttonAceptTotalGallons" (click)="confirmSale();">Confirmar venta de galones</button> -->
                         </td>
                     </tr>
 
