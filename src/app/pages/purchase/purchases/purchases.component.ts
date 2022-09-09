@@ -151,14 +151,14 @@ export class PurchasesComponent implements OnInit {
   loadRegulartoTank() {
     this.getfuelIdRegular();
     console.log(this.purchaseForm.value)
-    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 3000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdRegular();
       this.getinventoryCode();
       this.getAmountPending();
       this.getAvailable();
       console.log(this.purchaseForm.value)
-      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 3000 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getfuelIdRegular();
         this.getinventoryCode();
@@ -166,6 +166,7 @@ export class PurchasesComponent implements OnInit {
         this.getAvailable();
         this.releaseFunction();
         this.releaseAmountRegular();
+        this.resetDetailOrderValues();
         console.log(this.purchaseForm.value)
       });
     });
@@ -174,7 +175,7 @@ export class PurchasesComponent implements OnInit {
   loadSupertoTank() {
     this.getfuelIdSuper();
     console.log(this.purchaseForm.value)
-    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 3000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdSuper();
       this.getinventoryCode();
@@ -189,6 +190,7 @@ export class PurchasesComponent implements OnInit {
         this.getAvailable();
         this.releaseFunction();
         this.releaseAmountSuper();
+        this.resetDetailOrderValues();
         console.log(this.purchaseForm.value)
       });
     });
@@ -212,17 +214,32 @@ export class PurchasesComponent implements OnInit {
         this.getAvailable();
         this.releaseFunction();
         this.releaseAmountDiesel();
+        this.resetDetailOrderValues();
         console.log(this.purchaseForm.value)
       });
     });
   };
 
-  save() {
+  saveSuper() {
+    
+    
+    this.loadSupertoTank();
+   
+  }
+
+  saveRegular() {
     
     this.loadRegulartoTank();
-    this.loadSupertoTank();
+    
+  }
+
+
+  saveDiesel() {
+    
+    
     this.loadDieseltoTank();
   }
+
 
   releaseAmountRegular(){
     this._fuelInventoryService.updateAvailableRegular(this.purchaseForm.value)
@@ -276,8 +293,17 @@ export class PurchasesComponent implements OnInit {
 
   }
 
+  resetDetailOrderValues() {
+    this.purchaseForm.controls['fuelId'].setValue('');
+    this.purchaseForm.controls['inventoryCode'].setValue('');
+    this.purchaseForm.controls['amountPending'].setValue('');
+    this.purchaseForm.controls['amount'].setValue('');
+   
+  }
+
 
 };
+
 
 
 /*

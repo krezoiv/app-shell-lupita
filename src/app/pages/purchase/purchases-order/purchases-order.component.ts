@@ -404,6 +404,7 @@ updateAmountPending(){
     this.orderForm.controls['amount'].setValue('');
     this.orderForm.controls['price'].setValue('');
     this.orderForm.controls['total'].setValue('');
+    this.orderForm.controls['amountPending'].setValue('');
   }
 
   updateTotalPurchaseOrder() {
