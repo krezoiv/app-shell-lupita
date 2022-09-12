@@ -1,36 +1,120 @@
 body {
-    min-height: 130vh;
+    min-height: 100%;
     min-width: none;
-   
+    min-height: 120vh;
+    width: 100% !important;
 }
 
 form {
-    border: 1px solid #101010;
-    padding: 10px;
     width: 100%;
-    max-width: 100%;
     margin: auto;
-    top: 30%;
-    min-height: 120vh;
-    
-   
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    min-height: 100vh;
+    background-color: white;
 }
 
+@media (max-width:100%) {
+    form {
+        width: 100%;
+    }
+
+}
+
+
 h1 {
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
-   
+    margin-top: 5px;
+    width: 100% !important;
+    background-color: #21618C;
+    color: white;
 }
+
 
 hr {
     color: purple;
     height: 10px;
     background-color: aquamarine;
-   
+    width: 100% !important;
+
 
 }
 
+#mat-form-field-prices {
+    margin-top: auto;
+    margin-bottom: 105px;
+    width: 100% !important;
+
+}
+
+#mat-form-field-sale {
+    margin-top: auto;
+    margin-bottom: 25px;
+    width: 100% !important;
+}
+
+#mat-form-field-accumulated {
+    margin-top: auto;
+    margin-bottom: 25px;
+    width: 100% !important;
+}
+
+#mat-form-field-payment {
+    margin-top: auto;
+    margin-bottom: 25px;
+    width: 100% !important;
+}
+
+#mat-form-field-othersA {
+    margin-top: auto;
+    margin-bottom: 25px;
+    width: 50% !important;
+}
+
+#buttonSaleRegular {
+    margin-bottom: 25px;
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #884EA0;
+}
+
+#buttonSaleSuper {
+    margin-bottom: 25px;
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #148F77;
+}
+
+#buttonSaleDiesel {
+    margin-bottom: 25px;
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #5DADE2;
+}
+
+#buttonDate {
+    background-color: #566573;
+    display: flex;
+    width: 100% !important;
+    right: 0px;
+    color: white;
+    font-size: 120%;
+    justify-content: center;
+}
+
+#saveButton{
+    background-color: #2ECC71;
+    font-size: 120%;
+    width: 100% !important;
+}
+
+/*
 #hrAbonos{
     color: purple;
     height: 5px;
@@ -52,9 +136,9 @@ hr {
     background-color: green;
     right: 0px;
     margin-top: -35px;  
-    justify-content: center;
-   
+    justify-content: center;   
 }
+
 #buttonAceptTotalGallons{
     display: flex;
     width: 100%;
@@ -68,9 +152,7 @@ hr {
 
 #buttonOthers{
     background-color: slategray;
-    height: 25px;
-  
-   
+    height: 25px;  
 }
 
 #labelPrecios {
@@ -85,17 +167,18 @@ hr {
    font-size: 75%;
   
 }
+
 input{
     font-size: 100%;
     height: 50%;
     text-align: center;
    
 }
+
 #mat-form-field-prices {
     width: 100%;
     font-size: 15px;
     text-align: left;
-   
 }
 
 
@@ -136,15 +219,6 @@ input{
 }
 
 
-#sectionAcumulativo{
-    width: 550px;
-    height: 800px;
-  
-    float: left;
-    display: flex;
-    padding-right: 15px;
-    padding-left: 15px;
-}
 
 
 
@@ -163,7 +237,6 @@ input{
 #sectionBalance {
     width: 550px;
     height: 400px;
-   
     float: left;
     display: flex;
     padding-right: 15px;
@@ -171,8 +244,8 @@ input{
 }
 
 #sectionPrices {
-    width: 850px;
-    height: 230px;
+    width: 750px;
+    height: 160px;
     float: left;
     padding-right: 15px;
     padding-left: 15px;
@@ -180,10 +253,56 @@ input{
 }
 
 #sectionSales {
-    width: 810px;
+    width: 710px;
     height: 210px;
     float: left;
     padding-right: 15px;
     padding-left: 15px;
    
+}
+
+#section2{
+    height: 60px; 
+}
+
+*/
+
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+#sectionActulaPrice {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+    background-color: #EAFAF1;
+}
+
+#sectionSale {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+}
+
+#accumulated {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+}
+
+#abono {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+}
+
+#balance {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
 }

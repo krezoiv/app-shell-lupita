@@ -15,7 +15,8 @@
                         <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
                             appearance="fill">
-                            <input id="input-registros" required matInput [matDatepicker]="orderDate"  formControlName="orderDate">
+                            <input id="input-registros" required matInput [matDatepicker]="orderDate"
+                                formControlName="orderDate">
                             <mat-datepicker-toggle [for]="orderDate" matSuffix></mat-datepicker-toggle>
                             <mat-datepicker #orderDate></mat-datepicker>
                         </mat-form-field>
@@ -24,7 +25,8 @@
                         <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
                             appearance="fill">
-                            <input id="input-registros" required matInput [matDatepicker]="deliveryDate"  formControlName="deliveryDate">
+                            <input id="input-registros" required matInput [matDatepicker]="deliveryDate"
+                                formControlName="deliveryDate">
                             <mat-datepicker-toggle [for]="deliveryDate" matSuffix></mat-datepicker-toggle>
                             <mat-datepicker #deliveryDate></mat-datepicker>
                         </mat-form-field>
@@ -37,9 +39,8 @@
                             <mat-label>Planta</mat-label>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
                             <mat-select formControlName="storeId" required>
-                                <mat-option *ngFor="let store of storeSelected"
-                                [value]="store.storeId">
-                                {{store.storeName | titlecase}}
+                                <mat-option *ngFor="let store of storeSelected" [value]="store.storeId">
+                                    {{store.storeName | titlecase}}
                                 </mat-option>
                             </mat-select>
                             <mat-error>Por favor selecciones una opcíon</mat-error>
@@ -52,10 +53,9 @@
                         <mat-form-field id="mat-form-field-registros" appearance="fill">
                             <mat-label>Vehículo</mat-label>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
-                            <mat-select  formControlName="vehicleId" required>
-                                <mat-option  *ngFor="let vehicle of vehicleSelected"
-                                [value]="vehicle.vehicleId">
-                                {{vehicle.vehicleName | titlecase}}</mat-option>      
+                            <mat-select formControlName="vehicleId" required>
+                                <mat-option *ngFor="let vehicle of vehicleSelected" [value]="vehicle.vehicleId">
+                                    {{vehicle.vehicleName | titlecase}}</mat-option>
                             </mat-select>
                             <mat-error>Por favor selecciones una opcíon</mat-error>
                             <mat-hint></mat-hint>
@@ -67,7 +67,8 @@
                     <td>
                         <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                             <mat-label>Turno No:</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="turn" matInput>
+                            <input id="input-registros" id="input-registros" type="number" id="fName"
+                                formControlName="turn" matInput>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
                             <mat-hint>turno de despacho</mat-hint><br>
                         </mat-form-field><br>
@@ -76,7 +77,8 @@
                     <td>
                         <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                             <mat-label>Número de Orden:</mat-label>
-                            <input id="input-registros" id="input-registros" type="number" id="fName" formControlName="orderNumber" matInput>
+                            <input id="input-registros" id="input-registros" type="number" id="fName"
+                                formControlName="orderNumber" matInput>
                             <mat-icon matSuffix> local_gas_station</mat-icon>
                             <mat-hint>número de orden generado</mat-hint><br>
                         </mat-form-field><br>
@@ -84,13 +86,17 @@
                 </tr><br>
                 <tr>
                     <td colspan="3" scope="rowgroup" align="center">
-                        <button *ngIf="buttonDisableApertura" id="aprturaOrden" mat-raised-button color="primary" (click)="aperturaOrden();">Guardar</button>
-                       
+                        <button *ngIf="buttonDisableApertura" id="aprturaOrden" mat-raised-button color="primary"
+                            (click)="aperturaOrden();">Guardar</button>
+
                     </td>
                 </tr>
+
             </table><br>
 
-            <table class="table  table-responsive"  id="tblDetail" class="example-full-width" style="width:100%" cellSpacing="0">
+            <h3>Detalle</h3>
+            <table class="table  table-responsive" id="tblDetail" class="example-full-width" style="width:100%"
+                cellSpacing="0">
                 <thead>
                     <th id="thead" scope="col"> Combustible</th>
                     <th id="thead" scope="col"> IDP</th>
@@ -101,102 +107,109 @@
                 <tbody>
                     <tr>
                         <td id="td">
-                            <select class="form-control" aria-label="Default select example"  selected formControlName="fuelId" >
-                                <option *ngFor="let fuel of  fuelSelected" [value]="fuel.fuelId">{{fuel.fuelName}}</option>
-                               
-                              </select>
+                            <select class="form-control" aria-label="Default select example" selected
+                                formControlName="fuelId">
+                                <option *ngFor="let fuel of  fuelSelected" [value]="fuel.fuelId">{{fuel.fuelName}}
+                                </option>
+
+                            </select>
                         </td>
 
                         <td id="td">
-                            <select type="number" class="form-control" aria-label="Default select example"  selected formControlName="taxesId" >
+                            <select type="number" class="form-control" aria-label="Default select example" selected
+                                formControlName="taxesId">
                                 <option>{{idp}}</option>
-                               
-                              </select>
+
+                            </select>
                         </td>
 
                         <td id="td">
-                            <input id="input" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            formControlName="amount">
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="amount">
                         </td>
 
                         <td id="td">
-                            <input id="input"type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            formControlName="price">
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="price">
                         </td>
 
                         <td id="td">
-                            <input id="input" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            formControlName="total" readOnly="">
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="total" readOnly="">
                         </td>
-                        
+
                     </tr>
                 </tbody>
-                <button  *ngIf="buttonDisableOrderDetail" id="butonSave" mat-raised-button color="primary" (click)="saveOrderDetail();">Guardar</button>&nbsp;
-                <button *ngIf="buttonDisableNewOrderDetail" id="butonSave" mat-raised-button color="primary" (click)="newOrderDetail();">Nuevo</button>
+                <button *ngIf="buttonDisableOrderDetail" id="butonSave" mat-raised-button color="primary"
+                    (click)="saveOrderDetail();">Guardar</button>&nbsp;
+                <button *ngIf="buttonDisableNewOrderDetail" id="butonSave" mat-raised-button color="primary"
+                    (click)="newOrderDetail();">Nuevo</button>
             </table>
 
-        
+
             <br>
             <section id="sectionTotals">
-                <table  class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
+                <h3>Totales</h3>
+                <table class="table  table-responsive" class="example-full-width" style="width:100%" cellSpacing="0">
                     <thead>
-                        <th  scope="col"> <u>Combustible</u></th>
-                        <th  scope="col"><u> Cantidad</u></th>
-                        <th  scope="col"><u> Idp</u></th>
-                        <th  scope="col"> <u>Total</u></th>
+                        <th scope="col"> <u>Combustible</u></th>
+                        <th scope="col"><u> Cantidad</u></th>
+                        <th scope="col"><u> Idp</u></th>
+                        <th scope="col"> <u>Total</u></th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let data of PurchaseDetOrder">
                             <td>{{data.fuelId.fuelName}}</td>
                             <td>{{data.amount | number}}</td>
                             <td>{{data.idpTotal | number}}</td>
-                            <td >{{data.total | number}}</td>
-                            
+                            <td>{{data.total | number}}</td>
+
                         </tr><br>
 
                     </tbody>
                 </table>
                 <hr>
-                <table class="table  table-responsive"  class="example-full-width" style="width:100%" cellSpacing="0">
-                    <thead > 
-                        <th  id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Totales</u></th>   
+                <table class="table  table-responsive" class="example-full-width" style="width:100%" cellSpacing="0">
+                    <thead>
+                        <th id="tdTotal" cope="col" colspan="2" align="right" style="width:100%"> <u>Totales</u></th>
                     </thead>
                     <tbody>
-                        
 
-                            <tr>
+
+                        <tr>
                             <td align="right" style="width:70%">
-                                <label >Sub Total</label>
+                                <label>Sub Total</label>
                             </td>
-                            <td id="tdTotal"  *ngFor="let subtotal of totaPurchases">
+                            <td id="tdTotal" *ngFor="let subtotal of totaPurchases">
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="subtotal"   matInput>
+                                    formControlName="subtotal" matInput>
                             </td>
                         </tr>
                         <tr>
                             <td align="right" style="width:70%">
-                                <label >Total IDP</label>
+                                <label>Total IDP</label>
                             </td>
-                            <td id="tdTotal"  *ngFor="let totalIDP of totaIDPPurchases">
+                            <td id="tdTotal" *ngFor="let totalIDP of totaIDPPurchases">
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="totalIDPPurchaseOrder"  [(ngModel)]="totalIDP.count" matInput>
+                                    formControlName="totalIDPPurchaseOrder" [(ngModel)]="totalIDP.count" matInput>
                             </td>
                         </tr>
                         <hr>
-                        
+
                         <tr>
                             <td align="right" style="width:70%"><label> total</label></td>
-                            <td id="tdTotal"  *ngFor="let total of totaPurchases">
+                            <td id="tdTotal" *ngFor="let total of totaPurchases">
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                formControlName="totalPurchaseOrder"  [(ngModel)]="total.count" matInput>
+                                    formControlName="totalPurchaseOrder" [(ngModel)]="total.count" matInput>
                             </td>
                         </tr>
-                        
-                        <tr >
+
+                        <tr>
                             <td id="tdTotal">
-                                
-                                <button *ngIf="buttonDisableSaveAll" mat-raised-button color="primary" (click)="saveOrder();">Guardar Orden</button>
-                                
+
+                                <button *ngIf="buttonDisableSaveAll" mat-raised-button color="primary"
+                                    (click)="saveOrder();">Guardar Orden</button>
+
                             </td>
                             <hr>
                         </tr>

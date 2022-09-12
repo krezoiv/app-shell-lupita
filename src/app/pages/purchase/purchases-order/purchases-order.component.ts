@@ -47,8 +47,8 @@ export class PurchasesOrderComponent implements OnInit {
   subtotalIDP!: Number | any;
   subtotalPurchase!: Number | any;
   SB!: Number | any;
-  amountPendingDB! : Number | any;
-  newAmount! : | any;
+  amountPendingDB!: Number | any;
+  newAmount!: | any;
   buttonDisableNewOrderDetail: boolean = false;
   buttonDisableOrderDetail: boolean = false;
   buttonDisableSaveAll: boolean = false;
@@ -111,28 +111,20 @@ export class PurchasesOrderComponent implements OnInit {
     this.getTotalDetailPurchaseOrder();
     this.getTotalIDPDetailPurchaseOrder();
     this.getTotalPurchaseOrder();
-
     this.getTaxes();
-
     this.suscription = this._purchaseOrderService.refresh$.subscribe(() => {
       this.listDetailPurchaseOrder();
-    })
+    });
+  };
 
-  }
+  getListPurchaseDetailOrder() { }
 
-  getListPurchaseDetailOrder() {
-
-  }
-  ngOnDestroy(): void {
-    this.suscription.unsubscribe();
-
-  }
+  ngOnDestroy(): void { this.suscription.unsubscribe(); };
 
   getStore() {
     this._storeService.getStores()
       .subscribe(({ store }) => {
         this.storeSelected = store;
-
       });
   };
 
@@ -147,7 +139,6 @@ export class PurchasesOrderComponent implements OnInit {
     this._fuelService.getFuelsActive()
       .subscribe(({ fuels }) => {
         this.fuelSelected = fuels
-
       });
   };
 
@@ -171,7 +162,6 @@ export class PurchasesOrderComponent implements OnInit {
     this._purchaseOrderService.getTotalPurchase()
       .subscribe(({ totalDetailPurchaseOrder }) => {
         this.totaPurchases = totalDetailPurchaseOrder
-
       });
   };
 
@@ -181,7 +171,6 @@ export class PurchasesOrderComponent implements OnInit {
         this.totaIDPPurchases = totalDetailIDPPurchaseOrder
       });
   };
-
 
 
   getPurchaseOrderId() {
@@ -202,13 +191,13 @@ export class PurchasesOrderComponent implements OnInit {
     this._fuelInventoryService.getFuelInventoryId(data)
       .subscribe(({ fuelInventoryId }) => {
         this.orderForm.controls['fuelInventoryId'].setValue(fuelInventoryId.fuelInventoryId);
-      })
+      });
   };
 
 
   /**
-   * * get amount pending on fuel inventory
-   */
+  ** get amount pending on fuel inventory
+  */
   getAmountPending() {
     const data = {
       ...this.orderForm.value
@@ -217,10 +206,13 @@ export class PurchasesOrderComponent implements OnInit {
     this._fuelInventoryService.getFuelInventoryAmountPending(data)
       .subscribe(({ fuelInventoryAmountPending }) => {
         this.orderForm.controls['amountPending'].setValue(fuelInventoryAmountPending.amountPending);
-      })
+      });
   };
 
-
+  /**
+  ** Method that is responsible for creating a purchase order   
+  ** Metodo que se encarga de crear orden de comra
+  */
   createPurchaseOrder() {
     this._purchaseOrderService.createPurchaseOrder(this.orderForm.value)
       .subscribe((data) => {
@@ -246,7 +238,7 @@ export class PurchasesOrderComponent implements OnInit {
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });
-  }
+  };
 
 
   aperturaOrden() {
@@ -262,13 +254,10 @@ export class PurchasesOrderComponent implements OnInit {
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getPurchaseOrderId();
-
       this.buttonDisableOrderDetail = true;
       this.buttonDisableApertura = false;
-
-    })
-
-  }
+    });
+  };
 
   saveOrderDetail() {
 
@@ -282,7 +271,6 @@ export class PurchasesOrderComponent implements OnInit {
       this.updateTotalPurchaseOrder();
       this.getTotalPurchaseOrder();
       this.getFuelInventoryId();
-      console.log(this.orderForm.value)
       const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getAmountPending();
@@ -294,75 +282,64 @@ export class PurchasesOrderComponent implements OnInit {
         this.buttonDisableNewOrderDetail = true;
         this.buttonDisableOrderDetail = false;
         this.getTotalPurchaseOrder();
-
-        console.log(this.orderForm.value)
         this.updateTotalPurchaseOrder();
         this.buttonDisableSaveAll = true;
-      })
-
-
+      });
     });
-
   };
 
   newOrderDetail() {
     this.resetDetailOrderValues();
     this.buttonDisableNewOrderDetail = false;
     this.buttonDisableOrderDetail = true;
-
-
-  }
+  };
 
   getTotalDetail() {
     this.amountDetail = this.orderForm.get('amount')?.value;
     this.priceDetail = this.orderForm.get('price')?.value;
     this.idpDetail = this.orderForm.get('taxesId')?.value;
     this.idpTotal = this.amountDetail * this.idpDetail;
-    this.orderForm.controls['idpTotal'].setValue(this.idpTotal)
+    this.orderForm.controls['idpTotal'].setValue(this.idpTotal);
     this.totalDetail = (this.amountDetail * this.priceDetail) + this.idpTotal;
     this.orderForm.controls['total'].setValue(this.totalDetail);
-  }
+  };
 
   calculateOrdersTotal() {
     this.totalPurchaseDB = this.orderForm.get('total')?.value;
     this.tlTotal = this.orderForm.get('totalPurchaseOrder')?.value;
     this.totalIDPPurchaseDB = this.orderForm.get('idpTotal')?.value;
     this.tlIDPTotal = this.orderForm.get('totalIDPPurchaseOrder')?.value;
-    this.tlToUpdate = this.totalPurchaseDB + this.tlTotal
-    this.tlIDPToUpdate = this.totalIDPPurchaseDB + this.tlIDPTotal
+    this.tlToUpdate = this.totalPurchaseDB + this.tlTotal;
+    this.tlIDPToUpdate = this.totalIDPPurchaseDB + this.tlIDPTotal;
     this.orderForm.controls['totalPurchaseOrder'].setValue(this.tlToUpdate);
     this.orderForm.controls['totalIDPPurchaseOrder'].setValue(this.tlIDPToUpdate);
-
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.subtotalPurchase = this.orderForm.get('totalPurchaseOrder')?.value;
       this.subtotalIDP = this.orderForm.get('totalIDPPurchaseOrder')?.value;
       this.SB = this.subtotalPurchase - this.subtotalIDP;
       this.orderForm.controls['subtotal'].setValue(this.SB);
-      console.log('totalp ' + this.subtotalPurchase)
-      console.log('totalIDp ' + this.subtotalIDP)
-      console.log('subtotal ' + this.SB)
-    })
-
+      console.log('totalp ' + this.subtotalPurchase);
+      console.log('totalIDp ' + this.subtotalIDP);
+      console.log('subtotal ' + this.SB);
+    });
   };
 
   /**
    ** sum of amount pending of inventory and amount of order
    */
-  sumAmountPendingAndAmountOrder(){
+  sumAmountPendingAndAmountOrder() {
     this.amountPendingDB = this.orderForm.get('amountPending')?.value;
     this.amountDetail = this.orderForm.get('amount')?.value;
     this.newAmount = (this.amountPendingDB + this.amountDetail);
     this.orderForm.controls['amountPending'].setValue(this.newAmount);
-
-  }
+  };
 
   listDetailPurchaseOrder() {
     this._purchaseOrderService.getListPurchaseDetailOrder(this.orderForm.value)
       .subscribe(({ listPurchaseOrder }) => {
         this.PurchaseDetOrder = listPurchaseOrder
-
-      })
+      });
   };
 
   updateAplicarDetailOrder() {
@@ -371,31 +348,31 @@ export class PurchasesOrderComponent implements OnInit {
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
-      })
+      });
   };
 
-updateAmountPending(){
-  const data = {
-    ...this.orderForm.value
-  };
-  this._fuelInventoryService.updateAmountPending(data)
-    .subscribe(data => {
+  updateAmountPending() {
+    const data = {
+      ...this.orderForm.value
+    };
+    this._fuelInventoryService.updateAmountPending(data)
+      .subscribe(data => {
 
-    }, err => {
-      Swal.fire('Error', err.error.msg, 'error')
-    })
-}
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      });
+  };
 
   saveOrder() {
     this.updateAplicarDetailOrder();
     this.reload();
-  }
+  };
 
   reload() {
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/dashboard/compras/ordenPedido']);
     });
-  }
+  };
 
 
   resetDetailOrderValues() {
@@ -405,7 +382,7 @@ updateAmountPending(){
     this.orderForm.controls['price'].setValue('');
     this.orderForm.controls['total'].setValue('');
     this.orderForm.controls['amountPending'].setValue('');
-  }
+  };
 
   updateTotalPurchaseOrder() {
     const data = {
@@ -420,7 +397,7 @@ updateAmountPending(){
       });
   };
 
-  
+
 
   getTotalPurchaseOrder() {
     const data = {

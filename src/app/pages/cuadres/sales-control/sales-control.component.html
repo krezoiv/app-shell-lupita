@@ -1,353 +1,289 @@
 <app-cuadres-navbar></app-cuadres-navbar>
 
 <body>
-    <div class="contenedor">
-        <form class="formulario" [formGroup]="salesControlForm" class="mat-elevation-z8">
+    <div class="contenedor" class="mat-elevation-z8">
+        <form  [formGroup]="salesControlForm" class="mat-elevation-z8">
             <h1>Control de Cuadre Diario</h1>
             <hr>
-            <div>
-                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
-                    <br>
-                    <tr>
+            <div class="row">
 
-                        <td id="parametrosPrincipales">
-                            <div>
-                                <label id="labelDate"> Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
-                                <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
-                                    appearance="fill">
-                                    <input id="input-registros" formControlName="readingDate" required matInput
-                                        [matDatepicker]="readingDate">
-                                    <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
-                                    <mat-datepicker #readingDate></mat-datepicker>
-                                </mat-form-field>
-                            </div><br>
-                            <div>
-                                <button mat-raised-button color="primary" id="buttonDate"
-                                    (click)="openDay();">Aperturar</button>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <label> Seleccione Fecha : &nbsp; &nbsp; &nbsp;</label>
+                    <mat-form-field id="matFiel-heards" color="accent" appearance="fill">
+                        <input formControlName="readingDate" required matInput [matDatepicker]="readingDate">
+                        <mat-datepicker-toggle [for]="readingDate" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #readingDate></mat-datepicker>
+                    </mat-form-field>
+                </div>
 
-                            </div>
-                            <br>
-                        </td>
-
-                        <td>
-                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros"
-                                appearance="legacy">
-
-                                <mat-label>Número de Documento:</mat-label>
-
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Número de Documento:</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
                                     formControlName="noDocument" matInput>
                                 <mat-icon matPrefix>numbers</mat-icon>
                                 <mat-hint>Número de documento del día</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
-                    </tr>
+                    </mat-form-field><br>
+                </div>
+            </div>
 
-                </table>
+            <div class="row">
+                <div>
+                    <button mat-raised-button color="primary" id="buttonDate" (click)="openDay();">Aperturar</button>
+                </div>
             </div>
             <hr>
 
-            <section id="sectionPrices">
-                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
-                    <br>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <h1>Precios Actuales</h1>
-                            <hr>
-                        </td>
-                    </tr>
+            <div class="row">
 
-                    <tr>
-                        <td id="tr-td-registros">
+                <div class="column" class="col-md-6 col-sm-6 col-xs-6">
 
-                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                                <mat-label>Super</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularPrice" matInput readonly=" ">
+                    <section id="sectionActulaPrice">
+                        <h1>Precios Actuales</h1>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                    <mat-label>Regular</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="regularPrice" matInput readonly=" ">
+                                    <mat-hint>precio en valla</mat-hint><br>
+                                </mat-form-field>
+                            </div>
 
-                                <mat-hint>precio en valla</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                    <mat-label>Super</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="superPrice" matInput readonly=" ">
+                                    <mat-hint>precio en valla</mat-hint><br>
+                                </mat-form-field>
+                            </div>
 
-                        <td id="tr-td-registros">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
 
-                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                                <mat-label>Super</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="superPrice" matInput readonly=" ">
+                                <mat-form-field id="mat-form-field-prices" appearance="legacy">
+                                    <mat-label>Diesel</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="dieselPrice" matInput readonly=" ">
+                                    <mat-hint>precio en valla</mat-hint><br>
+                                </mat-form-field>
+                            </div>
 
-                                <mat-hint>precio en valla</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
+                        </div>
+                    </section>
+                </div>
 
-                        <td id="tr-td-registros">
+                <div class="column" class="col-md-6 col-sm-6 col-xs-6">
+                    <section id="sectionSale">
+                        <h1>Galones Vendidos</h1>
+                        <div class="row">
 
-                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                                <mat-label>Diesel</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="dieselPrice" matInput readonly=" ">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <mat-form-field id="mat-form-field-sale" 
+                                    appearance="legacy">
+                                    <mat-label>Regular:</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="totalGallonRegular" matInput readonly="">
+                                    
+                                    <mat-hint>Lectura Anterior</mat-hint><br>
+                                </mat-form-field>
+                                <button *ngIf="buttonSaleRegular" id="buttonSaleRegular" (click)="confirmRegularSale();">Confirmar venta de galones</button>
+                            </div>
 
-                                <mat-hint>precio en valla</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
-                    </tr>
-                    <br><br>
-                </table>
-            </section>
 
-            <section id="sectionSales">
-                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
-                    <br>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <h1>Galones Vendidos</h1>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <mat-form-field id="mat-form-field-sale"  appearance="legacy">
+                                    <mat-label>Super</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="totalGallonSuper" matInput readonly=" ">
+                                    <mat-hint>galones vendidos</mat-hint><br>
+                                </mat-form-field>
+                                <button *ngIf="buttonSaleSuper" id="buttonSaleSuper" (click)="confirmSuperSale();">Confirmar venta de galones</button>
+                            </div>
 
-                            <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros"
-                                appearance="legacy">
-                                <mat-label>Regular:</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="totalGallonRegular" matInput readonly="">
-                                <mat-icon matSuffix> local_gas_station</mat-icon>
-                                <mat-hint>Lectura Anterior</mat-hint><br>
-                            </mat-form-field><br><br>
-                            <button (click)="confirmRegularSale();">Confirmar venta de galones</button>
-                        </td>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <mat-form-field id="mat-form-field-sale" appearance="legacy">
+                                    <mat-label>Diesel</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="totalGallonDiesel" matInput readonly=" ">
+                                    <mat-hint>galones vendidos</mat-hint><br>
+                                </mat-form-field>
+                                <button *ngIf="buttonSaleDiesel" id="buttonSaleDiesel" (click)="confirmDieselSale();">Confirmar venta de galones</button>
+                            </div>
+                        </div>
+                    </section>
 
-                        <td id="tr-td-registros">
+                </div>
 
-                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                                <mat-label>Super</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="totalGallonSuper" matInput readonly=" ">
+            </div>
 
-                                <mat-hint>galones vendidos</mat-hint><br>
-                            </mat-form-field><br><br>
-                            <button (click)="confirmSuperSale();">Confirmar venta de galones</button>
-                        </td>
-
-                        <td id="tr-td-registros">
-
-                            <mat-form-field id="mat-form-field-prices" appearance="legacy">
-                                <mat-label>Diesel</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="totalGallonDiesel" matInput readonly=" ">
-                                <mat-hint>galones vendidos</mat-hint><br>
-                            </mat-form-field><br><br>
-                            <button (click)="confirmDieselSale();">Confirmar venta de galones</button>
-                        </td>
-
-                    </tr><br><br>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                          <!--   <button mat-raised-button id="buttonAceptTotalGallons" (click)="confirmSale();">Confirmar venta de galones</button> -->
-                        </td>
-                    </tr>
-
-                </table>
-            </section>
-
-            <br><br><br><br><br><br><br><br><br>
             <hr>
 
-            <section id="sectionAcumulativo">
-                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <h1>Acumulativo</h1>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros" *ngFor="let a of countGallonsRegular">
+            <div class="row">
+                <div class="column" class="col-md-4 col-sm-4 col-xs-4">
+                    <section id="accumulated">
+                        <h1>Acumulado</h1>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4" *ngFor="let a of countGallonsRegular">
+                                <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
+                                    <mat-label>Regular</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="regularAccumulatedGallons" [(ngModel)]="a.count" matInput>
+                                    <mat-hint>acumulativo del mes</mat-hint>
+                                </mat-form-field>
+                            </div>
 
-                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
-                                <mat-label>Regular</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="regularAccumulatedGallons"  [(ngModel)]="a.count" matInput>
+                            <div class="col-md-4 col-sm-4 col-xs-4" *ngFor="let sup of countGallonsSuper">
 
-                                <mat-hint>acumulativo del mes</mat-hint>
-                            </mat-form-field>
-                        </td>
-                    </tr>
+                                <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
+                                    <mat-label>Super</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="superAccumulatedGallons" [(ngModel)]="sup.count" matInput>
 
-                    <tr>
-                        <td id="tr-td-registros" *ngFor="let sup of countGallonsSuper" >
+                                    <mat-hint>acumulativo del mes</mat-hint>
+                                </mat-form-field>
+                            </div>
 
-                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
-                                <mat-label>Diesel</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="superAccumulatedGallons" [(ngModel)]="sup.count" matInput>
+                            <div class="col-md-4 col-sm-4 col-xs-4" *ngFor="let diesel of countGallonsDiesel">
+                                <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
+                                    <mat-label>Diesel</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="dieselAccumulatedGallons" [(ngModel)]="diesel.count" matInput>
 
-                                <mat-hint>acumulativo del mes</mat-hint>
-                            </mat-form-field>
-                        </td>
-                    </tr>
+                                    <mat-hint>acumulativo del mes</mat-hint>
+                                </mat-form-field>
+                            </div>
 
-                    <tr>
-                        <td id="tr-td-registros"  *ngFor="let diesel of countGallonsDiesel">
-                            <mat-form-field id="mat-form-field-accumulated" appearance="legacy">
-                                <mat-label>Super</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="dieselAccumulatedGallons" [(ngModel)]="diesel.count" matInput>
+                        </div>
+                    </section>
+                </div>
 
-                                <mat-hint>acumulativo del mes</mat-hint>
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                </table>
-            </section>
-            <section id="seccionAbonos">
-                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <h1>Abonos</h1>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros">
-                            <mat-form-field id="mat-form-field-payment" appearance="legacy">
-                                <mat-label>Gastos</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="bills" matInput>
+                <div class="column" class="col-md-4 col-sm-4 col-xs-4">
+                    <section id="abono">
+                        <h1>Abonos</h1>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <mat-form-field id="mat-form-field-payment" appearance="legacy">
+                                    <mat-label>Gastos</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="bills" matInput>
 
-                                <mat-hint>gatos generados</mat-hint><br>
-                            </mat-form-field>
-                        </td>
+                                    <mat-hint>gatos generados</mat-hint><br>
+                                </mat-form-field>
+                            </div>
 
-                        <td id="tr-td-registros">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
 
-                            <mat-form-field id="mat-form-field-payment" appearance="legacy">
-                                <mat-label>Vales</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="vales" matInput>
+                                <mat-form-field id="mat-form-field-payment" appearance="legacy">
+                                    <mat-label>Vales</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="vales" matInput>
 
-                                <mat-hint>vales recibidos</mat-hint>
-                            </mat-form-field>
-                        </td>
+                                    <mat-hint>vales recibidos</mat-hint>
+                                </mat-form-field>
+                            </div>
 
-                    </tr>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
+                        </div><br>
 
-                            <hr id="hrAbonos">
-                        </td>
-                    </tr>
+                        <div class="row">
 
-                    <tr>
-                        <td id="tr-td-registros">
-                            <mat-form-field id="mat-form-field-payment" appearance="legacy">
-                                <mat-label>Cupones</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="cupones" matInput>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <mat-form-field id="mat-form-field-payment" appearance="legacy">
+                                    <mat-label>Cupones</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="cupones" matInput>
+                                    <mat-hint>cupones recibidos</mat-hint><br>
+                                </mat-form-field>
+                            </div>
 
-                                <mat-hint>cupones recibidos</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <mat-form-field id="mat-form-field-payment" appearance="legacy">
+                                    <mat-label>Vouchers</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="vouchers" matInput>
+                                    <mat-hint>vouchers recibidos</mat-hint><br>
+                                </mat-form-field>
+                            </div>
+                        </div><br>
 
-                        <td id="tr-td-registros">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <mat-form-field id="mat-form-field-payment" appearance="legacy">
+                                    <mat-label>Depósitos</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="deposits" matInput>
+                                    <mat-hint>total depositado</mat-hint><br>
+                                </mat-form-field>
+                            </div>
 
-                            <mat-form-field id="mat-form-field-payment" appearance="legacy">
-                                <mat-label>Vouchers</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="vouchers" matInput>
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <mat-form-field id="mat-form-field-payment" appearance="legacy">
+                                    <mat-label>Créditos</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="credits" matInput>
+                                    <mat-hint>crédito otorgado</mat-hint><br>
+                                </mat-form-field>
+                            </div>
+                        </div><br>
+                        <div class="row">
 
-                                <mat-hint>vouchers recibidos</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
+                            <button  *ngIf="buttonAbonos" mat-raised-button color="primary" id="buttonDate"
+                                (click)="getTotalAbono();">Aceptar</button>
+                        </div>
+                    </section>
 
-                    </tr>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
 
-                            <hr id="hrAbonos">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros">
-                            <mat-form-field id="mat-form-field-payment" appearance="legacy">
-                                <mat-label>Depósitos</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="deposits" matInput>
+                </div>
 
-                                <mat-hint>total depositado</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
+                <div class="column" class="col-md-4 col-sm-4 col-xs-4">
+                    <section id="balance">
+                        <h1>Balance</h1>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12"  align="right">
+                                <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
+                                <mat-form-field id="mat-form-field-othersA" appearance="legacy">
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName='total' matInput readonly="">
+                                    <mat-hint>cuadre del día</mat-hint><br>
+                                </mat-form-field>
+                            </div>
+                        </div><br>
 
-                        <td id="tr-td-registros">
-                            <mat-form-field id="mat-form-field-payment" appearance="legacy">
-                                <mat-label>Créditos</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="credits" matInput>
-
-                                <mat-hint>crédito otorgado</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
-                    </tr><br><br>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <button mat-raised-button id="buttonAceptTotalGallons" (click)="getTotalAbono();">Aplicar</button>
-                        </td>
-                    </tr>
-                </table>
-            </section>
-
-            <section id="sectionBalance">
-                <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <h1>Balance</h1>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros" colspan="3" scope="rowgroup" align="right">
-                            <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label id="labelOthers">Total Abonos: &nbsp; &nbsp; &nbsp;</label>
                             <mat-form-field id="mat-form-field-othersA" appearance="legacy">
-                                <mat-label>Total</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName='total' matInput readonly="">
-
-                                <mat-hint>cuadre del día</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros" colspan="1" scope="rowgroup" align="left">
-                            <label id="labelOthers">Total: &nbsp; &nbsp; &nbsp;</label>
-                            <mat-form-field id="mat-form-field-othersA" appearance="legacy">
-                                <mat-label>Abonos</mat-label>
                                 <input id="input-registros" id="input-registros" type="number" name="gallonA"
                                     formControlName="abonos" matInput>
-
                                 <mat-hint>total de abonos</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="tr-td-registros" colspan="3" scope="rowgroup" align="right">
-                            <label id="labelOthers">Saldo: &nbsp; &nbsp; &nbsp;</label>
-                            <mat-form-field id="mat-form-field-othersA" appearance="legacy">
-                                <mat-label>Saldo</mat-label>
-                                <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                    formControlName="balance" matInput>
+                            </mat-form-field>
+                            </div>
+                        </div><br>
 
-                                <mat-hint>cuadre del día</mat-hint><br>
-                            </mat-form-field><br>
-                        </td>
-                    </tr><br><br>
-                    <tr>
-                        <td colspan="3" scope="rowgroup" align="center">
-                            <button mat-raised-button id="buttonAceptTotalGallons" (click)="saveSalesControl();">Aceptar</button>
-                        </td>
-                    </tr>
-                </table>
-            </section>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12"  align="right">
+                                <label id="labelOthers">Saldo: &nbsp; &nbsp; &nbsp;</label>
+                                <mat-form-field id="mat-form-field-othersA" appearance="legacy">
+                                    <mat-label>Saldo</mat-label>
+                                    <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="balance" matInput>
+    
+                                    <mat-hint>cuadre del día</mat-hint><br>
+                                </mat-form-field>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            
+
+                                <button *ngIf="saveButton" mat-raised-button color="primary" id="saveButton"
+                                (click)="saveSalesControl();">Aceptar</button>
+                                         
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
         </form>
     </div>
 </body>

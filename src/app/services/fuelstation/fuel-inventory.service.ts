@@ -84,4 +84,12 @@ export class FuelInventoryService {
     return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableRegularSale`, fuelInventory, this.headers);
   };
 
+  updateAvailableSuperSale(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
+    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableSuperSale`, fuelInventory, this.headers);
+  };
+
+  updateAvailableDieselSale(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
+    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableDieselSale`, fuelInventory, this.headers);
+  };
+
 }

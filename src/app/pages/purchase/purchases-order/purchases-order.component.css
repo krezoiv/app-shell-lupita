@@ -12,7 +12,8 @@ form {
     max-width: 100%;
     margin: auto;
     top: 30%;
-    min-height: 130vh;
+    min-height: 120vh;
+    background-color: white;
     
 }
 
@@ -20,6 +21,8 @@ h3{
     font-size: 30px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    background-color: #21618C;
+    color: white;
 }
 
 hr {
@@ -74,7 +77,7 @@ hr {
     height: 350px;
     float: right;
     padding-right: 15px;
-    padding-left: 100px;
+    padding-left: 15px;
     border: 1px solid;
 
 }

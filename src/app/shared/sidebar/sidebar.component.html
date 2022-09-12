@@ -2,7 +2,8 @@
 <body>
   <mat-toolbar>   
     <mat-toolbar-row >
-        <h4>Shell Lupita</h4>
+        <h4>Shell Lupita </h4>
+        
     </mat-toolbar-row>
   
   </mat-toolbar>
@@ -24,6 +25,15 @@
         <mat-list-item><a routerLink="/dashboard/compras" ><mat-icon>shopping_cart</mat-icon> Compras</a></mat-list-item>
       </mat-list>
   
+      <div class="wrap">
+        <div class="widget">
+          <div class="date">
+            <p id="week" class="dayWeek ">{{date| date}} </p>
+            <p id="hours" class="hours "> {{hour | date:'hh:mm:ss'}}</p>
+          </div>
+        </div>
+      </div>
+     
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

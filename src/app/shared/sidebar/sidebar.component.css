@@ -21,3 +21,34 @@ mat-toolbar {
     background-color: #212F3C ;
     color: white;
 }
+
+.wrap{
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.widget {
+    width: 90%;
+    margin: 1em;
+}
+
+
+
+.widget p {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.date {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 0.3125rem;
+    padding: 20px;
+    width: 100%;
+    color: white;
+    background-color: dimgrey;
+}
+
+
+
