@@ -21,3 +21,11 @@ export interface taxesByFuel {
     statusId: string ,
     taxesId: Taxes,
 }
+
+export interface HoseId_I {
+    hoseId : Hoses
+}
+
+export interface FuelId_I {
+    fuelId : Hoses
+}

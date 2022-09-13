@@ -41,9 +41,17 @@ export class LoginComponent implements OnInit {
         timer:1000
       })
       
+      this.userLogged();
     }, ( err ) => {
       Swal.fire('Error', err.error.msg, 'error');
     }) 
+  }
+
+  userLogged(){
+    this.authService.userLooged(this.loginForm.value as LoginForm)
+      .subscribe(resp => {
+        console.log( resp)
+      }) 
   }
 
 }

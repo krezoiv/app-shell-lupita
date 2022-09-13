@@ -52,5 +52,9 @@ export class AuthService {
     this.router.navigateByUrl('/login');
   };
 
+
+  userLooged( formData : LoginForm){
+    return this.http.post(`${api_url}/login/loggedUser`, formData)
+  }
 };
 

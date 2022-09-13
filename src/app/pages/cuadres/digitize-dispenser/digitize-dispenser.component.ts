@@ -3,6 +3,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { Router, TitleStrategy } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -10,6 +11,8 @@ import { AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { Island } from 'src/app/models/fuelstation/island.models';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
+import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
+import { HosesService } from 'src/app/services/fuelstation/hoses.service';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
@@ -94,6 +97,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   moneyAD!: Number | any;
   moneyPD!: Number | any;
   result_myD!: Number | any;
+  result!: Number | any;
 
 
   RegularGDB!: Number | any;
@@ -288,7 +292,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     position: ['', Validators.required],
     islaNombre: ['', Validators.required],
     readingDate: ['', Validators.required],
-    totalGallonRegular: ['1', Validators.required],
+    totalGallonRegular: ['0', Validators.required],
     totalMechanicRegular: ['0', Validators.required],
     totalMoneyRegular: ['0', Validators.required],
     totalGallonSuper: ['0', Validators.required],
@@ -312,6 +316,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     totalNoMoney: [0],
     generalDispenserReaderId: ['', Validators.required],
     applied: [false, Validators.required],
+    available: ['', Validators.required],
+    fuelId: ['', Validators.required],
+    hoseId: ['', Validators.required],
 
   });
 
@@ -321,6 +328,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private islandService: IslandsService,
     private dispenserService: DispensersService,
+    private fuelInventoryService: FuelInventoryService,
+    private hoseService: HosesService,
     private dialog: MatDialog,
     private router: Router,
     private _snackBar: MatSnackBar
@@ -356,6 +365,28 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
 
 
+  getHoseIdByAssignmentHoseId() {
+    this.hoseService.getHoseIdByAssignmentId(this.digitizeForm.value)
+      .subscribe(({ hoseId }) => {
+        this.digitizeForm.controls['hoseId'].setValue(hoseId.hoseId);
+      });
+  };
+
+  getFuelIdByHoseId() {
+    this.hoseService.getFuelIdByHoseId(this.digitizeForm.value)
+      .subscribe(({ fuelId }) => {
+        this.digitizeForm.controls['fuelId'].setValue(fuelId.fuelId);
+      });
+  };
+
+  getAvailable() {
+    this.fuelInventoryService.getFuelInventoryAvailable(this.digitizeForm.value)
+      .subscribe(({ fuelInventoryAvailable }) => {
+        this.digitizeForm.controls['available'].setValue(fuelInventoryAvailable.available);
+        console.log(fuelInventoryAvailable.available)
+      });
+  };
+
   //crear el total de numercion englobado de todas las mangueras
   creatGeneralAssignmentDispenserReader() {
 
@@ -378,6 +409,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   // creacion para agregar numeracion a cada manguera de bomba
   createDispenserReader() {
+
 
     this.dispenserService.createDispenserReader(this.digitizeForm.value)
       .subscribe((data) => {
@@ -452,7 +484,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
-
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -672,7 +703,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   closeDay() {
-     }
+  }
 
 
   habilitarA() {
@@ -738,8 +769,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.buttonDisableSideA1 = false;
         this.buttonDisableSideB1 = true;
       };
-    
-    });  
+
+    });
 
   };
 
@@ -880,7 +911,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousNoGallonsRegular) => {
         this.digitizeForm.controls['actualNoGallons'].setValue(previousNoGallonsRegular.previousNoGallonsRegular.actualNoGallons);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousNoGallonsRegular.previousNoGallonsRegular.dispenserReaderId);
-        
+
       });
   };
 
@@ -1119,8 +1150,12 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   //aperturar manguera Regular lado A Isla 1
   regular1A() {
     this.getAssignmentHoseIdRegularA1();
+
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
+    this.getHoseIdByAssignmentHoseId();
+    this.getFuelIdByHoseId();
+
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1131,18 +1166,28 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.getPreviuosNoMechanic();
         this.getPreviuosNoMoney();
         this.getAssignmentHoseIdRegularA1();
-        this.btnDisableRegularR1A = true;
-        this.btnDisableSuperR1A = true;
-        this.btnDisableDisableR1A = true;
-        this.btnDisableRegularR1B = true;
-        this.btnDisableSuperR1B = true;
-        this.btnDisableDieselR1B = true;
-        this.buttonDisableRegular = true;
+        this.getHoseIdByAssignmentHoseId();
+        this.getFuelIdByHoseId();
+        const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+        snackBarRef1.afterDismissed().subscribe(() => {
+          this.getFuelIdByHoseId();
+          this.getAvailable();
+          this.btnDisableRegularR1A = true;
+          this.btnDisableSuperR1A = true;
+          this.btnDisableDisableR1A = true;
+          this.btnDisableRegularR1B = true;
+          this.btnDisableSuperR1B = true;
+          this.btnDisableDieselR1B = true;
+          this.buttonDisableRegular = true;
+          this.showMeRegular1A = !this.showMeRegular1A;
+          console.log(this.digitizeForm.value);
 
-        this.showMeRegular1A = !this.showMeRegular1A;
-        this.resetFormValuesNumbering();
+        })
+        this.getAvailable();
       };
     });
+   
+    this.resetFormValuesNumbering();
   };
 
   //update numbering gallons on regular
@@ -1157,6 +1202,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.getAssignmentHoseIdSuperA1();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
+    this.getHoseIdByAssignmentHoseId();
+    this.getFuelIdByHoseId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1167,24 +1214,33 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.getPreviuosNoMechanicSuper();
         this.getPreviuosNoMoneySuper();
         this.getAssignmentHoseIdSuperA1();
-        this.buttonDisableSuper = true
-        this.btnDisableRegularR1A = true;
-        this.btnDisableDisableR1A = true
-        this.btnDisableRegularR1B = true
-        this.btnDisableSuperR1B = true
-        this.btnDisableDieselR1B = true
-        this.buttonDisableRegular = false
-        this.showMeSuper1A = !this.showMeSuper1A
-        this.btnDisableRegularR1A = true;
-        this.btnDisableDisableR1A = true
-        this.btnDisableRegularR1B = true
-        this.btnDisableSuperR1B = true
-        this.btnDisableDieselR1B = true
-        this.buttonDisableRegular = false
-        this.btnDisableSuperR1A = true;
-        this.resetFormValuesNumbering();
+        this.getHoseIdByAssignmentHoseId();
+        this.getFuelIdByHoseId();
+        const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+        snackBarRef1.afterDismissed().subscribe(() => {
+          this.getFuelIdByHoseId();
+          this.getAvailable();
+          this.buttonDisableSuper = true
+          this.btnDisableRegularR1A = true;
+          this.btnDisableDisableR1A = true
+          this.btnDisableRegularR1B = true
+          this.btnDisableSuperR1B = true
+          this.btnDisableDieselR1B = true
+          this.buttonDisableRegular = false
+          this.showMeSuper1A = !this.showMeSuper1A
+          this.btnDisableRegularR1A = true;
+          this.btnDisableDisableR1A = true
+          this.btnDisableRegularR1B = true
+          this.btnDisableSuperR1B = true
+          this.btnDisableDieselR1B = true
+          this.buttonDisableRegular = false
+          this.btnDisableSuperR1A = true;
+        })
+        this.getAvailable();
+       
       };
     });
+    this.resetFormValuesNumbering();
   };
 
   diesel1A() {
@@ -1541,7 +1597,18 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   //guarda el detalle de numeracion de bomba de regular lado A isla 1
   guardarRegularA1(): void {
+
     this.gallonageResults();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -1566,6 +1633,15 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   guardarSuperA1(): void {
 
     this.gallonageResults();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
     this.getGeneralAssignmentDispenserReaderId();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
@@ -2125,7 +2201,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.updateTotalGallons(data)
       .subscribe(resp => {
 
-      },err => {
+      }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });
   };
@@ -3251,7 +3327,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     });
   };
 
-  saveUpdateDispenserReaderDiesel4(){
+  saveUpdateDispenserReaderDiesel4() {
     this.getAssignmentHoseIdDieselB2();
     this.gallonageResultsDieselUpdte();
     this.calculateTotalGeneralGallonsDiesel();
@@ -3405,16 +3481,16 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
-  updateDispenserReaderDiesel4(){
+  updateDispenserReaderDiesel4() {
     this.getAssignmentHoseIdDieselB2();
     this.gallonageResultsDieselUpdte();
     this.calculateTotalGeneralGallonsDiesel();
     this.dispenserService.updateDispenserReader
-    (this.digitizeForm.value).subscribe(resp => {
-      Swal.fire('Actualizado', 'Actualizado Correctamente', 'success');
-    }, err => {
-      Swal.fire('Error', err.error.msg, 'error')
-    });
+      (this.digitizeForm.value).subscribe(resp => {
+        Swal.fire('Actualizado', 'Actualizado Correctamente', 'success');
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      });
   };
 
   calculateTotalGeneralGallons() {

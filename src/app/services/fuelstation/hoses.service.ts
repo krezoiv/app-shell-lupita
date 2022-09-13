@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DieselPrice_I,  RegularPrice_I, SuperPrice_I } from 'src/app/interfaces/fuelstation/fuels.interface';
+import { DieselPrice_I,  FuelId_I,  HoseId_I,  RegularPrice_I, SuperPrice_I } from 'src/app/interfaces/fuelstation/fuels.interface';
 import { Hoses_I } from 'src/app/interfaces/fuelstation/hoses.interfaces';
 import { Hoses } from 'src/app/models/fuelstation/hoses.models';
 import { environment } from 'src/environments/environment';
@@ -64,4 +64,11 @@ getDieselPrices(): Observable<DieselPrice_I>{
   return this.http.get<DieselPrice_I>(`${api_url}/hoses/dieselprice`, this.headers);
 };
 
+getHoseIdByAssignmentId(hoseId : string): Observable<HoseId_I>{
+  return this.http.post<HoseId_I>(`${api_url}/hoses/hoseId`, hoseId, this.headers);
+}
+
+getFuelIdByHoseId(fuelId: string): Observable<FuelId_I>{
+  return this.http.post<FuelId_I>(`${api_url}/hoses/fuelId`, fuelId, this.headers);
+}
 };

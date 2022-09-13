@@ -276,7 +276,7 @@ export class SalesControlComponent implements OnInit {
     this.totalRegular = this.salesControlForm.get('totalGallonRegular')?.value;
     this.NewAvailableRegular = ((this.availableregularDB) - (this.totalRegular));
     this.salesControlForm.controls['available'].setValue(parseFloat(this.NewAvailableRegular));
-    console.log(this.NewAvailableRegular)
+   
   };
 
   restAvailableSuper() {
