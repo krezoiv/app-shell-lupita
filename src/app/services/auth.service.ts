@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginForm } from '../interfaces/loginform.interface';
+import { LoggedUser_I } from '../interfaces/users.interface';
+import { Users } from '../models/user.models';
 
 
 
@@ -53,8 +55,8 @@ export class AuthService {
   };
 
 
-  userLooged( formData : LoginForm){
-    return this.http.post(`${api_url}/login/loggedUser`, formData)
+  userLooged( formData : LoginForm): Observable<LoggedUser_I>{
+    return this.http.post<LoggedUser_I>(`${api_url}/login/loggedUser`, formData)
   }
 };
 

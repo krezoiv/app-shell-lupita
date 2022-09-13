@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginForm } from 'src/app/interfaces/loginform.interface';
@@ -15,10 +15,12 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   
   public formSubmitted = false;
-
+  userName! : string 
+  
   public loginForm = this.formBuilder.group({
     email: [''],
-    password: ['']
+    password: [''],
+    user:['']
   });
 
   constructor(
@@ -34,14 +36,13 @@ export class LoginComponent implements OnInit {
     console.log( this.loginForm.value)
     this.authService.login( this.loginForm.value as LoginForm )
     .subscribe( resp => {
+     
       this.router.navigateByUrl('/dashboard');
-      Swal.fire({
-        title: "Bienvenido!",
-        text: "Shell Lupita",
-        timer:1000
-      })
-      
       this.userLogged();
+      
+      
+      
+     
     }, ( err ) => {
       Swal.fire('Error', err.error.msg, 'error');
     }) 
@@ -49,8 +50,17 @@ export class LoginComponent implements OnInit {
 
   userLogged(){
     this.authService.userLooged(this.loginForm.value as LoginForm)
-      .subscribe(resp => {
-        console.log( resp)
+      .subscribe(({userDB}) => {
+        console.log( userDB.firstName)
+
+        this.loginForm.controls['user'].setValue(userDB.firstName);
+        this.userName = userDB.firstName
+        console.log(this.userName)
+        Swal.fire({
+          title: "Bienvenido! " + this.userName,
+          text: "Shell Lupita",
+          timer:1000
+        })
       }) 
   }
 

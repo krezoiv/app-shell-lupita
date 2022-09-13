@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -16,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http'
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, SharedModule
   ], 
   exports: [
     LoginComponent,

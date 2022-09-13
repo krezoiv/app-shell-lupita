@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,6 +14,8 @@ export class SidebarComponent implements OnInit {
     private  authService : AuthService
   ) { }
 
+  @Input() userName! : string
+ 
   date : number = Date.now();
   hour : any
   ngOnInit(): void {

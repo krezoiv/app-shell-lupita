@@ -1,3 +1,4 @@
+import { Users } from "../models/user.models";
 
 
 export interface getUsers {
@@ -25,6 +26,10 @@ export interface newUser {
     password: string,
     rolesId: string,
     statusId: string,
+}
+
+export interface LoggedUser_I {
+    userDB: Users
 }
 
 
