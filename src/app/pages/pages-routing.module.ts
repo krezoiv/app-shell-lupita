@@ -26,6 +26,7 @@ import { SalesControlComponent } from './cuadres/sales-control/sales-control.com
 import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
 import { PurchasesComponent } from './purchase/purchases/purchases.component';
 import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.component';
+import { InventoryComponent } from './inventory/inventory/inventory.component';
 
 
 const routes: Routes =[
@@ -54,7 +55,8 @@ const routes: Routes =[
     {path : 'cuadres/controlVentas', component: SalesControlComponent},
     {path : 'compras/ordenPedido', component: PurchasesOrderComponent},
     {path : 'compras/nuevaCompra', component: PurchasesComponent},
-    {path : 'compras', component: MainPurchaseComponent}
+    {path : 'compras', component: MainPurchaseComponent},
+    {path : 'inventario', component: InventoryComponent}
 
   ]},
   

@@ -1,9 +1,8 @@
-html {
-    height: 100%;
-}
+
 body {
-    min-height: 100vh;
+    min-height: 100vh !important;
     min-width: none;
+    width: 100% !important;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -171,12 +170,12 @@ body {
 .main-bg {
     
     background-image: url('src/assets/images/fondo.jpeg');
-    min-height: 380px;
+    height: 100% !important ;
 
   /* Center and scale the image nicely */
-  background-position: center;
+  background-position: 100% !important;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% !important;
   position: relative;
 }
 
@@ -204,8 +203,8 @@ body {
 }
 
 .logo {
-    width:100px;
-    height:100px;
+    width:100px !important;
+    height:100px !important;
     border-radius:150px;
     border:5px solid #666;
 

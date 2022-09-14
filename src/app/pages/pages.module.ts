@@ -61,6 +61,7 @@ import { PurchasesComponent } from './purchase/purchases/purchases.component';
 import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
 import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.component';
 import { LoadingComponent } from '../shared/functions/loading/loading.component';
+import { InventoryComponent } from './inventory/inventory/inventory.component';
 
 
 
@@ -104,6 +105,7 @@ import { LoadingComponent } from '../shared/functions/loading/loading.component'
     PurchasesComponent,
     PurchasesOrderComponent,
     MainPurchaseComponent,
+    InventoryComponent,
 
    
     
@@ -140,7 +142,8 @@ import { LoadingComponent } from '../shared/functions/loading/loading.component'
     MaintenancesComponent,
     CuadresNavbarComponent,
     TimerComponent,
-    LoadingComponent
+    LoadingComponent, 
+    InventoryComponent
   
   ]
 })

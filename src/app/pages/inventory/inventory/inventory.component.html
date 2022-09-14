@@ -1,0 +1,40 @@
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form class="mat-elevation-z8">
+            <h1>Inventario</h1>
+            <hr>
+            <div class="row">
+                
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div id="priceDiv">
+                        <label> <h2>Precios</h2></label>
+                     </div>
+                    <section id="priceSection">
+                     
+                        <div>
+                            <table id="tablaCombustible" class="table table-dark" class="mat-elevation-z8">
+                                <thead class="thead-dark">
+                                    <tr id="trEncabezado">
+                                        <th scope="col">Combustible</th>
+                                        <th scope="col">IDP</th>
+                                        <th scope="col">Precio Costo</th>
+                                        <th scope="col">Precio Público</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of fuelSelected">
+                                        <td>{{data.fuelName}}</td>
+                                        <td>{{data.taxesId?.idpAmount}}</td>
+                                        <td>{{data.costPrice}}</td>
+                                        <td>{{data.salePrice}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
