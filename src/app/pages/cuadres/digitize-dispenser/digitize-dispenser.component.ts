@@ -3353,9 +3353,19 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
 
   saveUpdateDispenserReader() {
-    this.getAssignmentHoseIdRegularA1();
+   
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdRegularA1();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -3372,9 +3382,19 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReader2() {
-    this.getAssignmentHoseIdRegularB1();
+   
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdRegularB1();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -3391,9 +3411,19 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReader3() {
-    this.getAssignmentHoseIdRegularA2();
+    
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdRegularA2();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -3410,25 +3440,52 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReader4() {
-    this.getAssignmentHoseIdRegularB2();
+    
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
-    this.updateDispenserReader4();
-    this.updaTotalGallons();
-    this.updateGallons();
-    this.resetFormValuesNumbering();
-    this.showMeRegular2B = !this.showMeRegular2B;
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    const dialogRef = this.dialog.open(ConfirmationsComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(resp => {
+      this.getAssignmentHoseIdRegularB2();
+      this.updateDispenserReader4();
+      this.updaTotalGallons();
+      this.updateGallons();
+      this.resetFormValuesNumbering();
+      this.showMeRegular2B = !this.showMeRegular2B;
+    });
+   
   };
 
   saveUpdateDispenserReaderSuper() {
-    this.gallonageResultsSuperUpdte();
+    this.gallonageResults();
+    //this.gallonageResultsSuperUpdte();
     this.calculateTotalGeneralGallonsSuper();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
     this.getAssignmentHoseIdSuperA1()
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       this.getAssignmentHoseIdSuperA1();
+      this.gallonageResults();
       this.calculateTotalGeneralGallonsSuper();
       this.updateDispenserReaderSuper();
       this.updaTotalGallons();
@@ -3440,14 +3497,24 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
 
   saveUpdateDispenserReaderSuper2() {
-    this.gallonageResultsSuperUpdte();
+    this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
     this.getAssignmentHoseIdSuperB1()
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       this.getAssignmentHoseIdSuperB1();
+      this.gallonageResults();
       this.calculateTotalGeneralGallonsSuper();
       this.updateDispenserReaderSuper2();
       this.updaTotalGallons();
@@ -3459,14 +3526,24 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
 
   saveUpdateDispenserReaderSuper3() {
-    this.gallonageResultsSuperUpdte();
+   this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
     this.getAssignmentHoseIdSuperA2();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       this.getAssignmentHoseIdSuperA2();
+      this.gallonageResults();
       this.calculateTotalGeneralGallonsSuper();
       this.updateDispenserReaderSuper3();
       this.updaTotalGallons();
@@ -3477,14 +3554,24 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReaderSuper4() {
-    this.gallonageResultsSuperUpdte();
+    this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
-    this.getAssignmentHoseIdSuperB2;
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdSuperB2();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(() => {
       this.getAssignmentHoseIdSuperB2();
+      this.gallonageResults();
       this.calculateTotalGeneralGallonsSuper();
       this.updateDispenserSuper4();
       this.updaTotalGallons();
@@ -3495,16 +3582,25 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReaderDiesel() {
-    this.getAssignmentHoseIdDieselA1();
-    this.gallonageResultsDieselUpdte();
+    this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdDieselA1();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
         this.getAssignmentHoseIdDieselA1();
-        this.gallonageResultsDieselUpdte();
+        this.gallonageResults();
         this.calculateTotalGeneralGallonsDiesel();
         this.updateDispenerReaderDiesel();
         this.updaTotalGallons();
@@ -3516,16 +3612,25 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReaderDiesel2() {
-    this.getAssignmentHoseIdDieselB1();
-    this.gallonageResultsDieselUpdte();
+    this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdDieselB1();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
         this.getAssignmentHoseIdDieselB1();
-        this.gallonageResultsDieselUpdte();
+        this.gallonageResults();
         this.calculateTotalGeneralGallonsDiesel();
         this.updateDispenerReaderDiesel2();
         this.updaTotalGallons();
@@ -3537,15 +3642,24 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReaderDiesel3() {
-    this.getAssignmentHoseIdDieselA2();
-    this.gallonageResultsDieselUpdte();
+    this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdDieselA2();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       this.getAssignmentHoseIdDieselA2();
-      this.gallonageResultsDieselUpdte();
+      this.gallonageResults();
       this.calculateTotalGeneralGallonsDiesel();
       this.updateDispenerReaderDiesel3();
       this.updaTotalGallons();
@@ -3556,15 +3670,24 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   saveUpdateDispenserReaderDiesel4() {
-    this.getAssignmentHoseIdDieselB2();
-    this.gallonageResultsDieselUpdte();
+    this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
+    this.gallonAD = this.digitizeForm.get('available')?.value;
+    this.gallonA = this.digitizeForm.get('totalNoGallons')?.value;
+    if (this.gallonAD < this.gallonA) {
+      Swal.fire({
+        title: "Alerta!",
+        text: "Combustible Insuficiente",
+      })
+      return;
+    }
+    this.getAssignmentHoseIdDieselB2();
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
     dialogRef.afterClosed().subscribe(resp => {
       this.getAssignmentHoseIdDieselB2();
-      this.gallonageResultsDieselUpdte();
+      this.gallonageResults();
       this.calculateTotalGeneralGallonsDiesel();
       this.updateDispenserReaderDiesel4();
       this.updaTotalGallons();
