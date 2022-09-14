@@ -8,7 +8,8 @@ export class Hoses {
         public hoseColor? : string,
         public fuelId? : Fuels,
         public statusId? : Status,
-        public hoseId? : string
+        public hoseId? : string,
+        public code?: number
     ){}
 }
 

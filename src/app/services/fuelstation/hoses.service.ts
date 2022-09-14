@@ -66,11 +66,11 @@ getDieselPrices(): Observable<DieselPrice_I>{
 };
 
 getHoseIdByAssignmentId(hose : AssignmentHose): Observable<HoseId_I>{
-  return this.http.get<HoseId_I>(`${api_url}/hoses/hoseId/${hose.assignmentHoseId}`,  this.headers);
+  return this.http.post<HoseId_I>(`${api_url}/hoses/hoseId`, hose,  this.headers);
 }
 
 getFuelIdByHoseId(hose: Hoses): Observable<FuelId_I>{
-  return this.http.get<FuelId_I>(`${api_url}/hoses/fuelId/${hose.hoseId}`, this.headers);
+  return this.http.post<FuelId_I>(`${api_url}/hoses/fuelId`, hose, this.headers);
 }
 
 };
