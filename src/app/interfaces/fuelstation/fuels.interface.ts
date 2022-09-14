@@ -1,3 +1,4 @@
+import { AssignmentHose } from "src/app/models/fuelstation/assignment.model";
 import { Hoses } from "src/app/models/fuelstation/hoses.models";
 import { Fuels } from "src/app/models/infrastructure.model";
 import { Taxes } from "src/app/models/purchase/taxes.model";
@@ -23,7 +24,7 @@ export interface taxesByFuel {
 }
 
 export interface HoseId_I {
-    hoseId : Hoses
+    hhose : AssignmentHose
 }
 
 export interface FuelId_I {

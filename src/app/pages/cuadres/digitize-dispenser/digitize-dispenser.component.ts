@@ -367,8 +367,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   getHoseIdByAssignmentHoseId() {
     this.hoseService.getHoseIdByAssignmentId(this.digitizeForm.value)
-      .subscribe(({ hoseId }) => {
-        this.digitizeForm.controls['hoseId'].setValue(hoseId.hoseId);
+      .subscribe(({ hhose }) => {
+        this.digitizeForm.controls['hoseId'].setValue(hhose.hoseId);
       });
   };
 
@@ -397,9 +397,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.buttonDisableSideA1 = false;
         this.buttonaperturar = false;
         this.buttonacierre = true;
-        console.log(this.digitizeForm.value)
-
-
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
         this.digitizeForm.reset();
@@ -409,14 +406,11 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   // creacion para agregar numeracion a cada manguera de bomba
   createDispenserReader() {
-
-
     this.dispenserService.createDispenserReader(this.digitizeForm.value)
       .subscribe((data) => {
         Swal.fire('Creado', `Numeracíon registrada Correctamente`, 'success');
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
-
       });
   };
 
@@ -425,7 +419,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getSideA()
       .subscribe(({ sideDispenser }) => {
         this.digitizeForm.controls['sideId'].setValue(sideDispenser.sideId);
-
       });
   };
 
@@ -433,7 +426,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   sideB() {
     this.dispenserService.getSideB()
       .subscribe(({ sideDispenser }) => {
-
         this.digitizeForm.controls['sideId'].setValue(sideDispenser.sideId);
       });
   };
@@ -460,7 +452,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getIdAssig(this.digitizeForm.value)
       .subscribe(({ idAssignments }) => {
         this.digitizeForm.controls['assignmentId'].setValue(idAssignments.assignmentId);
-
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -472,7 +463,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getGeneralDispenserReaderId(this.digitizeForm.value)
       .subscribe(({ generalDispenserReader }) => {
         this.digitizeForm.controls['generalDispenserReaderId'].setValue(generalDispenserReader.generalDispenserReaderId);
-
       });
   };
 
@@ -486,7 +476,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
-
       });
   };
 
@@ -499,7 +488,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
-
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -511,13 +499,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.sideA();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(3);
-
-
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
-
-
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -530,8 +514,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.sideB();
     this.getIdAssignment();
     this.digitizeForm.controls['position'].setValue(5);
-
-
     this.dispenserService.getAssignmentHoseId(this.digitizeForm.value)
       .subscribe((data) => {
         this.digitizeForm.controls['assignmentHoseId'].setValue(data.assignmenHose.assignmentHoseId);
@@ -897,8 +879,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   }
 
-
-
   getPreviuosNoGallons() {
     this.dispenserService.getPreviousGallons(this.digitizeForm.value)
       .subscribe(({ previousNoGallons }) => {
@@ -920,8 +900,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoGallonRegular) => {
         this.digitizeForm.controls['totalNoGallons'].setValue(previousTotalNoGallonRegular.previousTotalNoGallonRegular.totalNoGallons);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoGallonRegular.previousTotalNoGallonRegular.dispenserReaderId);
-        console.log(previousTotalNoGallonRegular)
-      });
+       });
   };
 
   getTotalNoMechanicRegular() {
@@ -929,7 +908,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoMechanicRegular) => {
         this.digitizeForm.controls['totalNoMechanic'].setValue(previousTotalNoMechanicRegular.previousTotalNoMechanicRegular.totalNoMechanic);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoMechanicRegular.previousTotalNoMechanicRegular.dispenserReaderId);
-        console.log(previousTotalNoMechanicRegular)
+       
       });
   };
 
@@ -938,7 +917,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoMoneyRegular) => {
         this.digitizeForm.controls['totalNoMechanic'].setValue(previousTotalNoMoneyRegular.previousTotalNoMoneyRegular.totalNoMoney);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoMoneyRegular.previousTotalNoMoneyRegular.dispenserReaderId);
-        console.log(previousTotalNoMoneyRegular)
+       
       });
   };
 
@@ -947,7 +926,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoGallonsSuper) => {
         this.digitizeForm.controls['totalNoGallons'].setValue(previousTotalNoGallonsSuper.previousTotalNoGallonsSuper.totalNoGallons);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoGallonsSuper.previousTotalNoGallonsSuper.dispenserReaderId);
-        console.log(previousTotalNoGallonsSuper)
+       
       });
   };
 
@@ -956,7 +935,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoMechanicSuper) => {
         this.digitizeForm.controls['totalNoMechanic'].setValue(previousTotalNoMechanicSuper.previousTotalNoMechanicSuper.totalNoMechanic);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoMechanicSuper.previousTotalNoMechanicSuper.dispenserReaderId);
-        console.log(previousTotalNoMechanicSuper)
+      
       });
   };
 
@@ -965,7 +944,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoMoneySuper) => {
         this.digitizeForm.controls['totalNoMechanic'].setValue(previousTotalNoMoneySuper.previousTotalNoMoneySuper.totalNoMoney);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoMoneySuper.previousTotalNoMoneySuper.dispenserReaderId);
-        console.log(previousTotalNoMoneySuper)
+       
       });
   };
 
@@ -974,7 +953,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoGallonsDiesel) => {
         this.digitizeForm.controls['totalNoGallons'].setValue(previousTotalNoGallonsDiesel.previousTotalNoGallonsDiesel.totalNoGallons);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoGallonsDiesel.previousTotalNoGallonsDiesel.dispenserReaderId);
-        console.log(previousTotalNoGallonsDiesel)
+       
       });
   };
 
@@ -983,7 +962,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoMechanicDiesel) => {
         this.digitizeForm.controls['totalNoMechanic'].setValue(previousTotalNoMechanicDiesel.previousTotalNoMechanicDiesel.totalNoMechanic);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoMechanicDiesel.previousTotalNoMechanicDiesel.dispenserReaderId);
-        console.log(previousTotalNoMechanicDiesel)
+       
       });
   };
 
@@ -992,7 +971,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       .subscribe((previousTotalNoMoneyDiesel) => {
         this.digitizeForm.controls['totalNoMechanic'].setValue(previousTotalNoMoneyDiesel.previousTotalNoMoneyDiesel.totalNoMoney);
         this.digitizeForm.controls['dispenserReaderId'].setValue(previousTotalNoMoneyDiesel.previousTotalNoMoneyDiesel.dispenserReaderId);
-        console.log(previousTotalNoMoneyDiesel)
+       
       });
   };
 
@@ -1180,7 +1159,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
           this.btnDisableDieselR1B = true;
           this.buttonDisableRegular = true;
           this.showMeRegular1A = !this.showMeRegular1A;
-          console.log(this.digitizeForm.value);
+         
 
         })
         this.getAvailable();
@@ -1199,11 +1178,13 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   //aperturar manguera Super lado A Isla 1
   super1A() {
+    console.log(this.digitizeForm.value);
     this.getAssignmentHoseIdSuperA1();
     this.getGeneralAssignmentDispenserReaderId();
     this.getTotalGallons();
     this.getHoseIdByAssignmentHoseId();
     this.getFuelIdByHoseId();
+    console.log(this.digitizeForm.value)
     const dialogRef = this.dialog.open(ConfirmationsComponent, {
       width: '400px'
     });
@@ -1216,6 +1197,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.getAssignmentHoseIdSuperA1();
         this.getHoseIdByAssignmentHoseId();
         this.getFuelIdByHoseId();
+        console.log(this.digitizeForm.value)
         const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
         snackBarRef1.afterDismissed().subscribe(() => {
           this.getFuelIdByHoseId();
@@ -1235,8 +1217,10 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
           this.btnDisableDieselR1B = true
           this.buttonDisableRegular = false
           this.btnDisableSuperR1A = true;
+          
         })
         this.getAvailable();
+        console.log(this.digitizeForm.value)
        
       };
     });
