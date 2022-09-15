@@ -18,7 +18,10 @@ mat-list{
 a{
     color: white;
 }
-
+#a{
+    color: black;
+    
+}
 h1{
     color: white;
 }
@@ -64,4 +67,8 @@ mat-toolbar {
     width: 100%;
     color: #7F0A02;
     background-color: black;
+}
+
+#divSec {
+    background: black;
 }

@@ -24,7 +24,8 @@ export class SalesControl {
         public depositSlip: string,
         public credits: number,
         public applied: boolean,
-        public abonos : number
+        public abonos : number,
+       
 
     ) { }
 }

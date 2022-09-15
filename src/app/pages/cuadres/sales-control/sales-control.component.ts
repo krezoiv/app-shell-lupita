@@ -89,6 +89,7 @@ export class SalesControlComponent implements OnInit {
     available: ['', Validators.required],
     fuelId: ['', Validators.required],
     inventoryCode: ['', Validators.required],
+    depositSlip: ['', Validators.required],
   });
 
   constructor(

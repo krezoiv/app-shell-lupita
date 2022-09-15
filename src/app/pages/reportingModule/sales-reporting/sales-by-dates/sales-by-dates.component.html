@@ -1,1 +1,163 @@
-<p>sales-by-dates works!</p>
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form action="" class="mat-elevation-z8">
+            <h1>Reportes De Ventas por Fechas</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+
+                            <div class="input-group">
+
+                                <div id="divDate">
+                                    <mat-form-field id="mat-form-field-dates" id="matFiel-heards" color="accent"
+                                        appearance="fill">
+                                        <input id="input-registros" required matInput [matDatepicker]="initialDate"
+                                            formControlName="initialDate">
+                                        <mat-datepicker-toggle [for]="initialDate" matSuffix></mat-datepicker-toggle>
+                                        <mat-datepicker #initialDate></mat-datepicker>
+                                        <mat-hint>Ingrese Fecha de inicio</mat-hint><br>
+                                    </mat-form-field> &nbsp;
+                                </div>
+
+                                <div id="divDate">
+                                    <mat-form-field id="mat-form-field-dates" id="matFiel-heards" color="accent"
+                                        appearance="fill">
+                                        <input id="input-registros" required matInput [matDatepicker]="finalDate"
+                                            formControlName="finalDate">
+                                        <mat-datepicker-toggle [for]="finalDate" matSuffix></mat-datepicker-toggle>
+                                        <mat-datepicker #finalDate></mat-datepicker>
+                                        <mat-hint>Ingrese fecha final</mat-hint><br>
+                                    </mat-form-field>
+                                </div>
+
+
+                                <button id="buttonA" mat-raised-button color="primary">
+                                    <mat-icon>search</mat-icon><br> Buscar
+                                </button>
+                                <button id="buttonB" mat-raised-button color="primary">
+                                    <mat-icon>sync</mat-icon><br> Nueva Buesqueda
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="row">
+                <h1>Gran Total</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionAccumulated">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </section>
+
+                </div>
+
+            </div><br>
+
+            <div class="row">
+                <div class="col-md-8 col-sm- col-xs-8">
+                    <label>
+                        <h1>Galones Acumulados</h1>
+                    </label>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3>Galones Acumulados Super</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Acumulado Super</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3>Galones Acumulados Regular</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Acumularo Regular</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3>Galones Acumulados Diesel</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Avumulado Diesel</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr></tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12"> 
+                    <section id="sectionDetail">
+                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                            <thead>
+                                <tr id="trEncabezado">
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Número de Documento</th>
+                                    <th scope="col">Total Galones Super</th>
+                                    <th scope="col">Total Galones Regular</th>
+                                    <th scope="col">Total Galones Diesel</th>
+                                    <th scope="col">Sub Total</th>
+                                    <th scope="col">Total Gastos</th>
+                                    <th scope="col">Total de Cupones</th>
+                                    <th scope="col">Total de Vales</th>
+                                    <th scope="col">Total de Vouchers</th>                
+                                    <th scope="col">Créditos</th>
+                                    <th scope="col">Total de Depósitos</th>
+                                    <th scope="col">Balance</th>   
+                                </tr>
+                            </thead>
+                        </table>
+                    </section>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>

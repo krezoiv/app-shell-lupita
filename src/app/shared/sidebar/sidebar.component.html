@@ -47,12 +47,12 @@
       <h1>Reporteria</h1>
       <hr id="hr2">
 
-      <mat-list>
+      <mat-list >
         <mat-toolbar>
           <button mat-button [matMenuTriggerFor]="reporting"><h1>Ventas</h1></button>
           <mat-menu id="matMenu" #reporting="matMenu">
-            <button mat-menu-item><mat-icon> V</mat-icon><a>Por Fecha</a></button> 
-            <button mat-menu-item><mat-icon> P</mat-icon><a routerLink="/dashboard/reporteria/reporteVentasporDocumento">Por No. Documento</a></button> 
+            <button  mat-menu-item><mat-icon> V</mat-icon><a id="a" routerLink="/dashboard/reporteria/reporteVentasporFechas">Por Fecha</a></button> 
+            <button mat-menu-item><mat-icon> P</mat-icon><a id="a" routerLink="/dashboard/reporteria/reporteVentasporDocumento">Por No. Documento</a></button> 
             <button mat-menu-item><mat-icon> P</mat-icon><a>Ventas</a></button> 
           </mat-menu>  
 
