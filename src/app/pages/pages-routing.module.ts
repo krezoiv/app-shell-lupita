@@ -27,6 +27,8 @@ import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-or
 import { PurchasesComponent } from './purchase/purchases/purchases.component';
 import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.component';
 import { InventoryComponent } from './inventory/inventory/inventory.component';
+import { SalesReportingComponent } from './reportingModule/sales-reporting/sales-reporting.component';
+
 
 
 const routes: Routes =[
@@ -56,7 +58,8 @@ const routes: Routes =[
     {path : 'compras/ordenPedido', component: PurchasesOrderComponent},
     {path : 'compras/nuevaCompra', component: PurchasesComponent},
     {path : 'compras', component: MainPurchaseComponent},
-    {path : 'inventario', component: InventoryComponent}
+    {path : 'inventario', component: InventoryComponent},
+    {path : 'reporteriaVentas', component: SalesReportingComponent}
 
   ]},
   

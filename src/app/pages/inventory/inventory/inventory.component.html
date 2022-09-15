@@ -35,6 +35,81 @@
 
                 </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                    <div>
+                        <label> <h2>Saldos Disponibles</h2></label>
+                    </div>
+                    <section id="inventory">
+                        <div id="priceSection">
+                            <table  id="tableInventory" class="table table-dark" class="mat-elevation-z8">
+                                <thead class="thead-dark">
+                                    <tr id="trEncabezado">
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Combustible</th>
+                                        <th scope="col">IDP</th>
+                                        <th scope="col">Precio Costo</th>
+                                        <th scope="col">Precio Público</th>
+                                        <th scope="col">Capacidad Almacenaje</th>
+                                        <th scope="col">Pendiente Despacho</th>
+                                        <th scope="col">Disponible</th>
+                                        <th scope="col">progress bar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let inv of inventory">
+                                        <td>{{inv.inventoryCode}}</td>
+                                        <td>{{inv.fuelId.fuelName}}</td>
+                                        <td>{{inv.fuelId.taxesId?.idpAmount | number}}</td>
+                                        <td>{{inv.fuelId.costPrice | number}}</td>
+                                        <td>{{inv.fuelId.salePrice | number}}</td>
+                                        <td>{{inv.fuelTankId.maxStorage | number}}</td>
+                                        <td>{{inv.amountPending | number}}</td>
+                                        <td>{{inv.available | number}}</td>
+                                        <td><mat-progress-bar value="{{68}}"></mat-progress-bar></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div>
+                        <label> <h2>Medidores</h2></label>
+                    </div>
+                    <section id="inventory">
+                        <div  id="priceSection">
+                            <table  id="tableInventory" class="table table-dark" class="mat-elevation-z8">
+                                <thead class="thead-dark">
+                                    <tr id="trEncabezado">
+                                        <th scope="col">Combustible</th>
+                                        <th scope="col">Medidor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Super</td>
+                                        <td><mat-progress-bar value="{{availabeSuper}}" id="progress"></mat-progress-bar></td>  
+                                    </tr>
+                                    <tr>
+                                        <td>Regular</td>
+                                        <td><mat-progress-bar value="{{availabeRegular}}" id="progress"></mat-progress-bar></td>  
+                                    </tr>
+                                    <tr>
+                                        <td>Diesel</td>
+                                        <td><mat-progress-bar value="{{availabeDiesel}}" id="progress"></mat-progress-bar></td>  
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </form>
     </div>
 </body>

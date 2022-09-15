@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AmountPending_I, fuelIdDiesel_I, fuelIdRegular_I, fuelIdSuper_I, fuelInventoryAmountPending_I, fuelInventoryAvailable_I, FuelInventoryId_I, inventoryCode_I } from 'src/app/interfaces/fuelstation/fuelInventory.interface';
+import { AmountPending_I, fuelIdDiesel_I, fuelIdRegular_I, fuelIdSuper_I, fuelInventoryAmountPending_I, fuelInventoryAvailable_I, FuelInventoryId_I, inventoryCode_I, InventroyData_I } from 'src/app/interfaces/fuelstation/fuelInventory.interface';
 import { FuelInventory } from 'src/app/models/fuelstation/fuelInventory.model';
 
 const api_url = environment.api_url;
@@ -64,6 +64,10 @@ export class FuelInventoryService {
     return this._http.post<fuelInventoryAvailable_I>(`${api_url}/fuelInventory/fuelInventoryAvailable`, avilable, this.headers);
   };
 
+  getFuelInventoryAvailableCode(avilable : number): Observable<fuelInventoryAvailable_I>{
+    return this._http.post<fuelInventoryAvailable_I>(`${api_url}/fuelInventory/fuelInventoryAvailableCode`, avilable, this.headers);
+  };
+
   updateAmountPending(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
     return this._http.put<FuelInventory[]>(`${api_url}/fuelInventory/${fuelInventory.fuelInventoryId}`, fuelInventory, this.headers);
   };
@@ -92,4 +96,7 @@ export class FuelInventoryService {
     return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableDieselSale`, fuelInventory, this.headers);
   };
 
+  getInventoryData(){
+    return this._http.get<InventroyData_I>(`${api_url}/fuelInventory`, this.headers);
+  }
 }

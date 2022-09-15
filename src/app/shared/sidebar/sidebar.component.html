@@ -1,51 +1,100 @@
-
 <body>
-  <mat-toolbar>   
-    <mat-toolbar-row  >
-        <h4>Shell Lupita </h4>
-        <strong >{{userName}}</strong>
-        
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <h4>Shell Lupita </h4>
+      <strong>{{userName}}</strong>
+
     </mat-toolbar-row>
-  
+
+
+
   </mat-toolbar>
   <mat-sidenav-container>
-    <mat-sidenav  [(opened)]="opened" mode="side"> 
-     
+    <mat-sidenav [(opened)]="opened" mode="side">
+
+      <hr>
+      <h1>Módulos</h1>
+      <hr id="hr2">
       <!-- boton de mantenumientos-->
       <mat-list>
-        <mat-list-item><a routerLink="/dashboard/maintenances" ><mat-icon>settings</mat-icon> Mantenimiento</a></mat-list-item>
+        <mat-list-item><a routerLink="/dashboard/maintenances">
+            <mat-icon>settings</mat-icon> Mantenimiento
+          </a></mat-list-item>
       </mat-list>
 
       <!--boton para cuadres-->
       <mat-list>
-        <mat-list-item><a routerLink="/dashboard/cuadres" ><mat-icon>attach_money</mat-icon> Cuadres</a></mat-list-item>
+        <mat-list-item><a routerLink="/dashboard/cuadres">
+            <mat-icon>attach_money</mat-icon> Cuadres
+          </a></mat-list-item>
       </mat-list>
 
-       <!--boton para compras-->
-       <mat-list>
-        <mat-list-item><a routerLink="/dashboard/compras" ><mat-icon>shopping_cart</mat-icon> Compras</a></mat-list-item>
+      <!--boton para compras-->
+      <mat-list>
+        <mat-list-item><a routerLink="/dashboard/compras">
+            <mat-icon>shopping_cart</mat-icon> Compras
+          </a></mat-list-item>
       </mat-list>
 
-        <!--boton para inventario-->
-        <mat-list>
-          <mat-list-item><a routerLink="/dashboard/inventario" ><mat-icon>shopping_cart</mat-icon> Inventario</a></mat-list-item>
-        </mat-list>
-  
-      <div class="wrap">
-        <div class="widget">
-          <div class="date">
-            <p id="week" class="dayWeek ">{{date| date}} </p>
-            <p id="hours" class="hours "> {{hour | date:'hh:mm:ss'}}</p>
+      <!--boton para inventario-->
+      <mat-list>
+        <mat-list-item><a routerLink="/dashboard/inventario">
+            <mat-icon>shopping_cart</mat-icon> Inventario
+          </a></mat-list-item>
+      </mat-list>
+
+      <!--boton para Reporteria-->
+
+      <hr>
+     
+      <hr id="hr2">
+
+      <mat-list>
+        <mat-toolbar>
+          <button mat-button [matMenuTriggerFor]="reporting">Reporteria</button>
+          <mat-menu #reporting="matMenu">
+            <button mat-menu-item [matMenuTriggerFor]="sales"><mat-icon> Ventas</mat-icon><a>Ventas</a></button> 
+          </mat-menu>
+          <mat-menu #sales="matMenu">
+            <button mat-menu-item routerLink="/dashboard/compras/ordenPedido"><mat-icon>add_circle</mat-icon><a>Por Fecha</a></button>
+            <button mat-menu-item routerLink="/dashboard/compras/ordenPedido"><mat-icon>add_circle</mat-icon><a>No Documento</a></button>
+          </mat-menu>
+         
+        </mat-toolbar>
+      </mat-list>
+
+      <mat-list>
+        <mat-list-item><a routerLink="/dashboard/reporteriaVentas">
+            <mat-icon>shopping_cart</mat-icon> Ventas
+          </a>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-list>
+        <mat-list-item><a routerLink="/dashboard/inventario">
+            <mat-icon>shopping_cart</mat-icon> Compras
+          </a>
+        </mat-list-item>
+      </mat-list>
+
+      <footer>
+        <div class="wrap">
+          <div class="widget">
+            <div class="date">
+              <p id="week" class="dayWeek ">{{date| date}} </p>
+              <p id="hours" class="hours "> {{hour | date:'hh:mm:ss'}}</p>
+            </div>
           </div>
         </div>
-      </div>
-     
+      </footer>
+
     </mat-sidenav>
+
     <mat-sidenav-content>
       <router-outlet></router-outlet>
-     
+
     </mat-sidenav-content>
-   
+
   </mat-sidenav-container>
- 
+
 </body>

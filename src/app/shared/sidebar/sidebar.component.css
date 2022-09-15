@@ -4,7 +4,7 @@ mat-sidenav-container {
 
 mat-sidenav {
     width: 200px;
-    background-color: #212F3C;
+    background-color: black;
 
 }
 
@@ -17,8 +17,22 @@ a{
     color: white;
 }
 
+h1{
+    color: white;
+}
+
+#hr2{
+    border: 1px solid red;
+    margin-left: 0%;
+    margin-right: 50%;
+}
+
+hr {
+    border: 1px solid red;
+}
+
 mat-toolbar {
-    background-color: #212F3C ;
+    background-color: black ;
     color: white;
 }
 

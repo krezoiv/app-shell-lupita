@@ -34,3 +34,7 @@ export interface fuelInventoryAvailable_I {
 export interface AmountPending_I {
     fuelInventoryAmountPending: FuelInventory
 };
+
+export interface InventroyData_I {
+    fuelInventory : [];
+}

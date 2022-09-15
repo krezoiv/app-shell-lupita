@@ -62,6 +62,8 @@ import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-or
 import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.component';
 import { LoadingComponent } from '../shared/functions/loading/loading.component';
 import { InventoryComponent } from './inventory/inventory/inventory.component';
+import { SalesReportingComponent } from './reportingModule/sales-reporting/sales-reporting.component';
+import { PurchasesReportingComponent } from './reportingModule/purchases-reporting/purchases-reporting.component';
 
 
 
@@ -106,6 +108,8 @@ import { InventoryComponent } from './inventory/inventory/inventory.component';
     PurchasesOrderComponent,
     MainPurchaseComponent,
     InventoryComponent,
+    SalesReportingComponent,
+    PurchasesReportingComponent,
 
    
     
