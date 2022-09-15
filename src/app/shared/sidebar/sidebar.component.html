@@ -2,10 +2,8 @@
   <mat-toolbar>
     <mat-toolbar-row>
       <h4>Shell Lupita </h4>
-      <strong>{{userName}}</strong>
-
+    
     </mat-toolbar-row>
-
 
 
   </mat-toolbar>
@@ -46,30 +44,34 @@
       <!--boton para Reporteria-->
 
       <hr>
-     
+      <h1>Reporteria</h1>
       <hr id="hr2">
 
       <mat-list>
         <mat-toolbar>
-          <button mat-button [matMenuTriggerFor]="reporting">Reporteria</button>
+          <button mat-button [matMenuTriggerFor]="reporting"><h1>Ventas</h1></button>
+          <mat-menu id="matMenu" #reporting="matMenu">
+            <button mat-menu-item><mat-icon> V</mat-icon><a>Por Fecha</a></button> 
+            <button mat-menu-item><mat-icon> P</mat-icon><a routerLink="/dashboard/reporteria/reporteVentasporDocumento">Por No. Documento</a></button> 
+            <button mat-menu-item><mat-icon> P</mat-icon><a>Ventas</a></button> 
+          </mat-menu>  
+
           <mat-menu #reporting="matMenu">
-            <button mat-menu-item [matMenuTriggerFor]="sales"><mat-icon> Ventas</mat-icon><a>Ventas</a></button> 
-          </mat-menu>
-          <mat-menu #sales="matMenu">
-            <button mat-menu-item routerLink="/dashboard/compras/ordenPedido"><mat-icon>add_circle</mat-icon><a>Por Fecha</a></button>
-            <button mat-menu-item routerLink="/dashboard/compras/ordenPedido"><mat-icon>add_circle</mat-icon><a>No Documento</a></button>
-          </mat-menu>
-         
+            <button mat-menu-item><mat-icon> pss</mat-icon><a>Ventas</a></button> 
+          </mat-menu>  
         </mat-toolbar>
       </mat-list>
+      
 
       <mat-list>
         <mat-list-item><a routerLink="/dashboard/reporteriaVentas">
             <mat-icon>shopping_cart</mat-icon> Ventas
           </a>
+          
+          
         </mat-list-item>
       </mat-list>
-
+      
       <mat-list>
         <mat-list-item><a routerLink="/dashboard/inventario">
             <mat-icon>shopping_cart</mat-icon> Compras
@@ -96,5 +98,4 @@
     </mat-sidenav-content>
 
   </mat-sidenav-container>
-
 </body>

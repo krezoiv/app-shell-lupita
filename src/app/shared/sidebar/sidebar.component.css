@@ -9,7 +9,9 @@ mat-sidenav {
 }
 
 mat-list{
-    text-decoration: white;
+    color: red;
+    background-color: black;
+
    
 }
 
@@ -36,6 +38,7 @@ mat-toolbar {
     color: white;
 }
 
+
 .wrap{
     width: 100%;
     max-width: 1000px;
@@ -43,10 +46,9 @@ mat-toolbar {
 }
 
 .widget {
-    width: 90%;
-    margin: 1em;
+    width: 100%;
+    margin: auto;
 }
-
 
 
 .widget p {
@@ -56,13 +58,10 @@ mat-toolbar {
 
 .date {
     text-align: center;
-    font-size: 1em;
-    margin-bottom: 0.3125rem;
+    font-size: 2em;
+    margin-bottom: 1rem;
     padding: 20px;
     width: 100%;
-    color: white;
-    background-color: dimgrey;
+    color: #7F0A02;
+    background-color: black;
 }
-
-
-

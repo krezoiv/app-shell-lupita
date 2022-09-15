@@ -21,6 +21,7 @@ export class SalesControl {
         public cupones: number,
         public vouchers: number,
         public deposits: number, 
+        public depositSlip: string,
         public credits: number,
         public applied: boolean,
         public abonos : number

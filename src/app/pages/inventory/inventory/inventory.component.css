@@ -63,3 +63,10 @@ h2{
 #progress{
     height: 15px;
 }
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}

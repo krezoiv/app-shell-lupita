@@ -1,0 +1,205 @@
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form   [formGroup]="reportingSaleForm"class="mat-elevation-z8">
+            <h1>Reportes De Ventas por Número de Documento</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="input-group">
+
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Número de Documento:</mat-label>
+                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                formControlName="noDocument" matInput>
+                            <mat-icon matPrefix>numbers</mat-icon>
+                            <mat-hint>Ingrese No. de documento de venta</mat-hint><br>
+                        </mat-form-field>
+
+                        <button id="buttonA" mat-raised-button color="primary" (click)="search();">
+                            <mat-icon>search</mat-icon><br> Buscar
+                        </button>
+                        <button id="buttonB" mat-raised-button color="primary" (click)="newSearch();">
+                            <mat-icon>sync</mat-icon><br> Nueva Buesqueda
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <h1>Gran Total</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+                        
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let data of saleReporting">
+                                    <td id="tdFuel">Q. {{data.total | number}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </section>
+                </div>
+            </div><br>
+            
+            <div class="row">
+               <div class="col-md-8 col-sm- col-xs-8">
+                <label>
+                    <h1>Galones Vendidos</h1>
+                </label>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <section id="sectionFuel">
+                            <h3>Galones Vendidos Super</h3>
+                            <table>
+                                <thead>
+                                    <tr id="">
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let data of saleReporting">
+                                        <td id="tdFuel">{{data.totalGallonSuper | number}}</td>
+                                    </tr>
+                                
+                                   
+                                </tbody>
+                               
+                            </table>
+    
+                        </section>
+                    </div>
+    
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <section id="sectionFuel">
+                            <h3>Galones Vendidos Regular</h3>
+                            <table>
+                                <thead>
+                                    <tr id="">
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let data of saleReporting">
+                                        <td id="tdFuel">{{data.totalGallonRegular | number }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+    
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <section id="sectionFuel">
+                            <h3>Galones Vendidos Diesel</h3>
+                            <table>
+                                <thead>
+                                    <tr id="">
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let data of saleReporting">
+                                        <td id="tdFuel">{{data.totalGallonDiesel | number }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </div>
+               </div>
+               <div div class="col-md-4 col-sm-4 col-xs-4">
+                <label>
+                    <h1>Precios De Combustibles</h1>
+                </label>
+                <section id="sectionFuel">
+                    
+                    <table>
+                        <thead>
+                            <tr id="">
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  *ngFor="let fuel of fuels">
+                                <td  align="center" id="tdFuel">{{fuel.fuelName}}  Q. {{fuel.salePrice | number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+               </div>
+            </div>
+           
+            <div>
+                <div div class="col-md-4 col-sm-4 col-xs-4">
+                    <label>
+                        <h1>Número Depósito</h1>
+                    </label>
+                    <section id="sectionFuel">
+                        
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let data of saleReporting">
+                                    <td id="tdFuel"> Boleta No. : {{data.depositSlip}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                   </div>
+    
+            </div>
+            <hr>
+           
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <section id="sectionDetail2">
+                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                            <thead>
+                                <tr id="trEncabezado">
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Número de Documento</th>
+                                    <th scope="col">Sub Total</th>
+                                    <th scope="col">Total Gastos</th>
+                                    <th scope="col">Total de Cupones</th>
+                                    <th scope="col">Total de Vales</th>
+                                    <th scope="col">Total de Vouchers</th>                
+                                    <th scope="col">Créditos</th>
+                                    <th scope="col">Total de Depósitos</th>
+                                    <th scope="col">Balance</th>   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of saleReporting">
+                                    <td id="tdTable" >{{data.salesDate | date}}</td>
+                                    <td id="tdTable">{{data.noDocument | number}}</td>
+                                    <td id="tdTable">{{data.total | number}}</td>
+                                    <td id="tdTable">{{data.bills | number}}</td>
+                                    <td id="tdTable">{{data.cupones | number}}</td>
+                                    <td id="tdTable">{{data.vales | number}}</td>
+                                    <td id="tdTable">{{data.vouchers | number}}</td>
+                                    <td id="tdTable">{{data.credits | number}}</td>
+                                    <td id="tdTable">{{data.deposits | number}}</td>              
+                                    <td id="tdTable">{{data.balance | number}}</td>
+                                   
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</body>
