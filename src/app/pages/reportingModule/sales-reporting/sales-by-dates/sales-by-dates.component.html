@@ -40,6 +40,10 @@
                                     <mat-icon>sync</mat-icon><br> Nueva Buesqueda
                                 </button>
 
+
+                                <button id="buttonB" mat-raised-button color="primary" (click)="convertDates();">
+                                    <mat-icon>sync</mat-icon><br> PRueba
+                                </button>
                             </div>
                         </div>
 
@@ -61,8 +65,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
+                                <tr *ngFor="let dis of generalDispenser">
+                                    <td > <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                        formControlName="totalGallonsRegular" [(ngModel)]="dis.count" matInput></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -174,8 +179,8 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button mat-button color="primary" (click)="changePage(-3);">Anterior</button>
-                        <button mat-button color="primary" (click)="changePage(3);">Siguiente</button>
+                        <button mat-button color="primary" (click)="changePage(-3);"><mat-icon>skip_previous</mat-icon> Anterior</button>
+                        <button mat-button color="primary" (click)="changePage(3);"> Siguiente <mat-icon>skip_next</mat-icon></button>
                     </section>
                 </div>
             </div>

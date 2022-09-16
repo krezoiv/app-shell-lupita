@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, countGallonsDiesel_I, countGallonsRegular_I, countGallonsSuper_I, DispenserReaderSuper_I,  Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I,  previousNoGallonsDiesel1_I,  previousNoGallonsDiesel_I,  previousNoGallonsRegular_I, previousNoGallonsSuper_I, previousNoGallons_I, previousNoMechanicDiesel1_I, previousNoMechanicDiesel_I, previousNoMechanicRegular_I, previousNoMechanicR_I, previousNoMechanicSuper1_I, previousNoMechanicSuper_I, previousNoMoneyDiesel1_I, previousNoMoneyDiesel_I, previousNoMoneyRegular_I, previousNoMoneyR_I, previousNoMoneySuper1_I, previousNoMoneySuper_I, previousTotalNoGallonRegular_I, previousTotalNoGallonsDiesel_I, previousTotalNoGallonsSuper_I, previousTotalNoMechanicDiesel_I, previousTotalNoMechanicRegular_I, previousTotalNoMechanicSuper_I, previousTotalNoMoneyDiesel_I, previousTotalNoMoneyRegular_I, previousTotalNoMoneySuper_I, SideA_I, SideB_I, TotalDieselGallons_I, TotalGallons_I, TotalRegularGallons_I, TotalSuperGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, AssignmentHose_In, Assignment_I, As_I, countGallonsDiesel_I, countGallonsRegular_I, countGallonsSuper_I, countTotalSale_I, DispenserReaderSuper_I,  Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I,  previousNoGallonsDiesel1_I,  previousNoGallonsDiesel_I,  previousNoGallonsRegular_I, previousNoGallonsSuper_I, previousNoGallons_I, previousNoMechanicDiesel1_I, previousNoMechanicDiesel_I, previousNoMechanicRegular_I, previousNoMechanicR_I, previousNoMechanicSuper1_I, previousNoMechanicSuper_I, previousNoMoneyDiesel1_I, previousNoMoneyDiesel_I, previousNoMoneyRegular_I, previousNoMoneyR_I, previousNoMoneySuper1_I, previousNoMoneySuper_I, previousTotalNoGallonRegular_I, previousTotalNoGallonsDiesel_I, previousTotalNoGallonsSuper_I, previousTotalNoMechanicDiesel_I, previousTotalNoMechanicRegular_I, previousTotalNoMechanicSuper_I, previousTotalNoMoneyDiesel_I, previousTotalNoMoneyRegular_I, previousTotalNoMoneySuper_I, SideA_I, SideB_I, TotalDieselGallons_I, TotalGallons_I, TotalRegularGallons_I, TotalSuperGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -296,6 +296,10 @@ export class DispensersService {
     return this.http.get<countGallonsDiesel_I>(`${api_url}/generalDispenserReader/countGallonsDiesel`, this.headers);
   }
 
+ 
+  getCountSumGallonsDiesel(formData : GeneralDispenserReader): Observable<countTotalSale_I>{
+    return this.http.post<countTotalSale_I>(`${api_url}/generalDispenserReader/countSumRegularGallonsSalesByDate`, this.headers);
+  }
 
 };
 

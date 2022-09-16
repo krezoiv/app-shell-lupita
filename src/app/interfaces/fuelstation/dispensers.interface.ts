@@ -198,3 +198,7 @@ export interface countGallonsDiesel_I {
 export interface fuel_I {
     fuels :Taxes
 }
+
+export interface countTotalSale_I {
+    countTotalSale : []
+}

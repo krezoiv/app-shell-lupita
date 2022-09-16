@@ -42,7 +42,7 @@ export class SalesControlService {
   };
 
   getSalesByDates(from : number = 0): Observable<SalesByDate_I>{
-    return this.http.post<SalesByDate_I>(`${api_url}/salesControl/salesByDate?from=${from}`, from, this.headers);
+    return this.http.post<SalesByDate_I>(`${api_url}/salesControl/salesByDate`, from, this.headers);
   }
 
   getAllSales(from : number = 0): Observable<SalesByDate_I>{
