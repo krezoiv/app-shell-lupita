@@ -1,6 +1,6 @@
 <body>
     <div class="contenedor" class="mat-elevation-z8">
-        <form action="" class="mat-elevation-z8">
+        <form [formGroup]="reportingSaleForm" class="mat-elevation-z8">
             <h1>Reportes De Ventas por Fechas</h1>
             <hr>
             <div class="row">
@@ -33,7 +33,7 @@
                                 </div>
 
 
-                                <button id="buttonA" mat-raised-button color="primary">
+                                <button id="buttonA" mat-raised-button color="primary" (click)="search();">
                                     <mat-icon>search</mat-icon><br> Buscar
                                 </button>
                                 <button id="buttonB" mat-raised-button color="primary">
@@ -133,27 +133,49 @@
                 </div>
             </div><br>
             <div class="row">
+                <h3 class="card-title">Total de Ventas: ( {{totalSales}} )  - ({{fm}}) </h3>
                 <div class="col-md-12 col-sm-12 col-xs-12"> 
                     <section id="sectionDetail">
                         <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                             <thead>
                                 <tr id="trEncabezado">
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Número de Documento</th>
-                                    <th scope="col">Total Galones Super</th>
-                                    <th scope="col">Total Galones Regular</th>
-                                    <th scope="col">Total Galones Diesel</th>
-                                    <th scope="col">Sub Total</th>
-                                    <th scope="col">Total Gastos</th>
-                                    <th scope="col">Total de Cupones</th>
-                                    <th scope="col">Total de Vales</th>
-                                    <th scope="col">Total de Vouchers</th>                
-                                    <th scope="col">Créditos</th>
-                                    <th scope="col">Total de Depósitos</th>
-                                    <th scope="col">Balance</th>   
+                                    <th thDetail scope="col">Fecha</th>
+                                    <th thDetail scope="col">Número de Documento</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Sub Total</th>
+                                    <th thDetail scope="col">Total Gastos</th>
+                                    <th thDetail scope="col">Total de Cupones</th>
+                                    <th thDetail scope="col">Total de Vales</th>
+                                    <th thDetail scope="col">Total de Vouchers</th>                
+                                    <th thDetail scope="col">Créditos</th>
+                                    <th thDetail scope="col">Total de Depósitos</th>
+                                    <th thDetail scope="col">Número de Depósito</th>
+                                    <th thDetail scope="col">Balance</th>   
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr  *ngFor="let data of salesReport">
+                                    <td id="tdTable" scope="col">{{data.salesDate | date}}</td>
+                                   <td id="tdTable" scope="col">{{data.noDocument}}</td>
+                                   <td id="tdTable" scope="col">{{data.totalGallonSuper | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.totalGallonRegular | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.totalGallonDiesel | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.total | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.bills | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.cupones | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.vales | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.vouchers | number}}</td>                
+                                   <td id="tdTable" scope="col">{{data.credits | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.deposits | number}}</td>
+                                   <td id="tdTable" scope="col">{{data.depositSlip}}</td>
+                                   <td id="tdTable" scope="col">{{data.balance | number}}</td>
+                                </tr>
+                            </tbody>
                         </table>
+                        <button mat-button color="primary" (click)="changePage(-3);">Anterior</button>
+                        <button mat-button color="primary" (click)="changePage(3);">Siguiente</button>
                     </section>
                 </div>
             </div>

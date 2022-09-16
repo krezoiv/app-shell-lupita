@@ -268,7 +268,7 @@ export class SalesControlComponent implements OnInit {
     this.salesControlForm.controls['abonos'].setValue(this.totalAbonos.toFixed(2));
     this.totalBalance = this.salesControlForm.get('total')?.value;
     this.abonoBalanbce = this.salesControlForm.get('abonos')?.value;
-    this.result_total_abono = (this.totalBalance - this.abonoBalanbce);
+    this.result_total_abono = (this.abonoBalanbce  - this.totalBalance );
     this.salesControlForm.controls['balance'].setValue(this.result_total_abono.toFixed(2));
   };
 
@@ -376,7 +376,7 @@ export class SalesControlComponent implements OnInit {
     });
   };
 
-  getTotalAbono() { this.calulcateAbonos(); };
+  getTotalAbono() { this.calulcateAbonos(); this.saveButton = true };
 
   createSalesControl() {
     this._salesControlService.createSalesControl(this.salesControlForm.value)

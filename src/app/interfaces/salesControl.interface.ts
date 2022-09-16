@@ -7,3 +7,9 @@ export interface lastNoDocument_I {
 export interface SalebyDocument_I {
     salebyDocument : [];
 }
+
+export interface SalesByDate_I {
+    total : number,
+    getData : SalesControl[];
+
+}

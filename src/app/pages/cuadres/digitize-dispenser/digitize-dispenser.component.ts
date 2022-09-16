@@ -1497,7 +1497,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
           this.btnDisableRegularR2B = true
           this.btnDisableSuperR2B = true
           this.btnDisableDieselR2B = true
-          this.resetFormValuesNumbering();
+          
         })
         this.getAvailable();
       };
