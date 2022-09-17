@@ -298,7 +298,7 @@ export class DispensersService {
 
  
   getCountSumGallonsDiesel(formData : GeneralDispenserReader): Observable<countTotalSale_I>{
-    return this.http.post<countTotalSale_I>(`${api_url}/generalDispenserReader/countSumRegularGallonsSalesByDate`, this.headers);
+    return this.http.post<countTotalSale_I>(`${api_url}/generalDispenserReader/countSumRegularGallonsSalesByDate`, formData, this.headers);
   }
 
 };

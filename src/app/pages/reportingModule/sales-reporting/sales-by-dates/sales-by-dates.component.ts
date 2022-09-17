@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { SalesControl } from 'src/app/models/sales/salesControl.model';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import { SalesControlService } from 'src/app/services/sales/sales-control.service';
+import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 
 
  
@@ -31,7 +33,8 @@ export class SalesByDatesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _salesControlService: SalesControlService,
-    private _dispenserService : DispensersService
+    private _dispenserService : DispensersService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -64,12 +67,15 @@ export class SalesByDatesComponent implements OnInit {
 
   getSalesRegularByDate() {
     this.convertDates();
- 
-    this._dispenserService.getCountSumGallonsDiesel(this.reportingSaleForm.value)
+    const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef.afterDismissed().subscribe(() => {
+      this._dispenserService.getCountSumGallonsDiesel(this.reportingSaleForm.value)
       .subscribe(({ countTotalSale }) => {
        this.generalDispenser = countTotalSale
         console.log(countTotalSale)
       })
+    })
+   
   };
 
   getAllSale() {
