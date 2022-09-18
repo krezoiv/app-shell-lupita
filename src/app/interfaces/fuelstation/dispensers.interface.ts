@@ -199,6 +199,12 @@ export interface fuel_I {
     fuels :Taxes
 }
 
-export interface countTotalSale_I {
-    countTotalSale : []
+export interface countTotalSaleRegular_I {
+    countTotalSaleRegular : []
+}
+export interface countTotalSaleSuper_I {
+    countTotalSaleSuper : []
+}
+export interface countTotalSaleDiesel_I {
+    countTotalSaleDiesel : []
 }

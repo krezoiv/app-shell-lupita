@@ -13,3 +13,7 @@ export interface SalesByDate_I {
     getData : SalesControl[];
 
 }
+
+export interface countTotalSale_I {
+    countTotalSale: [];
+}

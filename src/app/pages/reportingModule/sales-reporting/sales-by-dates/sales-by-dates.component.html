@@ -41,9 +41,6 @@
                                 </button>
 
 
-                                <button id="buttonB" mat-raised-button color="primary" (click)="convertDates();">
-                                    <mat-icon>sync</mat-icon><br> PRueba
-                                </button>
                             </div>
                         </div>
 
@@ -65,15 +62,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let dis of generalDispenser">
-                                    <td > <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                        formControlName="totalGallonsRegular" [(ngModel)]="dis.count" matInput></td>
+                                <tr *ngFor="let total of salesReport">
+                                    <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                            formControlName="total" [(ngModel)]="total.count" matInput></td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </section>
-
                 </div>
 
             </div><br>
@@ -86,36 +81,38 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-xs-4">
                             <section id="sectionFuel">
-                                <h3>Galones Acumulados Super</h3>
+                                <h3>Galones Acumulados Regular</h3>
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>Acumulado Super</th>
-                                        </tr>
+                                       
                                     </thead>
                                     <tbody>
-                                        <tr></tr>
+                                        <tr>
+                                            <tr *ngFor="let disRegular of generalDispenserRegular">
+                                                <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                                        formControlName="totalGallonsRegular" [(ngModel)]="disRegular.count" matInput></td>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </section>
-
                         </div>
 
                         <div class="col-md-4 col-sm-4 col-xs-4">
                             <section id="sectionFuel">
-                                <h3>Galones Acumulados Regular</h3>
+                                <h3>Galones Acumulados Super</h3>
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>Acumularo Regular</th>
-                                        </tr>
+                                        <tr> </tr>
                                     </thead>
                                     <tbody>
-                                        <tr></tr>
+                                        <tr>
+                                            <tr *ngFor="let disSuper of generalDispenserSuper">
+                                                <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                                        formControlName="totalGallonsSuper" [(ngModel)]="disSuper.count" matInput></td>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </section>
-
                         </div>
 
                         <div class="col-md-4 col-sm-4 col-xs-4">
@@ -123,23 +120,25 @@
                                 <h3>Galones Acumulados Diesel</h3>
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>Avumulado Diesel</th>
-                                        </tr>
+                                        <tr> </tr>
                                     </thead>
                                     <tbody>
-                                        <tr></tr>
+                                        <tr>
+                                            <tr *ngFor="let disDiesel of generalDispenserDiesel">
+                                                <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                                        formControlName="totalGallonsDiesel" [(ngModel)]="disDiesel.count" matInput></td>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </section>
-
                         </div>
+                       
                     </div>
                 </div>
             </div><br>
             <div class="row">
-                <h3 class="card-title">Total de Ventas: ( {{totalSales}} )  - ({{fm}}) </h3>
-                <div class="col-md-12 col-sm-12 col-xs-12"> 
+                <h3 class="card-title">Total de Ventas: ( {{totalSales}} )</h3>
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <section id="sectionDetail">
                         <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                             <thead>
@@ -153,34 +152,37 @@
                                     <th thDetail scope="col">Total Gastos</th>
                                     <th thDetail scope="col">Total de Cupones</th>
                                     <th thDetail scope="col">Total de Vales</th>
-                                    <th thDetail scope="col">Total de Vouchers</th>                
+                                    <th thDetail scope="col">Total de Vouchers</th>
                                     <th thDetail scope="col">Créditos</th>
                                     <th thDetail scope="col">Total de Depósitos</th>
                                     <th thDetail scope="col">Número de Depósito</th>
-                                    <th thDetail scope="col">Balance</th>   
+                                    <th thDetail scope="col">Balance</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  *ngFor="let data of salesReport">
+                                <tr *ngFor="let data of salesReport">
                                     <td id="tdTable" scope="col">{{data.salesDate | date}}</td>
-                                   <td id="tdTable" scope="col">{{data.noDocument}}</td>
-                                   <td id="tdTable" scope="col">{{data.totalGallonSuper | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.totalGallonRegular | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.totalGallonDiesel | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.total | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.bills | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.cupones | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.vales | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.vouchers | number}}</td>                
-                                   <td id="tdTable" scope="col">{{data.credits | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.deposits | number}}</td>
-                                   <td id="tdTable" scope="col">{{data.depositSlip}}</td>
-                                   <td id="tdTable" scope="col">{{data.balance | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.noDocument}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonSuper | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonRegular | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonDiesel | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.total | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.bills | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.cupones | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.vales | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.vouchers | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.credits | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.deposits | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.depositSlip}}</td>
+                                    <td id="tdTable" scope="col">{{data.balance | number}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <button mat-button color="primary" (click)="changePage(-3);"><mat-icon>skip_previous</mat-icon> Anterior</button>
-                        <button mat-button color="primary" (click)="changePage(3);"> Siguiente <mat-icon>skip_next</mat-icon></button>
+                        <button mat-button color="primary" (click)="changePage(-5);">
+                            <mat-icon>skip_previous</mat-icon> Anterior
+                        </button>
+                        <button mat-button color="primary" (click)="changePage(5);"> Siguiente <mat-icon>skip_next
+                            </mat-icon></button>
                     </section>
                 </div>
             </div>

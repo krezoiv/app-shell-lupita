@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SalesControl } from 'src/app/models/sales/salesControl.model';
 import { Observable } from 'rxjs';
-import { lastNoDocument_I, SalebyDocument_I, SalesByDate_I } from 'src/app/interfaces/salesControl.interface';
+import { countTotalSale_I, lastNoDocument_I, SalebyDocument_I, SalesByDate_I } from 'src/app/interfaces/salesControl.interface';
 
 const api_url = environment.api_url;
 
@@ -47,5 +47,9 @@ export class SalesControlService {
 
   getAllSales(from : number = 0): Observable<SalesByDate_I>{
     return this.http.get<SalesByDate_I>(`${api_url}/salesControl?from=${from}`, this.headers);
-  }
+  };
+
+  getTotalSalesByDate(formData : SalesControl): Observable<countTotalSale_I>{
+    return this.http.post<countTotalSale_I>(`${api_url}/salesControl/countSumSalesByDate`, formData, this.headers);
+  };
 }

@@ -25,6 +25,7 @@ export class SalesControl {
         public credits: number,
         public applied: boolean,
         public abonos : number,
+        public count : number
        
 
     ) { }
