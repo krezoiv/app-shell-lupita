@@ -44,7 +44,7 @@ export class AuthService {
     //pipe para obtener el token y guardarlos en el localstorage
                 .pipe(
                   tap((data:any) => {
-                    localStorage.setItem('token', data.token)
+                    localStorage.setItem('token', data.token, )
                   })
                 );
   };

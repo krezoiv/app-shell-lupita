@@ -15,55 +15,56 @@ import Swal from 'sweetalert2';
 })
 export class SalesByNoDocumentComponent implements OnInit {
 
- saleReporting : SalesControl[]=[]; 
- fuels : Fuels[]=[]; 
+  saleReporting: SalesControl[] = [];
+  fuels: Fuels[] = [];
 
   reportingSaleForm: FormGroup = this.fb.group({
-    noDocument :['']
+    noDocument: ['']
   })
 
   constructor(
     private fb: FormBuilder,
-    private _salesControlService : SalesControlService,
+    private _salesControlService: SalesControlService,
     private _fuelService: FuelsService,
-    private router : Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
-  getSalesByDocument(){
+  getSalesByDocument() {
     this._salesControlService.getSaleByNoDocument(this.reportingSaleForm.value)
-      .subscribe(({salebyDocument}) => {
+      .subscribe(({ salebyDocument }) => {
         this.saleReporting = salebyDocument;
-       
-      }, ( err ) => {
-        Swal.fire({ title: "Error!",
-        text: (err.error.msg),
-        timer: 4000});
-       // Swal.fire('Error', err.error.msg, 'error');
+
+      }, (err) => {
+        Swal.fire({
+          title: "Error!",
+          text: (err.error.msg),
+          timer: 4000
+        });
+        // Swal.fire('Error', err.error.msg, 'error');
         this.newSearch();
       })
   }
 
-  getFuelPrice(){
+  getFuelPrice() {
     this._fuelService.getFuelsActive()
-      .subscribe(({fuels}) => {
+      .subscribe(({ fuels }) => {
         this.fuels = fuels;
         console.log(fuels)
       })
   }
-  search(){
-    
+  search() {
+
     this.getSalesByDocument();
     this.getFuelPrice();
   }
 
-  newSearch(){
+  newSearch() {
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['dashboard/reporteria/reporteVentasporDocumento']);
-  }); 
-
+    });
 
   }
 }

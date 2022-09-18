@@ -84,3 +84,24 @@ hr {
     background-color: aqua;
     text-align: center;
 }
+#colorTd {
+    color :#C416E0 ;
+    background-color: #8EED0C;
+}
+
+#section {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+    background-color: #EAFAF1;
+}
+
+#showButtons{
+    background-color: #29E070;
+    color: #AA1BF5;
+}
+
+#hideButtons{
+    background-color: #FA881B;
+    color: #B5F5FD;
+}

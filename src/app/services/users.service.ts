@@ -11,16 +11,20 @@ import { Users } from '../models/user.models';
 
 const api_url = environment.api_url;
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
+  public usuario!: Users
 
   constructor(
     private http: HttpClient
   ) { }
 
+get role(){
+  return this.usuario.rolesId.roleName
+}
 
   get token(): string {
     return localStorage.getItem('token') || '';

@@ -29,6 +29,7 @@ import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.co
 import { InventoryComponent } from './inventory/inventory/inventory.component';
 import { SalesByNoDocumentComponent } from './reportingModule/sales-reporting/sales-by-no-document/sales-by-no-document.component';
 import { SalesByDatesComponent } from './reportingModule/sales-reporting/sales-by-dates/sales-by-dates.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 
@@ -62,7 +63,7 @@ const routes: Routes =[
     {path : 'compras', component: MainPurchaseComponent},
     {path : 'inventario', component: InventoryComponent},
     {path : 'reporteria/reporteVentasporDocumento', component: SalesByNoDocumentComponent},
-    {path : 'reporteria/reporteVentasporFechas', component: SalesByDatesComponent},
+    {path : 'reporteria/reporteVentasporFechas', canActivate: [AdminGuard], component: SalesByDatesComponent},
 
 
   ]},

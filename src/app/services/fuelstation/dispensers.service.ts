@@ -296,21 +296,6 @@ export class DispensersService {
     return this.http.get<countGallonsDiesel_I>(`${api_url}/generalDispenserReader/countGallonsDiesel`, this.headers);
   }
 
- 
-  getCountSumGallonsRegular(formData : GeneralDispenserReader): Observable<countTotalSaleRegular_I>{
-    return this.http.post<countTotalSaleRegular_I>(`${api_url}/generalDispenserReader/countSumRegularGallonsSalesByDate`, formData, this.headers);
-  };
-
-
-  getCountSumGallonsSuper(formData : GeneralDispenserReader): Observable<countTotalSaleSuper_I>{
-    return this.http.post<countTotalSaleSuper_I>(`${api_url}/generalDispenserReader/countSumSuperGallonsSalesByDate`, formData, this.headers);
-  };
-
-  getCountSumGallonsDiesel(formData : GeneralDispenserReader): Observable<countTotalSaleDiesel_I>{
-    return this.http.post<countTotalSaleDiesel_I>(`${api_url}/generalDispenserReader/countSumDieselGallonsSalesByDate`, formData, this.headers);
-  };
-
-
 };
 
 

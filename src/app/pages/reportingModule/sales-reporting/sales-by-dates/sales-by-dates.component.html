@@ -36,7 +36,7 @@
                                 <button id="buttonA" mat-raised-button color="primary" (click)="search();">
                                     <mat-icon>search</mat-icon><br> Buscar
                                 </button>
-                                <button id="buttonB" mat-raised-button color="primary">
+                                <button id="buttonB" mat-raised-button color="primary" (click)="newSearch();">
                                     <mat-icon>sync</mat-icon><br> Nueva Buesqueda
                                 </button>
 
@@ -62,7 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let total of salesReport">
+                                <tr *ngFor="let total of salesReportTotal">
                                     <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
                                             formControlName="total" [(ngModel)]="total.count" matInput></td>
                                 </tr>
@@ -84,14 +84,15 @@
                                 <h3>Galones Acumulados Regular</h3>
                                 <table>
                                     <thead>
-                                       
+
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <tr *ngFor="let disRegular of generalDispenserRegular">
-                                                <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                                        formControlName="totalGallonsRegular" [(ngModel)]="disRegular.count" matInput></td>
-                                            </tr>
+                                        <tr *ngFor="let disRegular of generalDispenserRegular">
+                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                                    name="gallonA" formControlName="totalGallonsRegular"
+                                                    [(ngModel)]="disRegular.count" matInput></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </section>
@@ -106,10 +107,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <tr *ngFor="let disSuper of generalDispenserSuper">
-                                                <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                                        formControlName="totalGallonsSuper" [(ngModel)]="disSuper.count" matInput></td>
-                                            </tr>
+                                        <tr *ngFor="let disSuper of generalDispenserSuper">
+                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                                    name="gallonA" formControlName="totalGallonsSuper"
+                                                    [(ngModel)]="disSuper.count" matInput></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </section>
@@ -124,22 +126,23 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <tr *ngFor="let disDiesel of generalDispenserDiesel">
-                                                <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                                        formControlName="totalGallonsDiesel" [(ngModel)]="disDiesel.count" matInput></td>
-                                            </tr>
+                                        <tr *ngFor="let disDiesel of generalDispenserDiesel">
+                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                                    name="gallonA" formControlName="totalGallonsDiesel"
+                                                    [(ngModel)]="disDiesel.count" matInput></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </section>
                         </div>
-                       
+
                     </div>
                 </div>
             </div><br>
             <div class="row">
                 <h3 class="card-title">Total de Ventas: ( {{totalSales}} )</h3>
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <section id="sectionDetail">
+                    <section id="section">
                         <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                             <thead>
                                 <tr id="trEncabezado">
@@ -148,7 +151,7 @@
                                     <th thDetail scope="col">Total Galones Super</th>
                                     <th thDetail scope="col">Total Galones Regular</th>
                                     <th thDetail scope="col">Total Galones Diesel</th>
-                                    <th thDetail scope="col">Sub Total</th>
+                                    <th thDetail scope="col">Totalde Venta</th>
                                     <th thDetail scope="col">Total Gastos</th>
                                     <th thDetail scope="col">Total de Cupones</th>
                                     <th thDetail scope="col">Total de Vales</th>
@@ -178,15 +181,442 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button mat-button color="primary" (click)="changePage(-5);">
+                        <button mat-button color="primary" (click)="changePage(-3);">
                             <mat-icon>skip_previous</mat-icon> Anterior
                         </button>
-                        <button mat-button color="primary" (click)="changePage(5);"> Siguiente <mat-icon>skip_next
+                        <button mat-button color="primary" (click)="changePage(3);"> Siguiente <mat-icon>skip_next
                             </mat-icon></button>
                     </section>
                 </div>
             </div>
+            <hr>
 
+            <div id="section">
+                <div>
+                   
+                    <button id="showButtons" *ngIf="btnShowTableGreaterSales" mat-stroked-button color="primary" (click)="buttonShowTableGreaterSales();"><h3>Mostar Venta Mayor <mat-icon>keyboard_arrow_down</mat-icon> </h3></button>
+                    <button id="hideButtons" *ngIf="btnShowTablelessSales" mat-stroked-button color="primary" (click)="buttonShowTablelessSales();"><h3>Ocultar Venta Mayor  <mat-icon>keyboard_arrow_up</mat-icon></h3> </button>
+                </div>
+                <div *ngIf="showMeDivLessGreatSale">
+                    <div class="row">
+                        <h3>Venta Mayor</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data2 of greaterSale">
+                                            <td id="tdTable" scope="col">{{data2.salesDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data2.noDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalGallonRegular | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalGallonDiesel | number}}</td>
+                                            <td id="tdTable" id="colorTd" scope="col">{{data2.total | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.bills | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.cupones | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.vales | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.vouchers | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.credits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.deposits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.depositSlip}}</td>
+                                            <td id="tdTable" scope="col">{{data2.balance | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+    
+                            </section>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <h3>Venta Menor</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data3 of lesserSale">
+                                            <td id="tdTable" scope="col">{{data3.salesDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data3.noDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalGallonRegular | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalGallonDiesel | number}}</td>
+                                            <td id="tdTable" id="colorTd" scope="col">{{data3.total | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.bills | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.cupones | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.vales | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.vouchers | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.credits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.deposits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.depositSlip}}</td>
+                                            <td id="tdTable" scope="col">{{data3.balance | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+    
+                            </section>
+                        </div>
+    
+                    </div>
+                    <hr>
+                </div>
+                
+            </div><br>
+           <div id="section">
+            <div>
+               
+                    <button  id="showButtons" *ngIf="btnShowTableGreaterRegular" mat-stroked-button color="primary" (click)="buttonShowTableGreaterRegular();"><h3>Mostar Venta Mayor Regular <mat-icon>keyboard_arrow_down</mat-icon> </h3></button>
+                    <button id="hideButtons" *ngIf="btnShowTablelessRegular" mat-stroked-button color="primary" (click)="buttonShowTablelessRegular();"><h3>Ocultar Venta Mayor Regular <mat-icon>keyboard_arrow_up</mat-icon></h3> </button>
+            </div>
+            <div *ngIf="showMeDivLessGreatRegular">
+                <div class="row">
+                    <h3> gallones Mayor Regular</h3>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <section id="sectionDetail">
+                            <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <thead>
+                                    <tr id="trEncabezado">
+                                        <th thDetail scope="col">Fecha</th>
+                                        <th thDetail scope="col">Número de Documento</th>
+                                        <th thDetail scope="col">Total Galones Super</th>
+                                        <th thDetail scope="col">Total Galones Regular</th>
+                                        <th thDetail scope="col">Total Galones Diesel</th>
+                                        <th thDetail scope="col">Totalde Venta</th>
+                                        <th thDetail scope="col">Total Gastos</th>
+                                        <th thDetail scope="col">Total de Cupones</th>
+                                        <th thDetail scope="col">Total de Vales</th>
+                                        <th thDetail scope="col">Total de Vouchers</th>
+                                        <th thDetail scope="col">Créditos</th>
+                                        <th thDetail scope="col">Total de Depósitos</th>
+                                        <th thDetail scope="col">Número de Depósito</th>
+                                        <th thDetail scope="col">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data4 of greaterRegular">
+                                        <td id="tdTable" scope="col">{{data4.salesDate | date}}</td>
+                                        <td id="tdTable" scope="col">{{data4.noDocument}}</td>
+                                        <td id="tdTable" scope="col">{{data4.totalGallonSuper | number}}</td>
+                                        <td id="tdTable" id="colorTd" scope="col">{{data4.totalGallonRegular | number}}
+                                        </td>
+                                        <td id="tdTable" scope="col">{{data4.totalGallonDiesel | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.total | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.bills | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.cupones | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.vales | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.vouchers | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.credits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.deposits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data4.depositSlip}}</td>
+                                        <td id="tdTable" scope="col">{{data4.balance | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </section>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <h3>gallones Menor Regular</h3>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <section id="sectionDetail">
+                            <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <thead>
+                                    <tr id="trEncabezado">
+                                        <th thDetail scope="col">Fecha</th>
+                                        <th thDetail scope="col">Número de Documento</th>
+                                        <th thDetail scope="col">Total Galones Super</th>
+                                        <th thDetail scope="col">Total Galones Regular</th>
+                                        <th thDetail scope="col">Total Galones Diesel</th>
+                                        <th thDetail scope="col">Totalde Venta</th>
+                                        <th thDetail scope="col">Total Gastos</th>
+                                        <th thDetail scope="col">Total de Cupones</th>
+                                        <th thDetail scope="col">Total de Vales</th>
+                                        <th thDetail scope="col">Total de Vouchers</th>
+                                        <th thDetail scope="col">Créditos</th>
+                                        <th thDetail scope="col">Total de Depósitos</th>
+                                        <th thDetail scope="col">Número de Depósito</th>
+                                        <th thDetail scope="col">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data5 of lesserRegular">
+                                        <td id="tdTable" scope="col">{{data5.salesDate | date}}</td>
+                                        <td id="tdTable" scope="col">{{data5.noDocument}}</td>
+                                        <td id="tdTable" scope="col">{{data5.totalGallonSuper | number}}</td>
+                                        <td id="tdTable" id="colorTd" scope="col">{{data5.totalGallonRegular | number}}
+                                        </td>
+                                        <td id="tdTable" scope="col">{{data5.totalGallonDiesel | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.total | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.bills | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.cupones | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.vales | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.vouchers | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.credits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.deposits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data5.depositSlip}}</td>
+                                        <td id="tdTable" scope="col">{{data5.balance | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </section>
+                    </div>
+                    
+                </div>
+                <hr>
+            </div>
+           
+           </div> <br>
+           <div id="section">
+            <div>
+               
+                    <button id="showButtons" *ngIf="btnShowTableGreaterSuper" mat-stroked-button color="primary" (click)="buttonShowTableGreaterSuper();"><h3>Mostar Venta Mayor Super <mat-icon>keyboard_arrow_down</mat-icon> </h3></button>
+                    <button id="hideButtons"*ngIf="btnShowTablelessSuper" mat-stroked-button color="primary" (click)="buttonShowTablelessSuper();"><h3>Ocultar Venta Mayor Super <mat-icon>keyboard_arrow_up</mat-icon></h3> </button>
+            </div>
+            <div *ngIf="showMeDivLessGreatSuper">
+                <div class="row">
+                    <h3> gallones Mayor Super</h3>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <section id="sectionDetail">
+                            <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <thead>
+                                    <tr id="trEncabezado">
+                                        <th thDetail scope="col">Fecha</th>
+                                        <th thDetail scope="col">Número de Documento</th>
+                                        <th thDetail scope="col">Total Galones Super</th>
+                                        <th thDetail scope="col">Total Galones Regular</th>
+                                        <th thDetail scope="col">Total Galones Diesel</th>
+                                        <th thDetail scope="col">Totalde Venta</th>
+                                        <th thDetail scope="col">Total Gastos</th>
+                                        <th thDetail scope="col">Total de Cupones</th>
+                                        <th thDetail scope="col">Total de Vales</th>
+                                        <th thDetail scope="col">Total de Vouchers</th>
+                                        <th thDetail scope="col">Créditos</th>
+                                        <th thDetail scope="col">Total de Depósitos</th>
+                                        <th thDetail scope="col">Número de Depósito</th>
+                                        <th thDetail scope="col">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data6 of greaterSuper">
+                                        <td id="tdTable" scope="col">{{data6.salesDate | date}}</td>
+                                        <td id="tdTable" scope="col">{{data6.noDocument}}</td>
+                                        <td id="tdTable" id="colorTd" scope="col">{{data6.totalGallonSuper | number}}
+                                        </td>
+                                        <td id="tdTable" scope="col">{{data6.totalGallonRegular | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.totalGallonDiesel | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.total | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.bills | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.cupones | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.vales | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.vouchers | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.credits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.deposits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data6.depositSlip}}</td>
+                                        <td id="tdTable" scope="col">{{data6.balance | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </section>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <h3>gallones Menor Super</h3>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <section id="sectionDetail">
+                            <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <thead>
+                                    <tr id="trEncabezado">
+                                        <th thDetail scope="col">Fecha</th>
+                                        <th thDetail scope="col">Número de Documento</th>
+                                        <th thDetail scope="col">Total Galones Super</th>
+                                        <th thDetail scope="col">Total Galones Regular</th>
+                                        <th thDetail scope="col">Total Galones Diesel</th>
+                                        <th thDetail scope="col">Totalde Venta</th>
+                                        <th thDetail scope="col">Total Gastos</th>
+                                        <th thDetail scope="col">Total de Cupones</th>
+                                        <th thDetail scope="col">Total de Vales</th>
+                                        <th thDetail scope="col">Total de Vouchers</th>
+                                        <th thDetail scope="col">Créditos</th>
+                                        <th thDetail scope="col">Total de Depósitos</th>
+                                        <th thDetail scope="col">Número de Depósito</th>
+                                        <th thDetail scope="col">Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data7 of lesserSuper">
+                                        <td id="tdTable" scope="col">{{data7.salesDate | date}}</td>
+                                        <td id="tdTable" scope="col">{{data7.noDocument}}</td>
+                                        <td id="tdTable" id="colorTd" scope="col">{{data7.totalGallonSuper | number}}
+                                        </td>
+                                        <td id="tdTable" scope="col">{{data7.totalGallonRegular | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.totalGallonDiesel | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.total | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.bills | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.cupones | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.vales | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.vouchers | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.credits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.deposits | number}}</td>
+                                        <td id="tdTable" scope="col">{{data7.depositSlip}}</td>
+                                        <td id="tdTable" scope="col">{{data7.balance | number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </section>
+                    </div>
+
+                </div>
+                <hr>
+            </div>
+         
+           </div><br>
+            <div id="section">
+                <div>
+                   
+                        <button  id="showButtons" *ngIf="btnShowTableGreaterDiesel" mat-stroked-button color="primary" (click)="buttonShowTableGreaterDiesel();"><h3>Mostar Venta Mayor Diesel <mat-icon>keyboard_arrow_down</mat-icon> </h3></button>
+                        <button id="hideButtons"*ngIf="btnShowTablelessDiesel" mat-stroked-button color="primary" (click)="buttonShowTablelessDiesel();"><h3>Ocultar Venta Mayor Diesel <mat-icon>keyboard_arrow_up</mat-icon></h3> </button>
+                </div>
+                <div *ngIf="showMeDivLessGreatDiesel">
+                    <div class="row">
+                        <h3> gallones Mayor Diesel</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data8 of greaterDiesel">
+                                            <td id="tdTable" scope="col">{{data8.salesDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data8.noDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data8.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.totalGallonRegular | number}}</td>
+                                            <td id="tdTable" id="colorTd" scope="col">{{data8.totalGallonDiesel | number}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data8.total | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.bills | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.cupones | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.vales | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.vouchers | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.credits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.deposits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.depositSlip}}</td>
+                                            <td id="tdTable" scope="col">{{data8.balance | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+    
+                            </section>
+                        </div>
+                    </div>
+              
+                    <div class="row">
+                        <h3>gallones Menor Diesel</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data9 of lesserDiesel">
+                                            <td id="tdTable" scope="col">{{data9.salesDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data9.noDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data9.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.totalGallonRegular | number}}</td>
+                                            <td id="tdTable" id="colorTd" scope="col">{{data9.totalGallonDiesel | number}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data9.total | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.bills | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.cupones | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.vales | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.vouchers | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.credits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.deposits | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.depositSlip}}</td>
+                                            <td id="tdTable" scope="col">{{data9.balance | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+    
+                            </section>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
         </form>
     </div>
 </body>
