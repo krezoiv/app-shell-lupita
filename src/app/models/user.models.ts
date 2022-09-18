@@ -10,11 +10,14 @@ export class Users {
         public lastName : string,
         public email : string,
         public password : string,
-        public rolesId: Roles,
+        public role: 'SUPER_ROLE' | 'USER_ROLE',
         public statusId : Status,
         public userId? : string,
 
     ){}
+    imprimirUsuario(){
+        console.log(this.role)
+    }
 }
 
 export class Roles {

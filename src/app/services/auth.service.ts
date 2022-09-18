@@ -5,8 +5,9 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginForm } from '../interfaces/loginform.interface';
-import { LoggedUser_I } from '../interfaces/users.interface';
+import { LoggedUser_I, User } from '../interfaces/users.interface';
 import { Users } from '../models/user.models';
+
 
 
 
@@ -18,13 +19,18 @@ const api_url = environment.api_url;
   providedIn: 'root'
 })
 export class AuthService {
-
+public usuario! : Users;
   constructor
   (
     private http: HttpClient,
     private router : Router
   ) { }
 
+
+  get role():'SUPER_ROLE' | 'USER_ROLE'{
+    return this.usuario.role;
+  }
+  
   validateToken(): Observable<boolean>{  
     
     const token = localStorage.getItem('token') || '';
@@ -33,6 +39,9 @@ export class AuthService {
         'jwt-token' : token
       }
     }).pipe(tap((data: any) => {
+      const {firstName, lastName, email, statusId, role, userId} = data.usuario;
+      this.usuario = new Users(firstName, lastName, email, statusId, role, userId);
+      this.usuario.imprimirUsuario(); 
       localStorage.setItem('token', data.token);
     }),map(data => true),
     catchError(error =>of(false))

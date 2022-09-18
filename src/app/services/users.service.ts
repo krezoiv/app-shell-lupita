@@ -16,15 +16,12 @@ const api_url = environment.api_url;
   providedIn: 'root'
 })
 export class UsersService {
-  public usuario!: Users
+
 
   constructor(
     private http: HttpClient
   ) { }
 
-get role(){
-  return this.usuario.rolesId.roleName
-}
 
   get token(): string {
     return localStorage.getItem('token') || '';

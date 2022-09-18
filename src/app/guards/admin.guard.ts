@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Roles } from '../models/user.models';
+import { AuthService } from '../services/auth.service';
 import { UsersService } from '../services/users.service';
 
 
@@ -11,21 +12,21 @@ export class AdminGuard implements CanActivate {
 
   public roles : Roles[]=[];
   constructor(
-    private userService : UsersService,
+    private _authService : AuthService,
+    private _router : Router
     
   ){}
   canActivate(
-    route: ActivatedRouteSnapshot,
+    next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
-    console.log('adm')
-      return (this.userService.role === 'Super Administrador') ? true : false
+  
+     if(this._authService.role === 'SUPER_ROLE'){
+      return true;
+     }else {
+      this._router.navigateByUrl('/dashboard')
+      return false
+     }
   }
 
-  getRoles(){
-    this.userService.getRoles()
-    .subscribe(({roles}) => {
-      this.roles = roles
-    })
-  }
   
 }
