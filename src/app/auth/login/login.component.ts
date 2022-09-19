@@ -39,9 +39,6 @@ export class LoginComponent implements OnInit {
      
       this.router.navigateByUrl('/dashboard');
       this.userLogged();
-      
-      
-      
      
     }, ( err ) => {
       Swal.fire('Error', err.error.msg, 'error');
@@ -51,11 +48,11 @@ export class LoginComponent implements OnInit {
   userLogged(){
     this.authService.userLooged(this.loginForm.value as LoginForm)
       .subscribe(({userDB}) => {
-        console.log( userDB.firstName)
+       
 
         this.loginForm.controls['user'].setValue(userDB.firstName);
         this.userName = userDB.firstName
-        console.log(this.userName)
+      
         Swal.fire({
           title: "Bienvenido! " + this.userName,
           text: "Shell Lupita",

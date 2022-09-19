@@ -2,7 +2,7 @@
   <mat-toolbar>
     <mat-toolbar-row>
       <h4>Shell Lupita </h4>
-    
+
     </mat-toolbar-row>
 
 
@@ -44,41 +44,31 @@
       <!--boton para Reporteria-->
 
       <hr>
-      <h1>Reporteria</h1>
+      <div id="tree">
+        <h1>Reporteria</h1>
       <hr id="hr2">
-
-      <mat-list >
-        <mat-toolbar>
-          <button mat-button [matMenuTriggerFor]="reporting"><h1>Ventas</h1></button>
-          <mat-menu id="matMenu" #reporting="matMenu">
-            <button  mat-menu-item><mat-icon> V</mat-icon><a id="a" routerLink="/dashboard/reporteria/reporteVentasporFechas">Por Fecha</a></button> 
-            <button mat-menu-item><mat-icon> P</mat-icon><a id="a" routerLink="/dashboard/reporteria/reporteVentasporDocumento">Por No. Documento</a></button> 
-            <button mat-menu-item><mat-icon> P</mat-icon><a>Ventas</a></button> 
-          </mat-menu>  
-
-          <mat-menu #reporting="matMenu">
-            <button mat-menu-item><mat-icon> pss</mat-icon><a>Ventas</a></button> 
-          </mat-menu>  
-        </mat-toolbar>
-      </mat-list>
       
-
-      <mat-list>
-        <mat-list-item><a routerLink="/dashboard/reporteriaVentas">
-            <mat-icon>shopping_cart</mat-icon> Ventas
-          </a>
-          
-          
-        </mat-list-item>
-      </mat-list>
-      
-      <mat-list>
-        <mat-list-item><a routerLink="/dashboard/inventario">
-            <mat-icon>shopping_cart</mat-icon> Compras
-          </a>
-        </mat-list-item>
-      </mat-list>
-
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node  *matTreeNodeDef="let node" matTreeNodePadding>
+          <!-- use a disabled button to provide padding for tree leaf -->
+          <button mat-icon-button disabled></button>
+          <a id="aTree" routerLink={{node.url}}>
+            {{node.name}}</a>
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <a id="aTree" >
+            {{node.name}}</a>
+        </mat-tree-node>
+      </mat-tree>
+      </div>
       <footer>
         <div class="wrap">
           <div class="widget">

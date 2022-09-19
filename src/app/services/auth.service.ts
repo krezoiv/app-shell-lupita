@@ -9,9 +9,6 @@ import { LoggedUser_I, User } from '../interfaces/users.interface';
 import { Users } from '../models/user.models';
 
 
-
-
-
 const api_url = environment.api_url;
 //const api = `http://localhost:3000/api/login`
 
@@ -27,8 +24,8 @@ public usuario! : Users;
   ) { }
 
 
-  get role():'SUPER_ROLE' | 'USER_ROLE'{
-    return this.usuario.role;
+  get role() {
+    return this.usuario.role
   }
   
   validateToken(): Observable<boolean>{  
@@ -41,7 +38,7 @@ public usuario! : Users;
     }).pipe(tap((data: any) => {
       const {firstName, lastName, email, statusId, role, userId} = data.usuario;
       this.usuario = new Users(firstName, lastName, email, statusId, role, userId);
-      this.usuario.imprimirUsuario(); 
+     
       localStorage.setItem('token', data.token);
     }),map(data => true),
     catchError(error =>of(false))

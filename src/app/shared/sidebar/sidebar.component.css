@@ -3,7 +3,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-    width: 200px;
+    width: 250px;
     background-color: black;
 
 }
@@ -16,12 +16,17 @@ mat-list{
 }
 
 a{
-    color: white;
+    color: red;
+   font-size: 25px;
+   text-decoration: none;
+  text-shadow: white;
+  
 }
 #a{
     color: black;
     
 }
+
 h1{
     color: white;
 }
@@ -72,3 +77,13 @@ mat-toolbar {
 #divSec {
     background: black;
 }
+
+
+.mat-tree {
+    background: transparent;
+  }
+    
+  .mat-tree-node {
+    color: white;
+    
+  }

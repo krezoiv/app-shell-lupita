@@ -10,9 +10,10 @@ export class Users {
         public lastName : string,
         public email : string,
         public password : string,
-        public role: 'SUPER_ROLE' | 'USER_ROLE',
+        public role : 'SUPER_ROLE' | 'ADMIN_ROLE' | 'USER_ROLE' | 'GUEST_ROLE',
         public statusId : Status,
         public userId? : string,
+        
 
     ){}
     imprimirUsuario(){

@@ -19,6 +19,7 @@ import { TimerComponent } from './functions/timer/timer.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PurchaseNavbarComponent } from './purchase-navbar/purchase-navbar.component';
 import { LoadingComponent } from './functions/loading/loading.component';
+import { MatTree, MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LoadingComponent } from './functions/loading/loading.component';
     MatButtonModule,
     MatListModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTreeModule
   ], exports : [
     MainHeaderComponent,
     MantenimientoUserHeaderComponent,
