@@ -1,1 +1,626 @@
-<p>purchase-by-dates works!</p>
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form [formGroup]="reportingPurchaseForm" class="mat-elevation-z8">
+            <h1>Reportes de Compras por Fechas</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="input-group">
+                                <div id="divDate">
+                                    <mat-form-field id="mat-form-field-dates" id="matFiel-heards" color="accent"
+                                        appearance="fill">
+                                        <input id="input-registros" required matInput [matDatepicker]="initialDate"
+                                            formControlName="initialDate">
+                                        <mat-datepicker-toggle [for]="initialDate" matSuffix></mat-datepicker-toggle>
+                                        <mat-datepicker #initialDate></mat-datepicker>
+                                        <mat-hint>Ingrese Fecha de inicio</mat-hint><br>
+                                    </mat-form-field> &nbsp;
+                                </div>
+
+                                <div id="divDate">
+                                    <mat-form-field id="mat-form-field-dates" id="matFiel-heards" color="accent"
+                                        appearance="fill">
+                                        <input id="input-registros" required matInput [matDatepicker]="finalDate"
+                                            formControlName="finalDate">
+                                        <mat-datepicker-toggle [for]="finalDate" matSuffix></mat-datepicker-toggle>
+                                        <mat-datepicker #finalDate></mat-datepicker>
+                                        <mat-hint>Ingrese fecha final</mat-hint><br>
+                                    </mat-form-field>
+                                </div>
+
+                                <button id="buttonA" mat-raised-button color="primary" (click)="search();">
+                                    <mat-icon>search</mat-icon><br> Buscar
+                                </button>
+                                <button id="buttonB" mat-raised-button color="primary" (click)="newSearch();">
+                                    <mat-icon>sync</mat-icon><br> Nueva Buesqueda
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Gran Total</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionAccumulated">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let total of purchaseReportTotal">
+                                    <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                            formControlName="totalPurchase" [(ngModel)]="total.count" matInput></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div><br>
+
+            <div class="row">
+                <div class="col-md-8 col-sm- col-xs-8">
+                    <label>
+                        <h1>Galones Acumulados</h1>
+                    </label>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3> Galones Acumulados Regular</h3>
+                                <table>
+                                    <thead>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let disRegular of purchaseRegular">
+                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                                    name="gallonA" formControlName="totalGallonsRegular"
+                                                    [(ngModel)]="disRegular.count" matInput></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3> Galones Acumulados Super</h3>
+                                <table>
+                                    <thead>
+                                        <tr>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr *ngFor="let disSuper of purchaseSuper">
+                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                                    name="gallonA" formControlName="totalGallonsSuper"
+                                                    [(ngModel)]="disSuper.count" matInput></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3> Galones Acumulados Diesel</h3>
+                                <table>
+                                    <thead>
+                                        <tr></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let disDiesel of purchaseDiesel">
+                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                                    name="gallonA" formControlName="totalGallonsDiesel"
+                                                    [(ngModel)]="disDiesel.count" matInput></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <h3 class="card-title"> ({{totalPurchases}})</h3>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <section id="section">
+                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                            <thead>
+                                <tr id="trEncabezado">
+                                    <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of purchaseReport">
+                                    <td id="tdTable" scope="col">{{data.deliveryDate | date}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.orderNumber}}</td>
+                                    <td id="tdTable" scope="col">{{data.invoiceSerie}}</td>
+                                    <td id="tdTable" scope="col">{{data.invoiceDocument}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.totalGallonSuper}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.totalGallonRegular}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.totalGallonDiesel}}</td>
+                                    <td id="tdTable" scope="col">{{data.bankName}}</td>
+                                    <td id="tdTable" scope="col">{{data.NoBankCheck}}</td>
+                                    <td id="tdTable" scope="col">{{data.checkAmount}}</td>
+                                    <td id="tdTable" scope="col">{{data.couponsAmount}}</td>
+                                    <td id="tdTable" scope="col">{{data.otherPayment}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalPurchase}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button mat-button color="primary" (click)="changePage(-3);">
+                            <mat-icon>skip_previous</mat-icon> Anterior
+                        </button>
+                        <button mat-button color="primary" (click)="changePage(3);"> Siguiente <mat-icon>skip_next
+                            </mat-icon></button>
+
+                    </section>
+                </div>
+            </div>
+            <hr>
+
+            <div id="section">
+                <div>
+                    <button id="showButtons" *ngIf="btnShowTableGreaterPurchase" mat-stroked-button color="primary"
+                        (click)="buttonShowTableGreaterSales();">
+                        <h3>Mostar Compra Mayor <mat-icon>keyboard_arrow_down</mat-icon>
+                        </h3>
+                    </button>
+                    <button id="hideButtons" *ngIf="btnShowTablelesPurchase" mat-stroked-button color="primary"
+                        (click)="buttonShowTablelessSales();">
+                        <h3>Ocultar Compra Mayor <mat-icon>keyboard_arrow_up</mat-icon>
+                        </h3>
+                    </button>
+                </div>
+                <div *ngIf="showMeDivLessGreatPurchase">
+                    <div class="row">
+                        <h3>Compra Mayor</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data2 of greaterPurchase">
+                                            <td id="tdTable" scope="col">{{data2.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data2.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data2.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data2.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data2.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data2.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data2.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data2.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3>Compra Menor</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data3 of lesserPurchase">
+                                            <td id="tdTable" scope="col">{{data3.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data3.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data3.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data3.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data3.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data3.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data3.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data3.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div><br>
+            <div id="section">
+                <div>
+
+                    <button id="showButtons" *ngIf="btnShowTableGreaterRegular" mat-stroked-button color="primary"
+                        (click)="buttonShowTableGreaterRegular();">
+                        <h3>Mostar Venta Mayor Regular <mat-icon>keyboard_arrow_down</mat-icon>
+                        </h3>
+                    </button>
+                    <button id="hideButtons" *ngIf="btnShowTablelessRegular" mat-stroked-button color="primary"
+                        (click)="buttonShowTablelessRegular();">
+                        <h3>Ocultar Venta Mayor Regular <mat-icon>keyboard_arrow_up</mat-icon>
+                        </h3>
+                    </button>
+                </div>
+                <div *ngIf="showMeDivLessGreatRegular">
+                    <div class="row">
+                        <h3>Galones Mayor Regular</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data4 of greaterRegular">
+                                            <td id="tdTable" scope="col">{{data4.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data4.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data4.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data4.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data4.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data4.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data4.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data4.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data4.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3>Gallones Menor Compados</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data5 of lesserRegular">
+                                            <td id="tdTable" scope="col">{{data5.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data5.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data5.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data5.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data5.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data5.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data5.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data5.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data5.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div><br>
+
+            <div id="section">
+                <div>
+
+                    <button id="showButtons" *ngIf="btnShowTableGreaterSuper" mat-stroked-button color="primary"
+                        (click)="buttonShowTableGreaterSuper();">
+                        <h3>Mostar Venta Mayor Super <mat-icon>keyboard_arrow_down</mat-icon>
+                        </h3>
+                    </button>
+                    <button id="hideButtons" *ngIf="btnShowTablelessSuper" mat-stroked-button color="primary"
+                        (click)="buttonShowTablelessSuper();">
+                        <h3>Ocultar Venta Mayor Super <mat-icon>keyboard_arrow_up</mat-icon>
+                        </h3>
+                    </button>
+                </div>
+                <div *ngIf="showMeDivLessGreatSuper">
+                    <div class="row">
+                        <h3> Galones Myor Super</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data6 of greaterSuper">
+                                            <td id="tdTable" scope="col">{{data6.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data6.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data6.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data6.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data6.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data6.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data6.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data6.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data6.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Galones Menor Super</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data7 of lesserSuper">
+                                            <td id="tdTable" scope="col">{{data7.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data7.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data7.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data7.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data7.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data7.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data7.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data7.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data7.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div><br>
+
+            <div id="section">
+                <div>
+                    <button id="showButtons" *ngIf="btnShowTableGreaterDiesel" mat-stroked-button color="primary"
+                        (click)="buttonShowTableGreaterDiesel();">
+                        <h3>Mostar Venta Mayor Diesel <mat-icon>keyboard_arrow_down</mat-icon>
+                        </h3>
+                    </button>
+                    <button id="hideButtons" *ngIf="btnShowTablelessDiesel" mat-stroked-button color="primary"
+                        (click)="buttonShowTablelessDiesel();">
+                        <h3>Ocultar Venta Mayor Diesel <mat-icon>keyboard_arrow_up</mat-icon>
+                        </h3>
+                    </button>
+                </div>
+                <div *ngIf="showMeDivLessGreatDiesel">
+                    <div class="row">
+                        <h3> gallones Mayor Diesel</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data8 of greaterDiesel">
+                                            <td id="tdTable" scope="col">{{data8.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data8.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data8.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data8.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data8.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data8.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data8.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data8.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data8.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3>gallones Menor Diesel</h3>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <section id="sectionDetail">
+                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                    <thead>
+                                        <tr id="trEncabezado">
+                                            <th thDetail scope="col">Fecha</th>
+                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col">Total Galones Super</th>
+                                            <th thDetail scope="col">Total Galones Regular</th>
+                                            <th thDetail scope="col">Total Galones Diesel</th>
+                                            <th thDetail scope="col">Totalde Venta</th>
+                                            <th thDetail scope="col">Total Gastos</th>
+                                            <th thDetail scope="col">Total de Cupones</th>
+                                            <th thDetail scope="col">Total de Vales</th>
+                                            <th thDetail scope="col">Total de Vouchers</th>
+                                            <th thDetail scope="col">Créditos</th>
+                                            <th thDetail scope="col">Total de Depósitos</th>
+                                            <th thDetail scope="col">Número de Depósito</th>
+                                            <th thDetail scope="col">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data9 of lesserDiesel">
+                                            <td id="tdTable" scope="col">{{data9.deliveryDate | date}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data9.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data9.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonSuper}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonRegular}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonDiesel}}
+                                            </td>
+                                            <td id="tdTable" scope="col">{{data9.bankName}}</td>
+                                            <td id="tdTable" scope="col">{{data9.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data9.checkAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data9.couponsAmount}}</td>
+                                            <td id="tdTable" scope="col">{{data9.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data9.totalPurchase}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>

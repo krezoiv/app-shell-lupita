@@ -17,8 +17,9 @@ import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 })
 export class SalesByDatesComponent implements OnInit {
 
- 
-  public totalSales: number = 0;
+  public generalDispenserRegular: GeneralDispenserReader[] = [];
+  public generalDispenserSuper: GeneralDispenserReader[] = [];
+  public generalDispenserDiesel: GeneralDispenserReader[] = [];
   public salesReport: SalesControl[] = [];
   public salesReportTotal: SalesControl[] = [];
   public greaterRegular: SalesControl[] = [];
@@ -29,9 +30,8 @@ export class SalesByDatesComponent implements OnInit {
   public lesserDiesel: SalesControl[] = [];
   public greaterSale: SalesControl[] = [];
   public lesserSale: SalesControl[] = [];
-  public generalDispenserRegular: GeneralDispenserReader[] = [];
-  public generalDispenserSuper: GeneralDispenserReader[] = [];
-  public generalDispenserDiesel: GeneralDispenserReader[] = [];
+
+  public totalSales: number = 0;
   public fm: number = 0;
   public fm2: number = 0;
   showMeDivLessGreatSale: boolean = false;
@@ -50,7 +50,7 @@ export class SalesByDatesComponent implements OnInit {
   reportingSaleForm: FormGroup = this.fb.group({
     initialDate: [''],
     finalDate: [''],
-    from: [1],
+    from: [0],
     totalGallonsRegular: [],
     totalGallonsSuper: [],
     totalGallonsDiesel: [],

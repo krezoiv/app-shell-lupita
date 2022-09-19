@@ -66,8 +66,8 @@ const routes: Routes =[
     {path : 'inventario', component: InventoryComponent},
     {path : 'reporteria/reporteVentasporDocumento', component: SalesByNoDocumentComponent},
     {path : 'reporteria/reporteVentasporFechas', canActivate: [AdminGuard], component: SalesByDatesComponent},
-    {path : 'reporteria/reporteVentasporNumeroDeOrden', component : PurchaseByOrderComponent},
-    {path : 'reporteria/reporteVentasporFechas', component: PurchaseByDatesComponent}
+    {path : 'reporteria/reporteComprasporNumeroDeOrden', component : PurchaseByOrderComponent},
+    {path : 'reporteria/reporteComprasporFechas', component: PurchaseByDatesComponent}
 
 
   ]},

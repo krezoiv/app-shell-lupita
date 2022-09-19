@@ -15,7 +15,10 @@ export class PurchaseOrder {
    public totalIDPPurchaseOrder : number,
    public storeId : Store,   
    public vehicleId : Vehicle,   
-   public turn : string,   
+   public turn : string,
+   public totalGallonRegular : number,
+   public totalGallonSuper : number,
+   public totalGallonDiesel : number,
    public applied? : boolean,
 
     ) { }
@@ -48,11 +51,14 @@ export class DetailPurchaseOrder {
         public totalPurchase : number,
         public invoiceSerie: number,
         public invoiceDocument : number,
-        public purchaseOrderId: number,
+        public purchaseOrderId: PurchaseOrder,
         public applied : boolean,
         public paymentMethodId : PaymentMethods,
-    
-  
- 
+        public otherPayment : number,
+        public bankName : string, 
+        public NoBankCheck : string,
+        public checkAmount : number, 
+        public couponsAmount : number,
+        public count?: number
      ) { }
  }

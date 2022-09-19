@@ -8,19 +8,24 @@ import { Router } from '@angular/router';
 interface FoodNode {
   name: string;
   children?: FoodNode[];
-  url: string  
+  url: string
 }
 
 const TREE_DATA: FoodNode[] = [
   {
     name: 'Ventas',
     url: '/dashboard',
-    children: [{name: 'Por No. Documento', url:'/dashboard/inventario'}, {name: 'Por Fechas', url:'/dashboard/inventario'}],
+    children: [
+      { name: 'Por No. Documento', url: '/dashboard/reporteria/reporteVentasporDocumento' },
+      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteVentasporFechas' }],
   },
   {
     name: 'Compras',
-    url:'/dashboard',
-    children: [{name: 'Por No. Documento', url:'/dashboard/inventario'}, {name: 'Por Fechas', url:'/dashboard/inventario'}],
+    url: '/dashboard',
+    children: [
+      { name: 'Por No. Orden', url: '/dashboard/reporteria/reporteComprasporNumeroDeOrden' },
+      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteComprasporFechas' }
+    ],
   },
 ];
 
@@ -69,8 +74,8 @@ export class SidebarComponent implements OnInit {
   constructor(
 
     private authService: AuthService,
-    private router : Router,
-  ) { 
+    private router: Router,
+  ) {
     this.dataSource.data = TREE_DATA;
   }
 
