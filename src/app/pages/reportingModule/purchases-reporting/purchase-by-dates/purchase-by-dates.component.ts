@@ -71,19 +71,49 @@ export class PurchaseByDatesComponent implements OnInit {
 
   buttonShowTableGreaterSales(){
     this.showMeDivLessGreatPurchase = true; 
+    this.btnShowTableGreaterPurchase = false;
+    this.btnShowTablelesPurchase =true;
   }
 
-  buttonShowTablelessSales(){}
+  buttonShowTablelessSales(){
+    this.showMeDivLessGreatPurchase = false; 
+    this.btnShowTableGreaterPurchase = true;
+    this.btnShowTablelesPurchase =false;
+  }
 
-  buttonShowTableGreaterRegular(){}
+  buttonShowTableGreaterRegular(){
+    this.showMeDivLessGreatRegular = true;
+    this.btnShowTableGreaterRegular = false;
+    this.btnShowTablelessRegular = true;
+  }
 
-  buttonShowTablelessRegular(){}
+  buttonShowTablelessRegular(){
+    this.showMeDivLessGreatRegular = false;
+    this.btnShowTableGreaterRegular = true;
+    this.btnShowTablelessRegular = false;
+  }
 
-  buttonShowTableGreaterSuper(){}
+  buttonShowTableGreaterSuper(){
+    this.showMeDivLessGreatSuper = true;
+    this.btnShowTableGreaterSuper = false;
+    this.btnShowTablelessSuper = true;
+  }
 
-  buttonShowTablelessSuper(){} 
+  buttonShowTablelessSuper(){
+    this.showMeDivLessGreatSuper = false;
+    this.btnShowTableGreaterSuper = true;
+    this.btnShowTablelessSuper = false;
+  } 
 
-  buttonShowTableGreaterDiesel(){}
+  buttonShowTableGreaterDiesel(){
+    this.showMeDivLessGreatDiesel = true;
+    this.btnShowTableGreaterDiesel = false;
+    this.btnShowTablelessDiesel = true;
+  }
 
-  buttonShowTablelessDiesel(){}
+  buttonShowTablelessDiesel(){
+    this.showMeDivLessGreatDiesel = false;
+    this.btnShowTableGreaterDiesel = true;
+    this.btnShowTablelessDiesel = false;
+  }
 }
