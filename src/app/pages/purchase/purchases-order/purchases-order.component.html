@@ -87,7 +87,7 @@
                 <tr>
                     <td colspan="3" scope="rowgroup" align="center">
                         <button *ngIf="buttonDisableApertura" id="aprturaOrden" mat-raised-button color="primary"
-                            (click)="aperturaOrden();">Guardar</button>
+                            (click)="aperturaOrden();">Guardar Super</button>
 
                     </td>
                 </tr>
@@ -95,61 +95,189 @@
             </table><br>
 
             <h3>Detalle</h3>
-            <table class="table  table-responsive" id="tblDetail" class="example-full-width" style="width:100%"
-                cellSpacing="0">
-                <thead>
-                    <th id="thead" scope="col"> Combustible</th>
-                    <th id="thead" scope="col"> IDP</th>
-                    <th id="thead" scope="col"> Cantidad</th>
-                    <th id="thead" scope="col"> Precio</th>
-                    <th id="thead" scope="col"> Total</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="td">
-                            <select class="form-control" aria-label="Default select example" selected
-                                formControlName="fuelId">
-                                <option *ngFor="let fuel of  fuelSelected" [value]="fuel.fuelId">{{fuel.fuelName}}
-                                </option>
 
-                            </select>
-                        </td>
+            <br>
 
-                        <td id="td">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label> Combustible</label>
+                            <mat-form-field id="mat-form-field-registros" appearance="fill">
+                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                <mat-select formControlName="fuelId" required>
+                                    <mat-option *ngFor="let fuel of fuelSuper" [value]="fuel.fuelId">
+                                        {{fuel.fuelId.fuelName | titlecase}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Por favor selecciones una opcíon</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>IDP</label>
                             <select type="number" class="form-control" aria-label="Default select example" selected
                                 formControlName="taxesId">
                                 <option>{{idp}}</option>
 
                             </select>
-                        </td>
+                        </div>
+                    </div><br>
 
-                        <td id="td">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Monto</label>
                             <input id="input" type="number" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" formControlName="amount">
-                        </td>
+                        </div>
+                    </div><br>
 
-                        <td id="td">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Precio</label>
                             <input id="input" type="number" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" formControlName="price">
-                        </td>
-
-                        <td id="td">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button *ngIf="buttonDisableOrderDetailSuper" id="butonSave" mat-raised-button color="primary"
+                                (click)="saveOrderDetailSuper();">Guardar Regular</button>&nbsp;
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="hideSection">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>total</label>
                             <input id="input" type="number" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp" formControlName="total" readOnly="">
-                        </td>
+                        </div>
+                    </div>
+                </div>
 
-                    </tr>
-                </tbody>
-                <button *ngIf="buttonDisableOrderDetail" id="butonSave" mat-raised-button color="primary"
-                    (click)="saveOrderDetail();">Guardar</button>&nbsp;
-                <button *ngIf="buttonDisableNewOrderDetail" id="butonSave" mat-raised-button color="primary"
-                    (click)="newOrderDetail();">Nuevo</button>
-            </table>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label> Combustible</label>
+                            <mat-form-field id="mat-form-field-registros" appearance="fill">
+                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                <mat-select formControlName="fuelId" required>
+                                    <mat-option *ngFor="let fuel of fuelRegular" [value]="fuel.fuelId">
+                                        {{fuel.fuelId.fuelName | titlecase}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Por favor selecciones una opcíon</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>IDP</label>
+                            <select type="number" class="form-control" aria-label="Default select example" selected
+                                formControlName="taxesId">
+                                <option>{{idp}}</option>
+
+                            </select>
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Monto</label>
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="amount">
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Precio</label>
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button *ngIf="buttonDisableOrderDetailRegular" id="butonSave" mat-raised-button color="primary"
+                                (click)="saveOrderDetailRegular();">Guardar Regular</button>&nbsp;
+                           
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="hideSection">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>total</label>
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="total" readOnly="">
+                        </div>
+                    </div>
+                </div>
 
 
-            <br>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label> Combustible</label>
+                            <mat-form-field id="mat-form-field-registros" appearance="fill">
+                                <mat-icon matSuffix> local_gas_station</mat-icon>
+                                <mat-select formControlName="fuelId" required>
+                                    <mat-option *ngFor="let fuel of fuelDiesel" [value]="fuel.fuelId">
+                                        {{fuel.fuelId.fuelName | titlecase}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Por favor selecciones una opcíon</mat-error>
+                                <mat-hint></mat-hint>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>IDP</label>
+                            <select type="number" class="form-control" aria-label="Default select example" selected
+                                formControlName="taxesId">
+                                <option>{{idp}}</option>
 
-            <section >
+                            </select>
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Monto</label>
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="amount">
+                        </div>
+                    </div><br>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>Precio</label>
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="price">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button *ngIf="buttonDisableOrderDetailDiesel" id="butonSave" mat-raised-button color="primary"
+                                (click)="saveOrderDetailDiesel();">Guardar Diesel</button>&nbsp;
+                           
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="hideSection">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <label>total</label>
+                            <input id="input" type="number" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" formControlName="total" readOnly="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <br><br>
+
+            <section>
                 <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                     <mat-label>Super</mat-label>
                     <input id="input-registros" id="input-registros" type="number" id="fName"
@@ -157,9 +285,9 @@
                     <mat-icon matSuffix> local_gas_station</mat-icon>
                     <mat-hint>turno de despacho</mat-hint><br>
                 </mat-form-field>
-    
+
                 <br>
-    
+
                 <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                     <mat-label>Regular</mat-label>
                     <input id="input-registros" id="input-registros" type="number" id="fName"
@@ -167,7 +295,7 @@
                     <mat-icon matSuffix> local_gas_station</mat-icon>
                     <mat-hint>turno de despacho</mat-hint><br>
                 </mat-form-field><br>
-    
+
                 <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                     <mat-label>Diesel</mat-label>
                     <input id="input-registros" id="input-registros" type="number" id="fName"
@@ -236,8 +364,7 @@
                         <tr>
                             <td id="tdTotal">
 
-                                <button  mat-raised-button color="primary"
-                                    (click)="saveOrder();">Guardar Orden de Compras</button>
+                                <button mat-raised-button color="primary" (click)="saveOrder();">Guardar</button>
 
                             </td>
                             <hr>
@@ -246,9 +373,9 @@
                 </table>
             </section><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-            
 
-           
+
+
         </form>
     </div>
 </body>

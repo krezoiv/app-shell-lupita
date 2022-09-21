@@ -21,6 +21,17 @@ export interface fuelIdDiesel_I {
     fuelIdDiesel: FuelInventory
 };
 
+export interface fuelRegularByCode_I {
+    fuelIdRegular: []
+};
+
+export interface fuelSuperByCode_I {
+    fuelIdSuper: []
+};
+
+export interface fuelDieselByCode_I {
+    fuelIdDiesel: []
+};
 
 
 export interface fuelInventoryAmountPending_I {

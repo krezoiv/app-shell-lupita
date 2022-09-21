@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AmountPending_I, fuelIdDiesel_I, fuelIdRegular_I, fuelIdSuper_I, fuelInventoryAmountPending_I, fuelInventoryAvailable_I, FuelInventoryId_I, inventoryCode_I, InventroyData_I } from 'src/app/interfaces/fuelstation/fuelInventory.interface';
+import { AmountPending_I, fuelDieselByCode_I, fuelIdDiesel_I, fuelIdRegular_I, fuelIdSuper_I, fuelInventoryAmountPending_I, fuelInventoryAvailable_I, FuelInventoryId_I, fuelRegularByCode_I, fuelSuperByCode_I, inventoryCode_I, InventroyData_I } from 'src/app/interfaces/fuelstation/fuelInventory.interface';
 import { FuelInventory } from 'src/app/models/fuelstation/fuelInventory.model';
 
 const api_url = environment.api_url;
@@ -51,6 +51,18 @@ export class FuelInventoryService {
 
   getFuelIdDiesel(): Observable<fuelIdDiesel_I>{
     return this._http.get<fuelIdDiesel_I>(`${api_url}/fuelInventory/fuelIdDiesel`, this.headers);
+  };
+
+  getFuelRegularByCode(): Observable<fuelRegularByCode_I>{
+    return this._http.get<fuelRegularByCode_I>(`${api_url}/fuelInventory/fuelRegularByCode`,  this.headers);
+  };
+
+  getFuelSuperByCode(): Observable<fuelSuperByCode_I>{
+    return this._http.get<fuelSuperByCode_I>(`${api_url}/fuelInventory/fuelSuperByCode`, this.headers);
+  };
+
+  getFuelDieselByCode(): Observable<fuelDieselByCode_I>{
+    return this._http.get<fuelDieselByCode_I>(`${api_url}/fuelInventory/fuelDieselByCode`, this.headers);
   };
 
   getFuelInventoryAmountPending(amountPending : number): Observable<fuelInventoryAmountPending_I>{

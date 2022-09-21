@@ -24,8 +24,21 @@ export interface totalDetailIDPPurchaseOrder_I {
     totalDetailIDPPurchaseOrder : []
 }
 
+
 export interface AmountFuel_I {
     amountFuel: DetailPurchaseOrder,
+}
+
+export interface AmountFuelRegular_I {
+    amountFuelRegular: DetailPurchaseOrder,
+}
+
+export interface AmountFuelSuper_I {
+    amountFuelSuper: DetailPurchaseOrder,
+}
+
+export interface AmountFuelDiesel_I {
+    amountFuelDiesel: DetailPurchaseOrder,
 }
 
 export interface PurchaseByDate_I {
