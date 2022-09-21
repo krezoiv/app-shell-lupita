@@ -55,10 +55,15 @@ export class DetailPurchaseOrder {
         public applied : boolean,
         public paymentMethodId : PaymentMethods,
         public otherPayment : number,
-        public bankName : string, 
+        public otherPaymentDescription : string,
+        public bankId : string, 
         public NoBankCheck : string,
         public checkAmount : number, 
         public couponsAmount : number,
         public count?: number
      ) { }
  }
+
+
+
+ 

@@ -33,4 +33,8 @@ export interface LoggedUser_I {
 }
 
 
+export interface Banks_I {
+    bankId : string,
+    bankName : string
 
+}

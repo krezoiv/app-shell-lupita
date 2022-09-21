@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Banks_I } from 'src/app/interfaces/users.interface';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
@@ -9,12 +10,21 @@ import { LoadingComponent } from 'src/app/shared/functions/loading/loading.compo
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-purchases',
   templateUrl: './purchases.component.html',
   styleUrls: ['./purchases.component.css']
 })
 export class PurchasesComponent implements OnInit {
+
+  banks : Banks_I[]=[
+    {bankId: 'bam', bankName: 'Banco Agomercantil'},
+    {bankId: 'bac', bankName: 'Banco de América Central'},
+    {bankId: 'banrural', bankName: 'Banco de Desarrollo Rural'},
+    {bankId: 'gyt', bankName: 'Banco de G&T'},
+    {bankId: 'coope', bankName: 'Cooperativa Guayacan'},
+  ];
 
   availableDB! : Number | any;
   newAvailable! : Number | any;
@@ -44,7 +54,12 @@ export class PurchasesComponent implements OnInit {
     inventoryCode: ['', Validators.required],
     amountPending: ['', Validators.required],
     available: ['', Validators.required],
-
+    bankId: ['', Validators.required],
+    NoBankCheck: ['', Validators.required],
+    checkAmount :['', Validators.required],
+    couponsAmount:['', Validators.required],
+    otherPaymentDescription : ['', Validators.required],
+    otherPayment: ['', Validators.required],
   })
   constructor(
     private fb: FormBuilder,
