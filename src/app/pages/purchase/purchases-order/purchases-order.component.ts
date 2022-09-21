@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { taxesByFuel } from 'src/app/interfaces/fuelstation/fuels.interface';
-import { PurchaseOrder_I } from 'src/app/interfaces/fuelstation/purchase.interface';
+import { PurchaseOrder_I } from 'src/app/interfaces/purchase.interface';
 import { TaxesId_I } from 'src/app/interfaces/infrastructure.interface';
 import { Fuels } from 'src/app/models/infrastructure.model';
 import { Store } from 'src/app/models/persons/store.model';
@@ -53,6 +53,7 @@ export class PurchasesOrderComponent implements OnInit {
   buttonDisableOrderDetail: boolean = false;
   buttonDisableSaveAll: boolean = false;
   buttonDisableApertura: boolean = true;
+  hideSection:boolean = false
 
 
   public storeSelected: Store[] = [];
@@ -88,7 +89,9 @@ export class PurchasesOrderComponent implements OnInit {
     fuelTankId: ['', Validators.required],
     fuelInventoryId: ['', Validators.required],
     amountPending: [0, Validators.required],
-
+    totalGallonSuper: [0],
+    totalGallonRegular: [0],
+    totalGallonDiesel: [0],
   });
 
   constructor(
@@ -155,6 +158,63 @@ export class PurchasesOrderComponent implements OnInit {
         });
       });
   };
+
+
+  getfuelIdSuper() {
+    this._fuelInventoryService.getFuelIdSuper()
+      .subscribe(({ fuelIdSuper }) => {
+        this.orderForm.controls['fuelId'].setValue(fuelIdSuper.fuelId);
+        console.log(fuelIdSuper)
+      });
+  };
+
+  getfuelIdRegular() {
+    this._fuelInventoryService.getFuelIdRegular()
+      .subscribe(({ fuelIdRegular }) => {
+        this.orderForm.controls['fuelId'].setValue(fuelIdRegular.fuelId);
+        console.log(fuelIdRegular)
+      });
+  };
+
+  getfuelIdDiesel() {
+    this._fuelInventoryService.getFuelIdDiesel()
+      .subscribe(({ fuelIdDiesel }) => {
+        this.orderForm.controls['fuelId'].setValue(fuelIdDiesel.fuelId);
+        console.log(fuelIdDiesel)
+      });
+  };
+
+
+  getAmountFuelSuper() {
+    this.getfuelIdSuper();
+    this._purchaseOrderService.getAmountfuel(this.orderForm.value)
+      .subscribe((amountFuel) => {
+        this.orderForm.controls['totalGallonSuper'].setValue(amountFuel.amountFuel.amount);
+        console.log(this.orderForm.value)
+      })
+  }
+
+
+
+  getAmountFuelRegular() {
+    this.getfuelIdRegular();
+    this._purchaseOrderService.getAmountfuel(this.orderForm.value)
+      .subscribe((amountFuel) => {
+        this.orderForm.controls['totalGallonRegular'].setValue(amountFuel.amountFuel.amount);
+        console.log(this.orderForm.value)
+      })
+  }
+
+
+
+  getAmountFuelDiesel() {
+    this.getfuelIdDiesel();
+    this._purchaseOrderService.getAmountfuel(this.orderForm.value)
+      .subscribe((amountFuel) => {
+        this.orderForm.controls['totalGallonDiesel'].setValue(amountFuel.amountFuel.amount);
+        console.log(this.orderForm.value)
+      })
+  }
 
 
 
@@ -271,6 +331,7 @@ export class PurchasesOrderComponent implements OnInit {
       this.updateTotalPurchaseOrder();
       this.getTotalPurchaseOrder();
       this.getFuelInventoryId();
+
       const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getAmountPending();
@@ -284,6 +345,7 @@ export class PurchasesOrderComponent implements OnInit {
         this.getTotalPurchaseOrder();
         this.updateTotalPurchaseOrder();
         this.buttonDisableSaveAll = true;
+        
       });
     });
   };
@@ -319,9 +381,7 @@ export class PurchasesOrderComponent implements OnInit {
       this.subtotalIDP = this.orderForm.get('totalIDPPurchaseOrder')?.value;
       this.SB = this.subtotalPurchase - this.subtotalIDP;
       this.orderForm.controls['subtotal'].setValue(this.SB);
-      console.log('totalp ' + this.subtotalPurchase);
-      console.log('totalIDp ' + this.subtotalIDP);
-      console.log('subtotal ' + this.SB);
+
     });
   };
 
@@ -364,8 +424,34 @@ export class PurchasesOrderComponent implements OnInit {
   };
 
   saveOrder() {
-    this.updateAplicarDetailOrder();
-    this.reload();
+
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+      this.getAmountFuelRegular();
+      this.orderForm.controls['amountPending'].setValue(this.newAmount);
+      const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getAmountFuelSuper();
+        const snackBarRef3 = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
+        snackBarRef3.afterDismissed().subscribe(() => {
+          this.getAmountFuelDiesel();
+          const snackBarRef3 = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
+          snackBarRef3.afterDismissed().subscribe(() =>{
+            this.updateAplicarDetailOrder();
+            this.updateTotalPurchaseOrder();
+            console.log(this.orderForm.value)
+           
+            this.reload();
+          })
+        })
+       
+      })
+      
+    })
+  
+    //
+
+    //
   };
 
   reload() {

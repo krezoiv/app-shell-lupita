@@ -148,6 +148,35 @@
 
 
             <br>
+
+            <section >
+                <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                    <mat-label>Super</mat-label>
+                    <input id="input-registros" id="input-registros" type="number" id="fName"
+                        formControlName="totalGallonSuper" matInput>
+                    <mat-icon matSuffix> local_gas_station</mat-icon>
+                    <mat-hint>turno de despacho</mat-hint><br>
+                </mat-form-field>
+    
+                <br>
+    
+                <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                    <mat-label>Regular</mat-label>
+                    <input id="input-registros" id="input-registros" type="number" id="fName"
+                        formControlName="totalGallonRegular" matInput>
+                    <mat-icon matSuffix> local_gas_station</mat-icon>
+                    <mat-hint>turno de despacho</mat-hint><br>
+                </mat-form-field><br>
+    
+                <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
+                    <mat-label>Diesel</mat-label>
+                    <input id="input-registros" id="input-registros" type="number" id="fName"
+                        formControlName="totalGallonDiesel" matInput>
+                    <mat-icon matSuffix> local_gas_station</mat-icon>
+                    <mat-hint>turno de despacho</mat-hint><br>
+                </mat-form-field>
+
+            </section>
             <section id="sectionTotals">
                 <h3>Totales</h3>
                 <table class="table  table-responsive" class="example-full-width" style="width:100%" cellSpacing="0">
@@ -207,15 +236,19 @@
                         <tr>
                             <td id="tdTotal">
 
-                                <button *ngIf="buttonDisableSaveAll" mat-raised-button color="primary"
-                                    (click)="saveOrder();">Guardar Orden</button>
+                                <button  mat-raised-button color="primary"
+                                    (click)="saveOrder();">Guardar Orden de Compras</button>
 
                             </td>
                             <hr>
                         </tr>
                     </tbody>
                 </table>
-            </section>
+            </section><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            
+
+           
         </form>
     </div>
 </body>

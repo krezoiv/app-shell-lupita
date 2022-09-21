@@ -54,7 +54,7 @@ export class FuelInventoryService {
   };
 
   getFuelInventoryAmountPending(amountPending : number): Observable<fuelInventoryAmountPending_I>{
-    return this._http.post<fuelInventoryAmountPending_I>(`${api_url}/fuelInventory/fuelInventoryAmountOending`, amountPending, this.headers);
+    return this._http.post<fuelInventoryAmountPending_I>(`${api_url}/fuelInventory/fuelInventoryAmountPending`, amountPending, this.headers);
   };
 
    /**

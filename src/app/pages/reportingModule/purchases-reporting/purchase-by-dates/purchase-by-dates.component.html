@@ -144,7 +144,6 @@
                                     <th thDetail scope="col">Banco</th>
                                     <th thDetail scope="col">No. Cheque</th>
                                     <th thDetail scope="col">Monto Cheque</th>
-                                    <th thDetail scope="col">Banco</th>
                                     <th thDetail scope="col">Cupones</th>
                                     <th thDetail scope="col">Otros Pagos</th>
                                     <th thDetail scope="col"> Total Compra</th>
@@ -200,20 +199,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                            <th thDetail scope="col"> No. Orden</th>
+                                            <th thDetail scope="col">Serie Factura</th>
+                                            <th thDetail scope="col">No. Factura</th>
                                             <th thDetail scope="col">Total Galones Super</th>
                                             <th thDetail scope="col">Total Galones Regular</th>
                                             <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col">Banco</th>
+                                            <th thDetail scope="col">No. Cheque</th>
+                                            <th thDetail scope="col">Monto Cheque</th>
+                                            <th thDetail scope="col">Cupones</th>
+                                            <th thDetail scope="col">Otros Pagos</th>
+                                            <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -223,10 +221,8 @@
                                             <td id="tdTable" scope="col">{{data2.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data2.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data2.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data2.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data2.checkAmount}}</td>
@@ -247,20 +243,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -270,10 +265,8 @@
                                             <td id="tdTable" scope="col">{{data3.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data3.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data3.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data3.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data3.checkAmount}}</td>
@@ -311,20 +304,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -334,10 +326,8 @@
                                             <td id="tdTable" scope="col">{{data4.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data4.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data4.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data4.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data4.checkAmount}}</td>
@@ -358,20 +348,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -381,10 +370,8 @@
                                             <td id="tdTable" scope="col">{{data5.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data5.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data5.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data5.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data5.checkAmount}}</td>
@@ -423,20 +410,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -446,10 +432,8 @@
                                             <td id="tdTable" scope="col">{{data6.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data6.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data6.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data6.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data6.checkAmount}}</td>
@@ -469,20 +453,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -492,10 +475,8 @@
                                             <td id="tdTable" scope="col">{{data7.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data7.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data7.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data7.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data7.checkAmount}}</td>
@@ -533,20 +514,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -556,10 +536,8 @@
                                             <td id="tdTable" scope="col">{{data8.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data8.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data8.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data8.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data8.checkAmount}}</td>
@@ -580,20 +558,19 @@
                                 <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
                                     <thead>
                                         <tr id="trEncabezado">
-                                            <th thDetail scope="col">Fecha</th>
-                                            <th thDetail scope="col">Número de Documento</th>
-                                            <th thDetail scope="col">Total Galones Super</th>
-                                            <th thDetail scope="col">Total Galones Regular</th>
-                                            <th thDetail scope="col">Total Galones Diesel</th>
-                                            <th thDetail scope="col">Totalde Venta</th>
-                                            <th thDetail scope="col">Total Gastos</th>
-                                            <th thDetail scope="col">Total de Cupones</th>
-                                            <th thDetail scope="col">Total de Vales</th>
-                                            <th thDetail scope="col">Total de Vouchers</th>
-                                            <th thDetail scope="col">Créditos</th>
-                                            <th thDetail scope="col">Total de Depósitos</th>
-                                            <th thDetail scope="col">Número de Depósito</th>
-                                            <th thDetail scope="col">Balance</th>
+                                            <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -603,10 +580,8 @@
                                             <td id="tdTable" scope="col">{{data9.invoiceSerie}}</td>
                                             <td id="tdTable" scope="col">{{data9.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonRegular}}
-                                            </td>
-                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonDiesel}}
-                                            </td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonRegular}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonDiesel}}</td>
                                             <td id="tdTable" scope="col">{{data9.bankName}}</td>
                                             <td id="tdTable" scope="col">{{data9.NoBankCheck}}</td>
                                             <td id="tdTable" scope="col">{{data9.checkAmount}}</td>

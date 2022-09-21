@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DetailPurchaseOrder, Purchase } from 'src/app/models/purchase/purchaseOrder.model';
+import { PurchasesReportingService } from 'src/app/services/reporting/purchases-reporting.service';
 
 @Component({
   selector: 'app-purchase-by-dates',
@@ -50,15 +51,38 @@ export class PurchaseByDatesComponent implements OnInit {
   });
 
   constructor(
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private _purchaseRerpotingService : PurchasesReportingService,
   ) { }
 
   ngOnInit(): void {
   }
 
+  convertDates() {
+
+    const Idate = new Date(this.reportingPurchaseForm.get('initialDate')?.value);
+    const Fdate = new Date(this.reportingPurchaseForm.get('finalDate')?.value);
+
+    this.reportingPurchaseForm.controls['initialDate'].setValue(Idate.toISOString());
+    this.reportingPurchaseForm.controls['finalDate'].setValue(Fdate.toISOString());
+  };
+
+  getTotalPurchaseByDates(){
+    this.convertDates();
+    this._purchaseRerpotingService.getPurchasesByDates(this.reportingPurchaseForm.value)
+      .subscribe(({total, getData}) => {
+        console.log(getData)
+        console.log(total)
+       this.totalPurchases = total;
+       if(getData.length !== 0) {
+        this.purchaseReport = getData;
+       }
+      })
+
+  }
 
   search(){
-
+    this.getTotalPurchaseByDates();
   }
 
   newSearch(){

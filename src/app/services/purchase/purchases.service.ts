@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/fuelstation/purchase.interface';
+import { AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
 import { PaymentMethods_I } from 'src/app/interfaces/paymentMethods.interface';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
