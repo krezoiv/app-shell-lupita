@@ -60,8 +60,7 @@ export class SalesByDatesComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private _salesControlService: SalesControlService,
-    private _dispenserService: DispensersService,
+    
     private _salesReportingService : SalesReportingService,
     private router: Router
     
@@ -189,7 +188,7 @@ export class SalesByDatesComponent implements OnInit {
       this._salesReportingService.getGreaterDieselGallonsByDate(this.reportingSaleForm.value)
       .subscribe(({greaterDieselGallons}) =>{
         this.greaterDiesel = greaterDieselGallons
-        console.log(greaterDieselGallons)
+      
       });
 
       this._salesReportingService.getLesserDieselGallonsByDate(this.reportingSaleForm.value)

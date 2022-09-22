@@ -46,3 +46,53 @@ export interface PurchaseByDate_I {
     getData : Purchase[];
 
 }
+
+export interface countTotalPurchase_I {
+    countTotalPurchase : [];
+};
+
+export interface countTotalPurchaseRegular_I {
+    countTotalPurchaseRegular: []
+};
+
+export interface countTotalPurchaseSuper_I {
+    countTotalPurchaseSuper: []
+};
+
+export interface countTotalPurchaseDiesel_I {
+    countTotalPurchaseDiesel: []
+};
+
+export interface GreatePurchase_I {
+    greatePurchase: [];
+};
+
+export interface LesserPurchase_I {
+    lesserPurchase: [];
+};
+
+export interface GreaterRegularPurchase_I {
+    greaterRegularPurchase: [];
+};
+
+export interface LesserRegularPurchase_I {
+    lesserRegularPurchase: [];
+};
+
+export interface GreaterSuperPurchase_I {
+    greaterSuperPurchase :[];
+};
+
+export interface LesserSuperPurchase_I {
+    lesserSuperPurchase :[];
+};
+
+
+export interface GreaterDieselPurchase_I {
+    greaterDieselPurchase : [];
+};
+
+export interface LesserDieselPurchase_I {
+    lesserDieselPurchase : [];
+};
+
