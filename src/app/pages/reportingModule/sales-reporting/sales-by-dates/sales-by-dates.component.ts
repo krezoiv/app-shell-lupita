@@ -84,8 +84,7 @@ export class SalesByDatesComponent implements OnInit {
     
     this._salesReportingService.getTotalSales()
       .subscribe(({ countTotalSale }) => {
-        this.totalSales = countTotalSale;
-        console.log(countTotalSale)
+        this.totalSales = countTotalSale; 
       })
   }
 
@@ -113,6 +112,7 @@ export class SalesByDatesComponent implements OnInit {
     this._salesReportingService.getCountSumGallonsRegular(this.reportingSaleForm.value)
       .subscribe(({ countTotalSaleRegular }) => {
         this.generalDispenserRegular = countTotalSaleRegular
+        console.log(countTotalSaleRegular)
       })
   };
 
@@ -137,8 +137,6 @@ export class SalesByDatesComponent implements OnInit {
       .subscribe(({ total, getData }) => {
         this.totalSales = total;
         this.salesReport = getData;
-        console.log(total, getData)
-        console.log(this.reportingSaleForm.value);
       })
   };
 

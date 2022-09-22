@@ -20,6 +20,7 @@ export class PurchaseOrder {
    public totalGallonSuper : number,
    public totalGallonDiesel : number,
    public applied? : boolean,
+   public count? :number
 
     ) { }
 }

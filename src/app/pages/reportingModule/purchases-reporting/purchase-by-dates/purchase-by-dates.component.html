@@ -75,16 +75,17 @@
                                 <h3> Galones Acumulados Regular</h3>
                                 <table>
                                     <thead>
-
+                                       
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let disRegular of purchaseRegular">
+                                        
+                                        <tr *ngFor="let disRegular of purchaseOrderRegular">
                                             <td> <input id="input-registros" id="input-registros" type="number"
                                                     name="gallonA" formControlName="totalGallonsRegular"
                                                     [(ngModel)]="disRegular.count" matInput></td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                    </table>
                             </section>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4">
@@ -98,7 +99,7 @@
                                     </thead>
                                     <tbody>
 
-                                        <tr *ngFor="let disSuper of purchaseSuper">
+                                        <tr *ngFor="let disSuper of purchaseOrderSuper">
                                             <td> <input id="input-registros" id="input-registros" type="number"
                                                     name="gallonA" formControlName="totalGallonsSuper"
                                                     [(ngModel)]="disSuper.count" matInput></td>
@@ -115,7 +116,7 @@
                                         <tr></tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let disDiesel of purchaseDiesel">
+                                        <tr *ngFor="let disDiesel of purchaseOrderDiesel">
                                             <td> <input id="input-registros" id="input-registros" type="number"
                                                     name="gallonA" formControlName="totalGallonsDiesel"
                                                     [(ngModel)]="disDiesel.count" matInput></td>
@@ -128,7 +129,7 @@
                 </div>
             </div><br>
             <div class="row">
-                <h3 class="card-title"> ({{totalPurchases}})</h3>
+                <h3 class="card-title">  Total de registros ({{totalPurchases}})</h3>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <section id="section">
                         <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">

@@ -63,7 +63,7 @@ export class PurchasesReportingService {
 
 
   getGreaterRegularPurchaseByDate(formData : PurchaseOrder): Observable<GreaterRegularPurchase_I>{
-    return this._http.post<GreaterRegularPurchase_I>(`${api_url}/purchasesgreaterPurchaseRegular`, formData, this.headers);
+    return this._http.post<GreaterRegularPurchase_I>(`${api_url}/purchases/greaterPurchaseRegular`, formData, this.headers);
   };
 
   getLesserRegularPurchaseByDate(formData : PurchaseOrder): Observable<LesserRegularPurchase_I>{

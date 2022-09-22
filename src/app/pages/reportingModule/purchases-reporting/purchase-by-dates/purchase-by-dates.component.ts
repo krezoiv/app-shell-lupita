@@ -13,9 +13,9 @@ import { PurchasesReportingService } from 'src/app/services/reporting/purchases-
 })
 export class PurchaseByDatesComponent implements OnInit {
 
-  public purchaseOrderRegular : PurchaseOrder[]=[];
-  public purchaseOrderSuper : PurchaseOrder[]=[];
-  public purchaseOrderDiesel : PurchaseOrder[]=[];
+  public purchaseOrderRegular : Purchase[]=[];
+  public purchaseOrderSuper : Purchase[]=[];
+  public purchaseOrderDiesel : Purchase[]=[];
 
   public purchaseRegular : Purchase[]=[]; 
   public purchaseSuper : Purchase[]=[]; 
@@ -80,8 +80,6 @@ export class PurchaseByDatesComponent implements OnInit {
     this.convertDates();
     this._purchaseRerpotingService.getPurchasesByDates(this.reportingPurchaseForm.value)
       .subscribe(({total, getData}) => {
-        console.log(getData)
-        console.log(total)
        this.totalPurchases = total;
        if(getData.length !== 0) {
         this.purchaseReport = getData;
@@ -95,6 +93,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getTotalPurchaseByDate(this.reportingPurchaseForm.value)
       .subscribe(({countTotalPurchase}) => {
         this.purchaseReportTotal = countTotalPurchase
+       
       });
   };
 
@@ -104,6 +103,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getCountSumGallonsRegularPurchase(this.reportingPurchaseForm.value)
       .subscribe(({countTotalPurchaseRegular}) => {
         this.purchaseOrderRegular = countTotalPurchaseRegular;
+        console.log(countTotalPurchaseRegular)
       });
   };
 
@@ -112,6 +112,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getCountSumGallonsSuperPurchase(this.reportingPurchaseForm.value)
       .subscribe(({countTotalPurchaseSuper}) => {
         this.purchaseOrderSuper = countTotalPurchaseSuper;
+        console.log(countTotalPurchaseSuper)
       });
   };
 
@@ -130,6 +131,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this.getPurchaseDieselByDate();
     this.getPurchaseByDates();
     this.getGreaterLessGallons();
+    this.getTotalPurchaseByDates();
   };
   
   newSearch(){
@@ -143,7 +145,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getGreaterTotalPurchaseByDate(this.reportingPurchaseForm.value)
     .subscribe(({greatePurchase}) =>{
       this.greaterPurchase = greatePurchase
-      console.log(greatePurchase)
+      
     });
 
     this._purchaseRerpotingService.getLesserTotalPurchaseByDate(this.reportingPurchaseForm.value)
@@ -154,6 +156,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getGreaterRegularPurchaseByDate(this.reportingPurchaseForm.value)
     .subscribe(({greaterRegularPurchase}) =>{
       this.greaterRegular = greaterRegularPurchase
+     
     });
 
     this._purchaseRerpotingService.getLesserRegularPurchaseByDate(this.reportingPurchaseForm.value)
