@@ -19,6 +19,7 @@ export class PurchaseOrder {
    public totalGallonRegular : number,
    public totalGallonSuper : number,
    public totalGallonDiesel : number,
+   public purchaseId? : Purchase,
    public applied? : boolean,
    public count? :number
 
@@ -61,7 +62,9 @@ export class DetailPurchaseOrder {
         public NoBankCheck : string,
         public checkAmount : number, 
         public couponsAmount : number,
-        public count?: number
+        public orderNumber : number,
+        public count?: number,
+        public purchaseId?: string
      ) { }
  }
 

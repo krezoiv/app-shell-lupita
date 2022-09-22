@@ -56,10 +56,11 @@ export class PurchasesComponent implements OnInit {
     available: ['', Validators.required],
     bankId: ['', Validators.required],
     NoBankCheck: ['', Validators.required],
-    checkAmount :['', Validators.required],
-    couponsAmount:['', Validators.required],
-    otherPaymentDescription : ['', Validators.required],
-    otherPayment: ['', Validators.required],
+    checkAmount :['0', Validators.required],
+    couponsAmount:['0', Validators.required],
+    otherPaymentDescription : ['no aplica', Validators.required],
+    otherPayment: ['0', Validators.required],
+    purchaseId: ['']
   })
   constructor(
     private fb: FormBuilder,
@@ -72,6 +73,7 @@ export class PurchasesComponent implements OnInit {
     this.getPaymentMethdos();
 
   }
+
 
   findOrder() {
     this._purchaseService.getInfoPurchaseOrder(this.purchaseForm.value)
@@ -106,7 +108,7 @@ export class PurchasesComponent implements OnInit {
     this._purchaseService.getDetailPurchaseOrder(this.purchaseForm.value)
       .subscribe(({ detailPurchaseOderInfo }) => {
         this.ditailOrder = detailPurchaseOderInfo
-        console.log(detailPurchaseOderInfo)
+       
 
       });
   };
@@ -118,6 +120,16 @@ export class PurchasesComponent implements OnInit {
       });
   };
 
+
+  
+  getIdPurchase(){
+    this._purchaseService.getPurchaseId(this.purchaseForm.value)
+      .subscribe(({getIdPurchase}) => {
+        this.purchaseForm.controls['purchaseId'].setValue(getIdPurchase.purchaseId);
+      
+      })
+  }
+  
   getfuelIdRegular() {
     this._fuelInventoryService.getFuelIdRegular()
       .subscribe(({ fuelIdRegular }) => {
@@ -143,7 +155,7 @@ export class PurchasesComponent implements OnInit {
     this._fuelInventoryService.getinventoryCode(this.purchaseForm.value)
       .subscribe(({ inventoryCode }) => {
         this.purchaseForm.controls['inventoryCode'].setValue(inventoryCode.inventoryCode);
-        console.log(inventoryCode.inventoryCode)
+        
       });
   };
 
@@ -165,14 +177,16 @@ export class PurchasesComponent implements OnInit {
 
   loadRegulartoTank() {
     this.getfuelIdRegular();
-    console.log(this.purchaseForm.value)
+    
+    
     const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 3000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdRegular();
       this.getinventoryCode();
       this.getAmountPending();
       this.getAvailable();
-      console.log(this.purchaseForm.value)
+      
+      
       const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 3000 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getfuelIdRegular();
@@ -182,21 +196,24 @@ export class PurchasesComponent implements OnInit {
         this.releaseFunction();
         this.releaseAmountRegular();
         this.resetDetailOrderValues();
-        console.log(this.purchaseForm.value)
+        
+        
       });
     });
   };
 
   loadSupertoTank() {
     this.getfuelIdSuper();
-    console.log(this.purchaseForm.value)
+    
+    
     const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 3000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdSuper();
       this.getinventoryCode();
       this.getAmountPending();
       this.getAvailable();
-      console.log(this.purchaseForm.value)
+      
+      
       const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getfuelIdSuper();
@@ -206,21 +223,24 @@ export class PurchasesComponent implements OnInit {
         this.releaseFunction();
         this.releaseAmountSuper();
         this.resetDetailOrderValues();
-        console.log(this.purchaseForm.value)
+        
+        
       });
     });
   };
 
   loadDieseltoTank() {
     this.getfuelIdDiesel();
-    console.log(this.purchaseForm.value)
+    
+    
     const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdDiesel();
       this.getinventoryCode();
       this.getAmountPending();
       this.getAvailable();
-      console.log(this.purchaseForm.value)
+      
+      
       const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getfuelIdDiesel();
@@ -230,7 +250,8 @@ export class PurchasesComponent implements OnInit {
         this.releaseFunction();
         this.releaseAmountDiesel();
         this.resetDetailOrderValues();
-        console.log(this.purchaseForm.value)
+        
+        
       });
     });
   };
@@ -278,26 +299,24 @@ export class PurchasesComponent implements OnInit {
   }
 
   savePurchase() {
-    this.getfuelIdRegular();
-    console.log(this.purchaseForm.value);
+ 
 
     this._purchaseService.createPurchase(this.purchaseForm.value)
       .subscribe((data) => {
-        this.getfuelIdRegular();
-        const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
-        snackBarRef.afterDismissed().subscribe(() => {
-          this.getinventoryCode();
-          const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
-          snackBarRef.afterDismissed().subscribe(() => {
-            this.getinventoryCode();
-          })
-        })
-
-
-        console.log(this.purchaseForm.value);
+        this.getIdPurchase();
+        const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
+      snackBarRef.afterDismissed().subscribe(() => {
+        this.getIdPurchase();
+        console.log(this.purchaseForm.value)
+      })
+        
+       
+      
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       })
+
+     
   };
 
   releaseFunction(){
@@ -318,15 +337,3 @@ export class PurchasesComponent implements OnInit {
 
 
 };
-
-
-
-/*
-
-Swal.fire({
-          title: "Creado Exitoso!",
-          text: "Factura Guardada",
-          timer:1000
-        })
-
-*/

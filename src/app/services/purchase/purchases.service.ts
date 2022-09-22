@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AmountFuelDiesel_I, AmountFuelRegular_I, AmountFuelSuper_I, AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
+import { AmountFuelDiesel_I, AmountFuelRegular_I, AmountFuelSuper_I, AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseId_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
 import { PaymentMethods_I } from 'src/app/interfaces/paymentMethods.interface';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
@@ -67,6 +67,10 @@ export class PurchasesService {
     return this._http.post<PurchaseOrder_I>(`${api_url}/purchaseOrders/PurchaseOrderId`, purchaseOrderId, this.headers);
   };
 
+  getPurchaseId(purchaseId : string): Observable<PurchaseId_I>{
+    return this._http.post<PurchaseId_I>(`${api_url}/purchases/idPurchase`, purchaseId, this.headers);
+  }
+
   /**
    * *service that brings the amount of fuel of the order
    * *servicio que trae la cantidad de combustible de la orden
@@ -74,6 +78,8 @@ export class PurchasesService {
   getAmountfuel(formData : DetailPurchaseOrder) : Observable<AmountFuel_I>{
     return this._http.post<AmountFuel_I>(`${api_url}/detailPurchaseOrder/amountFuel`, formData, this.headers);
   };
+
+
 
   getAmountfuelRegular(formData : DetailPurchaseOrder) : Observable<AmountFuelRegular_I>{
     return this._http.post<AmountFuelRegular_I>(`${api_url}/detailPurchaseOrder/amountFuelRegular`, formData, this.headers);
@@ -103,6 +109,9 @@ export class PurchasesService {
     return this._http.get<DetailPurchaseOrder>(`${api_url}/detailPurchaseOrder/aplicarDetailOrder`, this.headers);
   };
 
+  updateIdPurchase(purchaseId : PurchaseOrder): Observable<PurchaseOrder>{
+    return this._http.put<PurchaseOrder>(`${api_url}/purchaseOrders/idPurchase/${purchaseId.purchaseId}`, this.headers);
+  }
   updateTotalPurchaseOrder(purchaseOrder : PurchaseOrder) : Observable<PurchaseOrder>{
     return this._http.put<PurchaseOrder>(`${api_url}/purchaseOrders/${purchaseOrder.purchaseOrderId}`, purchaseOrder, this.headers);
   };

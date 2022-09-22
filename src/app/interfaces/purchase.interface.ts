@@ -1,8 +1,14 @@
 import { DetailPurchaseOrder, Purchase, PurchaseOrder } from "src/app/models/purchase/purchaseOrder.model";
 
+//interface gert purchaseOrderId
 export interface PurchaseOrder_I {
     purchaseOrderId: PurchaseOrder,
 }
+
+export interface PurchaseId_I {//
+    getIdPurchase: Purchase,
+}
+
 
 export interface ListPurchaseDetailOrder_I {
     listPurchaseOrder : [];
