@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { Banks_I } from 'src/app/interfaces/users.interface';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
@@ -74,6 +75,12 @@ export class PurchasesComponent implements OnInit {
 
   }
 
+  updateIdPurchase(){
+    this._purchaseService.updateIdPurchase(this.purchaseForm.value)
+      .subscribe(data => {
+
+      })
+  }
 
   findOrder() {
     this._purchaseService.getInfoPurchaseOrder(this.purchaseForm.value)
@@ -307,6 +314,7 @@ export class PurchasesComponent implements OnInit {
         const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 300 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getIdPurchase();
+        this.updateIdPurchase();
         console.log(this.purchaseForm.value)
       })
         

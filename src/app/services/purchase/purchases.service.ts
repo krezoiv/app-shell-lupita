@@ -110,8 +110,9 @@ export class PurchasesService {
   };
 
   updateIdPurchase(purchaseId : PurchaseOrder): Observable<PurchaseOrder>{
-    return this._http.put<PurchaseOrder>(`${api_url}/purchaseOrders/idPurchase/${purchaseId.purchaseId}`, this.headers);
-  }
+    return this._http.put<PurchaseOrder>(`${api_url}/purchaseOrders/idPurchase/${purchaseId.purchaseOrderId}`, this.headers);
+  };
+
   updateTotalPurchaseOrder(purchaseOrder : PurchaseOrder) : Observable<PurchaseOrder>{
     return this._http.put<PurchaseOrder>(`${api_url}/purchaseOrders/${purchaseOrder.purchaseOrderId}`, purchaseOrder, this.headers);
   };
