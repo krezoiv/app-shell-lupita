@@ -78,7 +78,7 @@ export class PurchasesComponent implements OnInit {
   updateIdPurchase(){
     this._purchaseService.updateIdPurchase(this.purchaseForm.value)
       .subscribe(data => {
-
+        console.log('11111')
       })
   }
 
