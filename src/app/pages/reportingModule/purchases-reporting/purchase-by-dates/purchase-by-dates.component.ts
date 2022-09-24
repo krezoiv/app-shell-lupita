@@ -6,6 +6,7 @@ import { DetailPurchaseOrder, Purchase, PurchaseOrder } from 'src/app/models/pur
 import { PurchasesOrderComponent } from 'src/app/pages/purchase/purchases-order/purchases-order.component';
 import { PurchasesReportingService } from 'src/app/services/reporting/purchases-reporting.service';
 
+
 @Component({
   selector: 'app-purchase-by-dates',
   templateUrl: './purchase-by-dates.component.html',
@@ -20,15 +21,15 @@ export class PurchaseByDatesComponent implements OnInit {
   public purchaseRegular : Purchase[]=[]; 
   public purchaseSuper : Purchase[]=[]; 
   public purchaseDiesel : Purchase[]=[]; 
-  public purchaseReport : Purchase[]=[];
-  public greaterPurchase : Purchase[]=[];
-  public lesserPurchase :  Purchase[]=[];
-  public greaterRegular : Purchase[]=[];
-  public lesserRegular :Purchase[]=[];
-  public greaterSuper: Purchase[] =[];
-  public lesserSuper : Purchase[] =[];
-  public greaterDiesel: Purchase[] =[];
-  public lesserDiesel: Purchase[] =[];
+  public purchaseReport : PurchaseOrder[]=[];
+  public greaterPurchase : PurchaseOrder[]=[];
+  public lesserPurchase :  PurchaseOrder[]=[];
+  public greaterRegular : PurchaseOrder[]=[];
+  public lesserRegular :PurchaseOrder[]=[];
+  public greaterSuper: PurchaseOrder[] =[];
+  public lesserSuper : PurchaseOrder[] =[];
+  public greaterDiesel: PurchaseOrder[] =[];
+  public lesserDiesel: PurchaseOrder[] =[];
   public purchaseDetailOrderReport : DetailPurchaseOrder[]=[];
   public purchaseReportTotal : Purchase[]=[]; 
   public totalPurchases : number = 0 ;
@@ -76,6 +77,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this.reportingPurchaseForm.controls['finalDate'].setValue(Fdate.toISOString());
   };
 
+  
   getPurchaseByDates(){
     this.convertDates();
     this._purchaseRerpotingService.getPurchasesByDates(this.reportingPurchaseForm.value)
@@ -103,7 +105,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getCountSumGallonsRegularPurchase(this.reportingPurchaseForm.value)
       .subscribe(({countTotalPurchaseRegular}) => {
         this.purchaseOrderRegular = countTotalPurchaseRegular;
-        console.log(countTotalPurchaseRegular)
+       
       });
   };
 
@@ -112,7 +114,7 @@ export class PurchaseByDatesComponent implements OnInit {
     this._purchaseRerpotingService.getCountSumGallonsSuperPurchase(this.reportingPurchaseForm.value)
       .subscribe(({countTotalPurchaseSuper}) => {
         this.purchaseOrderSuper = countTotalPurchaseSuper;
-        console.log(countTotalPurchaseSuper)
+        
       });
   };
 

@@ -49,7 +49,7 @@ export interface AmountFuelDiesel_I {
 
 export interface PurchaseByDate_I {
     total : number,
-    getData : Purchase[];
+    getData : PurchaseOrder[];
 
 }
 
@@ -101,4 +101,8 @@ export interface GreaterDieselPurchase_I {
 export interface LesserDieselPurchase_I {
     lesserDieselPurchase : [];
 };
+
+export interface PurchaseByNoOrder_I{
+    purchaseByOrder : [];
+}
 

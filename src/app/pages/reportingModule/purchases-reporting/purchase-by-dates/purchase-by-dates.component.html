@@ -55,8 +55,8 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let total of purchaseReportTotal">
-                                    <td> <input id="input-registros" id="input-registros" type="number" name="gallonA"
-                                            formControlName="totalPurchase" [(ngModel)]="total.count" matInput></td>
+                                    <td id="colorTd2"> <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                            formControlName="totalPurchase" [(ngModel)]="total.count " matInput></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -80,7 +80,7 @@
                                     <tbody>
                                         
                                         <tr *ngFor="let disRegular of purchaseOrderRegular">
-                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                            <td id="colorTd2"> <input id="input-registros" id="input-registros" type="number"
                                                     name="gallonA" formControlName="totalGallonsRegular"
                                                     [(ngModel)]="disRegular.count" matInput></td>
                                         </tr>
@@ -100,7 +100,7 @@
                                     <tbody>
 
                                         <tr *ngFor="let disSuper of purchaseOrderSuper">
-                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                            <td id="colorTd2"> <input id="input-registros" id="input-registros" type="number"
                                                     name="gallonA" formControlName="totalGallonsSuper"
                                                     [(ngModel)]="disSuper.count" matInput></td>
                                         </tr>
@@ -117,7 +117,7 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let disDiesel of purchaseOrderDiesel">
-                                            <td> <input id="input-registros" id="input-registros" type="number"
+                                            <td id="colorTd2"> <input id="input-registros" id="input-registros" type="number"
                                                     name="gallonA" formControlName="totalGallonsDiesel"
                                                     [(ngModel)]="disDiesel.count" matInput></td>
                                         </tr>
@@ -153,18 +153,18 @@
                             <tbody>
                                 <tr *ngFor="let data of purchaseReport">
                                     <td id="tdTable" scope="col">{{data.deliveryDate | date}}</td>
-                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.orderNumber}}</td>
-                                    <td id="tdTable" scope="col">{{data.invoiceSerie}}</td>
-                                    <td id="tdTable" scope="col">{{data.invoiceDocument}}</td>
-                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.totalGallonSuper}}</td>
-                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.totalGallonRegular}}</td>
-                                    <td id="tdTable" scope="col">{{data.purchaseOrderId.totalGallonDiesel}}</td>
-                                    <td id="tdTable" scope="col">{{data.bankId}}</td>
-                                    <td id="tdTable" scope="col">{{data.NoBankCheck}}</td>
-                                    <td id="tdTable" scope="col">{{data.checkAmount}}</td>
-                                    <td id="tdTable" scope="col">{{data.couponsAmount}}</td>
-                                    <td id="tdTable" scope="col">{{data.otherPayment}}</td>
-                                    <td id="tdTable" scope="col">{{data.totalPurchase}}</td>
+                                    <td id="tdTable" scope="col">{{data.orderNumber}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.invoiceSerie}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.invoiceDocument}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonSuper | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonRegular  | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonDiesel  | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.bankId}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.NoBankCheck}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.checkAmount  | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.couponsAmount  | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.otherPayment}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.totalPurchase  | number}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -218,18 +218,18 @@
                                     <tbody>
                                         <tr *ngFor="let data2 of greaterPurchase">
                                             <td id="tdTable" scope="col">{{data2.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data2.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data2.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data2.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data2.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data2.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data2.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data2.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data2.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data2.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data2.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data2.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -262,18 +262,18 @@
                                     <tbody>
                                         <tr *ngFor="let data3 of lesserPurchase">
                                             <td id="tdTable" scope="col">{{data3.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data3.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data3.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data3.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data3.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data3.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data3.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data3.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data3.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data3.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data3.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data3.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data3.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -323,18 +323,18 @@
                                     <tbody>
                                         <tr *ngFor="let data4 of greaterRegular">
                                             <td id="tdTable" scope="col">{{data4.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data4.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data4.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data4.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data4.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data4.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data4.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data4.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data4.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data4.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data4.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data4.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data4.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data4.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data4.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -367,18 +367,18 @@
                                     <tbody>
                                         <tr *ngFor="let data5 of lesserRegular">
                                             <td id="tdTable" scope="col">{{data5.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data5.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data5.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data5.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data5.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data5.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data5.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data5.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data5.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data5.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data5.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data5.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data5.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data5.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data5.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -429,18 +429,18 @@
                                     <tbody>
                                         <tr *ngFor="let data6 of greaterSuper">
                                             <td id="tdTable" scope="col">{{data6.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data6.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data6.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data6.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data6.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data6.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data6.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data6.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data6.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data6.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data6.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data6.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data6.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data6.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data6.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -472,18 +472,18 @@
                                     <tbody>
                                         <tr *ngFor="let data7 of lesserSuper">
                                             <td id="tdTable" scope="col">{{data7.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data7.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data7.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data7.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data7.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data7.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data7.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data7.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data7.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data7.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data7.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data7.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data7.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data7.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data7.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -533,18 +533,18 @@
                                     <tbody>
                                         <tr *ngFor="let data8 of greaterDiesel">
                                             <td id="tdTable" scope="col">{{data8.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data8.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data8.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data8.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data8.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data8.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data8.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data8.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data8.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data8.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data8.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data8.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data8.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data8.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -577,18 +577,18 @@
                                     <tbody>
                                         <tr *ngFor="let data9 of lesserDiesel">
                                             <td id="tdTable" scope="col">{{data9.deliveryDate | date}}</td>
-                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.orderNumber}}</td>
-                                            <td id="tdTable" scope="col">{{data9.invoiceSerie}}</td>
-                                            <td id="tdTable" scope="col">{{data9.invoiceDocument}}</td>
-                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonSuper}}</td>
-                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonRegular}}</td>
-                                            <td id="tdTable" scope="col">{{data9.purchaseOrderId.totalGallonDiesel}}</td>
-                                            <td id="tdTable" scope="col">{{data9.bankId}}</td>
-                                            <td id="tdTable" scope="col">{{data9.NoBankCheck}}</td>
-                                            <td id="tdTable" scope="col">{{data9.checkAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data9.couponsAmount}}</td>
-                                            <td id="tdTable" scope="col">{{data9.otherPayment}}</td>
-                                            <td id="tdTable" scope="col">{{data9.totalPurchase}}</td>
+                                            <td id="tdTable" scope="col">{{data9.orderNumber}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.invoiceDocument}}</td>
+                                            <td id="tdTable" scope="col">{{data9.totalGallonSuper | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.totalGallonRegular  | number}}</td>
+                                            <td id="tdTable" scope="col"  id="colorTd" scope="col">{{data9.totalGallonDiesel  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.bankId}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.NoBankCheck}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.checkAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.couponsAmount  | number}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.otherPayment}}</td>
+                                            <td id="tdTable" scope="col">{{data9.purchaseId.totalPurchase  | number}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

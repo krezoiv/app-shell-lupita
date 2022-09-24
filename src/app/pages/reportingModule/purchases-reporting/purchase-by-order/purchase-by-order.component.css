@@ -1,0 +1,105 @@
+body {
+    min-height: 100%;
+    min-width: none;
+    min-height: 120vh;
+    width: 100% !important;
+}
+
+form {
+    width: 100%;
+    margin: auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    min-height: 100vh;
+    background-color: white;
+}
+
+@media (max-width:100%) {
+    form {
+        width: 100%;
+    }
+
+}
+
+hr {
+    color: purple;
+    height: 10px;
+    background-color: aquamarine;
+    width: 100% !important;
+
+
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#buttonA{
+    margin-left: 8px;
+    display: flex;
+  background-color:#026C7F ;
+  flex-wrap: wrap;
+}
+
+#buttonB{
+    margin-left: 8px;
+    display: flex;
+    background-color: #2E7F02 ;
+  flex-wrap: wrap;
+}
+
+
+#tdFuel {    
+    font-style: italic;
+    text-align: center; 
+    font-size: 20px;
+}
+
+#tdTable {
+    border: 1px solid black;
+    font-style: italic;
+    text-align: center; 
+}
+#trEncabezado {
+    background-color: aqua;
+    text-align: center;
+}
+h2{
+    font-size: 30px;
+    margin-top: 15%;
+}
+
+#sectionDetail2 {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+    background-color: #EAFAF1;
+}
+
+#sectionFuel {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    width: 100% !important;
+    background-color: #EAFAF1;
+}
+ 
+ 
+#tableDetail{
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid;
+    background-color: white;
+}

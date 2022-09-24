@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { countTotalPurchaseDiesel_I, countTotalPurchaseRegular_I, countTotalPurchaseSuper_I, countTotalPurchase_I, GreatePurchase_I, GreaterDieselPurchase_I, GreaterRegularPurchase_I, GreaterSuperPurchase_I, LesserDieselPurchase_I, LesserPurchase_I, LesserRegularPurchase_I, LesserSuperPurchase_I, PurchaseByDate_I } from 'src/app/interfaces/purchase.interface';
+import { countTotalPurchaseDiesel_I, countTotalPurchaseRegular_I, countTotalPurchaseSuper_I, countTotalPurchase_I, GreatePurchase_I, GreaterDieselPurchase_I, GreaterRegularPurchase_I, GreaterSuperPurchase_I, LesserDieselPurchase_I, LesserPurchase_I, LesserRegularPurchase_I, LesserSuperPurchase_I, PurchaseByDate_I, PurchaseByNoOrder_I } from 'src/app/interfaces/purchase.interface';
 import { Purchase, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { environment } from 'src/environments/environment';
 
@@ -86,4 +86,9 @@ export class PurchasesReportingService {
     return this._http.post<LesserDieselPurchase_I>(`${api_url}/purchases/lesserPurchaseDiesel`, formData, this.headers);
   };
 
+  getPurchaseByNoOrder(formData : PurchaseOrder) : Observable<PurchaseByNoOrder_I>{
+    return this._http.post<PurchaseByNoOrder_I>(`${api_url}/purchases/purchaseByOrder`, formData, this.headers);
+  };
+
+  
 }

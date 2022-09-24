@@ -1,1 +1,190 @@
-<p>purchase-by-order works!</p>
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form [formGroup]="reportingPurchaseForm" class="mat-elevation-z8">
+            <h1>Reportes de Compras por Número de Orden</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12" >
+                    <div class="input-group">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Número de Orden:</mat-label>
+                            <input id="input-registros" id="input-registros" type="number" name="gallonA"
+                                formControlName="orderNumber" matInput>
+                            <mat-icon matPrefix>numbers</mat-icon>
+                            <mat-hint>Ingrese No. de Orden</mat-hint><br>
+                        </mat-form-field>
+
+                        <button id="buttonA" mat-raised-button color="primary" (click)="search();">
+                            <mat-icon>search</mat-icon><br> Buscar
+                        </button>
+                        <button id="buttonB" mat-raised-button color="primary" (click)="newSearch();">
+                            <mat-icon>sync</mat-icon><br> Nueva Buesqueda
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Gran Total</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section  id="sectionFuel">
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of purchaseReporting">
+                                    <td id="tdFuel">Q. {{data.totalPurchaseOrder | number}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="col-md-8 col-sm-8 col-xs-8">
+                    <label>
+                        <h1>Galones Vendidos</h1>
+                    </label>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3>Galones Comprados Regular</h3>
+                                <table>
+                                    <thead>
+                                        <tr id="">
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of purchaseReporting">
+                                            <td id="tdFuel">{{data.totalGallonRegular | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3>Galones Comprados Super</h3>
+                                <table>
+                                    <thead>
+                                        <tr id="">
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of purchaseReporting">
+                                            <td id="tdFuel">{{data.totalGallonSuper | number}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <section id="sectionFuel">
+                                <h3>Galones Comprados Diesel</h3>
+                                <table>
+                                    <thead>
+                                        <tr id="">
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of purchaseReporting">
+                                            <tr *ngFor="let data of purchaseReporting">
+                                                <td id="tdFuel">{{data.totalGallonDiesel | number}}</td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div div class="col-md-4 col-sm-4 col-xs-4">
+                    <label>
+                        <h1>Precios De Combustibles</h1>
+                    </label>
+                    <section id="sectionFuel">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let fuel of fuels">
+                                <td  align="center" id="tdFuel">{{fuel.fuelName}}  Q. {{fuel.salePrice | number}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+
+            <div>
+                <div div class="col-md-4 col-sm-4 col-xs-4">
+                    <label>
+                        <h1>Número de Orden</h1>
+                    </label>
+                    <section id="sectionFuel">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let data of purchaseReporting">
+                                    <td id="tdFuel">  {{data.orderNumber}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+                <hr>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <section  id="sectionDetail2">
+                        <table  id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                            <thead>
+                                <tr id="trEncabezado">
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Serie de Factura</th>
+                                    <th scope="col">Número de Factura</th>
+                                    <th scope="col">Banco</th>
+                                    <th scope="col">Número de Cheque</th>
+                                    <th scope="col">Cantidad Cheque</th>
+                                    <th scope="col">Cupones</th>
+                                    <th scope="col">Otros Pagos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <tr *ngFor="let data of purchaseReporting">
+                                <th id="tfTable">{{data.deliveryDate | date}}</th>
+                                <th id="tfTable">{{data.purchaseId.invoiceSerie}}</th>
+                                <th id="tfTable">{{data.purchaseId.invoiceDocument}}</th>
+                                <th id="tfTable">{{data.purchaseId.bankId}}</th>
+                                <th id="tfTable">{{data.purchaseId.NoBankCheck}}</th>
+                                <th id="tfTable">{{data.purchaseId.checkAmount | number}}</th>
+                                <th id="tfTable">{{data.purchaseId.couponsAmount | number}}</th>
+                                <th id="tfTable">{{data.purchaseId.orderNumber | number}}</th>
+                               </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</body>
