@@ -14,32 +14,30 @@
       <h1>Módulos</h1>
       <hr id="hr2">
       <!-- boton de mantenumientos-->
-      <mat-list>
-        <mat-list-item><a routerLink="/dashboard/maintenances">
-            <mat-icon>settings</mat-icon> Mantenimiento
-          </a></mat-list-item>
-      </mat-list>
+      <div>
 
-      <!--boton para cuadres-->
-      <mat-list>
-        <mat-list-item><a routerLink="/dashboard/cuadres">
-            <mat-icon>attach_money</mat-icon> Cuadres
-          </a></mat-list-item>
-      </mat-list>
+        <mat-tree [dataSource]="dataSourceModule" [treeControl]="treeControlModule">
+          <!-- This is the tree node template for leaf nodes -->
+          <mat-tree-node  *matTreeNodeDef="let node" matTreeNodePadding>
+            <!-- use a disabled button to provide padding for tree leaf -->
+            <button mat-icon-button disabled></button>
+            <a id="aTree" routerLink={{node.url}}>
+              {{node.name}}</a>
+          </mat-tree-node>
+          <!-- This is the tree node template for expandable nodes -->
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChildModule" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle
+                    [attr.aria-label]="'Toggle ' + node.name">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControlModule.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            <a id="aTree" >
+              {{node.name}}</a>
+          </mat-tree-node>
+        </mat-tree>
 
-      <!--boton para compras-->
-      <mat-list>
-        <mat-list-item><a routerLink="/dashboard/compras">
-            <mat-icon>shopping_cart</mat-icon> Compras
-          </a></mat-list-item>
-      </mat-list>
-
-      <!--boton para inventario-->
-      <mat-list>
-        <mat-list-item><a routerLink="/dashboard/inventario">
-            <mat-icon>shopping_cart</mat-icon> Inventario
-          </a></mat-list-item>
-      </mat-list>
+      </div>
 
       <!--boton para Reporteria-->
 

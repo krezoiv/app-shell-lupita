@@ -90,6 +90,7 @@ export class SalesControlComponent implements OnInit {
     fuelId: ['', Validators.required],
     inventoryCode: ['', Validators.required],
     depositSlip: ['', Validators.required],
+    generalDispenserReaderId :[]
   });
 
   constructor(
@@ -200,6 +201,8 @@ export class SalesControlComponent implements OnInit {
   };
 
   openDay() {
+
+   
     if (this.salesControlForm.get('readingDate')?.value == null || this.salesControlForm.get('readingDate')?.value == '') {
       Swal.fire('Informacíon', ` Debe seleccionar fecha`);
       return;
@@ -219,6 +222,7 @@ export class SalesControlComponent implements OnInit {
     this.buttonSaleRegular = true;
     this.buttonSaleSuper = true;
     this.buttonSaleDiesel = true;
+    this.getGeneralDispenserReaderid();
   };
 
 
@@ -472,6 +476,14 @@ export class SalesControlComponent implements OnInit {
 
     this.buttonAbonos = true;
     
+  }
+
+  getGeneralDispenserReaderid(){
+    this._dispenserService.getGeneralDispenserReaderId(this.salesControlForm.value)
+      .subscribe(({generalDispenserReader}) => {
+        this.salesControlForm.controls['generalDispenserReaderId'].setValue(generalDispenserReader.generalDispenserReaderId);
+        console.log(this.salesControlForm.value)
+      })
   }
 
 };

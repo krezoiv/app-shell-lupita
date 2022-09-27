@@ -1,3 +1,4 @@
+import { GeneralDispenserReader } from '../fuelstation/dispensers.model';
 
 
 export class SalesControl {
@@ -25,7 +26,8 @@ export class SalesControl {
         public credits: number,
         public applied: boolean,
         public abonos : number,
-        public count : number
+        public count : number,
+        public generalDispenserReaderId : GeneralDispenserReader
        
 
     ) { }
