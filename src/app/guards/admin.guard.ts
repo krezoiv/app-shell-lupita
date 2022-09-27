@@ -34,7 +34,7 @@ export class AdminGuard implements CanActivate {
         text: "Acceso denegado",
         timer:1000
       })
-      console.log('no ok')
+    
       return false
      }
   }
