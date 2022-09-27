@@ -8,30 +8,31 @@ mat-sidenav {
 
 }
 
-mat-list{
+mat-list {
     color: red;
     background-color: black;
 
-   
+
 }
 
-a{
+a {
     color: red;
-   font-size: 25px;
-   text-decoration: none;
-  text-shadow: white;
-  
-}
-#a{
-    color: black;
-    
+    font-size: 15px;
+    text-decoration: none;
+    text-shadow: white;
+
 }
 
-h1{
+#a {
+    color: black;
+
+}
+
+h1 {
     color: white;
 }
 
-#hr2{
+#hr2 {
     border: 1px solid red;
     margin-left: 0%;
     margin-right: 50%;
@@ -42,12 +43,12 @@ hr {
 }
 
 mat-toolbar {
-    background-color: black ;
+    background-color: black;
     color: white;
 }
 
 
-.wrap{
+.wrap {
     width: 100%;
     max-width: 1000px;
     margin: auto;
@@ -81,9 +82,22 @@ mat-toolbar {
 
 .mat-tree {
     background: transparent;
-  }
-    
-  .mat-tree-node {
+}
+
+.mat-tree-node {
     color: white;
-    
-  }
+
+}
+
+#sidenav.menu-close {
+    width: 70px;
+}
+
+#sidenav.menu-open {
+    width: 250px;
+}
+
+#sidenav .menu-item mat-icon{
+    margin-right: 20px;
+    margin-left: 20px;
+}

@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { status } from '../interfaces/status.interface';
-import { Roles, User } from '../interfaces/users.interface';
+import {  Roles_I, User } from '../interfaces/users.interface';
 import { Users } from '../models/user.models';
 
 
@@ -43,8 +43,8 @@ export class UsersService {
   }
 
 
-  getRoles(): Observable<Roles> {
-    return this.http.get<Roles>(`${api_url}/roles`);
+  getRoles(): Observable<Roles_I> {
+    return this.http.get<Roles_I>(`${api_url}/roles`);
   }
 
   getStatus(): Observable<status> {

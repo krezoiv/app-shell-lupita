@@ -7,9 +7,10 @@ export interface getUsers {
 
 };
 
-export interface Roles {
+export interface Roles_I {
 
-    roles: [];
+    roleId: string
+    roleName: string
 
 }
 
@@ -24,7 +25,7 @@ export interface newUser {
     lastName: string,
     email: string,
     password: string,
-    rolesId: string,
+    roleId: string,
     statusId: string,
 }
 

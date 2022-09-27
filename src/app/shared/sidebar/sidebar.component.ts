@@ -4,6 +4,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 interface SideBarNodeModule {
@@ -13,38 +14,76 @@ interface SideBarNodeModule {
 }
 
 const TREE_DATA_MODULE: SideBarNodeModule[] = [
+
   {
-    name: 'Mantenimiento',
+    name: 'Mantenimientos',
     url: '/dashboard',
+   
     children: [
-      { name: 'Por No. Documento', url: '/dashboard/reporteria/reporteVentasporDocumento' },
-      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteVentasporFechas' }],
+      {
+        name: 'Usuarios',
+        url: '/dashboard',
+        children: [{ name: 'Ver ', url: '/dashboard/usuarios/listado-usuarios' },
+        { name: 'Modificar', url: '' },
+        { name: 'Agregar', url: '/dashboard/usuario/agregar-usuario' }
+        ],
+      },
+      {
+        name: 'Infraestructura',
+        url: '/dashboard',
+        children: [{
+          name: 'Mangueras', url: '',
+          children: [
+            { name: 'crear', url: '/dashboard/infrastructura/manguera/agregar-manguera' },
+            { name: 'ver', url: '/dashboard/infrastructura/manguera/listar-mangueras' },
+            { name: 'asignación', url: '/dashboard/infrastructura/manguera/asignacion-de-manguera' }]
+        },
+        {
+          name: 'Combustibles', url: '',
+          children: [
+            { name: 'crear', url: '/dashboard/infrastructura/combustibles/agregar-combustible' },
+            { name: 'ver', url: '/dashboard/infrastructura/combustibles/listado-combustibles' }]
+        },
+        {
+          name: 'Bombas', url: '',
+          children: [
+            { name: 'crear', url: '/dashboard/infrastructura/dispensadores/agregar-dispensador' },
+            { name: 'ver', url: '/dashboard/infrastructura/dispensadores/listado-dispensadores' }]
+        },
+        {
+          name: 'Islas', url: '',
+          children: [
+            { name: 'crear', url: '/dashboard/infrastructura/islas/agregar-isla' },
+            { name: 'ver', url: 'infrastructura/islas/listado-islas' }]
+        },
+        {
+          name: 'Tanques', url: '',
+          children:
+            [{ name: 'crear', url: '/dashboard/infrastructura/tanques/agregar-tanque' },
+            { name: 'ver', url: '/dashboard/infrastructura/tanques/listado-tanques' }]
+        },
+        ],
+      },
+    ],
   },
   {
     name: 'Cuadres',
     url: '/dashboard',
-    children: [
-      { name: 'Por No. Orden', url: '/dashboard/reporteria/reporteComprasporNumeroDeOrden' },
-      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteComprasporFechas' }
-    ],
+    children: [{
+      name: 'Digitar Bombas', url: '/dashboard/cuadres/digitalizacion-de-bombas'},
+     {name: 'Cierre Ventas', url: '/dashboard/cuadres/cierre-de-ventas'}]
+
   },
   {
     name: 'Compras',
     url: '/dashboard',
-    children: [
-      { name: 'Por No. Orden', url: '/dashboard/reporteria/reporteComprasporNumeroDeOrden' },
-      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteComprasporFechas' }
-    ],
-  },
-  {
-    name: 'Inventario',
-    url: '/dashboard',
-    children: [
-      { name: 'Por No. Orden', url: '/dashboard/reporteria/reporteComprasporNumeroDeOrden' },
-      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteComprasporFechas' }
-    ],
-  },
-];
+    children: [{
+      name: 'Generar No. Orden', url: '/dashboard/compras/orden-de-pedido'},
+     {name: 'Factura', url: '/dashboard/compras/generar-factura'}]
+
+  }
+
+]
 
 interface SideBarFlatNodeModule {
   expandable: boolean;
@@ -90,11 +129,24 @@ interface SideBarFlatNodeReporting {
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  
 })
 export class SidebarComponent implements OnInit {
-  
-  
+
+  isMenuOpen = true;
+  contentMargin = 120;
+
+  onToolbarMenuToggle() {
+    this.isMenuOpen = !this.isMenuOpen;
+
+    if(!this.isMenuOpen) {
+      this.contentMargin = 70;
+    } else {
+      this.contentMargin = 240;
+    }
+  }
+
   private _transformerModule = (node: SideBarNodeModule, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -119,9 +171,9 @@ export class SidebarComponent implements OnInit {
   dataSourceModule = new MatTreeFlatDataSource(this.treeControlModule, this.treeFlattenerModule);
 
   hasChildModule = (_: number, node: SideBarFlatNodeModule) => node.expandable;
-    
+
   //-----
-  
+
   private _transformer = (node: SideBarNodeReporting, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Roles_I } from 'src/app/interfaces/users.interface';
 import { Status } from 'src/app/models/status.model';
 import { Roles } from 'src/app/models/user.models';
 
@@ -13,6 +15,14 @@ import Swal from 'sweetalert2';
 })
 export class CreateUsersComponent implements OnInit {
 
+  roles : Roles_I[]=[
+    {roleId: 'ADMIN_ROLE', roleName : 'ADMIN_ROLE'},
+    {roleId: 'SUPER_ROLE', roleName : 'SUPER_ROLE'},
+    {roleId: 'USER_ROLE', roleName : 'ADMIN_ROLE'},
+    {roleId: 'GUEST_ROLE', roleName : 'GUEST_ROLE'}
+    
+  ]
+
   public formSubmitted = false;
   selectedRoles: Roles[] =[];
   selectedStatus : Status[] =[];
@@ -23,26 +33,23 @@ export class CreateUsersComponent implements OnInit {
     lastName: [ '', Validators.required],
     email: [ '', Validators.required],
     password: [ '', Validators.required],
-    rolesId: [ '', Validators.required],
+    roleId: [ '', Validators.required],
     statusId: ['', Validators.required],
   })
 
   constructor(
     private fb: FormBuilder,
-    private userService : UsersService
+    private userService : UsersService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.getRoles();
+  
+    
     this.getStatus();
   }
 
-  getRoles(){
-    this.userService.getRoles()
-        .subscribe(({roles}) => {
-          this.selectedRoles = roles
-        });
-  };
+  
 
   getStatus(){
     this.userService.getStatus()
@@ -58,10 +65,14 @@ export class CreateUsersComponent implements OnInit {
     this.userService.createUser(this.newUserForm.value)
         .subscribe( data => {
           Swal.fire('Exitoso', `${firstName} ${lastName} creado correctamente`)
-          
+          this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/dashboard/usuario/agregar-usuario']);
+          });
         }, err => {
           Swal.fire('Error', err.error.msg, 'error')
         })
   }
+
+
 
 };
