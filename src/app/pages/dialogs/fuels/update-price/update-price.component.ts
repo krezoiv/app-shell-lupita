@@ -33,13 +33,16 @@ export class UpdatePriceComponent implements OnInit {
 
       fuelName: ['', Validators.required],
       costPrice: ['', Validators.required],
-      salePrice: ['', Validators.required]
+      salePrice: ['', Validators.required],
+      idpAmount: ['', Validators.required],
+
     })
 
     if (this.fuels) {
       this.updatePriceForm.controls['fuelName'].setValue(this.fuels.fuelName);
       this.updatePriceForm.controls['costPrice'].setValue(this.fuels.costPrice);
       this.updatePriceForm.controls['salePrice'].setValue(this.fuels.salePrice);
+      this.updatePriceForm.controls['idpAmount'].setValue(this.fuels.taxesId?.idpAmount);
     }
   }
 

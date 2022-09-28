@@ -36,11 +36,13 @@ export class UpdateFuelDialogComponent implements OnInit {
       fuelName:  ['', Validators.required],
       costPrice: ['', Validators.required],
       salePrice: ['', Validators.required],
-      statusId : ['', Validators.required]
+      statusId : ['', Validators.required],
+      idpAmount : ['', Validators.required]
     })
 
     if (this.fuels) {
       this.updateFuelForm.controls['fuelName'].setValue(this.fuels.fuelName );
+      this.updateFuelForm.controls['idpAmount'].setValue(this.fuels.fuelName);
       this.updateFuelForm.controls['fuelName'].setValue(this.fuels.fuelName);
       this.updateFuelForm.controls['costPrice'].setValue(this.fuels.costPrice);
       this.updateFuelForm.controls['salePrice'].setValue(this.fuels.salePrice);

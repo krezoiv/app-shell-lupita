@@ -18,7 +18,7 @@ export class CreateUsersComponent implements OnInit {
   roles : Roles_I[]=[
     {roleId: 'ADMIN_ROLE', roleName : 'ADMIN_ROLE'},
     {roleId: 'SUPER_ROLE', roleName : 'SUPER_ROLE'},
-    {roleId: 'USER_ROLE', roleName : 'ADMIN_ROLE'},
+    {roleId: 'USER_ROLE', roleName : 'USER_ROLE'},
     {roleId: 'GUEST_ROLE', roleName : 'GUEST_ROLE'}
     
   ]

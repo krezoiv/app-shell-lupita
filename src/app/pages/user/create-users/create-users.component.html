@@ -32,7 +32,7 @@
               <label for="inputState">Rol</label>
               <select class="form-control" formControlName="roleId">
                   <option value="">-- Seleccione un Rol --</option>
-                  <option *ngFor="let roles of selectedRoles" [value]="roles.rolesId"> {{ roles.roleName }} </option>
+                  <option *ngFor="let roles of roles" [value]="roles.roleId"> {{ roles.roleName }} </option>
               </select>
             </div>
 

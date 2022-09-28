@@ -1,4 +1,71 @@
-<app-maintenance-navbar></app-maintenance-navbar>
+<body>
+  
+    <form [formGroup]="dispenserForm" class="mat-elevation-z8">
+      
+     
+
+        <h3>
+            <mat-icon> local_gas_station</mat-icon> &nbsp; Crear Nueva Bomba
+        </h3>
+        <hr>
+    
+        <div>
+          <mat-form-field appearance="legacy">
+            <mat-label>Código de la Bomba</mat-label>
+            <input type="text" formControlName="dispenserCode"matInput placeholder="Código de la Bomba...">
+            <mat-icon matSuffix>local_gas_station</mat-icon>
+            <mat-hint>Ingrese código bomba</mat-hint>
+          </mat-form-field>
+        </div><br>
+    
+        <div>
+            <mat-form-field appearance="fill">
+              <mat-label>Isla</mat-label>
+              <mat-select formControlName="islandId" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let islands of selectedIsland" [value]="islands.islandId">
+                  {{islands.islandNumber}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="dispenserForm.hasError('required')">Please choose an animal</mat-error>
+              <mat-hint>Ingrese código bomba</mat-hint>
+            </mat-form-field>
+          </div><br>
+    
+    
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="statusId" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let status of selectedStatus" [value]="status.statusId">
+                {{status.statusName | titlecase}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="dispenserForm.hasError('required')">Please choose an animal</mat-error>
+            <mat-hint>Ingrese status</mat-hint>
+          </mat-form-field>
+        </div><br>
+    
+        
+        <div mat-dialog-actions>
+          <button mat-raised-button color="warn" mat-dialog-close >
+            <mat-icon>close</mat-icon>&nbsp; Cerrar
+          </button>&nbsp;
+          <button (click)="createDispenser();" mat-raised-button color="primary" >
+            <mat-icon>save</mat-icon> &nbsp; Guardar
+          </button>
+        </div>
+    
+        <br>
+
+    </form>
+  
+</body>
+
+<!-- 
+
+  <app-maintenance-navbar></app-maintenance-navbar>
 <div>
   <form [formGroup]="dispenserForm" class="mat-elevation-z8">
 
@@ -59,3 +126,4 @@
 
   </form>
 </div>
+-->

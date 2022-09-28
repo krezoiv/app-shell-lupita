@@ -23,7 +23,7 @@ export class AdminGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
       
-     if(this._authService.usuario.role === 'SUPER_ROLE'){
+     if(this._authService.usuario.roleId === 'SUPER_ROLE'){
       return true;
       
       console.log('ok')

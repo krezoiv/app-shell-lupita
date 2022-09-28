@@ -1,4 +1,51 @@
-<app-maintenance-navbar></app-maintenance-navbar>
+<body>
+  <div class="contenedor" class="mat-elevation-z8">
+    <form [formGroup]="newFuelForm" class="formUser"  (ngSubmit)="createFuel();">
+      <h1>Nuevo Combustible</h1>
+      <hr>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Tipo Combustible</label>
+              <input type="text" class="form-control" formControlName="fuelName" placeholder="Nombres" >
+            </div>
+          </div><br>
+      
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Precio Costo</label>
+                <input type="number" class="form-control" formControlName="costPrice" placeholder="Nombres" >
+              </div><br>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Precio Público</label>
+                <input type="number" class="form-control" formControlName="salePrice" placeholder="Apellidos">
+              </div>
+            </div><br>
+      
+      
+            <div class="form-group col-md-4">
+              <label for="inputState">Status</label>
+              <select class="form-control" formControlName="statusId">
+                  <option value="">-- Seleccione Status --</option>
+                  <option *ngFor="let status of selectedStatus" [value]="status.statusId"> {{ status.statusName }} </option>
+              </select>
+            </div><br>
+          
+         
+          <button type="submit" class="btn btn-primary btn-lg btn-block btn btn-info" >Guardar</button>
+      
+        </div>
+      </div>
+    </form>
+
+  </div>
+</body>
+
+
+<!-- 
+
+  <app-maintenance-navbar></app-maintenance-navbar>
 
 <form  [formGroup]="newFuelForm" class="formUser"  (ngSubmit)="createFuel();">
     <p>Nuevo Combustible</p>
@@ -35,3 +82,5 @@
     <button type="submit" class="btn btn-primary btn-lg btn-block btn btn-info" >Guardar</button>
   
 </form>
+
+-->

@@ -25,7 +25,7 @@ public usuario! : Users;
 
 
   get role() {
-    return this.usuario.role
+    return this.usuario.roleId
   }
   
   validateToken(): Observable<boolean>{  
@@ -36,8 +36,8 @@ public usuario! : Users;
         'jwt-token' : token
       }
     }).pipe(tap((data: any) => {
-      const {firstName, lastName, email, statusId, role, userId} = data.usuario;
-      this.usuario = new Users(firstName, lastName, email, statusId, role, userId);
+      const {firstName, lastName, email, statusId, roleId, userId} = data.usuario;
+      this.usuario = new Users(firstName, lastName, email, statusId, roleId, userId);
      
       localStorage.setItem('token', data.token);
     }),map(data => true),

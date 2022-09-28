@@ -24,7 +24,7 @@ export class ListFuelsComponent implements OnInit {
 
   public fuels: Fuels[] = [];
   public statusFuel: Status[] = [];
-  public columns: string[] = ['fuelName', 'costPrice', 'salePrice', 'statusId', 'accions'];
+  public columns: string[] = ['fuelName', 'idpAmount', 'costPrice', 'salePrice', 'statusId', 'accions'];
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
