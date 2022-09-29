@@ -8,30 +8,34 @@
     <div class="wrap">
        
           
-        <span>{{date| date}} {{hour | date:'hh:mm:ss'}} |</span>&nbsp; 
+        <span>{{date| date}} {{hour | date:'hh:mm:ss'}}  - </span>&nbsp; 
            
         
        
       </div>
-    <span>{{user.firstName | titlecase}}, {{user.lastName|titlecase}} {{user.roleId}}</span> &nbsp;
+    <span>{{user.firstName | titlecase}}, {{user.lastName|titlecase}}</span> &nbsp;
 
     <span class="fill-remaining-space">
         <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
-          <mat-icon>menu</mat-icon>
+          <mat-icon>perm_identity</mat-icon>
         </button>
         <mat-menu #menu="matMenu" [overlapTrigger]="false">
         <span (mouseleave)="menuTrigger.closeMenu()">
-          <button mat-menu-item >
-            <mat-icon>home</mat-icon>
-            <span>{{user.email}}</span>
-            
-      </button>
-      <button mat-menu-item>
-            <mat-icon>people_outline</mat-icon>
+          <label>
+            <span><mat-icon>alternate_email</mat-icon></span>
+            <span>  {{user.email}}</span>
+          </label>
+
+          <label>
+            <span><mat-icon>verified_user</mat-icon></span>
+            <span>{{user.firstName}}, eres un {{user.roleId}}</span>
+          </label>
+      <button mat-menu-item (click)="openDialogUpdatePass(element);"> 
+            <mat-icon> vpn_key</mat-icon>
             <span>Cambiar Contraseña</span>
           </button>
       <button mat-menu-item (click)="logout();">
-            <mat-icon>exit_to_app</mat-icon>
+        <mat-icon>power_settings_new</mat-icon>
             <span>Logout</span>
           </button>
       </span>

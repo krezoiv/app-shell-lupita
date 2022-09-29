@@ -66,6 +66,7 @@ import { SalesByNoDocumentComponent } from './reportingModule/sales-reporting/sa
 import { SalesByDatesComponent } from './reportingModule/sales-reporting/sales-by-dates/sales-by-dates.component';
 import { PurchaseByDatesComponent } from './reportingModule/purchases-reporting/purchase-by-dates/purchase-by-dates.component';
 import { PurchaseByOrderComponent } from './reportingModule/purchases-reporting/purchase-by-order/purchase-by-order.component';
+import { UpdatePasswordComponent } from './dialogs/userPassword/update-password/update-password.component';
 
 
 
@@ -114,6 +115,7 @@ import { PurchaseByOrderComponent } from './reportingModule/purchases-reporting/
     SalesByDatesComponent,
     PurchaseByDatesComponent,
     PurchaseByOrderComponent,
+    UpdatePasswordComponent,
 
    
     

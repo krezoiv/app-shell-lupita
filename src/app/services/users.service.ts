@@ -60,4 +60,8 @@ deleteUser(){
   return this.http.put(`${api_url}/users`, this.headers);
 }
 
+updatePassword(dataForm : Users){
+  return this.http.post(`${api_url}/users/updatePass`, dataForm, this.headers);
+}
+
 }
