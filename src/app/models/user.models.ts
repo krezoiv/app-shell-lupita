@@ -12,14 +12,14 @@ export class Users {
         public password : string,
         public roleId : 'SUPER_ROLE' | 'ADMIN_ROLE' | 'USER_ROLE' | 'GUEST_ROLE',
         public statusId : Status,
-        public userId? : string,
+        
         
 
     ){}
-    imprimirUsuario(){
-        console.log(this.roleId)
-    }
+    
 }
+
+
 
 export class Roles {
 

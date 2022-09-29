@@ -134,18 +134,7 @@ interface SideBarFlatNodeReporting {
 })
 export class SidebarComponent implements OnInit {
 
-  isMenuOpen = true;
-  contentMargin = 120;
-
-  onToolbarMenuToggle() {
-    this.isMenuOpen = !this.isMenuOpen;
-
-    if(!this.isMenuOpen) {
-      this.contentMargin = 70;
-    } else {
-      this.contentMargin = 240;
-    }
-  }
+ 
 
   private _transformerModule = (node: SideBarNodeModule, level: number) => {
     return {

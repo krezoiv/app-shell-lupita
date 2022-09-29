@@ -1,0 +1,42 @@
+
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Shell Lupita</span>
+    <span class="example-spacer"></span>
+    <div class="wrap">
+       
+          
+        <span>{{date| date}} {{hour | date:'hh:mm:ss'}} |</span>&nbsp; 
+           
+        
+       
+      </div>
+    <span>{{user.firstName | titlecase}}, {{user.lastName|titlecase}} {{user.roleId}}</span> &nbsp;
+
+    <span class="fill-remaining-space">
+        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseover)="menuTrigger.openMenu()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+          <button mat-menu-item >
+            <mat-icon>home</mat-icon>
+            <span>{{user.email}}</span>
+            
+      </button>
+      <button mat-menu-item>
+            <mat-icon>people_outline</mat-icon>
+            <span>Cambiar Contraseña</span>
+          </button>
+      <button mat-menu-item (click)="logout();">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Logout</span>
+          </button>
+      </span>
+      </mat-menu>
+      </span>
+     
+    
+  </mat-toolbar>

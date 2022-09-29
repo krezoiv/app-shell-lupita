@@ -1,21 +1,12 @@
+<app-main-header></app-main-header>
+
 <body>
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <h4>Shell Lupita </h4>
-      <mat-icon
-    (click)="onToolbarMenuToggle()"
-    id="toolbarMenu">subject</mat-icon>
-    </mat-toolbar-row>
 
-
-  </mat-toolbar>
   <mat-sidenav-container>
+    
     <mat-sidenav mode="side"
     #sidenav
-    id="sidenav"
-    [class.menu-open]="isMenuOpen"
-    [class.menu-close]="!isMenuOpen"
-    opened >
+    id="sidenav" opened >
 
       <hr>
       <h1>Módulos</h1>
@@ -87,7 +78,7 @@
 
     </mat-sidenav>
 
-    <mat-sidenav-content [ngStyle]="{ 'margin-left.px': contentMargin }">
+    <mat-sidenav-content>
       
       <router-outlet></router-outlet>
 

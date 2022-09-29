@@ -32,7 +32,8 @@ inventoryForm: FormGroup = this.fb.group({
   constructor(
     private _fuelService : FuelsService,
     private _inventoryService : FuelInventoryService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    
 
   ) { }
 

@@ -36,6 +36,7 @@ public usuario! : Users;
         'jwt-token' : token
       }
     }).pipe(tap((data: any) => {
+      console.log(data)
       const {firstName, lastName, email, statusId, roleId, userId} = data.usuario;
       this.usuario = new Users(firstName, lastName, email, statusId, roleId, userId);
      
@@ -50,6 +51,7 @@ public usuario! : Users;
     //pipe para obtener el token y guardarlos en el localstorage
                 .pipe(
                   tap((data:any) => {
+                   
                     localStorage.setItem('token', data.token, )
                   })
                 );
