@@ -4,8 +4,6 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { animate, style, transition, trigger } from '@angular/animations';
-
 
 interface SideBarNodeModule {
   name: string;
