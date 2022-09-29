@@ -9,35 +9,36 @@ import { UsersService } from '../services/users.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class AdminRoleGuard implements CanActivate {
 
-  public roles : Roles[]=[];
+
   constructor(
-    private _authService : AuthService,
-    private _router : Router,
-    private _userService : UsersService,
-    
-    
-  ){}
+    private _authService: AuthService,
+    private _router: Router,
+    private _userService: UsersService,
+
+
+  ) { }
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean{
-      
-     if(this._authService.usuario.roleId === 'SUPER_ROLE'){
+    state: RouterStateSnapshot): boolean {
+
+    if (this._authService.usuario.roleId !== 'ADMIN_ROLE') {
       return true;
-      
-      console.log('ok')
-     }else {
+    }
+
+    else {
       this._router.navigateByUrl('/dashboard')
       Swal.fire({
+        icon: 'error',
         title: "Error",
-        text: "Acceso denegado",
-        timer:1000
+        text: "Acceso denegado, no cuenta con permiso 111",
+        timer: 1500
       })
-    
-      return false
-     }
+
+      return false;
+    }
   }
 
-  
+
 }

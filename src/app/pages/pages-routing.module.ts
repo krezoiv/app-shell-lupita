@@ -29,9 +29,13 @@ import { MainPurchaseComponent } from './purchase/main-purchase/main-purchase.co
 import { InventoryComponent } from './inventory/inventory/inventory.component';
 import { SalesByNoDocumentComponent } from './reportingModule/sales-reporting/sales-by-no-document/sales-by-no-document.component';
 import { SalesByDatesComponent } from './reportingModule/sales-reporting/sales-by-dates/sales-by-dates.component';
-import { AdminGuard } from '../guards/admin.guard';
+import { AdminRoleGuard } from '../guards/admin-role.guard';
 import { PurchaseByDatesComponent } from './reportingModule/purchases-reporting/purchase-by-dates/purchase-by-dates.component';
 import { PurchaseByOrderComponent } from './reportingModule/purchases-reporting/purchase-by-order/purchase-by-order.component';
+import { SuperRoleGuard } from '../guards/super-role.guard';
+import { GuestRoleGuard } from '../guards/guest-role.guard';
+import { UserRoleGuard } from '../guards/user-role.guard';
+
 
 
 
@@ -44,31 +48,31 @@ const routes: Routes =[
     {path : 'users', component: UsersComponent},
     {path : 'coupons', component : CouponsComponent},
     {path : 'maintenances', component : MaintenancesComponent},
-    {path : 'usuarios/listado-usuarios', component : ListUsersComponent},
-    {path : 'usuario/agregar-usuario', component : CreateUsersComponent},
-    {path : 'infrastructura/islas/agregar-isla', component : CreateIslandComponent},
+    {path : 'usuarios/listado-usuarios', canActivate:[UserRoleGuard], component : ListUsersComponent},
+    {path : 'usuario/agregar-usuario', canActivate:[GuestRoleGuard, UserRoleGuard, SuperRoleGuard], component : CreateUsersComponent},
+    {path : 'infrastructura/islas/agregar-isla', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateIslandComponent},
     {path : 'infrastructura/islas/listado-islas', component : ListIslandComponent},
-    {path : 'infrastructura/dispensadores/agregar-dispensador', component : CreateDispensersComponent},
+    {path : 'infrastructura/dispensadores/agregar-dispensador', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateDispensersComponent},
     {path : 'infrastructura/dispensadores/listado-dispensadores', component : ListDispensersComponent},
-    {path : 'infrastructura/tanques/agregar-tanque', component : CreateTanksComponent},
+    {path : 'infrastructura/tanques/agregar-tanque', canActivate:[GuestRoleGuard, UserRoleGuard] , component : CreateTanksComponent},
     {path : 'infrastructura/tanques/listado-tanques', component : ListTanksComponent},
-    {path : 'infrastructura/combustibles/agregar-combustible', component : CreateFuelsComponent},
+    {path : 'infrastructura/combustibles/agregar-combustible', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateFuelsComponent},
     {path : 'infrastructura/combustibles/listado-combustibles', component : ListFuelsComponent},
-    {path : 'infrastructura/manguera/agregar-manguera', component : CreateHoseComponent},
+    {path : 'infrastructura/manguera/agregar-manguera', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateHoseComponent},
     {path : 'infrastructura/manguera/listar-mangueras', component : ListHoseComponent},
-    {path : 'infrastructura/manguera/asignacion-de-manguera', component : AssignmentsHosesComponent},
-    {path : 'cuadres', component: CuadresComponent},
-    {path : 'cuadres/digitalizacion-de-bombas', component: DigitizeDispenserComponent},
-    {path : 'cuadres/cierre-de-ventas', component: SalesControlComponent},
-    {path : 'compras/orden-de-pedido', component: PurchasesOrderComponent},
-    {path : 'compras/generar-factura', component: PurchasesComponent},
-    {path : 'compras', component: MainPurchaseComponent},
+    {path : 'infrastructura/manguera/asignacion-de-manguera', canActivate:[GuestRoleGuard, UserRoleGuard], component : AssignmentsHosesComponent},
+    {path : 'cuadres', canActivate:[GuestRoleGuard], component: CuadresComponent},
+    {path : 'cuadres/digitalizacion-de-bombas', canActivate:[GuestRoleGuard], component: DigitizeDispenserComponent},
+    {path : 'cuadres/cierre-de-ventas', canActivate:[GuestRoleGuard], component: SalesControlComponent},
+    {path : 'compras/orden-de-pedido', canActivate:[GuestRoleGuard], component: PurchasesOrderComponent},
+    {path : 'compras/generar-factura', canActivate:[GuestRoleGuard], component: PurchasesComponent},
+    {path : 'compras', canActivate:[GuestRoleGuard], component: MainPurchaseComponent},
     {path : 'inventario', component: InventoryComponent},
-    {path : 'reporteria/reporteVentasporDocumento', component: SalesByNoDocumentComponent},
-    {path : 'reporteria/reporteVentasporFechas', canActivate: [AdminGuard], component: SalesByDatesComponent},
+    {path : 'reporteria/reporteVentasporDocumento',  component: SalesByNoDocumentComponent},
+    {path : 'reporteria/reporteVentasporFechas', component: SalesByDatesComponent},
     {path : 'reporteria/reporteComprasporNumeroDeOrden', component : PurchaseByOrderComponent},
     {path : 'reporteria/reporteComprasporFechas', component: PurchaseByDatesComponent}
-
+    
 
   ]},
   
