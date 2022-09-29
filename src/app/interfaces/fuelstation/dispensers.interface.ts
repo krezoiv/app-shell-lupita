@@ -1,5 +1,5 @@
 import { Assignment, AssignmentHose } from "src/app/models/fuelstation/assignment.model"
-import { DispenserReader, GeneralDispenserReader, SideDispenser } from "src/app/models/fuelstation/dispensers.model"
+import { DispenserReader, Dispensers, GeneralDispenserReader, SideDispenser } from "src/app/models/fuelstation/dispensers.model"
 import { Hoses } from "src/app/models/fuelstation/hoses.models"
 import { Fuels } from "src/app/models/infrastructure.model"
 import { Taxes } from "src/app/models/purchase/taxes.model"
@@ -10,6 +10,14 @@ export interface Dispensers_I {
     dispenser:[] 
 }
 
+
+export interface DispensersA_I {
+    dispenserA:[]
+}
+
+export interface DispensersB_I {
+    dispenserB:[]
+}
 export interface Assignment_I {
     idAssignments : Assignment
 }

@@ -24,14 +24,14 @@
                         </td>
 
                         <td id="parametrosPrincipales">
-                            <label id="label1">Seleccione Bomba : &nbsp; &nbsp; &nbsp;</label>
+                            <label id="label1">Seleccione Bomba1 : &nbsp; &nbsp; &nbsp;</label>
                             <mat-form-field id="mat-form-field-registros" id="matFiel-heards" appearance="fill">
                                 <mat-label>Seleccione Bomba</mat-label>
                                 <mat-select formControlName="dispenserId" required>
 
-                                    <mat-option *ngFor="let dispenser of selectedDispenser"
+                                    <mat-option *ngFor="let dispenser of dispenserA"
                                         [value]="dispenser.dispenserId">
-                                        {{dispenser.dispenserCode | titlecase}}
+                                       {{dispenser.dispenserCode}}
                                     </mat-option>
                                 </mat-select>
 
@@ -42,6 +42,8 @@
                                 color="primary">Seleccionar</button>
 
                         </td>
+
+                       
 
 
                     </tr>
@@ -58,7 +60,7 @@
                         <h3>Registrando Numeracíon</h3>
                         <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
                         <button mat-button color="primary" (click)="closeDay();">
-                            <mat-icon color="green">lock</mat-icon>&nbsp; Cerrar Día
+                            <mat-icon color="green">lock</mat-icon>&nbsp; Borrar Día
                         </button>
                     </div>
 
@@ -77,6 +79,7 @@
 
                         <mat-tab-group backgroundColor="accent">
 
+                           <div *ngIf="matTableA1">
                             <mat-tab label="lado A">
 
 
@@ -465,7 +468,9 @@
                                 </table>
 
                             </mat-tab>
+                           </div>
 
+                           <div *ngIf="matTableB1">
                             <mat-tab label="lado B">
 
 
@@ -833,6 +838,7 @@
 
                             </mat-tab>
 
+                           </div>
                         </mat-tab-group>
 
                     </mat-tab>
@@ -851,6 +857,7 @@
 
                         <mat-tab-group backgroundColor="accent">
 
+                           <div *ngIf="matTableA2">
                             <mat-tab label="lado A">
                                 <button *ngIf="buttonDisableSide2A" mat-button color="primary" (click)="habilitar2A();">
                                     <mat-icon>lock</mat-icon>
@@ -1240,7 +1247,9 @@
                                 </table>
 
                             </mat-tab>
+                           </div>
 
+                           <div *ngIf="matTableB2">
                             <mat-tab label="lado B">
 
 
@@ -1622,6 +1631,8 @@
                                 </table>
 
                             </mat-tab>
+
+                           </div>
 
                         </mat-tab-group>
 

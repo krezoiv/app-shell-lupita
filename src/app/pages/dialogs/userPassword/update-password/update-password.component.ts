@@ -2,7 +2,6 @@ import { ParseSourceFile } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
 import { Users } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -23,7 +22,6 @@ export class UpdatePasswordComponent implements OnInit {
     private fb : FormBuilder,
     private authService : AuthService,
     private userService : UsersService,
-    private toastr : ToastrService,
     @Inject(MAT_DIALOG_DATA) public usuario : Users,
     private dialogRef : MatDialogRef<UpdatePasswordComponent>
 
