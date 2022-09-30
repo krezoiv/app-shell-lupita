@@ -433,7 +433,13 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   createDispenserReader() {
     this.dispenserService.createDispenserReader(this.digitizeForm.value)
       .subscribe((data) => {
-        Swal.fire('Creado', `Numeracíon registrada Correctamente`, 'success');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Númeracion Registrada',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });
@@ -711,7 +717,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return
     };
 
-    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
     snackBarRef1.afterDismissed().subscribe(() => {
       this.getIdAssignment();
       this.creatGeneralAssignmentDispenserReader();
@@ -726,77 +732,62 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   habilitarA() {
     this.sideA();
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-        this.buttonDisableSideA = false
-        this.buttonDisableSideAClosed = true
-        this.btnDisableRegularR1A = false
-        this.btnDisableSuperR1A = false
-        this.btnDisableDisableR1A = false
-        this.buttonDisableSideA1 = false
-      };
-    });
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+      this.buttonDisableSideA = false
+      this.buttonDisableSideAClosed = true
+      this.btnDisableRegularR1A = false
+      this.btnDisableSuperR1A = false
+      this.btnDisableDisableR1A = false
+      this.buttonDisableSideA1 = false
+    })
   };
 
   //habilita lado A de la isla 2
   habilitar2A() {
     this.sideA();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-        this.buttonDisableSide2A = false
-        this.btnDisableRegularR2A = false
-        this.btnDisableSuperR2A = false
-        this.btnDisableDisableR2A = false
-        this.buttonDisableSideA21C = false;
-        this.buttonDisableSide2AClosed = true;
-      };
-    });
-
+    this.getGeneralAssignmentDispenserReaderId();
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+      this.buttonDisableSide2A = false
+      this.btnDisableRegularR2A = false
+      this.btnDisableSuperR2A = false
+      this.btnDisableDisableR2A = false
+      this.buttonDisableSideA21C = false;
+      this.buttonDisableSide2AClosed = true;
+    })
   };
 
 
   habilitarB() {
     this.sideB();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-        this.buttonDisableSideA = false;
+    this.getGeneralAssignmentDispenserReaderId();
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+      this.buttonDisableSideA = false;
         this.buttonDisableSideAClosed = false;
         this.btnDisableRegularR1B = false;
         this.btnDisableSuperR1B = false;
         this.btnDisableDieselR1B = false;
         this.buttonDisableSideA1 = false;
         this.buttonDisableSideB1 = true;
-      };
-
-    });
-
+    })
   };
 
   habilitar2B() {
     this.sideB();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-        this.buttonDisableSideB2 = true;
+    this.getGeneralAssignmentDispenserReaderId();
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+      this.buttonDisableSideB2 = true;
         this.buttonDisableSide2AClosed = false;
         this.btnDisableRegularR2B = false;
         this.btnDisableSuperR2B = false;
         this.btnDisableDieselR2B = false;
         this.buttonDisableSide2A = false;
         this.buttonDisableSide2B = false;
-      };
-    });
+      
+    })
   };
 
   //cierra el lado A isla 1
@@ -807,16 +798,18 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.listNumerationDispenser();
       this.buttonDisableSideA = false;
       this.btnDisableRegularR1A = true;
-      this.btnDisableRegularR1B = false
+      this.btnDisableRegularR1B = true
       this.btnDisableSuperR1A = true;
-      this.btnDisableSuperR1B = false;
+      this.btnDisableSuperR1B = true;
       this.btnDisableDisableR1A = true;
-      this.btnDisableDieselR1B = false;
+      this.btnDisableDieselR1B = true;
       this.buttonDisableSideAClosed = false;
       this.buttonDisableSideA1 = true;
       this.buttonDisableSideA1C = true;
       this.matTableA1 = false;
       this.matTableB1= true;
+     
+      
     })
    
   };
@@ -833,6 +826,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.buttonDisableSide2AClosed = false;
       this.buttonDisableSideA21C = true;
       this.buttonDisableSide2B = true;
+      this.btnDisableRegularR2B = true;
+      this.btnDisableSuperR2B = true;
+      this.btnDisableDieselR2B = true;
       this.matTableA2 = false;
       this.matTableB2 = true;
     })
@@ -887,6 +883,13 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
   dispenser2Selected() {
+
+    const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
+    snackBarRef1.afterDismissed().subscribe(() => {
+    this.buttonDisableSide2A = true;
+    this.getAssignmentHoseIdRegularA2();
+    this.getGeneralAssignmentDispenserReaderId();
+    })
     this.buttonDisableSide2A = true;
     this.getAssignmentHoseIdRegularA2();
     this.getGeneralAssignmentDispenserReaderId();
@@ -1163,9 +1166,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.btnDisableRegularR1A = true;
         this.btnDisableSuperR1A = true;
         this.btnDisableDisableR1A = true;
-        this.btnDisableRegularR1B = true;
-        this.btnDisableSuperR1B = true;
-        this.btnDisableDieselR1B = true;
+        this.btnDisableRegularR1B = false;
+        this.btnDisableSuperR1B = false;
+        this.btnDisableDieselR1B = false;
         this.buttonDisableRegular = true;
         this.showMeRegular1A = !this.showMeRegular1A;
       })
@@ -1214,7 +1217,6 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.showMeSuper1A = !this.showMeSuper1A
         this.btnDisableRegularR1A = true;
         this.btnDisableDisableR1A = true
-        this.btnDisableRegularR1B = true
         this.btnDisableSuperR1B = true
         this.btnDisableDieselR1B = true
         this.buttonDisableRegular = false
@@ -1455,6 +1457,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.btnDisableSuperR2B = true
         this.btnDisableDieselR2B = true
         this.buttonDisableRegular2 = false
+        this.btnDisableSuperR2A = true;
       })
     })
     this.getAvailable();
@@ -1477,24 +1480,25 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.getAssignmentHoseIdDieselA2();
       this.getHoseIdByAssignmentHoseId();
       this.getFuelIdByHoseId();
+      const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getFuelIdByHoseId();
+        this.getAvailable();
+        this.buttonDisableDiesel2 = false
+        this.buttonDisableSuper2 = true
+        this.btnDisableDisableR2A = true
+        this.btnDisableRegularR2A = true
+        this.btnDisableSuperR2B = true
+        this.btnDisableDieselR2B = true
+        this.buttonDisableRegular2 = true
+        this.showMeDiesel2A = !this.showMeDiesel2A
+        this.btnDisableSuperR2A = true
+        this.btnDisableRegularR2B = true
+        this.btnDisableSuperR2B = true
+        this.btnDisableDieselR2B = true
+      })
     })
-    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
-    snackBarRef2.afterDismissed().subscribe(() => {
-      this.getFuelIdByHoseId();
-      this.getAvailable();
-      this.buttonDisableDiesel2 = false
-      this.buttonDisableSuper2 = true
-      this.btnDisableDisableR2A = true
-      this.btnDisableRegularR2A = true
-      this.btnDisableSuperR2B = true
-      this.btnDisableDieselR2B = true
-      this.buttonDisableRegular2 = true
-      this.showMeDiesel2A = !this.showMeDiesel2A
-      this.btnDisableSuperR2A = true
-      this.btnDisableRegularR2B = true
-      this.btnDisableSuperR2B = true
-      this.btnDisableDieselR2B = true
-    })
+   
     this.getAvailable();
     this.resetFormValuesNumbering();
   };
@@ -1555,27 +1559,28 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.getAssignmentHoseIdSuperB2();
       this.getHoseIdByAssignmentHoseId();
       this.getFuelIdByHoseId();
+      const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getFuelIdByHoseId();
+        this.getAvailable();
+        this.buttonDisableSuper2 = false;
+        this.btnDisableRegularR2A = true;
+        this.btnDisableDisableR2A = true;
+        this.btnDisableRegularR2B = true;
+        this.btnDisableSuperR2B = true;
+        this.btnDisableDieselR2B = true;
+        this.buttonDisableRegular2 = false;
+        this.showMeSuper2B = !this.showMeSuper2B
+        this.buttonDisableSuperB2 = true;
+        this.btnDisableRegularR2A = true;
+        this.btnDisableDisableR2A = true;
+        this.btnDisableRegularR2B = true;
+        this.btnDisableSuperR2B = true;
+        this.btnDisableDieselR2B = true;
+        this.buttonDisableRegular2 = false;
+      })
     })
-    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
-    snackBarRef2.afterDismissed().subscribe(() => {
-      this.getFuelIdByHoseId();
-      this.getAvailable();
-      this.buttonDisableSuper2 = false;
-      this.btnDisableRegularR2A = true;
-      this.btnDisableDisableR2A = true;
-      this.btnDisableRegularR2B = true;
-      this.btnDisableSuperR2B = true;
-      this.btnDisableDieselR2B = true;
-      this.buttonDisableRegular2 = false;
-      this.showMeSuper2B = !this.showMeSuper2B
-      this.buttonDisableSuperB2 = true;
-      this.btnDisableRegularR2A = true;
-      this.btnDisableDisableR2A = true;
-      this.btnDisableRegularR2B = true;
-      this.btnDisableSuperR2B = true;
-      this.btnDisableDieselR2B = true;
-      this.buttonDisableRegular2 = false;
-    })
+   
     this.getAvailable();
     this.resetFormValuesNumbering();
   };
@@ -1596,24 +1601,25 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.getAssignmentHoseIdDieselB2();
       this.getHoseIdByAssignmentHoseId();
       this.getFuelIdByHoseId();
+      const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getFuelIdByHoseId();
+        this.getAvailable();
+        this.buttonDisableDieselB2 = true
+        this.buttonDisableSuper2 = true
+        this.btnDisableDisableR2A = true
+        this.btnDisableRegularR2A = true
+        this.btnDisableSuperR2B = true
+        this.btnDisableDieselR2B = true
+        this.buttonDisableRegular2 = false
+        this.showMeDiesel2B = !this.showMeDiesel2B
+        this.btnDisableSuperR2A = true
+        this.btnDisableRegularR2B = true
+        this.btnDisableSuperR2B = true
+        this.btnDisableDieselR2B = true
+      })
     })
-    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
-    snackBarRef2.afterDismissed().subscribe(() => {
-      this.getFuelIdByHoseId();
-      this.getAvailable();
-      this.buttonDisableDieselB2 = true
-      this.buttonDisableSuper2 = true
-      this.btnDisableDisableR2A = true
-      this.btnDisableRegularR2A = true
-      this.btnDisableSuperR2B = true
-      this.btnDisableDieselR2B = true
-      this.buttonDisableRegular2 = false
-      this.showMeDiesel2B = !this.showMeDiesel2B
-      this.btnDisableSuperR2A = true
-      this.btnDisableRegularR2B = true
-      this.btnDisableSuperR2B = true
-      this.btnDisableDieselR2B = true
-    })
+   
     this.getAvailable();
     this.resetFormValuesNumbering();
   };
@@ -1631,13 +1637,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
       return;
     }
-
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {{  
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
@@ -1648,8 +1650,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateRA1 = true;
         this.resetFormValuesNumbering();
-      };
-    });
+      }})
   };
 
   //guarda el detalle de numeracion de bomba de super lado A Isla 1
@@ -1666,11 +1667,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
         this.showMeSCheck = true;
@@ -1681,8 +1680,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.showMeUpdateSA1 = true;
         this.buttonDisableSuper = false;
         this.resetFormValuesNumbering();
-      };
-    });
+      })
   };
 
 
@@ -1700,11 +1698,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
@@ -1715,8 +1710,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateDA1 = true;
         this.resetFormValuesNumbering();
-      };
-    });
+      })
   };
 
   //guarda el detalle de numeracion de bomba de regular lado B isla 1
@@ -1733,12 +1727,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
@@ -1749,8 +1739,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateRB1 = true;
         this.resetFormValuesNumbering();
-      };
-    });
+      })
   };
 
   //guarda el detalle de numeracion de bomba de super lado B Isla 1
@@ -1766,13 +1755,10 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
       return;
     }
-    //this.digitizeForm.controls['totalNoMoney'].setValue(this.resultadoMY);
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
         this.showMeS2Check = true;
@@ -1783,8 +1769,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.showMeUpdateSB1 = true;
         this.buttonDisableSuper2 = false;
         this.resetFormValuesNumbering();
-      };
-    });
+      })
   };
 
 
@@ -1802,11 +1787,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv();
@@ -1817,8 +1799,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateDB1 = true;
         this.resetFormValuesNumbering();
-      };
-    });
+      })
   };
 
   //guarda el detalle de numeracion de bomba de regular lado A isla 2
@@ -1834,12 +1815,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-        this.getGeneralAssignmentDispenserReaderId();
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+    snackBarRef2.afterDismissed().subscribe(() => {
+      this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showMeR3Check = true;
@@ -1849,8 +1827,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateRA2 = true;
         this.resetFormValuesNumbering();
-      };
-    });
+    })
   };
 
 
@@ -1868,11 +1845,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showMeS3Check = true;
@@ -1882,8 +1857,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateSA2 = true;
         this.resetFormValuesNumbering();
-      };
-    });
+      })
   };
 
   /**
@@ -1903,11 +1877,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
+        this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showMeD3Check = true;
@@ -1917,9 +1889,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateDA2 = true;
         this.resetFormValuesNumbering();
-
-      };
-    });
+      })
   };
 
   //guarda el detalle de numeracion de bomba de regular lado B isla 2
@@ -1935,12 +1905,9 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
-        this.getGeneralAssignmentDispenserReaderId();
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+    snackBarRef2.afterDismissed().subscribe(() => {
+      this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv2();
         this.showMeR4Check = true;
@@ -1950,9 +1917,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateRB2 = true;
         this.resetFormValuesNumbering();
-      };
-
-    });
+    })
   };
 
   //guarda el detalle de numeracion de bomba de super lado B Isla 2
@@ -1968,11 +1933,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       return;
     }
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv2();
@@ -1983,9 +1945,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateSB2 = true;
         this.resetFormValuesNumbering();
-
-      };
-    });
+      })
   };
 
 
@@ -2004,11 +1964,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     }
     this.digitizeForm.controls['totalNoMoney'].setValue(this.ResultMY);
     this.getGeneralAssignmentDispenserReaderId();
-    const dialogRef = this.dialog.open(ConfirmationsComponent, {
-      width: '400px'
-    });
-    dialogRef.afterClosed().subscribe(resp => {
-      if (resp) {
+    const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 100 });
+      snackBarRef2.afterDismissed().subscribe(() => {
         this.getGeneralAssignmentDispenserReaderId();
         this.createDispenserReader();
         this.HideMeDiv2();
@@ -2019,10 +1976,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
         this.updateGallons();
         this.showMeUpdateDB2 = true;
         this.resetFormValuesNumbering();
-
-      };
-    });
-
+      })
   };
 
   cancelarRegularA1() {

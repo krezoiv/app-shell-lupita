@@ -35,6 +35,7 @@ export class UpdatePriceComponent implements OnInit {
       costPrice: ['', Validators.required],
       salePrice: ['', Validators.required],
       idpAmount: ['', Validators.required],
+      taxesId: ['', Validators.required],
 
     })
 
@@ -43,7 +44,9 @@ export class UpdatePriceComponent implements OnInit {
       this.updatePriceForm.controls['costPrice'].setValue(this.fuels.costPrice);
       this.updatePriceForm.controls['salePrice'].setValue(this.fuels.salePrice);
       this.updatePriceForm.controls['idpAmount'].setValue(this.fuels.taxesId?.idpAmount);
+      this.updatePriceForm.controls['taxesId'].setValue(this.fuels.taxesId?.idpName);
     }
+
   }
 
 
@@ -59,11 +62,13 @@ export class UpdatePriceComponent implements OnInit {
       (data).subscribe(resp => {
           
         this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() =>
-          this.router.navigate(['/dashboard/infrastructure/fuels/listFuels']));
-        this.updatePriceForm.reset();
+          this.router.navigate(['/dashboard/infrastructura/combustibles/listado-combustibles']));
+          console.log(this.updatePriceForm.value);
+          this.updatePriceForm.reset();
         Swal.fire('Actualizado', `${fuelName} Actualizado Correctamente`, 'success');
         this.dialogRef.close('actualizado');
 
+        
 
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')

@@ -15,78 +15,86 @@ import Swal from 'sweetalert2';
 export class UpdatePasswordComponent implements OnInit {
   passA = String;
   passB = String;
-  public user : Users[]=[]
-  updatePasswordForm! : FormGroup;
+  public user: Users[] = []
+  updatePasswordForm!: FormGroup;
 
   constructor(
-    private fb : FormBuilder,
-    private authService : AuthService,
-    private userService : UsersService,
-    @Inject(MAT_DIALOG_DATA) public usuario : Users,
-    private dialogRef : MatDialogRef<UpdatePasswordComponent>
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private userService: UsersService,
+    @Inject(MAT_DIALOG_DATA) public usuario: Users,
+    private dialogRef: MatDialogRef<UpdatePasswordComponent>
 
   ) { }
 
- 
+
   ngOnInit(): void {
-   
+
     console.log(this.authService.usuario.firstName)
     this.updatePasswordForm = this.fb.group({
-      passwordA : [],
-      passwordB : [],
-      password :[],
-      email : [],
-      firstName : [],
+      passwordA: [],
+      passwordB: [],
+      password: [],
+      email: [],
+      firstName: [],
 
-      
+
 
     })
 
-    if(this.authService.usuario){
+    if (this.authService.usuario) {
       this.updatePasswordForm.controls['email'].setValue(this.authService.usuario.email)
       this.updatePasswordForm.controls['firstName'].setValue(this.authService.usuario.firstName)
     }
-    
+
 
   }
 
-save(){
+  save() {
 
-  this.passA = this.updatePasswordForm.get('passwordA')?.value;
-  this.passB = this.updatePasswordForm.get('passwordB')?.value;
+    this.passA = this.updatePasswordForm.get('passwordA')?.value;
+    this.passB = this.updatePasswordForm.get('passwordB')?.value;
 
-  if(this.passA !== this.passB){
-    Swal.fire({
-      icon: 'error',
-      title: "Error",
-      text: "Contraseñas no coinciden",
-      timer: 3500
-    })
-  }else {
-    
-    this.updatePasswordForm.controls['password'].setValue(this.passA)
-    this.updatePassword();
-  }
-
-}
-
-updatePassword(){
-  this.userService.updatePassword(this.updatePasswordForm.value)
-    .subscribe(data => {
+    if (this.passA !== this.passB) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Contraseña Modificada Exitosa!!',
-        showConfirmButton: false,
-        timer: 1500
+        icon: 'error',
+        title: "Error",
+        text: "Contraseñas no coinciden",
+        timer: 3500
       })
-      this.logOut();
-      this.dialogRef.close();
-    })
-}
- 
+    } else {
 
-logOut(){
-  this.authService.logOut();
-}
+      this.updatePasswordForm.controls['password'].setValue(this.passA)
+      this.updatePassword();
+    }
+
+  }
+
+  updatePassword() {
+    this.userService.updatePassword(this.updatePasswordForm.value)
+      .subscribe(data => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Contraseña Modificada Exitosa!!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.logOut();
+        this.dialogRef.close();
+      }
+
+      )
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Sin permisos para cambiar contraseñs',
+        
+      })
+  }
+
+
+  logOut() {
+    this.authService.logOut();
+  }
 }
