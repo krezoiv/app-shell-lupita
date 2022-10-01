@@ -145,7 +145,7 @@ export class SalesControlComponent implements OnInit {
   getTotalGallonRegular() {
     this._dispenserService.getTotalGallonsRegular(this.salesControlForm.value)
       .subscribe(({ totalRegularGallons }) => {
-        this.salesControlForm.controls['totalGallonRegular'].setValue(totalRegularGallons.totalGallonRegular);
+        this.salesControlForm.controls['totalGallonRegular'].setValue(totalRegularGallons.totalMechanicRegular?.toFixed(3));
       });
   };
 
@@ -186,7 +186,7 @@ export class SalesControlComponent implements OnInit {
   getTotalGallonSuper() {
     this._dispenserService.getTotalGallonsSuper(this.salesControlForm.value)
       .subscribe(({ totalSuperGallons }) => {
-        this.salesControlForm.controls['totalGallonSuper'].setValue(totalSuperGallons.totalGallonSuper);
+        this.salesControlForm.controls['totalGallonSuper'].setValue(totalSuperGallons.totalMechanicSuper?.toFixed(3));
       });
   };
 
@@ -196,7 +196,7 @@ export class SalesControlComponent implements OnInit {
   getTotalGallonDiesel() {
     this._dispenserService.getTotalGallonsDiesel(this.salesControlForm.value)
       .subscribe(({ totalDieselGallons }) => {
-        this.salesControlForm.controls['totalGallonDiesel'].setValue(totalDieselGallons.totalGallonDiesel);
+        this.salesControlForm.controls['totalGallonDiesel'].setValue(totalDieselGallons.totalMechanicDiesel?.toFixed(3));
       });
   };
 
@@ -246,7 +246,7 @@ export class SalesControlComponent implements OnInit {
     this.totalSuper = (this.gallonsSuper * this.priceSuper);
     this.totalForm = this.salesControlForm.get('total')?.value;
     this.total = (parseFloat(this.totalSuper) + parseFloat(this.totalForm))
-    this.salesControlForm.controls['total'].setValue(this.total);
+    this.salesControlForm.controls['total'].setValue(this.total.toFixed(2));
     this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
   };
 
@@ -257,7 +257,7 @@ export class SalesControlComponent implements OnInit {
     this.totalDiesel = (this.gallonsDiesel * this.priceDiesel);
     this.totalForm = this.salesControlForm.get('total')?.value;
     this.total = (parseFloat(this.totalDiesel) + parseFloat(this.totalForm))
-    this.salesControlForm.controls['total'].setValue(this.total);
+    this.salesControlForm.controls['total'].setValue(this.total.toFixed(2));
     this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
   };
 
