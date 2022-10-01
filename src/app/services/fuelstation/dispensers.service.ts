@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AssignmentHose_I, Assignment_I, As_I, countGallonsDiesel_I, countGallonsRegular_I, countGallonsSuper_I, countTotalSaleDiesel_I, countTotalSaleRegular_I, countTotalSaleSuper_I, DispenserReaderSuper_I,  DispensersA_I,  DispensersB_I,  Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I,  previousNoGallonsDiesel1_I,  previousNoGallonsDiesel_I,  previousNoGallonsRegular_I, previousNoGallonsSuper_I, previousNoGallons_I, previousNoMechanicDiesel1_I, previousNoMechanicDiesel_I, previousNoMechanicRegular_I, previousNoMechanicR_I, previousNoMechanicSuper1_I, previousNoMechanicSuper_I, previousNoMoneyDiesel1_I, previousNoMoneyDiesel_I, previousNoMoneyRegular_I, previousNoMoneyR_I, previousNoMoneySuper1_I, previousNoMoneySuper_I, previousTotalNoGallonRegular_I, previousTotalNoGallonsDiesel_I, previousTotalNoGallonsSuper_I, previousTotalNoMechanicDiesel_I, previousTotalNoMechanicRegular_I, previousTotalNoMechanicSuper_I, previousTotalNoMoneyDiesel_I, previousTotalNoMoneyRegular_I, previousTotalNoMoneySuper_I, SideA_I, SideB_I, TotalDieselGallons_I, TotalGallons_I, TotalRegularGallons_I, TotalSuperGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
+import { AssignmentHose_I, Assignment_I, As_I, countGallonsDiesel_I, countGallonsRegular_I, countGallonsSuper_I, countTotalSaleDiesel_I, countTotalSaleRegular_I, countTotalSaleSuper_I, DispenserReaderSuper_I,  DispensersA_I,  DispensersB_I,  Dispensers_I, GeneralDispenserReader_I, ListNumerationDispenser_I, PenultimateGallons_I,  previousNoGallonsDiesel1_I,  previousNoGallonsDieselTotal_I,  previousNoGallonsDiesel_I,  previousNoGallonsMechanicDieselTotal_I,  previousNoGallonsMechanicSuperTotal_I,  previousNoGallonsMechanicTotal_I,  previousNoGallonsMoneyDieselTotal_I,  previousNoGallonsMoneySuperTotal_I,  previousNoGallonsMoneyTotal_I,  previousNoGallonsRegularTotal_I,  previousNoGallonsRegular_I, previousNoGallonsSuperTotal_I, previousNoGallonsSuper_I, previousNoGallons_I, previousNoMechanicDiesel1_I, previousNoMechanicDiesel_I, previousNoMechanicRegular_I, previousNoMechanicR_I, previousNoMechanicSuper1_I, previousNoMechanicSuper_I, previousNoMoneyDiesel1_I, previousNoMoneyDiesel_I, previousNoMoneyRegular_I, previousNoMoneyR_I, previousNoMoneySuper1_I, previousNoMoneySuper_I, previousTotalNoGallonRegular_I, previousTotalNoGallonsDiesel_I, previousTotalNoGallonsSuper_I, previousTotalNoMechanicDiesel_I, previousTotalNoMechanicRegular_I, previousTotalNoMechanicSuper_I, previousTotalNoMoneyDiesel_I, previousTotalNoMoneyRegular_I, previousTotalNoMoneySuper_I, SideA_I, SideB_I, TotalDieselGallons_I, TotalGallons_I, TotalRegularGallons_I, TotalSuperGallons_I } from 'src/app/interfaces/fuelstation/dispensers.interface';
 import { Assignment, AssignmentHose } from 'src/app/models/fuelstation/assignment.model';
 import { DispenserReader, Dispensers, GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { environment } from 'src/environments/environment';
@@ -141,6 +141,54 @@ export class DispensersService {
   getPreviousGallons1(formData : DispenserReader ): Observable<previousNoGallonsRegular_I> {
     return this.http.post<previousNoGallonsRegular_I>(`${api_url}/dispenserReaders/previousGallonRegular1`, formData, this.headers);
   };
+
+  // para la numeracion anterior de regular
+  getPreviousGallons1Total(formData : DispenserReader ): Observable<previousNoGallonsRegularTotal_I> {
+    return this.http.post<previousNoGallonsRegularTotal_I>(`${api_url}/dispenserReaders/previousGallonRegular1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de regular
+  getPreviousMechanic1Total(formData : DispenserReader ): Observable<previousNoGallonsMechanicTotal_I> {
+    return this.http.post<previousNoGallonsMechanicTotal_I>(`${api_url}/dispenserReaders/previousMechanicRegular1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de regular
+  getPreviousMoney1Total(formData : DispenserReader ): Observable<previousNoGallonsMoneyTotal_I> {
+    return this.http.post<previousNoGallonsMoneyTotal_I>(`${api_url}/dispenserReaders/previousMoneyRegular1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de super
+  getPreviousGallons1SuperTotal(formData : DispenserReader ): Observable<previousNoGallonsSuperTotal_I> {
+    return this.http.post<previousNoGallonsSuperTotal_I>(`${api_url}/dispenserReaders/previousGallonSuper1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de super
+  getPreviousMechanic1SuperTotal(formData : DispenserReader ): Observable<previousNoGallonsMechanicSuperTotal_I> {
+    return this.http.post<previousNoGallonsMechanicSuperTotal_I>(`${api_url}/dispenserReaders/previousMechanicSuper1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de super
+  getPreviousMoney1SuperTotal(formData : DispenserReader ): Observable<previousNoGallonsMoneySuperTotal_I> {
+    return this.http.post<previousNoGallonsMoneySuperTotal_I>(`${api_url}/dispenserReaders/previousMoneySuper1`, formData, this.headers);
+  };
+
+
+  // para la numeracion anterior de super
+  getPreviousGallons1DieselTotal(formData : DispenserReader ): Observable<previousNoGallonsDieselTotal_I> {
+    return this.http.post<previousNoGallonsDieselTotal_I>(`${api_url}/dispenserReaders/previousGallonDiesel1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de super
+  getPreviousMechanic1DieselTotal(formData : DispenserReader ): Observable<previousNoGallonsMechanicDieselTotal_I> {
+    return this.http.post<previousNoGallonsMechanicDieselTotal_I>(`${api_url}/dispenserReaders/previousMechanicDiesel1`, formData, this.headers);
+  };
+
+  // para la numeracion anterior de super
+  getPreviousMoney1DieselTotal(formData : DispenserReader ): Observable<previousNoGallonsMoneyDieselTotal_I> {
+    return this.http.post<previousNoGallonsMoneyDieselTotal_I>(`${api_url}/dispenserReaders/previousMoneyDiesel1`, formData, this.headers);
+  };
+
+
 
   getTotalNoGallonsRegular(formData : DispenserReader ): Observable<previousTotalNoGallonRegular_I> {
     return this.http.post<previousTotalNoGallonRegular_I>(`${api_url}/dispenserReaders/previousTotalNoGallonRegular`, formData, this.headers);

@@ -1666,9 +1666,9 @@
                             <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
                             <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>
                             <td style="display:none;">{{ gallonP | number}}</td>
-                            <td>{{ data.actualNoGallons | number }}</td>
-                            <td>{{ data.actualNoMechanic | number }}</td>
-                            <td>{{ data.actualNoMoney | number }} </td>
+                            <td>{{ data.actualNoGallons | number }} -> ( {{data.totalNoGallons | number }} galones)</td>
+                            <td>{{ data.actualNoMechanic | number }} -> ( {{data.totalNoMechanic | number }} galonales )</td>
+                            <td>{{ data.actualNoMoney | number }} -> ( Q. {{data.totalNoMoney | number }} )</td>
                             <td>
 
                                 <mat-icon id="editButton" (click)="editDisepnserReader(data);">edit</mat-icon>
