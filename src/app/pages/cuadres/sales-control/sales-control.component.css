@@ -1,7 +1,7 @@
 body {
     min-height: 100%;
     min-width: none;
-    min-height: 120vh;
+    min-height: 100vh;
     width: 100% !important;
 }
 
@@ -114,159 +114,6 @@ hr {
     width: 100% !important;
 }
 
-/*
-#hrAbonos{
-    color: purple;
-    height: 5px;
-    background-color: slateblue;
-  
-}
-
-#tablaEncabezado {
-    width: 100%;
-    margin: 0 auto;
-    border: 1px solid;
-  
-   
-}
-
-#buttonDate {
-    display: flex;
-    width: 400px;
-    background-color: green;
-    right: 0px;
-    margin-top: -35px;  
-    justify-content: center;   
-}
-
-#buttonAceptTotalGallons{
-    display: flex;
-    width: 100%;
-    background-color: cadetblue;
-    right: 0px;
-    margin-top: -35px;  
-    justify-content: center;
-    font-size: 35px;
-    color: blue;
-}
-
-#buttonOthers{
-    background-color: slategray;
-    height: 25px;  
-}
-
-#labelPrecios {
-    text-align: right;
-    color: blue;
-    font-size: 35px;
-    background-color: yellowgreen;
-   
-}
-
-#labelDate{
-   font-size: 75%;
-  
-}
-
-input{
-    font-size: 100%;
-    height: 50%;
-    text-align: center;
-   
-}
-
-#mat-form-field-prices {
-    width: 100%;
-    font-size: 15px;
-    text-align: left;
-}
-
-
-#mat-form-field-accumulated{
-    width: 100%;
-    font-size: 15px;
-    text-align: left;
-   
-}
-
-#mat-form-field-payment{
-    width: 100%;
-    font-size: 15px;
-    text-align: left;
-   
-}
-
-#mat-form-field-others {
-    width: 100%;
-    font-size: 20px;
-    text-align: center;
-  
-}
-
-#mat-form-field-othersA {
-    width: 50%;
-    font-size: 20px;
-    align-content: right;
-   
-}
-
-
-#labelOthers {
-    text-align: right;
-    color: wheat;
-    font-size: 10px;
-   
-}
-
-
-
-
-
-#seccionAbonos{
-    width: 550px;
-    height: 400px;
-   
-    float: left;
-    display: flex;
-    padding-right: 15px;
-    padding-left: 15px;
-
-   
-}
-
-#sectionBalance {
-    width: 550px;
-    height: 400px;
-    float: left;
-    display: flex;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-#sectionPrices {
-    width: 750px;
-    height: 160px;
-    float: left;
-    padding-right: 15px;
-    padding-left: 15px;
-   
-}
-
-#sectionSales {
-    width: 710px;
-    height: 210px;
-    float: left;
-    padding-right: 15px;
-    padding-left: 15px;
-   
-}
-
-#section2{
-    height: 60px; 
-}
-
-*/
-
 
 .row {
     display: flex;
@@ -280,7 +127,7 @@ input{
     border: 1px solid #000;
     padding: 10px 20px;
     width: 100% !important;
-    background-color: #EAFAF1;
+   
 }
 
 #sectionSale {

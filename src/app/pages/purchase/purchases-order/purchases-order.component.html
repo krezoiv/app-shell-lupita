@@ -280,7 +280,7 @@
 
             <br><br>
 
-            <section>
+            <section *ngIf="hide">
                 <mat-form-field id="mat-form-field-registros" id="mat-form-field-registros" appearance="legacy">
                     <mat-label>Super</mat-label>
                     <input id="input-registros" id="input-registros" type="number" id="fName"
@@ -310,7 +310,7 @@
             </section>
             <section id="sectionTotals">
                 <h3>Totales</h3>
-                <table class="table  table-responsive" class="example-full-width" style="width:100%" cellSpacing="0">
+                <table id="tbl" class="table  table-responsive" class="example-full-width" style="width:100%" cellSpacing="0">
                     <thead>
                         <th scope="col"> <u>Combustible</u></th>
                         <th scope="col"><u> Cantidad</u></th>

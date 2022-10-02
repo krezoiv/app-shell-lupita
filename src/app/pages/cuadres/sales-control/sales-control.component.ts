@@ -11,7 +11,6 @@ import { HosesService } from 'src/app/services/fuelstation/hoses.service';
 import { SalesControlService } from 'src/app/services/sales/sales-control.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-sales-control',
   templateUrl: './sales-control.component.html',

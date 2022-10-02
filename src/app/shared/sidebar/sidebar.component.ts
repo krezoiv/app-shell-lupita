@@ -79,6 +79,13 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
       name: 'Generar No. Orden', url: '/dashboard/compras/orden-de-pedido'},
      {name: 'Factura', url: '/dashboard/compras/generar-factura'}]
 
+  },
+  {
+    name: 'Inventario',
+    url: '/dashboard/inventario',
+    children: [{
+      name: 'Disponibilidad', url: '/dashboard/inventario'
+    }]
   }
 
 ]

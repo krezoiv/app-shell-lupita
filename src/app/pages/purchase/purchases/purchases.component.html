@@ -141,21 +141,23 @@
                     <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width"
                         cellSpacing="0">
                         <thead>
-                            <th scope="col"> <u>id</u></th>
+                           <tr id="trtbl">
+                             
                             <th scope="col"> <u>Combustible</u></th>
                             <th scope="col"><u> Cantidad</u></th>
                             <th scope="col"><u> Idp</u></th>
                             <th scope="col"> <u>Total</u></th>
-                            <th scope="col"> <u>id</u></th>
+                           </tr>
+                            
                         </thead>
                         <tbody>
-                            <tr *ngFor="let data of ditailOrder">
-                                <td>{{data.fuelId.fuelId}}</td>
+                            <tr *ngFor="let data of ditailOrder" id="tbltr2">
+                             
                                 <td>{{data.fuelId.fuelName}} {{data.fuelId.fuelId}}</td>
                                 <td>{{data.amount}}</td>
                                 <td>{{data.idpTotal}}</td>
                                 <td>{{data.total}}</td>
-                                <td>{{data.fuelId.fuelId}}</td>
+                               
                             </tr>
                         </tbody>
                     </table>
@@ -176,11 +178,11 @@
                             <tr>
                                 <td id="tdTotal">
 
-                                    <button mat-raised-button color="primary" (click)="savePurchase();">Aplicar
-                                        Compra</button>
-                                    <button (click)="saveSuper();">Super</button>
-                                    <button (click)="saveRegular();">Regular</button>
-                                    <button (click)="saveDiesel();">Diesel</button>
+                                    <button mat-raised-button color="primary" (click)="savePurchase();" id="btnSave">Aplicar Compra</button>
+                                    <button mat-raised-button color="primary" (click)="saveSuper();" id="btnSuper">Super</button>
+                                    <button mat-raised-button color="primary" (click)="saveRegular();" id="btnRegular">Regular</button>
+                                    <button mat-raised-button color="primary" (click)="saveDiesel();" id="btnDiesel">Diesel</button>
+                                   
                                 </td>
                             </tr>
                         </tbody>

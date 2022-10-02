@@ -1,4 +1,3 @@
-<app-cuadres-navbar></app-cuadres-navbar>
 
 <body>
 
@@ -1655,7 +1654,6 @@
                             <th scope="col">Numeración de Galonaje</th>
                             <th scope="col">Numeracíon Mecánica</th>
                             <th scope="col">Numeracíon Dinero</th>
-                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1669,13 +1667,7 @@
                             <td>{{ data.actualNoGallons | number }} -> ( {{data.totalNoGallons | number }} galones)</td>
                             <td>{{ data.actualNoMechanic | number }} -> ( {{data.totalNoMechanic | number }} galonales )</td>
                             <td>{{ data.actualNoMoney | number }} -> ( Q. {{data.totalNoMoney | number }} )</td>
-                            <td>
-
-                                <mat-icon id="editButton" (click)="editDisepnserReader(data);">edit</mat-icon>
-                                <label>Editar</label>
-
-                            </td>
-
+                          
                         </tr>
 
                     </tbody>

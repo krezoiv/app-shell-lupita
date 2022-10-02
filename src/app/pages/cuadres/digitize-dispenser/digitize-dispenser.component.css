@@ -16,6 +16,27 @@ form{
    
 }
 
+@media (max-width:100%) {
+    form {
+        width: 100%;
+    }
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}
+
 /*
 titulo principal
 */
@@ -59,6 +80,10 @@ label{
     margin: 0 auto;
     border: 1px solid;
 
+}
+#border-header-table-data {
+    background-color: aqua;
+    text-align: center;
 }
 
 #mat-form-field-registros {

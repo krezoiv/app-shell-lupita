@@ -2,7 +2,7 @@
 .table{
     border: 1px solid #101010;
     border-radius: 10px ;
-    border-collapse: separate;
+  text-align: center;
     box-shadow: -30px 30px 20px rgb(0,0,0,0.3);
     
    
@@ -13,10 +13,10 @@
 }
 
 .trprincipal {
-    background-color:teal;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size : 18px;
-    color: white;
+    background-color: aqua;
+    text-align: center;
     border-collapse: separate;
 }
 

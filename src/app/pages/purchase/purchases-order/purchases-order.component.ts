@@ -27,6 +27,7 @@ export class PurchasesOrderComponent implements OnInit {
 
   suscription!: Subscription;
   suscription2!: Subscription;
+  hide: boolean = false
 
   idp!: Number | any;
   amountDetail !: Number | any;
@@ -471,7 +472,7 @@ export class PurchasesOrderComponent implements OnInit {
 
   reload() {
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/dashboard/compras/ordenPedido']);
+      this.router.navigate(['/dashboard/compras/orden-de-pedido']);
     });
   };
 

@@ -49,7 +49,7 @@ const routes: Routes =[
     {path : 'coupons', component : CouponsComponent},
     {path : 'maintenances', component : MaintenancesComponent},
     {path : 'usuarios/listado-usuarios', canActivate:[UserRoleGuard], component : ListUsersComponent},
-    {path : 'usuario/agregar-usuario', canActivate:[GuestRoleGuard, UserRoleGuard, SuperRoleGuard], component : CreateUsersComponent},
+    {path : 'usuario/agregar-usuario', canActivate:[GuestRoleGuard, UserRoleGuard, ], component : CreateUsersComponent},
     {path : 'infrastructura/islas/agregar-isla', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateIslandComponent},
     {path : 'infrastructura/islas/listado-islas', component : ListIslandComponent},
     {path : 'infrastructura/dispensadores/agregar-dispensador', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateDispensersComponent},

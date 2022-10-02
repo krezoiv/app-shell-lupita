@@ -54,7 +54,7 @@
                                         <th scope="col">Capacidad Almacenaje</th>
                                         <th scope="col">Pendiente Despacho</th>
                                         <th scope="col">Disponible</th>
-                                        <th scope="col">progress bar</th>
+                                    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,12 +62,12 @@
                                         <td>{{inv.inventoryCode}}</td>
                                         <td>{{inv.fuelId.fuelName}}</td>
                                         <td>{{inv.fuelId.taxesId?.idpAmount | number}}</td>
-                                        <td>{{inv.fuelId.costPrice | number}}</td>
-                                        <td>{{inv.fuelId.salePrice | number}}</td>
+                                        <td>Q.{{inv.fuelId.costPrice | number}}</td>
+                                        <td>Q.{{inv.fuelId.salePrice | number}}</td>
                                         <td>{{inv.fuelTankId.maxStorage | number}}</td>
                                         <td>{{inv.amountPending | number}}</td>
                                         <td>{{inv.available | number}}</td>
-                                        <td><mat-progress-bar value="{{68}}"></mat-progress-bar></td>
+                                       
                                     </tr>
                                     
                                 </tbody>
