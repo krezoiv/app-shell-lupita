@@ -1,0 +1,33 @@
+mat-form-field{
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+h3 {
+    font-size:30px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+input{
+    font-size:200%;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+mat-label{
+    font-size:20px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+mat-hint{
+    font-size:15px;
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

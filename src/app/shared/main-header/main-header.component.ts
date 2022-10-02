@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Users } from 'src/app/models/user.models';
-import { UpdatePasswordComponent } from 'src/app/pages/dialogs/userPassword/update-password/update-password.component';
+import { UpdatePasswordComponent } from 'src/app/pages/dialogs/users/update-password/update-password.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { UsersService } from 'src/app/services/users.service';

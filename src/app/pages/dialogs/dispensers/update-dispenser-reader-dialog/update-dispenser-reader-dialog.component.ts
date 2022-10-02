@@ -117,7 +117,7 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
         this.updateTotalGallons();
         this.updateGallons();
   
-       console.log(this.updateDispenserReaderForm.value)
+      
       };
     });
   };

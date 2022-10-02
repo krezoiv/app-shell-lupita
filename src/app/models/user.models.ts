@@ -2,7 +2,7 @@
 import { Status } from "./status.model";
 
 
-export class Users {
+export class    Users {
 
     constructor(
        
@@ -12,6 +12,7 @@ export class Users {
         public password : string,
         public roleId : 'SUPER_ROLE' | 'ADMIN_ROLE' | 'USER_ROLE' | 'GUEST_ROLE',
         public statusId : Status,
+        public userId?: string
         
         
 
