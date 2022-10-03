@@ -21,17 +21,29 @@ El siguiente proyecto esta construido con las siguientes tecnologias  de program
 | Angular | Framework que simplifica el proceso de desarrollo y la estructura de Código JavaScript. |
 
 # Instalacón.
+## _Node.Js & npm_
+Se requiere de instalción de [Node.js](https://nodejs.org/en/) en su version mas estable LTS
+se descargará un ejecutable el cual se deberá de ejecutar en el cual se instalara [Node.js] $
+y los paquetes de [npm]
+
 
 ## _Angular.JS_
 Se requiere de instalción de [Angular.js](https://angular.io/guide/setup-local) 
 por lo que se necesita de ejecutar los siguientes scripts desde la `terminal` 
 ```sh
 npm install -g @angular/cli
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-
 ```
+``sh
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+``
 
-una vez instalado `angular` & clonado el repositorio para poder levantar el proyecto de forma local se debe de ejecutar el siguiente scritp
+una vez instalado `angular` & clonado el repositorio para poder levantar el proyecto de forma local se debe de ejecutar los siguientes scritp 
+
+para descargar todos los paquetes y librerias utilizadas:
+```sh
+npm install
+```
+para ejecturar el proyecto:
 ```sh
 ng serve --open
 ```
