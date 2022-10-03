@@ -35,9 +35,9 @@ npm install -g @angular/cli
 ```
 &
 
-``sh
+```sh
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-``
+```
 
 una vez instalado `angular` & clonado el repositorio para poder levantar el proyecto de forma local se debe de ejecutar los siguientes scritp 
 
