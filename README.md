@@ -33,6 +33,8 @@ por lo que se necesita de ejecutar los siguientes scripts desde la `terminal`
 ```sh
 npm install -g @angular/cli
 ```
+&
+
 ``sh
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ``
