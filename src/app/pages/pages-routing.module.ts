@@ -4,9 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './user/users/users.component';
-import { CouponsComponent } from './coupons/coupons.component';
+
 import { AuthGuard } from '../guards/auth.guard';
-import { MaintenancesComponent } from './maintenances/maintenances.component';
 import { ListUsersComponent } from './user/list-users/list-users.component';
 import { CreateUsersComponent } from './user/create-users/create-users.component';
 import { CreateIslandComponent } from './infrastructure/islands/create-island/create-island.component';
@@ -20,7 +19,6 @@ import { ListFuelsComponent } from './infrastructure/fuels/list-fuels/list-fuels
 import { CreateHoseComponent } from './infrastructure/hoses/create-hose/create-hose.component';
 import { ListHoseComponent } from './infrastructure/hoses/list-hose/list-hose.component';
 import { AssignmentsHosesComponent } from './infrastructure/dispensers/assignments-hoses/assignments-hoses.component';
-import { CuadresComponent } from './cuadres/cuadres/cuadres.component';
 import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
 import { SalesControlComponent } from './cuadres/sales-control/sales-control.component';
 import { PurchasesOrderComponent } from './purchase/purchases-order/purchases-order.component';
@@ -46,8 +44,6 @@ const routes: Routes =[
   children :[
     {path: '', component: DashboardComponent},
     {path : 'users', component: UsersComponent},
-    {path : 'coupons', component : CouponsComponent},
-    {path : 'maintenances', component : MaintenancesComponent},
     {path : 'usuarios/listado-usuarios', canActivate:[UserRoleGuard], component : ListUsersComponent},
     {path : 'usuario/agregar-usuario', canActivate:[GuestRoleGuard, UserRoleGuard, ], component : CreateUsersComponent},
     {path : 'infrastructura/islas/agregar-isla', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateIslandComponent},
@@ -61,7 +57,7 @@ const routes: Routes =[
     {path : 'infrastructura/manguera/agregar-manguera', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateHoseComponent},
     {path : 'infrastructura/manguera/listar-mangueras', component : ListHoseComponent},
     {path : 'infrastructura/manguera/asignacion-de-manguera', canActivate:[GuestRoleGuard, UserRoleGuard], component : AssignmentsHosesComponent},
-    {path : 'cuadres', canActivate:[GuestRoleGuard], component: CuadresComponent},
+  
     {path : 'cuadres/digitalizacion-de-bombas', canActivate:[GuestRoleGuard], component: DigitizeDispenserComponent},
     {path : 'cuadres/cierre-de-ventas', canActivate:[GuestRoleGuard], component: SalesControlComponent},
     {path : 'compras/orden-de-pedido', canActivate:[GuestRoleGuard], component: PurchasesOrderComponent},

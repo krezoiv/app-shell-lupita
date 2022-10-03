@@ -11,6 +11,10 @@ import Swal from 'sweetalert2';
   templateUrl: './delete-dispenser-dialog.component.html',
   styleUrls: ['./delete-dispenser-dialog.component.css']
 })
+
+/**
+ * ! class that is use to delete a dispenser
+ */
 export class DeleteDispenserDialogComponent implements OnInit {
 
   deleteDispenserForm! : FormGroup;

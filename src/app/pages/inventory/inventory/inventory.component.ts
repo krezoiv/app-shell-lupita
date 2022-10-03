@@ -48,6 +48,8 @@ inventoryForm: FormGroup = this.fb.group({
   
   }
 
+
+  // gets fuel
 getFuels(){
   this._fuelService.getFuelsActive()
       .subscribe(({ fuels }) => {
@@ -55,6 +57,7 @@ getFuels(){
       });
 }
 
+//gt all inventory
 getInventory(){
   this._inventoryService.getInventoryData()
     .subscribe(({fuelInventory}) => {
@@ -63,6 +66,7 @@ getInventory(){
     })
 }
 
+//get availables
 getAvailableRegular() {
   this.inventoryForm.controls['inventoryCode'].setValue('t-r1');
   this._inventoryService.getFuelInventoryAvailableCode(this.inventoryForm.value)
@@ -72,6 +76,7 @@ getAvailableRegular() {
     });
 };
 
+//get availables
 getAvailableSuper() {
   this.inventoryForm.controls['inventoryCode'].setValue('t-s1');
   this._inventoryService.getFuelInventoryAvailableCode(this.inventoryForm.value)
@@ -83,6 +88,7 @@ getAvailableSuper() {
     
 };
 
+//get availables
 getAvailableDiesel() {
   this.inventoryForm.controls['inventoryCode'].setValue('t-d1');
   this._inventoryService.getFuelInventoryAvailableCode(this.inventoryForm.value)

@@ -15,6 +15,10 @@ import Swal from 'sweetalert2';
   templateUrl: './update-dispenser-dialog.component.html',
   styleUrls: ['./update-dispenser-dialog.component.css']
 })
+
+/**
+ * ! class that is use to update a dispenser
+ */
 export class UpdateDispenserDialogComponent implements OnInit {
 
   updateDispenserForm! : FormGroup;

@@ -103,6 +103,7 @@ export class SalesControlComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  //gete inventory code
   getinventoryCode() {
     this._fuelInventoryService.getinventoryCode(this.salesControlForm.value)
       .subscribe(({ inventoryCode }) => {
@@ -110,6 +111,8 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
+
+  //get available amount
   getAvailable() {
     this._fuelInventoryService.getFuelInventoryAvailable(this.salesControlForm.value)
       .subscribe(({ fuelInventoryAvailable }) => {
@@ -117,13 +120,15 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
+
+  //get prices
   getRegularPrices() {
     this._hosesService.getRegularPrices()
       .subscribe((regularPrice) => {
         this.salesControlForm.controls['regularPrice'].setValue(regularPrice.regularPrice.fuelId?.salePrice);
       });
   };
-
+  //get prices
   getSuperPrices() {
     this._hosesService.getSuperPrices()
       .subscribe((superPrice) => {
@@ -131,6 +136,7 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
+    //get prices
   getDiselPrices() {
     this._hosesService.getDieselPrices()
       .subscribe((dieselPrice) => {
@@ -225,7 +231,7 @@ export class SalesControlComponent implements OnInit {
   };
 
 
-
+//calculatesto send to totals
   calculateRegularTotals() {
     this.gallonsRegular = this.salesControlForm.get('totalGallonRegular')?.value;
     this.pricerRegular = this.salesControlForm.get('regularPrice')?.value;
@@ -239,6 +245,7 @@ export class SalesControlComponent implements OnInit {
     this.salesControlForm.controls['totalAbonosBalance'].setValue(0.00);
   };
 
+  //calculatesto send to totals
   calculateSuperTotals() {
     this.gallonsSuper = this.salesControlForm.get('totalGallonSuper')?.value;
     this.priceSuper = this.salesControlForm.get('superPrice')?.value;
@@ -249,7 +256,7 @@ export class SalesControlComponent implements OnInit {
     this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
   };
 
-
+//calculatesto send to totals
   calculateDieselTotals() {
     this.gallonsDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
     this.priceDiesel = this.salesControlForm.get('dieselPrice')?.value;
@@ -260,6 +267,7 @@ export class SalesControlComponent implements OnInit {
     this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
   };
 
+  //calculates to send to totals
   calulcateAbonos() {
     this.abono_bills = this.salesControlForm.get('bills')?.value;
     this.abono_vales = this.salesControlForm.get('vales')?.value;
@@ -275,6 +283,7 @@ export class SalesControlComponent implements OnInit {
     this.salesControlForm.controls['balance'].setValue(this.result_total_abono.toFixed(2));
   };
 
+  //rest amount to available to set nwe amount on inventory
   restAvailableRegular() {
     this.availableregularDB = this.salesControlForm.get('available')?.value;
     this.totalRegular = this.salesControlForm.get('totalGallonRegular')?.value;
@@ -282,14 +291,14 @@ export class SalesControlComponent implements OnInit {
     this.salesControlForm.controls['available'].setValue(parseFloat(this.NewAvailableRegular));
    
   };
-
+ //rest amount to available to set nwe amount on inventory
   restAvailableSuper() {
     this.availableSuperDB = this.salesControlForm.get('available')?.value;
     this.totalSuper = this.salesControlForm.get('totalGallonSuper')?.value;
     this.newAAvailableSuper = ((this.availableSuperDB) - (this.totalSuper));
     this.salesControlForm.controls['available'].setValue(parseFloat(this.newAAvailableSuper));
   };
-
+ //rest amount to available to set nwe amount on inventory
   restAvailableDiesel() {
     this.availableDieselDB = this.salesControlForm.get('available')?.value;
     this.totalDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
@@ -381,6 +390,8 @@ export class SalesControlComponent implements OnInit {
 
   getTotalAbono() { this.calulcateAbonos(); this.saveButton = true };
 
+
+  //method tha creat a sale control
   createSalesControl() {
     this._salesControlService.createSalesControl(this.salesControlForm.value)
       .subscribe((data) => {
@@ -423,6 +434,8 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
+
+  //get las no document
   getLastNoDocumento() {
     this._salesControlService.getLastNoDocumentSale()
       .subscribe((noDocumentSale) => {
@@ -431,6 +444,7 @@ export class SalesControlComponent implements OnInit {
   };
 
 
+  //method that update available
   updateAvailableRegular() {
     this._fuelInventoryService.updateAvailableRegularSale(this.salesControlForm.value)
       .subscribe((data) => {
@@ -444,6 +458,7 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
+  //method that update available
   updateAvailableSuper() {
     this._fuelInventoryService.updateAvailableSuperSale(this.salesControlForm.value)
       .subscribe((data) => {
@@ -457,6 +472,7 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
+  //method that update available
   updateAvailableDiesel() {
     this._fuelInventoryService.updateAvailableDieselSale(this.salesControlForm.value)
       .subscribe((data) => {
@@ -470,13 +486,8 @@ export class SalesControlComponent implements OnInit {
       });
   };
 
-  abonos(){
-    if( (this.buttonSaleRegular = false) && (this.buttonSaleSuper = false) && (this.buttonSaleDiesel = false))
 
-    this.buttonAbonos = true;
-    
-  }
-
+//get general dispenser reader id
   getGeneralDispenserReaderid(){
     this._dispenserService.getGeneralDispenserReaderId(this.salesControlForm.value)
       .subscribe(({generalDispenserReader}) => {

@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  /** Login Method */
   login(){
     console.log( this.loginForm.value)
     this.authService.login( this.loginForm.value as LoginForm )
@@ -45,6 +47,9 @@ export class LoginComponent implements OnInit {
     }) 
   }
 
+  /** 
+   *? gets user logged
+   */
   userLogged(){
     this.authService.userLooged(this.loginForm.value as LoginForm)
       .subscribe(({userDB}) => {

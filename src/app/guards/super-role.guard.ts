@@ -7,6 +7,10 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/***
+ * ! class for super role guards autentications
+ */
 export class SuperRoleGuard implements CanActivate {
   
   constructor(
@@ -25,7 +29,7 @@ export class SuperRoleGuard implements CanActivate {
         Swal.fire({
           icon: 'error',
           title: "Error",
-          text: "Acceso denegado, no cuenta con permiso 555",
+          text: "Acceso denegado, no cuenta con permiso ",
           timer:1500
         })
         return false;

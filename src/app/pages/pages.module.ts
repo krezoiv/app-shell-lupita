@@ -2,13 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './user/users/users.component';
-import { CouponsComponent } from './coupons/coupons.component';
 import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CreateUsersComponent } from './user/create-users/create-users.component';
 import { ListUsersComponent } from './user/list-users/list-users.component';
-import { MaintenancesComponent } from './maintenances/maintenances.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateIslandComponent } from './infrastructure/islands/create-island/create-island.component';
 import { ListIslandComponent } from './infrastructure/islands/list-island/list-island.component';
@@ -45,8 +43,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { CuadresComponent } from './cuadres/cuadres/cuadres.component';
-import { CuadresNavbarComponent } from '../shared/cuadres-navbar/cuadres-navbar.component';
 import { DigitizeDispenserComponent } from './cuadres/digitize-dispenser/digitize-dispenser.component';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -76,11 +72,9 @@ import { UpdateUsersComponent } from './dialogs/users/update-users/update-users.
   declarations: [
     DashboardComponent,
     UsersComponent,
-    CouponsComponent,
     PagesComponent,
     CreateUsersComponent,
     ListUsersComponent,
-    MaintenancesComponent,
     CreateIslandComponent,
     ListIslandComponent,
     ListDispensersComponent,
@@ -103,7 +97,6 @@ import { UpdateUsersComponent } from './dialogs/users/update-users/update-users.
     UpdateHosesComponent,
     DeleteHosesComponent,
     AssignmentsHosesComponent,
-    CuadresComponent,
     DigitizeDispenserComponent,
     ConfirmationsComponent,
     UpdateDispenserReaderDialogComponent,
@@ -150,9 +143,6 @@ import { UpdateUsersComponent } from './dialogs/users/update-users/update-users.
   exports : [
     DashboardComponent,
     UsersComponent,
-    CouponsComponent,
-    MaintenancesComponent,
-    CuadresNavbarComponent,
     TimerComponent,
     LoadingComponent, 
     InventoryComponent

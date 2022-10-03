@@ -11,6 +11,11 @@ import Swal from 'sweetalert2';
   templateUrl: './delete-island.component.html',
   styleUrls: ['./delete-island.component.css']
 })
+
+
+/**
+ * ! class that is use to delete island
+ */
 export class DeleteIslandComponent implements OnInit {
 
   deleteIslandForm! : FormGroup;

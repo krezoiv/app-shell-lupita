@@ -11,6 +11,10 @@ import Swal from 'sweetalert2';
   templateUrl: './update-price.component.html',
   styleUrls: ['./update-price.component.css']
 })
+
+/**
+ * ! class that is use to uptade fuel price
+ */
 export class UpdatePriceComponent implements OnInit {
 
   //public fuelSelected!: Fuels

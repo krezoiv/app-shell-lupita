@@ -9,6 +9,10 @@ import { UsersService } from '../services/users.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/***
+ * ! class for admin role guards autentications
+ */
 export class AdminRoleGuard implements CanActivate {
 
 
@@ -32,7 +36,7 @@ export class AdminRoleGuard implements CanActivate {
       Swal.fire({
         icon: 'error',
         title: "Error",
-        text: "Acceso denegado, no cuenta con permiso 111",
+        text: "Acceso denegado, no cuenta con permiso",
         timer: 1500
       })
 

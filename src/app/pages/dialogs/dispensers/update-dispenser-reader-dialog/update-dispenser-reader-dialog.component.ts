@@ -12,6 +12,10 @@ import { ConfirmationsComponent } from '../../confirmations/confirmations.compon
   templateUrl: './update-dispenser-reader-dialog.component.html',
   styleUrls: ['./update-dispenser-reader-dialog.component.css']
 })
+
+/**
+ * ! class that is use to delete a dispenser reader
+ */
 export class UpdateDispenserReaderDialogComponent implements OnInit {
 
   

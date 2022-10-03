@@ -14,6 +14,10 @@ import Swal from 'sweetalert2';
   templateUrl: './update-island.component.html',
   styleUrls: ['./update-island.component.css']
 })
+
+/**
+ * ! class that is use to uptade island
+ */
 export class UpdateIslandComponent implements OnInit {
 
   updateIslandForm!: FormGroup;

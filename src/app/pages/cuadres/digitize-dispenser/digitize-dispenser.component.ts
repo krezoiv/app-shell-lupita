@@ -17,8 +17,6 @@ import { HosesService } from 'src/app/services/fuelstation/hoses.service';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
-import { ConfirmationsComponent } from '../../dialogs/confirmations/confirmations.component';
-import { UpdateDispenserReaderDialogComponent } from '../../dialogs/dispensers/update-dispenser-reader-dialog/update-dispenser-reader-dialog.component';
 
 @Component({
   selector: 'app-digitize-dispenser',
@@ -368,6 +366,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
+  //reload page
   reload() {
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/dashboard/compras/ordenPedido']);
@@ -384,7 +383,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   }
 
 
-
+//gets hose id by assigment id
   getHoseIdByAssignmentHoseId() {
     this.hoseService.getHoseIdByAssignmentId(this.digitizeForm.value)
       .subscribe(({ hhose }) => {
@@ -392,6 +391,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //gets fuel id using hose id
   getFuelIdByHoseId() {
     this.hoseService.getFuelIdByHoseId(this.digitizeForm.value)
       .subscribe(({ fuelId }) => {
@@ -399,6 +399,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //get availbale on inventory
   getAvailable() {
     this.fuelInventoryService.getFuelInventoryAvailable(this.digitizeForm.value)
       .subscribe(({ fuelInventoryAvailable }) => {
@@ -483,6 +484,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
+
+  //get dispenser a
   getDispenserA() {
     this.dispenserService.getDispenserA()
       .subscribe(({ dispenserA }) => {
@@ -491,6 +494,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   }
 
+  //get dispenser b
   getDispenserB() {
     this.dispenserService.getDispenserB()
       .subscribe(({ dispenserB }) => {
@@ -731,7 +735,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
 
-
+//habilita lado a 
   habilitarA() {
     this.sideA();
     this.getGeneralAssignmentDispenserReaderId();
@@ -761,7 +765,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
-
+//habilita lado b
   habilitarB() {
     this.sideB();
     this.getGeneralAssignmentDispenserReaderId();
@@ -777,6 +781,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+  //habilita lbomba 2 labo 2
   habilitar2B() {
     this.sideB();
     this.getGeneralAssignmentDispenserReaderId();
@@ -838,6 +843,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
+  //close sider b
   closedSideB() {
     this.digitizeForm.controls['dispenserId'].setValue('');
     const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
@@ -866,6 +872,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
+  //close side dispenser 2 side b
   closedSide2B() {
 
     const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
@@ -885,6 +892,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+
+  //select information from dispenser2
   dispenser2Selected() {
 
     const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
@@ -1320,6 +1329,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.resetFormValuesNumbering();
   };
 
+  //aperturar manguera diesel lado A Isla 1
   diesel1A() {
     this.getAssignmentHoseIdDieselA1();
     this.getGeneralAssignmentDispenserReaderId();
@@ -1438,6 +1448,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.resetFormValuesNumbering();
   };
 
+  //aperturar manguera diesel lado B Isla 1
   diesel1B() {
     this.getAssignmentHoseIdDieselB1();
     this.getGeneralAssignmentDispenserReaderId();
@@ -1676,7 +1687,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.resetFormValuesNumbering();
   };
 
-
+//aperturar manguera diesel lado B Isla 2
   diesel2B() {
     this.getAssignmentHoseIdDieselB2();
     this.getGeneralAssignmentDispenserReaderId();
@@ -2353,6 +2364,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.digitizeForm.controls['totalMoneyVpower'].setValue(this.ResultVpMY);
   };
 
+
+  //methods to upddates gallons
   updateGallons() {
     const data = {
       ...this.digitizeForm.value,
@@ -2453,6 +2466,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     //this.resetFormValuesNumbering();
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateSuperA1() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdSuperA1();
@@ -2516,7 +2531,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
 
   };
 
-
+  //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateDieselA1() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdDieselA1();
@@ -2579,6 +2595,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateRegularB1() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdRegularB1();
@@ -2642,6 +2660,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateSuperB1() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdSuperB1();
@@ -2704,7 +2724,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
 
-
+  //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateDieselB1() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdDieselB1();
@@ -2764,6 +2785,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateRegularA2() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdRegularA2();
@@ -2823,6 +2846,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateSuperA2() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdSuperA2();
@@ -2881,6 +2906,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     });
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateDieselA2() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdDieselA2();
@@ -2940,6 +2967,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateDieselB2() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdDieselB2();
@@ -3000,6 +3029,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
 
+  //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateRegularB2() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdRegularB2();
@@ -3059,6 +3090,8 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     })
   };
 
+    //show all the parameters to present them again on the screen to update
+  //mostrar todos los parametros para presentarlos nuevamente en pantalla para actualizar
   updateSuperB2() {
     this.getGeneralAssignmentDispenserReaderId();
     this.getAssignmentHoseIdSuperB2();
@@ -3111,7 +3144,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
 
-
+//save dispenser update information
   saveUpdateDispenserReader() {
 
     this.gallonageResults();
@@ -3140,6 +3173,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
    
   };
 
+  //save dispenser update information
   saveUpdateDispenserReader2() {
 
     this.gallonageResults();
@@ -3167,6 +3201,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReader3() {
 
     this.gallonageResults();
@@ -3194,6 +3229,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReader4() {
 
     this.gallonageResults();
@@ -3219,6 +3255,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReaderSuper() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
@@ -3246,6 +3283,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
   };
 
 
+  //save dispenser update information
   saveUpdateDispenserReaderSuper2() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
@@ -3272,7 +3310,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     this.getAssignmentHoseIdSuperB1()
   };
 
-
+//save dispenser update information
   saveUpdateDispenserReaderSuper3() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
@@ -3299,6 +3337,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReaderSuper4() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsSuper();
@@ -3325,6 +3364,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReaderDiesel() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
@@ -3351,6 +3391,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReaderDiesel2() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
@@ -3377,6 +3418,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReaderDiesel3() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
@@ -3403,6 +3445,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       })
   };
 
+  //save dispenser update information
   saveUpdateDispenserReaderDiesel4() {
     this.gallonageResults();
     this.calculateTotalGeneralGallonsDiesel();
@@ -3449,6 +3492,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+ //save dispenser update information
   updateDispenserReader2() {
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
@@ -3467,6 +3511,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserReader3() {
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
@@ -3485,6 +3530,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserReader4() {
     this.gallonageResults();
     this.calculateTotalGeneralGallons();
@@ -3503,6 +3549,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserReaderSuper() {
     this.getAssignmentHoseIdSuperA1();
     this.gallonageResults();
@@ -3521,6 +3568,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserReaderSuper2() {
     this.getAssignmentHoseIdSuperB1();
     this.gallonageResults();
@@ -3539,6 +3587,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserReaderSuper3() {
     this.getAssignmentHoseIdSuperA2();
     this.gallonageResults();
@@ -3557,6 +3606,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserSuper4() {
     this.getAssignmentHoseIdSuperB2();
     this.gallonageResults();
@@ -3575,7 +3625,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
-
+//save dispenser update information
   updateDispenerReaderDiesel() {
     this.getAssignmentHoseIdDieselA1();
     this.gallonageResultsDieselUpdte();
@@ -3594,6 +3644,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenerReaderDiesel2() {
     this.getAssignmentHoseIdDieselB1();
     this.gallonageResultsDieselUpdte();
@@ -3612,6 +3663,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenerReaderDiesel3() {
     this.getAssignmentHoseIdDieselA2();
     this.gallonageResultsDieselUpdte();
@@ -3630,6 +3682,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       });
   };
 
+  //save dispenser update information
   updateDispenserReaderDiesel4() {
     this.getAssignmentHoseIdDieselB2();
     this.gallonageResultsDieselUpdte();

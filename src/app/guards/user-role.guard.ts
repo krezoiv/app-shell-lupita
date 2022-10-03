@@ -7,6 +7,10 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/***
+ * ! class for user role guards autentications
+ */
 export class UserRoleGuard implements CanActivate {
 
   constructor(

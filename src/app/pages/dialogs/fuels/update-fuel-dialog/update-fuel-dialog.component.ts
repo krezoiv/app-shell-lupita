@@ -14,6 +14,11 @@ import Swal from 'sweetalert2';
   templateUrl: './update-fuel-dialog.component.html',
   styleUrls: ['./update-fuel-dialog.component.css']
 })
+
+
+/**
+ * ! class that is use to uptade fuel 
+ */
 export class UpdateFuelDialogComponent implements OnInit {
 
   updateFuelForm! : FormGroup;
