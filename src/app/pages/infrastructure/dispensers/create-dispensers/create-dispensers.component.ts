@@ -58,7 +58,7 @@ export class CreateDispensersComponent implements OnInit {
         .subscribe( data => {
           Swal.fire('Exitoso', 'creado correctamente');
           this.dispenserForm.reset();
-          this.router.navigateByUrl('/dashboard/infrastructure/dispensers/listDispensers');
+          this.router.navigateByUrl('/dashboard/dispensadores/listado-dispensadores');
         }, err => {
           Swal.fire('Error', err.error.msg, 'error')
         

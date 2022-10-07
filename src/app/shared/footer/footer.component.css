@@ -1,5 +1,8 @@
-main-footer{
-    background-color: #212F3C
+#footer{
+    background-color: black;
+    color: aqua;
+    opacity: 0.5;
+    
 }
 
 #kzi{

@@ -1,7 +1,7 @@
 
-  <mat-toolbar>
+  <mat-toolbar id="classTolbar">
    
-    <span><img  class="logo" src="../../../assets/images/logoShell.jpeg" alt=""></span>
+    <a href="/#/dashboard"><span><img  class="logo" src="../../../assets/images/logoShell.jpeg" alt=""></span></a>
     <span class="example-spacer"></span>
     <div class="wrap">
        
@@ -28,11 +28,11 @@
             <span><mat-icon>verified_user</mat-icon></span>
             <span>{{user.firstName}}, eres un {{user.roleId}}</span>
           </label>
-      <button mat-menu-item (click)="openDialogUpdatePass(element);"> 
+      <button  id="btnpass" mat-menu-item (click)="openDialogUpdatePass(element);"> 
             <mat-icon> vpn_key</mat-icon>
             <span>Cambiar Contraseña</span>
           </button>
-      <button mat-menu-item (click)="logout();">
+      <button id="btnlogout" mat-menu-item (click)="logout();">
         <mat-icon>power_settings_new</mat-icon>
             <span>Logout</span>
           </button>

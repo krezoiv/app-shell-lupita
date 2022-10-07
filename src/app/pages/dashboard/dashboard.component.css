@@ -1,0 +1,19 @@
+body {
+    min-height: 100%;
+    min-width: none;
+    min-height: 100vh;
+    width: 100% !important;
+}
+
+
+.main-bg {
+    
+    background-image: url('src/assets/images/fondo.jpeg');
+    height: 100% !important ;
+
+  /* Center and scale the image nicely */
+  background-position: 100% !important;
+  background-repeat: no-repeat;
+  background-size: 100% !important;
+  position: relative;
+}

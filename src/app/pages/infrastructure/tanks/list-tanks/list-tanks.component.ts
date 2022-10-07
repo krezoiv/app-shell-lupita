@@ -17,7 +17,7 @@ export class ListTanksComponent implements OnInit {
   public tank : FuelTanks[]=[];
   public statusTank : Status[]=[];
   public fuelTank : Fuels[]=[];
-  public columns : string[]=['tankName', 'maxStorage', 'gallonsStoraged', 'fuelId', 'statusId', 'accions'];
+  public columns : string[]=['tankName', 'maxStorage', 'fuelId', 'statusId', 'accions'];
 
   constructor(
     private tankService : TanksService,

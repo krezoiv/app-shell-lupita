@@ -49,6 +49,7 @@ export class CreateHoseComponent implements OnInit {
     this.infrastructureService.getFuelsActive() 
         .subscribe(({fuels})=> {
           this.selectedFuel = fuels
+          console.log(fuels)
         });
   };
 
@@ -58,7 +59,7 @@ export class CreateHoseComponent implements OnInit {
         .subscribe(data =>{
           Swal.fire('Exitoso', 'creado correctamente');
           this.hoseForm.reset();
-          this.router.navigateByUrl('/dashboard/infrastructure/hoses/listHoses');
+          this.router.navigateByUrl('/dashboard/infrastructura/manguera/listar-mangueras');
         }, err => {
           Swal.fire('Error', err.error.msg, 'error')
         });

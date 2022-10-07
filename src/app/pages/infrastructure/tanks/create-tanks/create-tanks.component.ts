@@ -58,12 +58,13 @@ export class CreateTanksComponent implements OnInit {
     const {tankName} = this.newTankForm.value;
    this.tankService.createTank(this.newTankForm.value)
         .subscribe(data => {
+          console.log(this.newTankForm.value)
           Swal.fire('Exitoso', `${tankName} creado correctamente`);
           this.newTankForm.reset();
-          this.rotuer.navigateByUrl('/dashboard/infrastructure/tanks/listTanks');
+          this.rotuer.navigateByUrl('/dashboard/infrastructura/tanques/listado-tanques');
         })
 
-      
+        console.log(this.newTankForm.value)
 
   }
 

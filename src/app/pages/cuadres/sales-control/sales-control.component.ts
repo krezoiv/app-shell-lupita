@@ -126,6 +126,8 @@ export class SalesControlComponent implements OnInit {
     this._hosesService.getRegularPrices()
       .subscribe((regularPrice) => {
         this.salesControlForm.controls['regularPrice'].setValue(regularPrice.regularPrice.fuelId?.salePrice);
+
+        console.log(regularPrice)
       });
   };
   //get prices

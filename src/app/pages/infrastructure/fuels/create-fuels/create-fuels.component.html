@@ -25,6 +25,14 @@
       
       
             <div class="form-group col-md-4">
+              <label for="inputState">IDP</label>
+              <select class="form-control" formControlName="taxesId">
+                  <option value="">-- Seleccione IDP --</option>
+                  <option *ngFor="let taxes of selectedTaxes" [value]="taxes.taxesId"> {{ taxes.idpAmount }} </option>
+              </select>
+            </div><br>
+
+            <div class="form-group col-md-4">
               <label for="inputState">Status</label>
               <select class="form-control" formControlName="statusId">
                   <option value="">-- Seleccione Status --</option>

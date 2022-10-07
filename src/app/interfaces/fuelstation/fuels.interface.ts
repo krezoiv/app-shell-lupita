@@ -30,3 +30,7 @@ export interface HoseId_I {
 export interface FuelId_I {
     fuelId : Hoses
 }
+
+export interface Taxes_I {
+    taxes: [];
+}

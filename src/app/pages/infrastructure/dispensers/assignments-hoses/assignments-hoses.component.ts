@@ -112,8 +112,7 @@ export class AssignmentsHosesComponent implements OnInit {
 
     this.dispenserService.createAssignment(this.assignmentHoseForm.value)
       .subscribe(data => {
-        Swal.fire('Exitoso', 'creado correctamente');
-
+      
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
 
@@ -285,7 +284,7 @@ export class AssignmentsHosesComponent implements OnInit {
 
   savePosition5() {
     this.getIdAssignment();
-    this.assignmentHoseForm.controls['position'].setValue('1');
+    this.assignmentHoseForm.controls['position'].setValue('5');
 
     this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
       .subscribe(data => {
@@ -311,7 +310,7 @@ export class AssignmentsHosesComponent implements OnInit {
 
   savePosition6() {
     this.getIdAssignment();
-    this.assignmentHoseForm.controls['position'].setValue('2');
+    this.assignmentHoseForm.controls['position'].setValue('6');
     this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
       .subscribe(data => {
         Swal.fire('Exitoso', 'creado correctamente');
@@ -337,7 +336,7 @@ export class AssignmentsHosesComponent implements OnInit {
 
   savePosition7() {
     this.getIdAssignment();
-    this.assignmentHoseForm.controls['position'].setValue('3');
+    this.assignmentHoseForm.controls['position'].setValue('7');
     this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
       .subscribe(data => {
         Swal.fire('Exitoso', 'creado correctamente');
@@ -363,7 +362,7 @@ export class AssignmentsHosesComponent implements OnInit {
 
   savePosition8() {
     this.getIdAssignment();
-    this.assignmentHoseForm.controls['position'].setValue('4');
+    this.assignmentHoseForm.controls['position'].setValue('8');
     this.dispenserService.creatAssignmentHose(this.assignmentHoseForm.value)
       .subscribe(data => {
         Swal.fire('Exitoso', 'creado correctamente');

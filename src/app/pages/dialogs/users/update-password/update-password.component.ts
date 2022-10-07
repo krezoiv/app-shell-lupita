@@ -1,6 +1,6 @@
 import { ParseSourceFile } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Users } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services/auth.service';
@@ -32,8 +32,8 @@ export class UpdatePasswordComponent implements OnInit {
 
     console.log(this.authService.usuario.firstName)
     this.updatePasswordForm = this.fb.group({
-      passwordA: [],
-      passwordB: [],
+      passwordA: ['', Validators.required],
+      passwordB: ['', Validators.required],
       password: [],
       email: [],
       firstName: [],
@@ -55,6 +55,15 @@ export class UpdatePasswordComponent implements OnInit {
     this.passA = this.updatePasswordForm.get('passwordA')?.value;
     this.passB = this.updatePasswordForm.get('passwordB')?.value;
 
+    if(this.updatePasswordForm.get('passwordA')?.value === '' && this.updatePasswordForm.get('passwordB')?.value === ''){
+      Swal.fire({
+        icon: 'error',
+        title: "Error",
+        text: "Campos Vacios",
+        timer: 3500
+      })
+      return
+    }
     if (this.passA !== this.passB) {
       Swal.fire({
         icon: 'error',
@@ -82,19 +91,19 @@ export class UpdatePasswordComponent implements OnInit {
         })
         this.logOut();
         this.dialogRef.close();
-      }
-
-      )
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Sin permisos para cambiar contraseñs',
-        
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
       })
+
+   
   }
+
+
 
 
   logOut() {
     this.authService.logOut();
   }
+
+  
 }

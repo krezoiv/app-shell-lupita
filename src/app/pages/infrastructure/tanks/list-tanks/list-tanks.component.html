@@ -22,11 +22,7 @@
           <td mat-cell *matCellDef="let element"> {{element.maxStorage | number}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="gallonsStoraged">
-          <th mat-header-cell *matHeaderCellDef> Alamacenaje Disponible </th>
-          <td mat-cell *matCellDef="let element"> {{element.gallonsStoraged | number}}</td>
-        </ng-container>
-
+  
         <ng-container matColumnDef="fuelId">
           <th mat-header-cell *matHeaderCellDef> Combustible </th>
           <td mat-cell *matCellDef="let element"> {{element.fuelId.fuelName | titlecase}}</td>

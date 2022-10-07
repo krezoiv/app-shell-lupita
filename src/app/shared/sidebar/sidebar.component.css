@@ -29,7 +29,7 @@ a {
 }
 
 h1 {
-    color: white;
+    color: #F5A500;
 }
 
 #hr2 {
@@ -54,26 +54,6 @@ mat-toolbar {
     margin: auto;
 }
 
-.widget {
-    width: 100%;
-    margin: auto;
-}
-
-
-.widget p {
-    display: inline-block;
-    line-height: 1em;
-}
-
-.date {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 1rem;
-    padding: 20px;
-    width: 100%;
-    color: #7F0A02;
-    background-color: black;
-}
 
 #divSec {
     background: black;
@@ -100,4 +80,8 @@ mat-toolbar {
 #sidenav .menu-item mat-icon{
     margin-right: 20px;
     margin-left: 20px;
+}
+
+#footer {
+    bottom: 10px;
 }
