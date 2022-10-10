@@ -6,6 +6,7 @@ import { PaymentMethods } from "./paymentMethods.models";
 export class PurchaseOrder {
 
     constructor(
+        public userName : string,
         public purchaseId: Purchase,
         public storeId: Store,
         public vehicleId: Vehicle,
@@ -20,7 +21,8 @@ export class PurchaseOrder {
         public totalGallonSuper?: number,
         public totalGallonDiesel?: number,
         public applied?: boolean,
-        public count?: number
+        public count?: number,
+       
 
     ) { }
 }
@@ -47,7 +49,7 @@ export class DetailPurchaseOrder {
 export class Purchase {
 
     constructor(
-
+        public userName : string,
         public deliveryDate: string,
         public totalPurchase: number,
         public invoiceSerie: number,

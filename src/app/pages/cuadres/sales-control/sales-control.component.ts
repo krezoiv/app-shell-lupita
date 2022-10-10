@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 import { FuelInventory } from 'src/app/models/fuelstation/fuelInventory.model';
 import { Hoses } from 'src/app/models/fuelstation/hoses.models';
+import { AuthService } from 'src/app/services/auth.service';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
 import { HosesService } from 'src/app/services/fuelstation/hoses.service';
@@ -89,7 +90,8 @@ export class SalesControlComponent implements OnInit {
     fuelId: ['', Validators.required],
     inventoryCode: ['', Validators.required],
     depositSlip: ['', Validators.required],
-    generalDispenserReaderId :[]
+    generalDispenserReaderId :[],
+    userName : []
   });
 
   constructor(
@@ -98,10 +100,17 @@ export class SalesControlComponent implements OnInit {
     private _hosesService: HosesService,
     private _dispenserService: DispensersService,
     private _salesControlService: SalesControlService,
-    private _fuelInventoryService: FuelInventoryService
+    private _fuelInventoryService: FuelInventoryService,
+    private _authService : AuthService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+
+this.salesControlForm.controls['userName'].setValue(this._authService.usuario.firstName);
+
+  }
+
+
 
   //gete inventory code
   getinventoryCode() {
@@ -315,21 +324,26 @@ export class SalesControlComponent implements OnInit {
   confirmRegularSale() {
     const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef1.afterDismissed().subscribe(() => {
+      this.getfuelIdRegular();
       this.getAvailable();
       this.getinventoryCode();
+      console.log(this.salesControlForm.value)
     });
     this.getfuelIdRegular();
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdRegular();
-      this.calculateRegularTotals();
       this.getAvailable();
       this.getinventoryCode();
+      this.calculateRegularTotals();
+   
+      console.log(this.salesControlForm.value)
     });
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableRegular();
       this.updateAvailableRegular();
+      console.log(this.salesControlForm.value)
       this.buttonSaleRegular = false;
       this.buttonAbonos = true;
     });
@@ -343,20 +357,25 @@ export class SalesControlComponent implements OnInit {
   confirmSuperSale() {
     const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef1.afterDismissed().subscribe(() => {
+      this.getfuelIdSuper();
       this.getAvailable();
       this.getinventoryCode();
+      console.log(this.salesControlForm.value)
     });
     this.getfuelIdSuper();
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdSuper();
-      this.calculateSuperTotals();
+      this.getAvailable();
       this.getinventoryCode();
+      this.calculateSuperTotals();
+      console.log(this.salesControlForm.value)
     });
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableSuper();
       this.updateAvailableSuper();
+      console.log(this.salesControlForm.value)
       this.buttonSaleSuper = false;
       this.buttonAbonos = true;
     });
@@ -371,20 +390,26 @@ export class SalesControlComponent implements OnInit {
   confirmDieselSale() {
     const snackBarRef1 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef1.afterDismissed().subscribe(() => {
+      this.getfuelIdDiesel();
       this.getAvailable();
       this.getinventoryCode();
+      console.log(this.salesControlForm.value)
     });
     this.getfuelIdDiesel();
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef.afterDismissed().subscribe(() => {
       this.getfuelIdDiesel();
-      this.calculateDieselTotals();
+      this.getAvailable();
       this.getinventoryCode();
+      this.calculateDieselTotals();
+      
+      console.log(this.salesControlForm.value)
     });
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
-    snackBarRef.afterDismissed().subscribe(() => {
+    snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableDiesel();
       this.updateAvailableDiesel();
+      console.log(this.salesControlForm.value)
       this.buttonSaleDiesel = false;
       this.buttonAbonos = true;
     });

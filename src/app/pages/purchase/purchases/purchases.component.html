@@ -177,11 +177,11 @@
                             <tr>
                                 <td id="tdTotal">
 
-                                    <button mat-raised-button color="primary" (click)="savePurchase();" id="btnSave">Aplicar Compra</button>
-                                    <button mat-raised-button color="primary" (click)="saveSuper();" id="btnSuper">Super</button>
-                                    <button mat-raised-button color="primary" (click)="saveRegular();" id="btnRegular">Regular</button>
-                                    <button mat-raised-button color="primary" (click)="saveDiesel();" id="btnDiesel">Diesel</button>
-                                   
+                                    <button  *ngIf="btnSave" mat-raised-button color="primary" (click)="savePurchase();" id="btnSave">Aplicar Compra</button>
+                                    <button  *ngIf="btnsaveSuper" mat-raised-button color="primary" (click)="saveSuper();" id="btnSuper">Super</button>
+                                    <button  *ngIf="btnsaveRegular" mat-raised-button color="primary" (click)="saveRegular();" id="btnRegular">Regular</button>
+                                    <button  *ngIf="btnsaveDiesel" color="primary" (click)="saveDiesel();" id="btnDiesel">Diesel</button>
+                                    <button  *ngIf="btnLoad" mat-raised-button color="info" (click)="loadFuels();" id="btnload">Descargar Combustibles</button>
                                 </td>
                             </tr>
                         </tbody>

@@ -17,6 +17,7 @@ import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
 import { __values } from 'tslib';
 import { FuelInventory } from 'src/app/models/fuelstation/fuelInventory.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-purchases-order',
@@ -71,6 +72,7 @@ export class PurchasesOrderComponent implements OnInit {
   public totaIDPPurchases: DetailPurchaseOrder[] = [];
 
   orderForm: FormGroup = this.fb.group({
+    userName: [],
     orderNumber: ['', Validators.required],
     orderDate: ['', Validators.required],
     deliveryDate: ['', Validators.required],
@@ -108,7 +110,8 @@ export class PurchasesOrderComponent implements OnInit {
     private _fuelInventoryService: FuelInventoryService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private _authService : AuthService,
+ 
 
   ) { }
 
@@ -126,6 +129,7 @@ export class PurchasesOrderComponent implements OnInit {
     this.suscription = this._purchaseOrderService.refresh$.subscribe(() => {
       this.listDetailPurchaseOrder();
     });
+    this.orderForm.controls['userName'].setValue(this._authService.usuario.firstName);
   };
 
   getListPurchaseDetailOrder() { }

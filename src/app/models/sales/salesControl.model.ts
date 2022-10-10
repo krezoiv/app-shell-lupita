@@ -27,7 +27,8 @@ export class SalesControl {
         public applied: boolean,
         public abonos : number,
         public count : number,
-        public generalDispenserReaderId : GeneralDispenserReader
+        public generalDispenserReaderId : GeneralDispenserReader,
+        public userName : string
        
 
     ) { }

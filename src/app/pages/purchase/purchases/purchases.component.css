@@ -82,30 +82,43 @@ input{
    
 }
 #btnSuper {
-    background: #0AFBD6;
+    background: green;
     padding: 30px;
     padding-left: 5%;
     color: black;
-    width: 25% !important;
+    font-size: 50px;
+    width: 100% !important;
 }
 #btnRegular {
-    background: #62E36A;
+    background: yellow;
     padding: 30px;
     padding-left: 5%;
     color: black;
-    width: 25% !important;
+    font-size: 50px;
+    width: 100% !important;
 }
 #btnDiesel{
-    background: #FF6EE9;
+    background: black;
     padding: 30px;
     padding-left: 5%;
-    color: black;
-    width: 25% !important;
+    color: white;
+    font-size: 50px;
+    width: 100% !important;
 }
 #btnSave{
-    background: #FAF411;
+    background: aquamarine;
     padding: 30px;
     padding-left: 5%;
     color: black;
-    width: 25% !important;
+    font-size: 50px;
+    width: 100% !important;
+}
+
+#btnload{
+    background: skyblue;
+    padding: 30px;
+    padding-left: 5%;
+    color: black;
+    font-size: 50px;
+    width: 100% !important;
 }

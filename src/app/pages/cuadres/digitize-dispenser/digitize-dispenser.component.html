@@ -57,7 +57,7 @@
                         <h3>Registrando Numeracíon</h3>
                         <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
                         <button mat-button color="primary" (click)="closeDay();">
-                            <mat-icon color="green">lock</mat-icon>&nbsp; Borrar Día
+                            <mat-icon color="green">lock</mat-icon>&nbsp; Limpiar
                         </button>
                     </div>
 
@@ -733,7 +733,16 @@
                                     </label>
                                 </div>
 
-
+                                <label *ngIf="showMeD2Check">
+                                    <h2> Diesel : Registro Guardado <mat-icon id="mat-icon-check">done_outline</mat-icon>
+                                    </h2>
+                                </label><br>
+                                <button *ngIf="showMeUpdateDB1" (click)="updateDieselB1();" mat-icon-button
+                                    color="primary">
+                                    <h2>
+                                        <mat-icon>edit</mat-icon> Modificar Registro ?
+                                    </h2>
+                                </button>
 
                                 <!-- tabla para registro de Diesel-->
                                 <table id="tablaRegistro" class="table table-responsive mat-elevation-z8"
