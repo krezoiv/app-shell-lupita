@@ -92,7 +92,7 @@ export class SalesReportingService {
     return this.http.post<lesserDieselGallons_I>(`${api_url}/salesControl/lesserDieselGallon`, formData, this.headers);
   };
   
-  
+ 
 }
 
 

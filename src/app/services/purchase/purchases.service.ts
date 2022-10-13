@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AmountFuelDiesel_I, AmountFuelRegular_I, AmountFuelSuper_I, AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseId_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
+import { AmountFuelDiesel_I, AmountFuelRegular_I, AmountFuelSuper_I, AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, LastPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseId_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
 import { PaymentMethods_I } from 'src/app/interfaces/paymentMethods.interface';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
-import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
+
 import { DetailPurchaseOrder, Purchase, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { environment } from 'src/environments/environment';
 
@@ -132,4 +132,9 @@ export class PurchasesService {
   getDetailPurchaseOrder(formData: DetailPurchaseOrder): Observable<detailPurchaseOderInfo_I>{
     return this._http.post<detailPurchaseOderInfo_I>(`${api_url}/detailPurchaseOrder/detailPurchaseOderInfo`, formData, this.headers);
   } 
+
+  getLastPurchaseOrder(): Observable<LastPurchaseOrder_I>{
+    return this._http.get<LastPurchaseOrder_I>(`${api_url}/purchaseOrders/lastPurchaseOrder`, this.headers);  
+  }
+
 };

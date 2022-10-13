@@ -106,3 +106,7 @@ export interface PurchaseByNoOrder_I{
     purchaseByOrder : [];
 }
 
+export interface LastPurchaseOrder_I {
+    pchsOrdId: PurchaseOrder,
+    lastPurchaseOrder: []
+}

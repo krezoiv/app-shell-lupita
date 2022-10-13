@@ -32,7 +32,7 @@ export class PurchasesOrderComponent implements OnInit {
 
   idp!: Number | any;
   amountDetail !: Number | any;
- 
+
   priceDetail!: Number | any;
   totalDetail!: Number | any;
   idpTotal!: Number | any;
@@ -56,12 +56,12 @@ export class PurchasesOrderComponent implements OnInit {
   buttonDisableOrderDetailDiesel: boolean = false;
   buttonDisableSaveAll: boolean = false;
   buttonDisableApertura: boolean = true;
-  hideSection:boolean = false
+  hideSection: boolean = false
 
 
-  public fuelSuper : FuelInventory[] =[];
-  public fuelRegular : FuelInventory[] =[];
-  public fuelDiesel : FuelInventory[] =[];
+  public fuelSuper: FuelInventory[] = [];
+  public fuelRegular: FuelInventory[] = [];
+  public fuelDiesel: FuelInventory[] = [];
   public storeSelected: Store[] = [];
   public vehicleSelected: Vehicle[] = [];
   public fuelSelected: Fuels[] = [];
@@ -110,8 +110,8 @@ export class PurchasesOrderComponent implements OnInit {
     private _fuelInventoryService: FuelInventoryService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private _authService : AuthService,
- 
+    private _authService: AuthService,
+
 
   ) { }
 
@@ -175,26 +175,26 @@ export class PurchasesOrderComponent implements OnInit {
 
   getfuelIdSuper() {
     this._fuelInventoryService.getFuelSuperByCode()
-      .subscribe(({fuelIdSuper}) => {
+      .subscribe(({ fuelIdSuper }) => {
         this.fuelSuper = fuelIdSuper
         console.log(fuelIdSuper)
-        
+
       })
-  };            
+  };
 
   getfuelIdRegular() {
     this._fuelInventoryService.getFuelRegularByCode()
-      .subscribe(({fuelIdRegular}) => {
-        this.fuelRegular = fuelIdRegular 
+      .subscribe(({ fuelIdRegular }) => {
+        this.fuelRegular = fuelIdRegular
       })
   };
 
   getfuelIdDiesel() {
     this._fuelInventoryService.getFuelDieselByCode()
-    .subscribe(({fuelIdDiesel}) => {
-      this.fuelDiesel = fuelIdDiesel 
-    })
-     
+      .subscribe(({ fuelIdDiesel }) => {
+        this.fuelDiesel = fuelIdDiesel
+      })
+
   };
 
 
@@ -296,7 +296,7 @@ export class PurchasesOrderComponent implements OnInit {
       this.getPurchaseOrderId();
       this.buttonDisableOrderDetailRegular = true;
       this.buttonDisableOrderDetailSuper = true;
-      this.buttonDisableOrderDetailDiesel= true
+      this.buttonDisableOrderDetailDiesel = true
       this.buttonDisableApertura = false;
     });
   };
@@ -322,12 +322,12 @@ export class PurchasesOrderComponent implements OnInit {
         this.updateAmountPending();
         this.buttonDisableNewOrderDetail = true;
         this.buttonDisableOrderDetailSuper = false;
-        this.getTotalPurchaseOrder();   
+        this.getTotalPurchaseOrder();
         this.buttonDisableSaveAll = true;
         this.newAmount = this.orderForm.get('amount')?.value;
         this.orderForm.controls['totalGallonSuper'].setValue(this.newAmount);
         this.clearInputs();
-        
+
       });
     });
   };
@@ -357,7 +357,7 @@ export class PurchasesOrderComponent implements OnInit {
         this.buttonDisableSaveAll = true;
         this.newAmount = this.orderForm.get('amount')?.value;
         this.orderForm.controls['totalGallonRegular'].setValue(this.newAmount);
-        this.clearInputs(); 
+        this.clearInputs();
       });
     });
   };
@@ -468,10 +468,38 @@ export class PurchasesOrderComponent implements OnInit {
 
 
   saveOrder() {
+    Swal.fire({
+      title: 'Desea eliminar registros?',
+      showDenyButton: true,
+    
+      confirmButtonText: 'Guarder',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Detalle de orden Registrada',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.updateTotalPurchaseOrder();
+        this.updateAplicarDetailOrder();
+        this.reload();
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
 
-   this.updateTotalPurchaseOrder();
-   this.updateAplicarDetailOrder();
-    this.reload();
+
+
+
   };
 
   reload() {
@@ -515,7 +543,7 @@ export class PurchasesOrderComponent implements OnInit {
       });
   };
 
-  clearInputs(){
+  clearInputs() {
     this.orderForm.controls['fuelId'].setValue('');
     this.orderForm.controls['taxesId'].setValue('');
     this.orderForm.controls['amount'].setValue(0);

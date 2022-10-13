@@ -35,6 +35,8 @@ import { GuestRoleGuard } from '../guards/guest-role.guard';
 import { UserRoleGuard } from '../guards/user-role.guard';
 import { DeleteDispenserReaderComponent } from './cuadres/delete-dispenser-reader/delete-dispenser-reader.component';
 import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/delete-sales-control.component';
+import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/delete-purchase-order.component';
+import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
 
 
 
@@ -72,6 +74,8 @@ const routes: Routes =[
     {path : 'reporteria/reporteComprasporFechas', component: PurchaseByDatesComponent},
     {path : 'cuadres/eliminar-digitalizacion-de-bombas', component: DeleteDispenserReaderComponent},
     {path : 'cuadres/eliminar-cierre-de-venta', component: DeleteSalesControlComponent},
+    {path : 'compras/eliminar-orden-de-compra', component: DeletePurchaseOrderComponent},
+    {path : 'compras/eliminar-factura-de-compra', component: DeletePurchaseComponent},
     
 
   ]},

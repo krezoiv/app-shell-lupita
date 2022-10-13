@@ -6,6 +6,7 @@ import { SalesControl } from 'src/app/models/sales/salesControl.model';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import { FuelsService } from 'src/app/services/fuelstation/fuels.service';
 import { SalesControlService } from 'src/app/services/sales/sales-control.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-delete-sales-control',
@@ -19,7 +20,8 @@ export class DeleteSalesControlComponent implements OnInit {
 
 
   reportingSaleForm: FormGroup = this.fb.group({
-    noDocument: ['']
+    noDocument: [''],
+    generalDispenserReaderId: []
   })
   constructor(
     private fb: FormBuilder,
@@ -29,14 +31,52 @@ export class DeleteSalesControlComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this. lastSaleControl();
+    this.lastSaleControl();
   }
 
-  lastSaleControl(){
+  lastSaleControl() {
 
     this._salesControlService.lastSaleControl()
-      .subscribe(({lastSale}) => {
-       this.saleReporting = lastSale
+      .subscribe(({ lastSale, noDocument, gnrlDispId }) => {
+        this.saleReporting = lastSale
+        this.reportingSaleForm.controls['noDocument'].setValue(noDocument.noDocument);
+        this.reportingSaleForm.controls['generalDispenserReaderId'].setValue(gnrlDispId.generalDispenserReaderId);
+        console.log(this.reportingSaleForm.value)
       })
+  }
+
+  deleteSalesControl() {
+    Swal.fire({
+      title: 'Desea eliminar registros?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._salesControlService.deleteSalesControl(this.reportingSaleForm.value)
+          .subscribe(({ updateAvailiableSuper, updateAvailiableRegular, updateAvailiableDiesel, deleteSale }) => {
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Registros eliminados',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.router.navigateByUrl('/dashboard');
+          }, error => {
+            Swal.fire('Error', error.error.msg, 'error')
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
   }
 }

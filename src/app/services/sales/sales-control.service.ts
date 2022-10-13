@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SalesControl } from 'src/app/models/sales/salesControl.model';
 import { Observable } from 'rxjs';
-import {lastNoDocument_I, lastSaleControl_I, SalebyDocument_I } from 'src/app/interfaces/salesControl.interface';
+import {DeleteSalesControl_I, lastNoDocument_I, lastSaleControl_I, SalebyDocument_I } from 'src/app/interfaces/salesControl.interface';
+import { DeleteSalesControlComponent } from 'src/app/pages/cuadres/delete-sales-control/delete-sales-control.component';
 
 const api_url = environment.api_url;
 
@@ -45,4 +46,7 @@ export class SalesControlService {
     return this.http.get<lastSaleControl_I>(`${api_url}/salesControl/lastSaleControl`, this.headers);
   }
 
+  deleteSalesControl(formData : SalesControl): Observable<DeleteSalesControl_I>{
+    return this.http.post<DeleteSalesControl_I>(`${api_url}/generalDispenserReader/deleteSale`,formData, this.headers);
+  }
 }

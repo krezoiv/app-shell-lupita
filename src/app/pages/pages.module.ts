@@ -66,6 +66,9 @@ import { UpdatePasswordComponent } from './dialogs/users/update-password/update-
 import { UpdateUsersComponent } from './dialogs/users/update-users/update-users.component';
 import { DeleteDispenserReaderComponent } from './cuadres/delete-dispenser-reader/delete-dispenser-reader.component';
 import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/delete-sales-control.component';
+import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/delete-purchase-order.component';
+
+import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
 
 
 
@@ -115,6 +118,8 @@ import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/dele
     UpdateUsersComponent,
     DeleteDispenserReaderComponent,
     DeleteSalesControlComponent,
+    DeletePurchaseOrderComponent,
+    DeletePurchaseComponent,
 
    
     

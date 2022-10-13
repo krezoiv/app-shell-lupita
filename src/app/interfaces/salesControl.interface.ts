@@ -1,16 +1,17 @@
+import { DetailPurchaseOrder } from "../models/purchase/purchaseOrder.model";
 import { SalesControl } from "../models/sales/salesControl.model";
 
 export interface lastNoDocument_I {
-    noDocumentSale : SalesControl
+    noDocumentSale: SalesControl
 }
 
 export interface SalebyDocument_I {
-    salebyDocument : [];
+    salebyDocument: [];
 }
 
 export interface SalesByDate_I {
-    total : number,
-    getData : SalesControl[];
+    total: number,
+    getData: SalesControl[];
 
 }
 
@@ -56,5 +57,15 @@ export interface lesserSale_I {
 }
 
 export interface lastSaleControl_I {
-    lastSale : []
+    lastSale: []
+    noDocument: SalesControl,
+    gnrlDispId: SalesControl
 }
+
+export interface DeleteSalesControl_I {
+    updateAvailiableSuper :SalesControl,
+    updateAvailiableRegular :SalesControl,
+    updateAvailiableDiesel :SalesControl,
+    deleteSale :SalesControl
+}
+
