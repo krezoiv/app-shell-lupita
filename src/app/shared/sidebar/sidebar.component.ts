@@ -69,7 +69,9 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
     url: '/dashboard',
     children: [{
       name: 'Digitar Bombas', url: '/dashboard/cuadres/digitalizacion-de-bombas'},
-     {name: 'Cierre Ventas', url: '/dashboard/cuadres/cierre-de-ventas'}]
+     {name: 'Cierre Ventas', url: '/dashboard/cuadres/cierre-de-ventas'},
+    {name: 'Eliminar Numeración', url: '/dashboard/cuadres/eliminar-digitalizacion-de-bombas'},
+    {name: 'Eliminar Cierre Ventas', url: '/dashboard/cuadres/eliminar-cierre-de-venta'}]
 
   },
   {

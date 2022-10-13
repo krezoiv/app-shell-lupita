@@ -1655,6 +1655,7 @@
                 <table id="tableData" class="table table-dark" class="mat-elevation-z8">
                     <thead class="thead-dark">
                         <tr id="border-header-table-data">
+                            <th  scope="col">#</th>
                             <th style="display:none;" scope="col">Isla</th>
                             <th scope="col">Bomba</th>
                             <th scope="col">Lado</th>
@@ -1666,7 +1667,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of dispenserReader">
+                        <tr *ngFor="let data of dispenserReader; let i = index">
+                            <td>{{i+1}}</td>
                             <td style="display:none;">{{
                                 data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
                             <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>

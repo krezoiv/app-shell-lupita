@@ -33,6 +33,8 @@ import { PurchaseByOrderComponent } from './reportingModule/purchases-reporting/
 import { SuperRoleGuard } from '../guards/super-role.guard';
 import { GuestRoleGuard } from '../guards/guest-role.guard';
 import { UserRoleGuard } from '../guards/user-role.guard';
+import { DeleteDispenserReaderComponent } from './cuadres/delete-dispenser-reader/delete-dispenser-reader.component';
+import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/delete-sales-control.component';
 
 
 
@@ -67,7 +69,9 @@ const routes: Routes =[
     {path : 'reporteria/reporteVentasporDocumento',  component: SalesByNoDocumentComponent},
     {path : 'reporteria/reporteVentasporFechas', component: SalesByDatesComponent},
     {path : 'reporteria/reporteComprasporNumeroDeOrden', component : PurchaseByOrderComponent},
-    {path : 'reporteria/reporteComprasporFechas', component: PurchaseByDatesComponent}
+    {path : 'reporteria/reporteComprasporFechas', component: PurchaseByDatesComponent},
+    {path : 'cuadres/eliminar-digitalizacion-de-bombas', component: DeleteDispenserReaderComponent},
+    {path : 'cuadres/eliminar-cierre-de-venta', component: DeleteSalesControlComponent},
     
 
   ]},

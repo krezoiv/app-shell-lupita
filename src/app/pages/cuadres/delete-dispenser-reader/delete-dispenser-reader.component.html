@@ -1,0 +1,54 @@
+<body>
+    <div class="contenedor">
+        <form> 
+            <div class="row mb-3">
+                <div class="col-sm-12">
+                    <button  mat-raised-button color="primary"  id="btnDelete">Eliminar Registros</button>
+                </div>
+            </div>
+           <div class="row mb-3">
+           <div class="col-sm-12">
+            <table id="tableData" class="table table-dark" class="mat-elevation-z8">
+                <thead class="thead-dark">
+                    <tr id="border-header-table-data">
+                        <th  scope="col">#</th>
+                        <th style="display:none;" scope="col">Isla</th>
+                        <th scope="col">Bomba</th>
+                        <th scope="col">Lado</th>
+                        <th scope="col">Combustible</th>
+                        <th style="display:none;" scope="col">Numeración de Galonaje Anterior</th>
+                        <th scope="col">Numeración de Galonaje</th>
+                        <th scope="col">Numeracíon Mecánica</th>
+                        <th scope="col">Numeracíon Dinero</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of dispenserReader; let i = index">
+                        <td id="td">{{i+1}}</td>
+                        <td style="display:none;">{{
+                            data.assignmentHoseId?.assignmentId?.dispenserId?.islandId?.islandNumber}}</td>
+                        <td>{{ data.assignmentHoseId?.assignmentId?.dispenserId?.dispenserCode}}</td>
+                        <td>{{ data.assignmentHoseId?.sideId?.sideName | titlecase }}</td>
+                        <td>{{ data.assignmentHoseId?.hoseId?.fuelId?.fuelName | titlecase }}</td>
+                        
+                        <td>{{ data.actualNoGallons | number }} -> ( {{data.totalNoGallons | number }} galones)</td>
+                        <td>{{ data.actualNoMechanic | number }} -> ( {{data.totalNoMechanic | number }} galonales )</td>
+                        <td>{{ data.actualNoMoney | number }} -> ( Q. {{data.totalNoMoney | number }} )</td>
+                      
+                    </tr>
+    
+                </tbody>
+               
+            </table>
+           </div>
+         
+           </div>
+           <div>
+           
+           </div>
+        </form>
+
+    </div>
+   
+
+</body>

@@ -64,6 +64,8 @@ import { PurchaseByDatesComponent } from './reportingModule/purchases-reporting/
 import { PurchaseByOrderComponent } from './reportingModule/purchases-reporting/purchase-by-order/purchase-by-order.component';
 import { UpdatePasswordComponent } from './dialogs/users/update-password/update-password.component';
 import { UpdateUsersComponent } from './dialogs/users/update-users/update-users.component';
+import { DeleteDispenserReaderComponent } from './cuadres/delete-dispenser-reader/delete-dispenser-reader.component';
+import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/delete-sales-control.component';
 
 
 
@@ -111,6 +113,8 @@ import { UpdateUsersComponent } from './dialogs/users/update-users/update-users.
     PurchaseByOrderComponent,
     UpdatePasswordComponent,
     UpdateUsersComponent,
+    DeleteDispenserReaderComponent,
+    DeleteSalesControlComponent,
 
    
     

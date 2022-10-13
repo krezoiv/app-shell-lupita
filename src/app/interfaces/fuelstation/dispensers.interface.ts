@@ -265,3 +265,8 @@ export interface getGallonsDB_I {
     totalMechanicDiesel : GeneralDispenserReader;
     totalMoneyDiesel: GeneralDispenserReader;
 }
+
+export interface ListLastNumerationDispenser_I {
+    listNumerationDispenser: [];
+    generalDispId: GeneralDispenserReader
+}
