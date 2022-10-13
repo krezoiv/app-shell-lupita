@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SalesControl } from 'src/app/models/sales/salesControl.model';
 import { Observable } from 'rxjs';
-import {lastNoDocument_I, SalebyDocument_I } from 'src/app/interfaces/salesControl.interface';
+import {lastNoDocument_I, lastSaleControl_I, SalebyDocument_I } from 'src/app/interfaces/salesControl.interface';
 
 const api_url = environment.api_url;
 
@@ -40,5 +40,9 @@ export class SalesControlService {
   getSaleByNoDocument(formData : SalesControl): Observable<SalebyDocument_I>{
     return this.http.post<SalebyDocument_I>(`${api_url}/salesControl/saleByNoDocument`, formData, this.headers);
   };
+
+  lastSaleControl(): Observable<lastSaleControl_I>{
+    return this.http.get<lastSaleControl_I>(`${api_url}/salesControl/lastSaleControl`, this.headers);
+  }
 
 }

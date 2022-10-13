@@ -38,7 +38,8 @@ export class GeneralDispenserReader {
         public totalMechanicVpower?: number,
         public totalMoneyVpower?: number,
         public generalDispenserReaderId?: string,
-        public count?: number
+        public count?: number,
+        public readingDate? : string
        
     ) { }
 }
@@ -61,7 +62,8 @@ export class DispenserReader {
         public dispenserReaderId? : number,
         public totalPreviousGallon? :number,
         public totalPreviousMechanic? : number,
-        public totalPreviousMoney? : number
+        public totalPreviousMoney? : number,
+       
 
     ) { }
 }

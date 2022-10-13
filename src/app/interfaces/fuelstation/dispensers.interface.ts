@@ -270,3 +270,8 @@ export interface ListLastNumerationDispenser_I {
     listNumerationDispenser: [];
     generalDispId: GeneralDispenserReader
 }
+
+export interface DeleteGnrlDispenserAndDetail_I {
+    deleteDetail : DispenserReader,
+    deleteGnrDispenser : GeneralDispenserReader    
+}

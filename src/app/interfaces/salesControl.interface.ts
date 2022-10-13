@@ -55,4 +55,6 @@ export interface lesserSale_I {
     lersserSale: [];
 }
 
-
+export interface lastSaleControl_I {
+    lastSale : []
+}

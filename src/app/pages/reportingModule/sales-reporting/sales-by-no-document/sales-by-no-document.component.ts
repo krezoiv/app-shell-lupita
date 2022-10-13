@@ -19,7 +19,7 @@ export class SalesByNoDocumentComponent implements OnInit {
   fuels: Fuels[] = [];
 
   reportingSaleForm: FormGroup = this.fb.group({
-    noDocument: ['']
+    generalDispenserReaderId: ['']
   })
 
   constructor(
