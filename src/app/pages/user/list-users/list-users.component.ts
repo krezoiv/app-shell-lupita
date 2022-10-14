@@ -16,6 +16,7 @@ export class ListUsersComponent implements OnInit {
   public users : Users[]=[];
   public rolUser : Roles[]=[];
   public statusUser : Status[]=[];
+ 
 
   constructor(
     private userService : UsersService, 
@@ -35,10 +36,10 @@ export class ListUsersComponent implements OnInit {
             })
   }
 
-  UpdateUser(users : Users){
+  UpdateUser(element : Users){
     this.dialog.open(UpdateUsersComponent), {
       with: '30%',
-      data: users
+      data: element
     }
 
   }

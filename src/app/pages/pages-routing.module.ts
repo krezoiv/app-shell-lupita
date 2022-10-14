@@ -37,6 +37,7 @@ import { DeleteDispenserReaderComponent } from './cuadres/delete-dispenser-reade
 import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/delete-sales-control.component';
 import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/delete-purchase-order.component';
 import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes =[
     {path : 'users', component: UsersComponent},
     {path : 'usuarios/listado-usuarios', canActivate:[UserRoleGuard], component : ListUsersComponent},
     {path : 'usuario/agregar-usuario', canActivate:[GuestRoleGuard, UserRoleGuard, ], component : CreateUsersComponent},
+    {path : 'usuario/editar-usuario', canActivate:[GuestRoleGuard, UserRoleGuard, ], component : UpdateUserComponent},
     {path : 'infrastructura/islas/agregar-isla', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateIslandComponent},
     {path : 'infrastructura/islas/listado-islas', component : ListIslandComponent},
     {path : 'infrastructura/dispensadores/agregar-dispensador', canActivate:[GuestRoleGuard, UserRoleGuard], component : CreateDispensersComponent},

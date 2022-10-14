@@ -5,6 +5,7 @@ import { Fuels } from 'src/app/models/infrastructure.model';
 import { PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { FuelsService } from 'src/app/services/fuelstation/fuels.service';
 import { PurchasesService } from 'src/app/services/purchase/purchases.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-delete-purchase-order',
@@ -17,7 +18,8 @@ export class DeletePurchaseOrderComponent implements OnInit {
   purchaseOrder : PurchaseOrder[]=[];
   fuels: Fuels[] = [];
   deletePurchaseForm: FormGroup = this.fb.group({
-    purchaseOrderId : []
+    purchaseOrderId : [],
+    orderNumber : []
   })
 
   constructor(
@@ -36,9 +38,45 @@ export class DeletePurchaseOrderComponent implements OnInit {
       .subscribe(({lastPurchaseOrder, pchsOrdId}) => {
         this.purchaseOrder = lastPurchaseOrder
         this.deletePurchaseForm.controls['purchaseOrderId'].setValue(pchsOrdId.purchaseOrderId);
+        this.deletePurchaseForm.controls['orderNumber'].setValue(pchsOrdId.orderNumber);
         console.log(lastPurchaseOrder)
-        console.group(this.deletePurchaseForm.value)
+        console.log(this.deletePurchaseForm.value)
       })
+  }
+
+  deleteSalesControl(){
+    Swal.fire({
+      title: 'Desea eliminar registros?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._purchaseService.deletePurchaseOrder(this.deletePurchaseForm.value)
+          .subscribe(({ updateAMountPendingSuper, updateAmountPendingRegular, updateAmountPendingDiesel, deletePurchaseOrderDetail, deletePurchaseOrder}) => {
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Registros eliminados',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.router.navigateByUrl('/dashboard');
+          }, error => {
+            Swal.fire('Error', error.error.msg, 'error')
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
   }
 
 }

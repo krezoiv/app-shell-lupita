@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { status } from '../interfaces/status.interface';
-import {  Roles_I, User } from '../interfaces/users.interface';
+import {  Roles_I, User, UserByName_I } from '../interfaces/users.interface';
 import { Users } from '../models/user.models';
 
 
@@ -62,6 +62,10 @@ deleteUser(){
 
 updatePassword(dataForm : Users){
   return this.http.post(`${api_url}/users/updatePass`, dataForm, this.headers);
+}
+
+getUserByName(formData : Users): Observable<UserByName_I>{
+  return this.http.post<UserByName_I>(`${api_url}/users/getUserByName`, formData, this.headers);
 }
 
 }

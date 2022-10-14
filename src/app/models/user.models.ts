@@ -2,7 +2,7 @@
 import { Status } from "./status.model";
 
 
-export class    Users {
+export class Users {
 
     constructor(
        

@@ -1,5 +1,6 @@
-   
-    <div class="row">
+
+
+ <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -18,17 +19,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let users of users; let i = index">
+                                <tr *ngFor="let element of users; let i = index">
                                     <td>{{i+1}}</td>
-                                    <td>{{users.firstName | titlecase}}</td>
-                                    <td>{{ users.lastName | titlecase }}</td>
-                                    <td>{{users.email}}</td>
-                                    <td>{{users.roleId| uppercase}}</td>
-                                    <td>{{users.statusId.statusName | titlecase}}</td>
+                                    <td>{{element.firstName | titlecase}}</td>
+                                    <td>{{ element.lastName | titlecase }}</td>
+                                    <td>{{element.email}}</td>
+                                    <td>{{element.roleId| uppercase}}</td>
+                                    <td>{{element.statusId.statusName | titlecase}}</td>
 
                                     
                                     <td>
-                                        <a  (click)="UpdateUser(users);">
+                                        <a  (click)="UpdateUser(element);">
                                             <i  class="fa-solid fa-pencil text-info" ></i>
                                         </a>&nbsp;
                                         <a (click)="deleteUser();">
@@ -47,3 +48,4 @@
         </div>
     </div>
     
+   

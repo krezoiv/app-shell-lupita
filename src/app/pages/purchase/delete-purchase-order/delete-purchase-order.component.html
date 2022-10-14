@@ -132,36 +132,10 @@
                 <hr>
             </div>
 
+           
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <section  id="sectionDetail2">
-                        <table  id="tableDetail" class="table table-dark" class="mat-elevation-z8">
-                            <thead>
-                                <tr id="trEncabezado">
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Serie de Factura</th>
-                                    <th scope="col">Número de Factura</th>
-                                    <th scope="col">Banco</th>
-                                    <th scope="col">Número de Cheque</th>
-                                    <th scope="col">Cantidad Cheque</th>
-                                    <th scope="col">Cupones</th>
-                                    <th scope="col">Otros Pagos</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               <tr *ngFor="let data of purchaseOrder">
-                                <th id="tfTable">{{data.deliveryDate | date}}</th>
-                                <th id="tfTable">{{data.purchaseId.invoiceSerie}}</th>
-                                <th id="tfTable">{{data.purchaseId.invoiceDocument}}</th>
-                                <th id="tfTable">{{data.purchaseId.bankId}}</th>
-                                <th id="tfTable">{{data.purchaseId.NoBankCheck}}</th>
-                                <th id="tfTable">{{data.purchaseId.checkAmount | number}}</th>
-                                <th id="tfTable">{{data.purchaseId.couponsAmount | number}}</th>
-                                <th id="tfTable">{{data.purchaseId.orderNumber | number}}</th>
-                               </tr>
-                            </tbody>
-                        </table>
-                    </section>
+                    <button  mat-raised-button color="primary"  id="btnDelete" (click)="deleteSalesControl()">Eliminar Registros</button>
                 </div>
             </div>
         </form>

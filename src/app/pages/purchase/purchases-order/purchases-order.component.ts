@@ -469,7 +469,7 @@ export class PurchasesOrderComponent implements OnInit {
 
   saveOrder() {
     Swal.fire({
-      title: 'Desea eliminar registros?',
+      title: 'Desea guardar orden de pedidos?',
       showDenyButton: true,
     
       confirmButtonText: 'Guarder',

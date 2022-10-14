@@ -1,4 +1,5 @@
 import { DetailPurchaseOrder, Purchase, PurchaseOrder } from "src/app/models/purchase/purchaseOrder.model";
+import { FuelInventory } from "../models/fuelstation/fuelInventory.model";
 
 //interface gert purchaseOrderId
 export interface PurchaseOrder_I {
@@ -109,4 +110,19 @@ export interface PurchaseByNoOrder_I{
 export interface LastPurchaseOrder_I {
     pchsOrdId: PurchaseOrder,
     lastPurchaseOrder: []
+}
+
+export interface DeletePurchaseOrder_I {
+    updateAMountPendingSuper : PurchaseOrder
+    updateAmountPendingRegular : PurchaseOrder,
+    updateAmountPendingDiesel : PurchaseOrder,
+    deletePurchaseOrderDetail : PurchaseOrder,
+    deletePurchaseOrder : PurchaseOrder
+}
+
+export interface DeletePurchase_I {
+    updateAvailiableSuper :Purchase,
+    updateAvailiableRegular :Purchase,
+    updateAvailiableDiesel :Purchase,
+    deletePurchase :Purchase
 }

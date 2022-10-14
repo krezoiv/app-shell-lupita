@@ -39,3 +39,7 @@ export interface Banks_I {
     bankName : string
 
 }
+
+export interface UserByName_I {
+    users : Users
+}

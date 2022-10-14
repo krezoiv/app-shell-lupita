@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
-import { AmountFuelDiesel_I, AmountFuelRegular_I, AmountFuelSuper_I, AmountFuel_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, LastPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseId_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
+import { AmountFuelDiesel_I, AmountFuelRegular_I, AmountFuelSuper_I, AmountFuel_I, DeletePurchaseOrder_I, DeletePurchase_I, detailPurchaseOderInfo_I, infoPurchaseOrder_I, LastPurchaseOrder_I, ListPurchaseDetailOrder_I, PurchaseId_I, PurchaseOrder_I, totalDetailIDPPurchaseOrder_I, totalPurchase_I } from 'src/app/interfaces/purchase.interface';
 import { PaymentMethods_I } from 'src/app/interfaces/paymentMethods.interface';
 import { DispenserReader } from 'src/app/models/fuelstation/dispensers.model';
 
@@ -137,4 +137,11 @@ export class PurchasesService {
     return this._http.get<LastPurchaseOrder_I>(`${api_url}/purchaseOrders/lastPurchaseOrder`, this.headers);  
   }
 
+  deletePurchaseOrder(formData : PurchaseOrder) : Observable<DeletePurchaseOrder_I>{
+    return this._http.post<DeletePurchaseOrder_I>(`${api_url}/purchaseOrders/deletePurchaseOrder`, formData, this.headers);  
+  }
+
+  deletePurchase(formData : Purchase) : Observable<DeletePurchase_I>{
+    return this._http.post<DeletePurchase_I>(`${api_url}/purchases/deletePurchase`, formData, this.headers);  
+  }
 };

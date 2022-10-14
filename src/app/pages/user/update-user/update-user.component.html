@@ -1,0 +1,58 @@
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+      <form [formGroup]="updateUserForm" class="mat-elevation-z8">
+        <h1>Modificar Usuarios</h1>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nombres</label>
+              <input type="text" class="form-control" formControlName="firstName" placeholder="Nombres">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Apellidos</label>
+              <input type="text" class="form-control" formControlName="lastName" placeholder="Apellidos">
+            </div>
+  
+            <div class="form-group col-md-6">
+              <div class="form-group col-md-12">
+                <label for="inputAddress">Correo</label>
+                <input type="email" class="form-control" formControlName="email" placeholder="@">
+              </div>
+  
+  
+              <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
+                  <label for="inputAddress2">Contraseña</label>
+                  <input type="password" class="form-control" formControlName="password" placeholder="***">
+                </div>
+              </div>
+  
+              <div class="form-group col-md-4">
+                <label for="inputState">Rol</label>
+                <select class="form-control" formControlName="roleId">
+                    <option value="">-- Seleccione un Rol --</option>
+                    <option *ngFor="let roles of roles" [value]="roles.roleId"> {{ roles.roleName }} </option>
+                </select>
+              </div>
+  
+              <div class="form-group col-md-4">
+                <label for="inputState">Status</label>
+                <select class="form-control" formControlName="statusId">
+                    <option value="">-- Seleccione Status --</option>
+                    <option *ngFor="let status of selectedStatus" [value]="status.statusId"> {{ status.statusName }} </option>
+                </select>
+              </div><br>
+  
+              <div class="form-group col-md-4">
+                <button type="submit" class="btn btn-primary btn-lg btn-block btn btn-info" >Guardar</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block btn btn-danger" >Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+  </body>
+  

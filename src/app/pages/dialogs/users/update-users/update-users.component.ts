@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Roles_I } from 'src/app/interfaces/users.interface';
 import { Users } from 'src/app/models/user.models';
+import { UsersService } from 'src/app/services/users.service';
 
 
 @Component({
@@ -19,14 +20,17 @@ export class UpdateUsersComponent implements OnInit {
     {roleId: 'USER_ROLE', roleName : 'USER_ROLE'},
     {roleId: 'GUEST_ROLE', roleName : 'GUEST_ROLE'}
     
-  ]
+  ];
+
+  public usrs : Users[]=[];
 
  
 
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public user : Users,
+    private userService : UsersService,
+    //private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public users : Users,
     private dialogRef : MatDialogRef<UpdateUsersComponent>
   ) { }
 
@@ -34,21 +38,28 @@ export class UpdateUsersComponent implements OnInit {
  
     this.updateUserForm = this.fb.group({
 
-      firstName: [ '', Validators.required],
-      lastName: [ '', Validators.required],
-      email: [ '', Validators.required],
-      password: [ '', Validators.required],
-      roleId: [ '', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      roleId: ['', Validators.required],
       statusId: ['', Validators.required],
       userId : []
     })
-    if(this.user){
-      this.updateUserForm.controls['userId'].setValue(this.user.userId);
-      this.updateUserForm.controls['firstName'].setValue(this.user.firstName);
-      this.updateUserForm.controls['lastName'].setValue(this.user.lastName);
+    if(this.users){
+      this.updateUserForm.controls['userId'].setValue(this.users.firstName);
+      this.updateUserForm.controls['firstName'].setValue(this.users.lastName);
+      this.updateUserForm.controls['lastName'].setValue(this.users.lastName);
     }
 
     console.log(this.updateUserForm.value)
+  }
+
+  getUsers(){
+    this.userService.getUsers()
+      .subscribe((data) => {
+
+      })
   }
 
   updateUser(){}

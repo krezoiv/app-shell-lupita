@@ -21,8 +21,9 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
       {
         name: 'Usuarios',
         url: '/dashboard',
-        children: [{ name: 'Ver ', url: '/dashboard/usuarios/listado-usuarios' },
-        { name: 'Modificar', url: '' },
+        children: [
+        { name: 'Ver ', url: '/dashboard/usuarios/listado-usuarios' },
+        { name: 'Modificar', url: '/dashboard/usuario/editar-usuario' },
         { name: 'Agregar', url: '/dashboard/usuario/agregar-usuario' }
         ],
       },

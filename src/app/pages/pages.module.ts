@@ -69,6 +69,7 @@ import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/dele
 import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/delete-purchase-order.component';
 
 import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
 
 
 
@@ -120,6 +121,7 @@ import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purch
     DeleteSalesControlComponent,
     DeletePurchaseOrderComponent,
     DeletePurchaseComponent,
+    UpdateUserComponent,
 
    
     
