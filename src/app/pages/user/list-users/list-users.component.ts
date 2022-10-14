@@ -36,33 +36,7 @@ export class ListUsersComponent implements OnInit {
             })
   }
 
-  UpdateUser(element : Users){
-    this.dialog.open(UpdateUsersComponent), {
-      with: '30%',
-      data: element
-    }
+ 
 
-  }
-
-  deleteUser(){
-    Swal.fire({
-      title: '¿Borrar Usuario?',
-      text:'Esta por eliminar',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, eliminar !!'
-    }).then((result) => {
-      if(result.value){
-        this.userService.deleteUser()
-        .subscribe(resp => {
-          this.getUsers();
-          Swal.fire(
-            'Usuario Eliminado',
-            'fue eliminado', 'success'
-          );
-        })
-      }
-    })
-  }
 
 }

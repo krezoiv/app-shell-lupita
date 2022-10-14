@@ -18,6 +18,7 @@ export class PurchaseByDatesComponent implements OnInit {
   public purchaseOrderSuper : Purchase[]=[];
   public purchaseOrderDiesel : Purchase[]=[];
 
+  public penddingPurchase : Purchase[]=[]; 
   public purchaseRegular : Purchase[]=[]; 
   public purchaseSuper : Purchase[]=[]; 
   public purchaseDiesel : Purchase[]=[]; 
@@ -56,6 +57,7 @@ export class PurchaseByDatesComponent implements OnInit {
     totalGallonsSuper: [],
     totalGallonsDiesel: [],
     totalPurchase: [],
+    appliedId: ['pendiente']
 
   });
 
@@ -149,6 +151,11 @@ export class PurchaseByDatesComponent implements OnInit {
       this.greaterPurchase = greatePurchase
       
     });
+
+    this._purchaseRerpotingService.getPendingPurchase(this.reportingPurchaseForm.value)
+      .subscribe(({pendding}) => {
+       this.penddingPurchase = pendding
+      });
 
     this._purchaseRerpotingService.getLesserTotalPurchaseByDate(this.reportingPurchaseForm.value)
     .subscribe(({lesserPurchase}) =>{

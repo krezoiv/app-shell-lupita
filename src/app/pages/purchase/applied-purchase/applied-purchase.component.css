@@ -1,0 +1,124 @@
+body {
+    min-height: 180vh;
+    min-width: none;  
+}
+
+form {
+    border: 1px solid #101010;
+    padding: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    top: 30%;
+    min-height: 180vh;
+    background-color: white;
+    
+}
+
+h3{
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+hr {
+    color: purple;
+    height: 10px;
+    background-color: aquamarine;
+   
+
+}
+#tablaEncabezado {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid;
+}
+
+#btnFindorder{
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    width:8% !important;
+    
+}
+
+#mat-form-field-registros {
+    width: 100%;
+}
+
+#mat-form-field-formaPago{
+    width: 100%;
+}
+
+#td {
+    border: 1px solid black;
+  
+   
+}
+
+#sectionDetail{
+    width: 810px;
+    height: 400px;
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: 1px solid;
+
+}
+
+input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#trtbl{
+    border: 1px solid black;
+    border: 1px solid #000;
+    background-color: aqua;
+    text-align: center;
+}
+
+#tbltr2{
+    text-align: center;
+   
+}
+#btnSuper {
+    background: green;
+    padding: 30px;
+    padding-left: 5%;
+    color: black;
+    font-size: 50px;
+    width: 100% !important;
+}
+#btnRegular {
+    background: yellow;
+    padding: 30px;
+    padding-left: 5%;
+    color: black;
+    font-size: 50px;
+    width: 100% !important;
+}
+#btnDiesel{
+    background: black;
+    padding: 30px;
+    padding-left: 5%;
+    color: white;
+    font-size: 50px;
+    width: 100% !important;
+}
+#btnSave{
+    background: aquamarine;
+    padding: 30px;
+    padding-left: 5%;
+    color: black;
+    font-size: 50px;
+    width: 100% !important;
+}
+
+#btnload{
+    background: skyblue;
+    padding: 30px;
+    padding-left: 5%;
+    color: black;
+    font-size: 50px;
+    width: 100% !important;
+}

@@ -3,7 +3,7 @@
     <div class="contenedor">
         <form class="formulario" [formGroup]="purchaseForm" class="mat-elevation-z8">
             <h3 id="titulo">
-                <mat-icon> local_offer</mat-icon> Compras
+                <mat-icon> local_offer</mat-icon> Pago de Factura
             </h3>
             <hr>
             <table id="tablaEncabezado" class="table  table-responsive" class="example-full-width" cellSpacing="0">
@@ -53,61 +53,27 @@
                     <td id="tdTotal">
                         <label for="exampleInputEmail1">Serie de Factura</label>
                         <input type="text" class="form-control" aria-describedby="emailHelp"
-                            formControlName="invoiceSerie" placeholder="123456">
+                            formControlName="invoiceSerie"  readonly="">
                     </td>
                     <td id="tdTotal">
                         <label for="exampleInputEmail1">Número de Factura</label>
                         <input type="text" class="form-control" aria-describedby="emailHelp"
-                            formControlName="invoiceDocument" placeholder="dte">
+                            formControlName="invoiceDocument"  readonly="">
                     </td>
                 </tr>
 
                 <tr>
                     <div class="row mb-12">
                         
-                        <div class="col-sm-">
-                            <label id="label1">Forma de Pago: &nbsp; &nbsp;</label>
-                            <mat-form-field id="mat-form-field-formaPago" appearance="fill">
+                      
 
-                                <mat-icon matSuffix> local_gas_station</mat-icon>
-                                <mat-select formControlName="paymentMethodId" required>
-                                    <mat-option *ngFor="let formas of paymentMethodSelected"
-                                        [value]="formas.paymentMethodId">
-                                        {{formas.method | titlecase}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error>Por favor seleccione forma de pago</mat-error>
-                                <mat-hint></mat-hint>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <label id="label1">Status: &nbsp; &nbsp;</label>
-                            <mat-form-field id="mat-form-field-formaPago" appearance="fill">
-
-                                <mat-icon matSuffix> local_gas_station</mat-icon>
-                                <mat-select formControlName="paymentMethodId" required>
-                                    <mat-option *ngFor="let applied of applied"
-                                        [value]="applied.appliedId">
-                                        {{applied.appliedName | titlecase}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error>Por favor seleccione forma de pago</mat-error>
-                                <mat-hint></mat-hint>
-                            </mat-form-field>
-
-                        </div>
                         
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                                
-                            <label id="label1">Fecha de Vencimiento : &nbsp; &nbsp; &nbsp;</label>
-                            <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
-                                appearance="fill">
-                                <input id="input-registros" required matInput [matDatepicker]="orderDate"
-                                    formControlName="expirationDate">
-                                <mat-datepicker-toggle [for]="orderDate" matSuffix></mat-datepicker-toggle>
-                                <mat-datepicker #orderDate></mat-datepicker>
-                            </mat-form-field>
+                           
+                            <label for="exampleInputEmail1">Fecha de Vencimiento</label>
+                            <input type="text" class="form-control" aria-describedby="emailHelp"
+                                formControlName="expirationDate" readonly="">
                         
                     </div>
                     </div>

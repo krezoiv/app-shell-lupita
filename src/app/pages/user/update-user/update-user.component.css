@@ -24,8 +24,16 @@ form {
 
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+#buttonA{
+    margin-left: 8px;
+    display: flex;
+  background-color:#026C7F ;
+  flex-wrap: wrap;
+}
+
+#buttonB{
+    margin-left: 8px;
+    display: flex;
+    background-color: #2E7F02 ;
+  flex-wrap: wrap;
 }

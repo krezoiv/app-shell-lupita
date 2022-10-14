@@ -126,3 +126,7 @@ export interface DeletePurchase_I {
     updateAvailiableDiesel :Purchase,
     deletePurchase :Purchase
 }
+
+export interface PendingPurchase_I {
+    pendding: [];
+};

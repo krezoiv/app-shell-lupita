@@ -79,4 +79,5 @@ export class DeleteSalesControlComponent implements OnInit {
       }
     })
   }
+
 }

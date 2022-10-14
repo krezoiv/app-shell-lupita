@@ -70,6 +70,7 @@ import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/d
 
 import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { AppliedPurchaseComponent } from './purchase/applied-purchase/applied-purchase.component';
 
 
 
@@ -122,6 +123,7 @@ import { UpdateUserComponent } from './user/update-user/update-user.component';
     DeletePurchaseOrderComponent,
     DeletePurchaseComponent,
     UpdateUserComponent,
+    AppliedPurchaseComponent,
 
    
     

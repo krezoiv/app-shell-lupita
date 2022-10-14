@@ -38,6 +38,7 @@ import { DeleteSalesControlComponent } from './cuadres/delete-sales-control/dele
 import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/delete-purchase-order.component';
 import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { AppliedPurchaseComponent } from './purchase/applied-purchase/applied-purchase.component';
 
 
 
@@ -68,6 +69,7 @@ const routes: Routes =[
     {path : 'cuadres/cierre-de-ventas', canActivate:[GuestRoleGuard], component: SalesControlComponent},
     {path : 'compras/orden-de-pedido', canActivate:[GuestRoleGuard], component: PurchasesOrderComponent},
     {path : 'compras/generar-factura', canActivate:[GuestRoleGuard], component: PurchasesComponent},
+    {path : 'compras/cierre-factura', canActivate:[GuestRoleGuard], component: AppliedPurchaseComponent},
     {path : 'compras', canActivate:[GuestRoleGuard], component: MainPurchaseComponent},
     {path : 'inventario', component: InventoryComponent},
     {path : 'reporteria/reporteVentasporDocumento',  component: SalesByNoDocumentComponent},

@@ -145,6 +145,9 @@
                                 <tr  *ngFor="let data of purchaseReporting">
                                     <td id="tdFuel">  {{data.orderNumber}}</td>
                                 </tr>
+                                <tr *ngFor="let data of purchaseReporting">
+                                    <td id="tdFuel">  {{data.purchaseId.appliedId}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </section>

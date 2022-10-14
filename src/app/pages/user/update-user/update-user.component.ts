@@ -5,6 +5,7 @@ import { Roles_I } from 'src/app/interfaces/users.interface';
 import { Status } from 'src/app/models/status.model';
 import { Roles, Users } from 'src/app/models/user.models';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-user',
@@ -21,15 +22,15 @@ export class UpdateUserComponent implements OnInit {
     
   ]
 
+  public user! : Users;
   selectedRoles: Roles[] =[];
   selectedStatus : Status[] =[];
   selectedUsers: Users[]=[];
   updateUserForm : FormGroup = this.fb.group({
 
-    firstName: [ 'Erick', Validators.required],
+    firstName: [ '', Validators.required],
     lastName: [ '', Validators.required],
     email: [ '', Validators.required],
-    password: [ '', Validators.required],
     roleId: [ '', Validators.required],
     statusId: ['', Validators.required],
     userId: ['']
@@ -42,14 +43,14 @@ export class UpdateUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStatus();
-    this.getUserByName();
+   
   }
 
   getStatus(){
     this.userService.getStatus()
         .subscribe(({status}) => {
           this.selectedStatus = status
-          console.log(status)
+        
         });
   };
 
@@ -60,12 +61,95 @@ export class UpdateUserComponent implements OnInit {
         this.updateUserForm.controls['firstName'].setValue(users.users.firstName);
         this.updateUserForm.controls['lastName'].setValue(users.users.lastName);
         this.updateUserForm.controls['email'].setValue(users.users.email);
-        this.updateUserForm.controls['password'].setValue(users.users.password);
         this.updateUserForm.controls['roleId'].setValue(users.users.roleId);
         this.updateUserForm.controls['statusId'].setValue(users.users.statusId.statusName);
-        this.updateUserForm.controls['userId'].setValue(users.users.userId);
-      
+        this.updateUserForm.controls['userId'].setValue(users.users.userId);     
+        
+        console.log(this.updateUserForm.value)
       })
   }
 
+  upadateUser(){
+    
+    Swal.fire({
+      title: 'Desea eliminar registros?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Modificar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.updateUsers(this.updateUserForm.value)
+        .subscribe(data => {
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Usuario modificado',
+              showConfirmButton: false,
+              timer: 1500
+            })
+           this.newSearch();
+          }, error => {
+            Swal.fire('Error', error.error.msg, 'error')
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+
+  }
+
+  deleteUser(){
+    Swal.fire({
+      title: 'Desea eliminar registros?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(this.updateUserForm.value)
+        .subscribe(data => {
+
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Usuario eliminado',
+              showConfirmButton: false,
+              timer: 1500
+            })
+           this.newSearch();
+          }, error => {
+            Swal.fire('Error', error.error.msg, 'error')
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+
+  }
+ 
+  search(){
+    this.getUserByName();
+  }
+
+
+  newSearch(){
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['dashboard/usuario/editar-usuario']);
+    });
+  }
 }

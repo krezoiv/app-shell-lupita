@@ -139,6 +139,7 @@
                                     <th thDetail scope="col"> No. Orden</th>
                                     <th thDetail scope="col">Serie Factura</th>
                                     <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Status</th>
                                     <th thDetail scope="col">Total Galones Super</th>
                                     <th thDetail scope="col">Total Galones Regular</th>
                                     <th thDetail scope="col">Total Galones Diesel</th>
@@ -156,6 +157,7 @@
                                     <td id="tdTable" scope="col">{{data.orderNumber}}</td>
                                     <td id="tdTable" scope="col">{{data.purchaseId.invoiceSerie}}</td>
                                     <td id="tdTable" scope="col">{{data.purchaseId.invoiceDocument}}</td>
+                                    <td id="tdTable" scope="col">{{data.purchaseId.appliedId}}</td>
                                     <td id="tdTable" scope="col">{{data.totalGallonSuper | number}}</td>
                                     <td id="tdTable" scope="col">{{data.totalGallonRegular  | number}}</td>
                                     <td id="tdTable" scope="col">{{data.totalGallonDiesel  | number}}</td>
@@ -172,8 +174,52 @@
                             <mat-icon>skip_previous</mat-icon> Anterior
                         </button>
                         <button mat-button color="primary" (click)="changePage(3);"> Siguiente <mat-icon>skip_next
-                            </mat-icon></button>
+                            </mat-icon></button><br>
 
+                           
+                    </section>
+                    <h1>Facturas Pendientes de Pago</h1>
+                    <section id="section">
+                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                            <thead>
+                                <tr  id="trEncabezado">
+                                    <th thDetail scope="col"> Fecha</th>
+                                    <th thDetail scope="col"> No. Orden</th>
+                                    <th thDetail scope="col">Serie Factura</th>
+                                    <th thDetail scope="col">No. Factura</th>
+                                    <th thDetail scope="col">Status</th>
+                                    <th thDetail scope="col">Fecha Vencimiento</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Banco</th>
+                                    <th thDetail scope="col">No. Cheque</th>
+                                    <th thDetail scope="col">Monto Cheque</th>
+                                    <th thDetail scope="col">Cupones</th>
+                                    <th thDetail scope="col">Otros Pagos</th>
+                                    <th thDetail scope="col"> Total Compra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let info of penddingPurchase">
+                                    <td id="tdTable" scope="col">{{info.deliveryDate | date}}</td>
+                                    <td id="tdTable" scope="col">{{info.orderNumber}}</td>
+                                    <td id="tdTable" scope="col">{{info.invoiceSerie}}</td>
+                                    <td id="tdTable" scope="col">{{info.invoiceDocument}}</td>
+                                    <td id="tdTable" scope="col">{{info.appliedId}}</td>
+                                    <td id="tdTable" scope="col"  id="colorTd">{{info.expirationDate | date}}</td>
+                                    <td id="tdTable" scope="col">{{info.purchaseOrderId.totalGallonSuper | number}}</td>
+                                    <td id="tdTable" scope="col">{{info.purchaseOrderId.totalGallonRegular  | number}}</td>
+                                    <td id="tdTable" scope="col">{{info.purchaseOrderId.totalGallonDiesel  | number}}</td>
+                                    <td id="tdTable" scope="col">{{info.bankId}}</td>
+                                    <td id="tdTable" scope="col">{{info.NoBankCheck}}</td>
+                                    <td id="tdTable" scope="col">{{info.checkAmount  | number}}</td>
+                                    <td id="tdTable" scope="col">{{info.couponsAmount  | number}}</td>
+                                    <td id="tdTable" scope="col">{{info.otherPayment}}</td>
+                                    <td id="tdTable" scope="col">{{info.totalPurchase  | number}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
                 </div>
             </div>
@@ -204,6 +250,7 @@
                                             <th thDetail scope="col"> No. Orden</th>
                                             <th thDetail scope="col">Serie Factura</th>
                                             <th thDetail scope="col">No. Factura</th>
+                                            <th thDetail scope="col">Status</th>
                                             <th thDetail scope="col">Total Galones Super</th>
                                             <th thDetail scope="col">Total Galones Regular</th>
                                             <th thDetail scope="col">Total Galones Diesel</th>
@@ -220,6 +267,7 @@
                                             <td id="tdTable" scope="col">{{data2.deliveryDate | date}}</td>
                                             <td id="tdTable" scope="col">{{data2.orderNumber}}</td>
                                             <td id="tdTable" scope="col">{{data2.purchaseId.invoiceSerie}}</td>
+                                            <td id="tdTable" scope="col">{{data2.purchaseId.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data2.purchaseId.invoiceDocument}}</td>
                                             <td id="tdTable" scope="col">{{data2.totalGallonSuper | number}}</td>
                                             <td id="tdTable" scope="col">{{data2.totalGallonRegular  | number}}</td>

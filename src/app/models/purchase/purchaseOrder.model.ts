@@ -13,6 +13,7 @@ export class PurchaseOrder {
         public purchaseOrderId: string,
         public orderNumber?: string,
         public orderDate?: string,
+        public expirationDate?: string,
         public deliveryDate?: string,
         public totalPurchaseOrder?: number,
         public totalIDPPurchaseOrder?: number,
@@ -20,7 +21,6 @@ export class PurchaseOrder {
         public totalGallonRegular?: number,
         public totalGallonSuper?: number,
         public totalGallonDiesel?: number,
-        public applied?: boolean,
         public count?: number,
        
 
@@ -55,7 +55,7 @@ export class Purchase {
         public invoiceSerie: number,
         public invoiceDocument: number,
         public purchaseOrderId: PurchaseOrder,
-        public applied: boolean,
+        public appliedId: string,
         public paymentMethodId: PaymentMethods,
         public otherPayment: number,
         public otherPaymentDescription: string,
@@ -65,7 +65,8 @@ export class Purchase {
         public couponsAmount: number,
         public orderNumber: number,
         public count?: number,
-        public purchaseId?: string
+        public purchaseId?: string,
+        public expirationDate?: string
     ) { }
 }
 

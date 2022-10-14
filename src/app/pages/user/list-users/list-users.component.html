@@ -15,7 +15,7 @@
                                     <th>Correo</th>
                                     <th>Rol</th>
                                     <th>Status</th>
-                                    <th>Acciones</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,21 +26,10 @@
                                     <td>{{element.email}}</td>
                                     <td>{{element.roleId| uppercase}}</td>
                                     <td>{{element.statusId.statusName | titlecase}}</td>
-
-                                    
-                                    <td>
-                                        <a  (click)="UpdateUser(element);">
-                                            <i  class="fa-solid fa-pencil text-info" ></i>
-                                        </a>&nbsp;
-                                        <a (click)="deleteUser();">
-
-                                        <i  class="fa-solid fa-trash-can text-danger"></i>
-                                        </a>
-                                    </td>
-    
                                 </tr>
                             </tbody>
                         </table>
+                       
     
                     </div>
                 </div>

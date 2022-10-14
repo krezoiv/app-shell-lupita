@@ -56,16 +56,28 @@ createUser(user : Users){
   return this.http.post(`${api_url}/users`, user, this.headers);
 }
 
-deleteUser(){
-  return this.http.put(`${api_url}/users`, this.headers);
-}
+
 
 updatePassword(dataForm : Users){
   return this.http.post(`${api_url}/users/updatePass`, dataForm, this.headers);
 }
 
+updateUsers(formData : Users){
+  return this.http.post(`${api_url}/users/userUpdate`,formData, this.headers);
+}
+
+
+updateUser(dataForm :User){
+  return this.http.put(`${api_url}/users/updatePass`, dataForm, this.headers);
+}
+
+deleteUser(dataForma : User){
+  return this.http.put(`${api_url}/users/userDelete`, dataForma, this.headers);
+}
+
 getUserByName(formData : Users): Observable<UserByName_I>{
   return this.http.post<UserByName_I>(`${api_url}/users/getUserByName`, formData, this.headers);
 }
+
 
 }

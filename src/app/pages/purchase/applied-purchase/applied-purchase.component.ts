@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { Applied_I, Banks_I } from 'src/app/interfaces/users.interface';
+import { Fuels } from 'src/app/models/infrastructure.model';
 import { PaymentMethods } from 'src/app/models/purchase/paymentMethods.models';
 import { DetailPurchaseOrder, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FuelInventoryService } from 'src/app/services/fuelstation/fuel-inventory.service';
+import { FuelsService } from 'src/app/services/fuelstation/fuels.service';
 import { PurchasesService } from 'src/app/services/purchase/purchases.service';
+import { PurchasesReportingService } from 'src/app/services/reporting/purchases-reporting.service';
 import { LoadingComponent } from 'src/app/shared/functions/loading/loading.component';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
 
-
 @Component({
-  selector: 'app-purchases',
-  templateUrl: './purchases.component.html',
-  styleUrls: ['./purchases.component.css']
+  selector: 'app-applied-purchase',
+  templateUrl: './applied-purchase.component.html',
+  styleUrls: ['./applied-purchase.component.css']
 })
-export class PurchasesComponent implements OnInit {
+export class AppliedPurchaseComponent implements OnInit {
 
   btnSave : boolean = false;
   btnsaveSuper : boolean = false;
@@ -27,6 +28,7 @@ export class PurchasesComponent implements OnInit {
   btnsaveDiesel : boolean = false;
   btnLoad : boolean = false;
 
+  
   banks: Banks_I[] = [
     { bankId: 'bam', bankName: 'Banco Agomercantil' },
     { bankId: 'bac', bankName: 'Banco de América Central' },
@@ -39,7 +41,13 @@ export class PurchasesComponent implements OnInit {
     { appliedId :'pagada', appliedName:'pagada'},
     { appliedId :'pendiente', appliedName:'pendiente'},
   ]
+  purchaseReporting : PurchaseOrder[]=[];
+  fuels: Fuels[] = [];
+  reportingPurchaseForm: FormGroup = this.fb.group({
+    orderNumber : []
+  })
 
+  
   availableDB!: Number | any;
   newAvailable!: Number | any;
   amountPendingDB !: Number | any;
@@ -54,7 +62,7 @@ export class PurchasesComponent implements OnInit {
     invoiceSerie: ['', Validators.required],
     invoiceDocument: ['', Validators.required],
     paymentMethodId: ['', Validators.required],
-    appliedId: ['', Validators.required],
+    appliedId: [false, Validators.required],
     totalPurchase: [, Validators.required],
     turn: ['', Validators.required],
     vehicleId: ['', Validators.required],
@@ -85,22 +93,22 @@ export class PurchasesComponent implements OnInit {
     private _fuelInventoryService: FuelInventoryService,
     private _snackBar: MatSnackBar,
     private _authService: AuthService
+
   ) { }
 
   ngOnInit(): void {
     this.getPaymentMethdos();
-
-    this.purchaseForm.controls['userName'].setValue(this._authService.usuario.firstName);
-
   }
 
   updateIdPurchase() {
     this._purchaseService.updateIdPurchase(this.purchaseForm.value)
       .subscribe(data => {
-        console.log('11111')
+       
+
       })
   }
 
+ 
   findOrder() {
     this._purchaseService.getInfoPurchaseOrder(this.purchaseForm.value)
       .subscribe((infoPurchaseOrder) => {
@@ -109,6 +117,10 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['deliveryDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.deliveryDate);
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
+        this.purchaseForm.controls['invoiceSerie'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.invoiceSerie);
+        this.purchaseForm.controls['invoiceDocument'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.invoiceDocument);
+        this.purchaseForm.controls['expirationDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.expirationDate);
+        this.getPurchaseOrderId();
         this.getPurchaseOrderId();
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
         snackBarRef.afterDismissed().subscribe(() => {
@@ -377,4 +389,5 @@ export class PurchasesComponent implements OnInit {
     this.btnLoad = false;
   }
 
-};
+
+}

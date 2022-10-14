@@ -43,3 +43,9 @@ export interface Banks_I {
 export interface UserByName_I {
     users : Users
 }
+
+export interface Applied_I {
+    appliedId : string,
+    appliedName : string
+
+}
