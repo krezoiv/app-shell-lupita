@@ -28,8 +28,8 @@
                     [attr.aria-label]="'Toggle ' + node.name">
               <mat-icon class="mat-icon-rtl-mirror">
                 {{treeControlModule.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-              </mat-icon>
-            </button>
+              </mat-icon></button>
+            
             <a id="aTree" >
               {{node.name}}</a>
           </mat-tree-node>
@@ -66,10 +66,12 @@
       </mat-tree>
       </div>
      
+      <hr>
       <div id="footer">
         <app-footer></app-footer>
       </div>
     </mat-sidenav>
+    
     
     <mat-sidenav-content>
       
