@@ -47,7 +47,6 @@ export class CreateFuelsComponent implements OnInit {
     this.fuelService.getTaxes()
           .subscribe(({taxes}) => {
           this.selectedTaxes = taxes
-            console.log(taxes)
       })
   }
 

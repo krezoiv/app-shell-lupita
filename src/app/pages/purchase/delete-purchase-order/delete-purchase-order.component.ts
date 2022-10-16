@@ -39,8 +39,6 @@ export class DeletePurchaseOrderComponent implements OnInit {
         this.purchaseOrder = lastPurchaseOrder
         this.deletePurchaseForm.controls['purchaseOrderId'].setValue(pchsOrdId.purchaseOrderId);
         this.deletePurchaseForm.controls['orderNumber'].setValue(pchsOrdId.orderNumber);
-        console.log(lastPurchaseOrder)
-        console.log(this.deletePurchaseForm.value)
       })
   }
 

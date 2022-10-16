@@ -44,7 +44,6 @@ export class CreateIslandComponent implements OnInit {
   
     this.islandService.createIsland(this.islandForm.value)
     .subscribe( data => {
-      console.log(this.islandForm.value)
       Swal.fire('Exitoso', 'creado correctamente');
     
       this.router.navigateByUrl('/dashboard/infrastructura/islas/listado-islas');

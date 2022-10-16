@@ -84,7 +84,6 @@ export class UpdateHosesComponent implements OnInit {
 
       },err => {
         Swal.fire('Error', err.error.msg, 'error')
-        console.log(err)
       })
 
     }

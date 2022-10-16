@@ -22,13 +22,13 @@ import Swal from 'sweetalert2';
 })
 export class AppliedPurchaseComponent implements OnInit {
 
-  btnSave : boolean = false;
-  btnsaveSuper : boolean = false;
-  btnsaveRegular : boolean = false;
-  btnsaveDiesel : boolean = false;
-  btnLoad : boolean = false;
+  btnSave: boolean = false;
+  btnsaveSuper: boolean = false;
+  btnsaveRegular: boolean = false;
+  btnsaveDiesel: boolean = false;
+  btnLoad: boolean = false;
+  dt!: string | any
 
-  
   banks: Banks_I[] = [
     { bankId: 'bam', bankName: 'Banco Agomercantil' },
     { bankId: 'bac', bankName: 'Banco de América Central' },
@@ -37,17 +37,17 @@ export class AppliedPurchaseComponent implements OnInit {
     { bankId: 'coope', bankName: 'Cooperativa Guayacan' },
   ];
 
-  applied : Applied_I[] =[
-    { appliedId :'pagada', appliedName:'pagada'},
-    { appliedId :'pendiente', appliedName:'pendiente'},
+  applied: Applied_I[] = [
+    { appliedId: 'pagada', appliedName: 'pagada' },
+    { appliedId: 'pendiente', appliedName: 'pendiente' },
   ]
-  purchaseReporting : PurchaseOrder[]=[];
+  purchaseReporting: PurchaseOrder[] = [];
   fuels: Fuels[] = [];
   reportingPurchaseForm: FormGroup = this.fb.group({
-    orderNumber : []
+    orderNumber: []
   })
 
-  
+
   availableDB!: Number | any;
   newAvailable!: Number | any;
   amountPendingDB !: Number | any;
@@ -103,12 +103,12 @@ export class AppliedPurchaseComponent implements OnInit {
   updateIdPurchase() {
     this._purchaseService.updateIdPurchase(this.purchaseForm.value)
       .subscribe(data => {
-       
+
 
       })
   }
 
- 
+
   findOrder() {
     this._purchaseService.getInfoPurchaseOrder(this.purchaseForm.value)
       .subscribe((infoPurchaseOrder) => {
@@ -120,6 +120,20 @@ export class AppliedPurchaseComponent implements OnInit {
         this.purchaseForm.controls['invoiceSerie'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.invoiceSerie);
         this.purchaseForm.controls['invoiceDocument'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.invoiceDocument);
         this.purchaseForm.controls['expirationDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.expirationDate);
+        this.purchaseForm.controls['orderNumber'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.orderNumber);
+        const dt = (this.purchaseForm.get('expirationDate')?.value);
+        const dt2 = (dt.slice(0, -14))
+        const dt3 = new Date(dt2).toLocaleDateString('en-GB')
+        this.purchaseForm.controls['expirationDate'].setValue(dt3);
+        const dateOrder = (this.purchaseForm.get('orderDate')?.value);
+        const dateOrder2 = (dateOrder.slice(0, -14));
+        const dateOrder3 = new Date(dateOrder2).toLocaleDateString('en-GB')
+        this.purchaseForm.controls['orderDate'].setValue(dateOrder3);
+        const dateDelivery = (this.purchaseForm.get('deliveryDate')?.value);
+        const dateDelivery2 = (dateDelivery.slice(0, -14));
+        const dateDelivery3 = new Date(dateDelivery2).toLocaleDateString('en-GB')
+        this.purchaseForm.controls['deliveryDate'].setValue(dateDelivery3);
+
         this.getPurchaseOrderId();
         this.getPurchaseOrderId();
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
@@ -214,133 +228,10 @@ export class AppliedPurchaseComponent implements OnInit {
       });
   };
 
-  loadRegulartoTank() {
-    this.getfuelIdRegular();
 
 
-    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 500 });
-    snackBarRef.afterDismissed().subscribe(() => {
-      this.getfuelIdRegular();
-      this.getinventoryCode();
-      this.getAmountPending();
-      this.getAvailable();
 
 
-      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 500 });
-      snackBarRef.afterDismissed().subscribe(() => {
-        this.getfuelIdRegular();
-        this.getinventoryCode();
-        this.getAmountPending();
-        this.getAvailable();
-        this.releaseFunction();
-        this.releaseAmountRegular();
-        this.resetDetailOrderValues();
-
-
-      });
-    });
-  };
-
-  loadSupertoTank() {
-    this.getfuelIdSuper();
-
-
-    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 500 });
-    snackBarRef.afterDismissed().subscribe(() => {
-      this.getfuelIdSuper();
-      this.getinventoryCode();
-      this.getAmountPending();
-      this.getAvailable();
-
-
-      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 500 });
-      snackBarRef.afterDismissed().subscribe(() => {
-        this.getfuelIdSuper();
-        this.getinventoryCode();
-        this.getAmountPending();
-        this.getAvailable();
-        this.releaseFunction();
-        this.releaseAmountSuper();
-        this.resetDetailOrderValues();
-
-
-      });
-    });
-  };
-
-  loadDieseltoTank() {
-    this.getfuelIdDiesel();
-
-
-    const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 500 });
-    snackBarRef.afterDismissed().subscribe(() => {
-      this.getfuelIdDiesel();
-      this.getinventoryCode();
-      this.getAmountPending();
-      this.getAvailable();
-
-
-      const snackBarRef = this._snackBar.openFromComponent(LoadingComponent, { duration: 500 });
-      snackBarRef.afterDismissed().subscribe(() => {
-        this.getfuelIdDiesel();
-        this.getinventoryCode();
-        this.getAmountPending();
-        this.getAvailable();
-        this.releaseFunction();
-        this.releaseAmountDiesel();
-        this.resetDetailOrderValues();
-
-
-      });
-    });
-  };
-
-  saveSuper() {
-
-
-    this.loadSupertoTank();
-    this.btnsaveSuper = false;
-    this.btnsaveRegular = true;
-
-  }
-
-  saveRegular() {
-
-    this.loadRegulartoTank();
-    this.btnsaveRegular = false;
-    this.btnsaveDiesel = true;
-  }
-
-
-  saveDiesel() {
-
-
-    this.loadDieseltoTank();
-    this.btnsaveDiesel = false;
-    this.savePurchase();
-  }
-
-
-  releaseAmountRegular() {
-    this._fuelInventoryService.updateAvailableRegular(this.purchaseForm.value)
-      .subscribe(data => {
-
-      });
-  };
-
-  releaseAmountSuper() {
-    this._fuelInventoryService.updateAvailableSuper(this.purchaseForm.value)
-      .subscribe(data => {
-
-      });
-  };
-
-  releaseAmountDiesel() {
-    this._fuelInventoryService.updateAvailableDiesel(this.purchaseForm.value)
-      .subscribe(data => {
-
-      })
-  }
 
   savePurchase() {
 
@@ -351,7 +242,7 @@ export class AppliedPurchaseComponent implements OnInit {
         snackBarRef.afterDismissed().subscribe(() => {
           this.getIdPurchase();
           this.updateIdPurchase();
-          this.getIdPurchase();  
+          this.getIdPurchase();
         })
         this.reload();
       }, err => {
@@ -384,10 +275,44 @@ export class AppliedPurchaseComponent implements OnInit {
     });
   };
 
-  loadFuels(){
+  loadFuels() {
     this.btnsaveSuper = true;
     this.btnLoad = false;
   }
 
+  appliedPurchase() {
+    Swal.fire({
+      title: 'Desea Modificar Factura?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._purchaseService.apliedPurchase(this.purchaseForm.value)
+          .subscribe(data => {
 
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Factura modificada',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.router.navigateByUrl('/dashboard');
+          }, error => {
+            Swal.fire('Error', error.error.msg, 'error')
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+
+  }
 }

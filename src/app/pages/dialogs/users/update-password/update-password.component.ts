@@ -29,8 +29,6 @@ export class UpdatePasswordComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    console.log(this.authService.usuario.firstName)
     this.updatePasswordForm = this.fb.group({
       passwordA: ['', Validators.required],
       passwordB: ['', Validators.required],
@@ -38,20 +36,24 @@ export class UpdatePasswordComponent implements OnInit {
       email: [],
       firstName: [],
 
-
-
     })
 
     if (this.authService.usuario) {
       this.updatePasswordForm.controls['email'].setValue(this.authService.usuario.email)
       this.updatePasswordForm.controls['firstName'].setValue(this.authService.usuario.firstName)
     }
-
-
   }
 
   save() {
-
+    Swal.fire({
+      title: 'Desea modificar contraseña?',
+      showDenyButton: true,
+     // showCancelButton: true,
+      confirmButtonText: 'Modifacar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
     this.passA = this.updatePasswordForm.get('passwordA')?.value;
     this.passB = this.updatePasswordForm.get('passwordB')?.value;
 
@@ -76,7 +78,17 @@ export class UpdatePasswordComponent implements OnInit {
       this.updatePasswordForm.controls['password'].setValue(this.passA)
       this.updatePassword();
     }
-
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+  
   }
 
   updatePassword() {
@@ -94,12 +106,7 @@ export class UpdatePasswordComponent implements OnInit {
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       })
-
-   
   }
-
-
-
 
   logOut() {
     this.authService.logOut();

@@ -39,6 +39,7 @@ import { DeletePurchaseOrderComponent } from './purchase/delete-purchase-order/d
 import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purchase.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { AppliedPurchaseComponent } from './purchase/applied-purchase/applied-purchase.component';
+import { AccumulatedSalesComponent } from './cuadres/accumulated-sales/accumulated-sales.component';
 
 
 
@@ -76,6 +77,7 @@ const routes: Routes =[
     {path : 'reporteria/reporteVentasporFechas', component: SalesByDatesComponent},
     {path : 'reporteria/reporteComprasporNumeroDeOrden', component : PurchaseByOrderComponent},
     {path : 'reporteria/reporteComprasporFechas', component: PurchaseByDatesComponent},
+    {path : 'reporteria/acumulado-de-ventas', component: AccumulatedSalesComponent},
     {path : 'cuadres/eliminar-digitalizacion-de-bombas', component: DeleteDispenserReaderComponent},
     {path : 'cuadres/eliminar-cierre-de-venta', component: DeleteSalesControlComponent},
     {path : 'compras/eliminar-orden-de-compra', component: DeletePurchaseOrderComponent},

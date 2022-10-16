@@ -33,7 +33,6 @@ export class ListTanksComponent implements OnInit {
     this.tankService.getTanks()
         .subscribe(({fuelTank}) => {
           this.tank = fuelTank
-          console.log(fuelTank)
         })
   }
 

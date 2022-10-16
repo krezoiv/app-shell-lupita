@@ -48,7 +48,6 @@ export class PurchaseByOrderComponent implements OnInit {
     this._fuelService.getFuelsActive()
       .subscribe(({ fuels }) => {
         this.fuels = fuels;
-        console.log(fuels)
       })
   }
   search(){

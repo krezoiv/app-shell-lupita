@@ -12,6 +12,7 @@ import { HosesService } from 'src/app/services/fuelstation/hoses.service';
 import { SalesControlService } from 'src/app/services/sales/sales-control.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
+import { DateAdapter } from '@angular/material/core';
 @Component({
   selector: 'app-sales-control',
   templateUrl: './sales-control.component.html',
@@ -101,8 +102,11 @@ export class SalesControlComponent implements OnInit {
     private _dispenserService: DispensersService,
     private _salesControlService: SalesControlService,
     private _fuelInventoryService: FuelInventoryService,
-    private _authService : AuthService
-  ) { }
+    private _authService : AuthService,
+    private dateAdapter: DateAdapter<Date>
+  ) { 
+    this.dateAdapter.setLocale('en-GB');
+  }
 
   ngOnInit(): void { 
 
@@ -135,8 +139,6 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     this._hosesService.getRegularPrices()
       .subscribe((regularPrice) => {
         this.salesControlForm.controls['regularPrice'].setValue(regularPrice.regularPrice.fuelId?.salePrice);
-
-        console.log(regularPrice)
       });
   };
   //get prices
@@ -327,7 +329,6 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       this.getfuelIdRegular();
       this.getAvailable();
       this.getinventoryCode();
-      console.log(this.salesControlForm.value)
     });
     this.getfuelIdRegular();
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
@@ -336,14 +337,11 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       this.getAvailable();
       this.getinventoryCode();
       this.calculateRegularTotals();
-   
-      console.log(this.salesControlForm.value)
     });
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableRegular();
       this.updateAvailableRegular();
-      console.log(this.salesControlForm.value)
       this.buttonSaleRegular = false;
       this.buttonAbonos = true;
     });
@@ -360,7 +358,6 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       this.getfuelIdSuper();
       this.getAvailable();
       this.getinventoryCode();
-      console.log(this.salesControlForm.value)
     });
     this.getfuelIdSuper();
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
@@ -369,13 +366,11 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       this.getAvailable();
       this.getinventoryCode();
       this.calculateSuperTotals();
-      console.log(this.salesControlForm.value)
     });
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableSuper();
       this.updateAvailableSuper();
-      console.log(this.salesControlForm.value)
       this.buttonSaleSuper = false;
       this.buttonAbonos = true;
     });
@@ -393,7 +388,6 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       this.getfuelIdDiesel();
       this.getAvailable();
       this.getinventoryCode();
-      console.log(this.salesControlForm.value)
     });
     this.getfuelIdDiesel();
     const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
@@ -402,14 +396,11 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       this.getAvailable();
       this.getinventoryCode();
       this.calculateDieselTotals();
-      
-      console.log(this.salesControlForm.value)
     });
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableDiesel();
       this.updateAvailableDiesel();
-      console.log(this.salesControlForm.value)
       this.buttonSaleDiesel = false;
       this.buttonAbonos = true;
     });
@@ -519,7 +510,6 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     this._dispenserService.getGeneralDispenserReaderId(this.salesControlForm.value)
       .subscribe(({generalDispenserReader}) => {
         this.salesControlForm.controls['generalDispenserReaderId'].setValue(generalDispenserReader.generalDispenserReaderId);
-        console.log(this.salesControlForm.value)
       })
   }
 

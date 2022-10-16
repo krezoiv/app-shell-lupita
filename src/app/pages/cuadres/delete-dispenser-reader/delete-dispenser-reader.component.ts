@@ -32,7 +32,7 @@ export class DeleteDispenserReaderComponent implements OnInit {
       .subscribe(({listNumerationDispenser, generalDispId}) => {
         this.dispenserReader = listNumerationDispenser
         this.deleteForm.controls['generalDispenserReaderId'].setValue(generalDispId.generalDispenserReaderId);
-        console.log(this.deleteForm.value)
+       
       })
   }
 
@@ -71,9 +71,5 @@ export class DeleteDispenserReaderComponent implements OnInit {
         })
       }
     })
-
-
-
-    
   }
 }

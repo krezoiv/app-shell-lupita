@@ -255,14 +255,14 @@ export interface countTotalSaleDiesel_I {
 }
 
 export interface getGallonsDB_I {
-    totalRegularGallons : GeneralDispenserReader;
-    totalMechanicRegular : GeneralDispenserReader;
-    totalMoneyRegular : GeneralDispenserReader;
-    totalGallonSuper : GeneralDispenserReader;
-    totalMechanicSuper : GeneralDispenserReader;
-    totalMoneySuper : GeneralDispenserReader;
-    totalGallonDiesel : GeneralDispenserReader;
-    totalMechanicDiesel : GeneralDispenserReader;
+    totalRegularGallons: GeneralDispenserReader;
+    totalMechanicRegular: GeneralDispenserReader;
+    totalMoneyRegular: GeneralDispenserReader;
+    totalGallonSuper: GeneralDispenserReader;
+    totalMechanicSuper: GeneralDispenserReader;
+    totalMoneySuper: GeneralDispenserReader;
+    totalGallonDiesel: GeneralDispenserReader;
+    totalMechanicDiesel: GeneralDispenserReader;
     totalMoneyDiesel: GeneralDispenserReader;
 }
 
@@ -272,6 +272,27 @@ export interface ListLastNumerationDispenser_I {
 }
 
 export interface DeleteGnrlDispenserAndDetail_I {
-    deleteDetail : DispenserReader,
-    deleteGnrDispenser : GeneralDispenserReader    
+    deleteDetail: DispenserReader,
+    deleteGnrDispenser: GeneralDispenserReader
+}
+
+export interface getGeneralDispenserListToApplied_I {
+    genrealDispenserReader: [];
+    countGallonRegular: []
+    countGallonSuper: []
+    countGallonDiesel: []
+    countMoneyRegular : [],
+    countMoneySuper : [],
+    countMoneyDiesel: [],
+    countBills: [],
+    countvales: [],
+    countcoupons: [],
+    countvoucher: [],
+    countdeposits: [],
+    countcredits: [],
+    countabonos: [],
+    counttotal: [],
+    countbalance: [],
+    sumTotalGallon: [],
+    sumMoneyGallon: []
 }

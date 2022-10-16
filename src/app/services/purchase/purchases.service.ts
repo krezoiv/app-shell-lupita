@@ -144,4 +144,9 @@ export class PurchasesService {
   deletePurchase(formData : Purchase) : Observable<DeletePurchase_I>{
     return this._http.post<DeletePurchase_I>(`${api_url}/purchases/deletePurchase`, formData, this.headers);  
   }
+
+  apliedPurchase(formData : Purchase){
+    return this._http.post(`${api_url}/purchases/appliedPurchase`, formData, this.headers);  
+  }
+
 };

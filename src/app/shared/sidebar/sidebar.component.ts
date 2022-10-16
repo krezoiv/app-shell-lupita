@@ -16,15 +16,15 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
   {
     name: 'Mantenimientos',
     url: '/dashboard',
-   
+
     children: [
       {
         name: 'Usuarios',
         url: '/dashboard',
         children: [
-        { name: 'Ver ', url: '/dashboard/usuarios/listado-usuarios' },
-        { name: 'Modificar', url: '/dashboard/usuario/editar-usuario' },
-        { name: 'Agregar', url: '/dashboard/usuario/agregar-usuario' }
+          { name: 'Ver ', url: '/dashboard/usuarios/listado-usuarios' },
+          { name: 'Modificar', url: '/dashboard/usuario/editar-usuario' },
+          { name: 'Agregar', url: '/dashboard/usuario/agregar-usuario' }
         ],
       },
       {
@@ -68,24 +68,25 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
   {
     name: 'Cuadres',
     url: '/dashboard',
-    children: [{
-      name: 'Digitar Bombas', url: '/dashboard/cuadres/digitalizacion-de-bombas'},
-     {name: 'Cierre Ventas', url: '/dashboard/cuadres/cierre-de-ventas'},
-    {name: 'Eliminar Numeración', url: '/dashboard/cuadres/eliminar-digitalizacion-de-bombas'},
-    {name: 'Eliminar Cierre Ventas', url: '/dashboard/cuadres/eliminar-cierre-de-venta'}]
+    children: [
+      { name: 'Digitar Bombas', url: '/dashboard/cuadres/digitalizacion-de-bombas' },
+      { name: 'Cierre Ventas', url: '/dashboard/cuadres/cierre-de-ventas' },
+      { name: 'Eliminar Numeración', url: '/dashboard/cuadres/eliminar-digitalizacion-de-bombas' },
+      { name: 'Eliminar Cierre Ventas', url: '/dashboard/cuadres/eliminar-cierre-de-venta' }]
 
   },
   {
     name: 'Compras',
     url: '/dashboard',
     children: [{
-      name: 'Generar No. Orden', url: '/dashboard/compras/orden-de-pedido'},
-     {name: 'Factura', url: '/dashboard/compras/generar-factura'},
-     {name: 'Pagar Factura', url: '/dashboard/compras/cierre-factura'},
-     {name: 'Eliminar Orden', url: '/dashboard/compras/eliminar-orden-de-compra'},
-     {name: 'Eliminar Factura Compra', url: '/dashboard/compras/eliminar-factura-de-compra'},
+      name: 'Generar No. Orden', url: '/dashboard/compras/orden-de-pedido'
+    },
+    { name: 'Factura', url: '/dashboard/compras/generar-factura' },
+    { name: 'Pagar Factura', url: '/dashboard/compras/cierre-factura' },
+    { name: 'Eliminar Orden', url: '/dashboard/compras/eliminar-orden-de-compra' },
+    { name: 'Eliminar Factura Compra', url: '/dashboard/compras/eliminar-factura-de-compra' },
     ]
-     
+
   },
   {
     name: 'Inventario',
@@ -118,7 +119,8 @@ const TREE_DATA: SideBarNodeReporting[] = [
     url: '/dashboard',
     children: [
       { name: 'Por No. Documento', url: '/dashboard/reporteria/reporteVentasporDocumento' },
-      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteVentasporFechas' }],
+      { name: 'Por Fechas', url: '/dashboard/reporteria/reporteVentasporFechas' },
+      { name: 'Acumulador Ventas', url: '/dashboard/reporteria/acumulado-de-ventas' },],
   },
   {
     name: 'Compras',
@@ -142,11 +144,11 @@ interface SideBarFlatNodeReporting {
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  
+
 })
 export class SidebarComponent implements OnInit {
 
- 
+
 
   private _transformerModule = (node: SideBarNodeModule, level: number) => {
     return {

@@ -17,7 +17,7 @@ import { HosesService } from 'src/app/services/fuelstation/hoses.service';
 import { IslandsService } from 'src/app/services/fuelstation/islands.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
-
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-digitize-dispenser',
@@ -356,10 +356,13 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
     private hoseService: HosesService,
     private dialog: MatDialog,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private dateAdapter: DateAdapter<Date>
 
 
-  ) { }
+  ) { 
+    this.dateAdapter.setLocale('en-GB');
+  }
 
   ngOnInit(): void {
 
@@ -2586,7 +2589,7 @@ export class DigitizeDispenserComponent implements OnInit, OnDestroy {
       this.getHoseIdByAssignmentHoseId();
       this.getFuelIdByHoseId();
       this.getAvailable();
-      console.log(this.digitizeForm.value)
+      
       const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 300 });
       snackBarRef.afterDismissed().subscribe(() => {
         this.getGeneralAssignmentDispenserReaderId();

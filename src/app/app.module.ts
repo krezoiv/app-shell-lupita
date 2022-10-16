@@ -9,7 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar'
-import {HashLocationStrategy, LocationStrategy} from '@angular/common'
+import {HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common'
 import {MatTreeModule} from '@angular/material/tree';
 
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -32,7 +32,6 @@ import { Page404Component } from './page404/page404.component';
 import { PagesRoutingModule } from './pages/pages-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { ConfirmationsComponent } from './pages/dialogs/confirmations/confirmations.component';
-
 
 
 @NgModule({
@@ -69,13 +68,11 @@ import { ConfirmationsComponent } from './pages/dialogs/confirmations/confirmati
     MatProgressBarModule,
     MatSnackBarModule,
     MatTreeModule,
-    
-   
-    
+ 
   ],
   entryComponents: [ConfirmationsComponent],
   providers: [{
-    provide: LocationStrategy, useClass:HashLocationStrategy
+    provide: LocationStrategy, useClass:HashLocationStrategy,
   }],
   bootstrap: [AppComponent]
 })

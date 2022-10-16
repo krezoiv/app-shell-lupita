@@ -36,7 +36,7 @@ public usuario! : Users;
         'jwt-token' : token
       }
     }).pipe(tap((data: any) => {
-      console.log(data)
+     
       const {firstName, lastName, email, statusId, roleId, userId} = data.usuario;
       this.usuario = new Users(firstName, lastName, email, statusId, roleId, userId);
      

@@ -8,7 +8,7 @@ import { DispensersService } from 'src/app/services/fuelstation/dispensers.servi
 import { SalesReportingService } from 'src/app/services/reporting/sales-reporting.service';
 import { SalesControlService } from 'src/app/services/sales/sales-control.service';
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
-
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-sales-by-dates',
@@ -60,11 +60,11 @@ export class SalesByDatesComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    
+    private dateAdapter: DateAdapter<Date>,
     private _salesReportingService : SalesReportingService,
     private router: Router
     
-  ) { }
+  ) {  this.dateAdapter.setLocale('en-GB');}
 
   ngOnInit(): void {
     
@@ -112,7 +112,6 @@ export class SalesByDatesComponent implements OnInit {
     this._salesReportingService.getCountSumGallonsRegular(this.reportingSaleForm.value)
       .subscribe(({ countTotalSaleRegular }) => {
         this.generalDispenserRegular = countTotalSaleRegular
-        console.log(countTotalSaleRegular)
       })
   };
 

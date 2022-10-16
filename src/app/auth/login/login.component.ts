@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   /** Login Method */
   login(){
-    console.log( this.loginForm.value)
+   
     this.authService.login( this.loginForm.value as LoginForm )
     .subscribe( resp => {
      

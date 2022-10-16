@@ -63,7 +63,6 @@ export class CreateDispensersComponent implements OnInit {
           Swal.fire('Error', err.error.msg, 'error')
         
         })
-        console.log(this.dispenserForm.value)
   }
 
 }

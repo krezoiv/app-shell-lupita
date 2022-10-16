@@ -97,7 +97,6 @@ export class PurchasesComponent implements OnInit {
   updateIdPurchase() {
     this._purchaseService.updateIdPurchase(this.purchaseForm.value)
       .subscribe(data => {
-        console.log('11111')
       })
   }
 
@@ -109,6 +108,16 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['deliveryDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.deliveryDate);
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
+        const dateOrder =(this.purchaseForm.get('orderDate')?.value);
+        const dateOrder2 = (dateOrder.slice(0, -14));
+        const dateOrder3 =new Date(dateOrder2).toLocaleDateString('en-GB');
+        this.purchaseForm.controls['orderDate'].setValue(dateOrder3);
+        const deliveryOrder =(this.purchaseForm.get('deliveryDate')?.value);
+        const deliveryOrder2 = (deliveryOrder.slice(0, -14));
+        const deliveryOrder3 =new Date(deliveryOrder2).toLocaleDateString('en-GB');
+        this.purchaseForm.controls['deliveryDate'].setValue(deliveryOrder3);
+
+        
         this.getPurchaseOrderId();
         const snackBarRef = this._snackBar.openFromComponent(TimerComponent, { duration: 1 });
         snackBarRef.afterDismissed().subscribe(() => {

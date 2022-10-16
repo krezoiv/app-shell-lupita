@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DetailPurchaseOrder, Purchase, PurchaseOrder } from 'src/app/models/purchase/purchaseOrder.model';
 import { PurchasesOrderComponent } from 'src/app/pages/purchase/purchases-order/purchases-order.component';
 import { PurchasesReportingService } from 'src/app/services/reporting/purchases-reporting.service';
+import { DateAdapter } from '@angular/material/core';
 
 
 @Component({
@@ -63,9 +64,12 @@ export class PurchaseByDatesComponent implements OnInit {
 
   constructor(
     private fb : FormBuilder,
+    private dateAdapter: DateAdapter<Date>,
     private _purchaseRerpotingService : PurchasesReportingService,
     private router: Router
-  ) { }
+  ) {
+    this.dateAdapter.setLocale('en-GB')
+   }
 
   ngOnInit(): void {
   };

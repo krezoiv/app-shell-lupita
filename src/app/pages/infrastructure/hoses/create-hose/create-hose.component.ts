@@ -49,7 +49,6 @@ export class CreateHoseComponent implements OnInit {
     this.infrastructureService.getFuelsActive() 
         .subscribe(({fuels})=> {
           this.selectedFuel = fuels
-          console.log(fuels)
         });
   };
 

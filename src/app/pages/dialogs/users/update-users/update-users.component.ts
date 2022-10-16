@@ -52,7 +52,6 @@ export class UpdateUsersComponent implements OnInit {
       this.updateUserForm.controls['lastName'].setValue(this.users.lastName);
     }
 
-    console.log(this.updateUserForm.value)
   }
 
   getUsers(){

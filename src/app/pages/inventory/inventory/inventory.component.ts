@@ -72,7 +72,6 @@ getAvailableRegular() {
   this._inventoryService.getFuelInventoryAvailableCode(this.inventoryForm.value)
     .subscribe(({ fuelInventoryAvailable }) => {
     this.availabeRegular = (fuelInventoryAvailable.available * 100) /3000
-   console.log(this.availabeRegular)
     });
 };
 
@@ -82,7 +81,6 @@ getAvailableSuper() {
   this._inventoryService.getFuelInventoryAvailableCode(this.inventoryForm.value)
     .subscribe(({ fuelInventoryAvailable }) => {
     this.availabeSuper =  (fuelInventoryAvailable.available * 100) /5000
-    console.log(this.availabeSuper)
     });
 
     
@@ -94,7 +92,6 @@ getAvailableDiesel() {
   this._inventoryService.getFuelInventoryAvailableCode(this.inventoryForm.value)
     .subscribe(({ fuelInventoryAvailable }) => {
     this.availabeDiesel =  (fuelInventoryAvailable.available * 100) /3000
-    console.log(this.availabeDiesel)
     });
 };
 

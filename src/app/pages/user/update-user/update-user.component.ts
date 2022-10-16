@@ -64,8 +64,6 @@ export class UpdateUserComponent implements OnInit {
         this.updateUserForm.controls['roleId'].setValue(users.users.roleId);
         this.updateUserForm.controls['statusId'].setValue(users.users.statusId.statusName);
         this.updateUserForm.controls['userId'].setValue(users.users.userId);     
-        
-        console.log(this.updateUserForm.value)
       })
   }
 

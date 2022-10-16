@@ -18,6 +18,7 @@ import Swal from 'sweetalert2';
 import { __values } from 'tslib';
 import { FuelInventory } from 'src/app/models/fuelstation/fuelInventory.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-purchases-order',
@@ -111,9 +112,12 @@ export class PurchasesOrderComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private router: Router,
     private _authService: AuthService,
+    private dateAdapter: DateAdapter<Date>
 
 
-  ) { }
+  ) { 
+    this.dateAdapter.setLocale('en-GB');
+  }
 
   ngOnInit(): void {
     this.getStore();
@@ -166,7 +170,6 @@ export class PurchasesOrderComponent implements OnInit {
             .subscribe(({ fuels }) => {
               this.idp = fuels.taxesId?.idpAmount
               this.orderForm.controls['taxesId'].setValue(fuels.taxesId?.idpAmount);
-              console.log(fuels)
             });
         });
       });
@@ -177,8 +180,6 @@ export class PurchasesOrderComponent implements OnInit {
     this._fuelInventoryService.getFuelSuperByCode()
       .subscribe(({ fuelIdSuper }) => {
         this.fuelSuper = fuelIdSuper
-        console.log(fuelIdSuper)
-
       })
   };
 

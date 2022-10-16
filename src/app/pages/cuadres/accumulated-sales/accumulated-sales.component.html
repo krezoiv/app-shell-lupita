@@ -1,0 +1,432 @@
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form [formGroup]="reportingSaleForm">
+            <h1>Datos Acumulados de Ventas</h1>
+            <hr>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="input-group">
+
+                    <div id="divDate">
+                        <mat-form-field id="mat-form-field-dates" id="matFiel-heards" color="accent"
+                            appearance="fill">
+                            <input id="input-registros" required matInput [matDatepicker]="initialDate"
+                                formControlName="initialDate">
+                            <mat-datepicker-toggle [for]="initialDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #initialDate></mat-datepicker>
+                            <mat-hint>Ingrese Fecha de inicio</mat-hint><br>
+                        </mat-form-field> &nbsp;
+                    </div>
+
+                    <div id="divDate">
+                        <mat-form-field id="mat-form-field-dates" id="matFiel-heards" color="accent"
+                            appearance="fill">
+                            <input id="input-registros" required matInput [matDatepicker]="finalDate"
+                                formControlName="finalDate">
+                            <mat-datepicker-toggle [for]="finalDate" matSuffix></mat-datepicker-toggle>
+                            <mat-datepicker #finalDate></mat-datepicker>
+                            <mat-hint>Ingrese fecha final</mat-hint><br>
+                        </mat-form-field>
+                    </div>
+
+
+                    <button id="buttonA" mat-raised-button color="primary" (click)="search();">
+                        <mat-icon>search</mat-icon><br> Buscar
+                    </button>
+                    <button id="buttonB" mat-raised-button color="primary" (click)="newSearch();">
+                        <mat-icon>sync</mat-icon><br> Nueva Buesqueda
+                    </button>
+
+
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <h1>Saldos de Galones Acumulados</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Super</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of accumulatedSuper">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="accumulatedSuper" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Regular</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let regular of accumulatedRegular">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="accumulatedRegular" [(ngModel)]="regular.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Diesel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let diesel of accumulatedDiesel">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="accumulatedDiesel" [(ngModel)]="diesel.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Suma Total Galones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let diesel of sumTotalGallon">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="sumTotalGallon" [(ngModel)]="diesel.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Acumulado Q. en Ventas</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. en Super</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countMoneySuper">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countMoneySuper" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. en Regular</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countMoneyRegular">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countMoneyRegular" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. en Diesel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countMoneyDiesel">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countMoneyDiesel" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of sumMoneyGallon">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="sumMoneyGallon" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Acumulado Q. Detalles</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. Gastos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countBills">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countBills" [(ngModel)]="super.count" matInput readonly="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. Vales</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countvales">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countvales" [(ngModel)]="super.count" matInput readonly="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. Cupones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countcoupons">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countcoupons" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. Tarjetas C/D</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countvoucher">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countvoucher" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Acumulado Q. Créditos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countcredits">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countcredits" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Detalle Financiero</h1>
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Total Depósitos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countdeposits">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countdeposits" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Total Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countabonos">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countabonos" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <section id="sectionFuel">
+
+                        <table>
+                            <thead>
+                                <tr id="">
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let super of countbalance">
+                                    <td><input id="input-registros" id="input-registros" type="text" name="gallonA"
+                                            formControlName="countbalance" [(ngModel)]="super.count" matInput
+                                            readonly=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h1>Tabla de Registros por Fecha Seleccionada...</h1>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <section id="section">
+                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                            <thead>
+                                <tr id="trEncabezado">
+                                    <th thDetail scope="col">#</th>
+                                    <th thDetail scope="col">Fecha</th>
+                                    <th thDetail scope="col">Número de Documento</th>
+                                    <th thDetail scope="col">Total Galones Super</th>
+                                    <th thDetail scope="col">Total Galones Regular</th>
+                                    <th thDetail scope="col">Total Galones Diesel</th>
+                                    <th thDetail scope="col">Totalde Venta</th>
+                                    <th thDetail scope="col">Total Gastos</th>
+                                    <th thDetail scope="col">Total de Cupones</th>
+                                    <th thDetail scope="col">Total de Vales</th>
+                                    <th thDetail scope="col">Total de Vouchers</th>
+                                    <th thDetail scope="col">Créditos</th>
+                                    <th thDetail scope="col">Total de Depósitos</th>
+                                    <th thDetail scope="col">Número de Depósito</th>
+                                    <th thDetail scope="col">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of salesReport; let i = index">
+                                    <td id="tdTable" scope="col">{{i+1}}</td>
+                                    <td id="tdTable" scope="col">{{data.salesDate | date}}</td>
+                                    <td id="tdTable" scope="col">{{data.noDocument}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonSuper | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonRegular | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.totalGallonDiesel | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.total | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.bills | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.cupones | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.vales | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.vouchers | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.credits | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.deposits | number}}</td>
+                                    <td id="tdTable" scope="col">{{data.depositSlip}}</td>
+                                    <td id="tdTable" scope="col">{{data.balance | number}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </div>
+            </div>
+            <br>
+            <div>
+                <button id="bnt" mat-raised-button color="accent" (click)="updateApplied()">Cierre</button>
+            </div>
+        </form>
+    </div>
+</body>

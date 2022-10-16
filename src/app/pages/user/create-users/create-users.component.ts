@@ -55,7 +55,6 @@ export class CreateUsersComponent implements OnInit {
     this.userService.getStatus()
         .subscribe(({status}) => {
           this.selectedStatus = status
-          console.log(status)
         });
   };
   

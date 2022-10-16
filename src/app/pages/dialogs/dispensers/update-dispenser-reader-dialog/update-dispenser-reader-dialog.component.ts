@@ -100,8 +100,6 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
       });
-    console.log(this.updateDispenserReaderForm.value)
-
   };
 
   update() {
@@ -135,8 +133,6 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
     this._dispenserService.updateTotalGallons(data)
       .subscribe(resp => {
       });
-      
-    console.log(this.updateDispenserReaderForm.value)
   };
 
   gallonageResults(){
@@ -145,9 +141,6 @@ export class UpdateDispenserReaderDialogComponent implements OnInit {
     this.gallonA = this.updateDispenserReaderForm.get('actualNoGallons')?.value;
     this.ResultG = this.gallonA - this.gallonP;
     this.updateDispenserReaderForm.controls['totalNoGallons'].setValue(this.ResultG);
-
-    console.log(this.updateDispenserReaderForm.value)
-
   }
 
   calculateTotalGeneralGallons(){

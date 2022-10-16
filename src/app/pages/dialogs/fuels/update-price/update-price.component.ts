@@ -55,28 +55,49 @@ export class UpdatePriceComponent implements OnInit {
 
 
   updatePrice() {
-    const { fuelName } = this.updatePriceForm.value;
+    Swal.fire({
+      title: 'Desea actualizar precio?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Actualizar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
 
-    const data = {
-      ...this.updatePriceForm.value,
-      fuelId: this.fuels.fuelId
-    }
- 
-    this.infrastructureService.updatePriceFuel
-      (data).subscribe(resp => {
-          
-        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() =>
-          this.router.navigate(['/dashboard/infrastructura/combustibles/listado-combustibles']));
-          console.log(this.updatePriceForm.value);
-          this.updatePriceForm.reset();
-        Swal.fire('Actualizado', `${fuelName} Actualizado Correctamente`, 'success');
-        this.dialogRef.close('actualizado');
+      if (result.isConfirmed) {
+        const { fuelName } = this.updatePriceForm.value;
+        const data = {
+          ...this.updatePriceForm.value,
+          fuelId: this.fuels.fuelId
+        }
+        this.infrastructureService.updatePriceFuel(data)
+          .subscribe(resp => {
+            this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() =>
+              this.router.navigate(['/dashboard/infrastructura/combustibles/listado-combustibles']));
+            this.updatePriceForm.reset();
+            Swal.fire('Actualizado', `${fuelName} Actualizado Correctamente`, 'success');
+            this.dialogRef.close('actualizado');
 
-        
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Combustible actualizado',
+              showConfirmButton: false,
+              timer: 1500
+            })
 
-      }, err => {
-        Swal.fire('Error', err.error.msg, 'error')
-      })
+          }, error => {
+            Swal.fire('Error', error.error.msg, 'error')
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
 
   }
 

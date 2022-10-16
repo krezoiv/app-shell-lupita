@@ -41,7 +41,7 @@ export class DeleteSalesControlComponent implements OnInit {
         this.saleReporting = lastSale
         this.reportingSaleForm.controls['noDocument'].setValue(noDocument.noDocument);
         this.reportingSaleForm.controls['generalDispenserReaderId'].setValue(gnrlDispId.generalDispenserReaderId);
-        console.log(this.reportingSaleForm.value)
+       
       })
   }
 
