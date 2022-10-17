@@ -49,19 +49,20 @@
                         <mat-icon>calendar_today</mat-icon>&nbsp; Aperturar Día
                     </button>
 
-                    <div *ngIf="buttonacierre">
-
-                        <mat-progress-bar id="progressBar" mode="indeterminate">
-                            <h1>Registrando</h1>
-                        </mat-progress-bar>
-                        <h3>Registrando Numeracíon</h3>
-                        <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
-                        <button mat-button color="primary" (click)="closeDay();">
-                            <mat-icon color="green">lock</mat-icon>&nbsp; Limpiar
-                        </button>
-                    </div>
+                    
 
                 </table>
+                <div *ngIf="buttonacierre">
+
+                    <mat-progress-bar id="progressBar" mode="indeterminate">
+                        <h1>Registrando</h1>
+                    </mat-progress-bar>
+                    <h3>Registrando Numeracíon</h3>
+                    <mat-progress-bar id="progressBar" mode="query"></mat-progress-bar>
+                    <button mat-button color="primary" (click)="closeDay();">
+                        <mat-icon color="green">lock</mat-icon>&nbsp; Limpiar
+                    </button>
+                </div>
             </div><br>
 
 

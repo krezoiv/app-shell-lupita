@@ -84,30 +84,15 @@ export class FuelInventoryService {
     return this._http.put<FuelInventory[]>(`${api_url}/fuelInventory/${fuelInventory.fuelInventoryId}`, fuelInventory, this.headers);
   };
 
-  updateAvailableRegular(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
-    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableRegular`, fuelInventory, this.headers);
+  updateAvailableGallonsPurchase(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
+    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableGallonsPurchase`, fuelInventory, this.headers);
   };
 
-  updateAvailableSuper(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
-    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableSuper`, fuelInventory, this.headers);
+ 
+  updateAvailableGallonsSale(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
+    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableGallonsSale`, fuelInventory, this.headers);
   };
-
-  updateAvailableDiesel(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
-    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableDiesel`, fuelInventory, this.headers);
-  };
-
-  updateAvailableRegularSale(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
-    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableRegularSale`, fuelInventory, this.headers);
-  };
-
-  updateAvailableSuperSale(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
-    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableSuperSale`, fuelInventory, this.headers);
-  };
-
-  updateAvailableDieselSale(fuelInventory : FuelInventory): Observable<FuelInventory[]>{
-    return this._http.post<FuelInventory[]>(`${api_url}/fuelInventory/updateAvailableDieselSale`, fuelInventory, this.headers);
-  };
-
+  
   getInventoryData(){
     return this._http.get<InventroyData_I>(`${api_url}/fuelInventory`, this.headers);
   }

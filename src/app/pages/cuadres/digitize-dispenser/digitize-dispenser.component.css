@@ -127,3 +127,7 @@ label{
     color: darkturquoise;
     cursor: pointer;
 }
+
+#progressBar{
+    width: 100%;
+}

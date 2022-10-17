@@ -13,6 +13,7 @@ import { SalesControlService } from 'src/app/services/sales/sales-control.servic
 import { TimerComponent } from 'src/app/shared/functions/timer/timer.component';
 import Swal from 'sweetalert2';
 import { DateAdapter } from '@angular/material/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sales-control',
   templateUrl: './sales-control.component.html',
@@ -58,10 +59,10 @@ export class SalesControlComponent implements OnInit {
   availableDieselDB!: Number | any;
   newAvailableDiesel!: Number | any;
   buttonSaleRegular: boolean = false;
-  buttonSaleSuper: boolean  = false;
+  buttonSaleSuper: boolean = false;
   buttonSaleDiesel: boolean = false;
-  buttonAbonos: boolean= false;
-  saveButton: boolean= false;
+  buttonAbonos: boolean = false;
+  saveButton: boolean = false;
 
 
   salesControlForm: FormGroup = this.fb.group({
@@ -91,8 +92,8 @@ export class SalesControlComponent implements OnInit {
     fuelId: ['', Validators.required],
     inventoryCode: ['', Validators.required],
     depositSlip: ['', Validators.required],
-    generalDispenserReaderId :[],
-    userName : []
+    generalDispenserReaderId: [],
+    userName: []
   });
 
   constructor(
@@ -102,15 +103,17 @@ export class SalesControlComponent implements OnInit {
     private _dispenserService: DispensersService,
     private _salesControlService: SalesControlService,
     private _fuelInventoryService: FuelInventoryService,
-    private _authService : AuthService,
-    private dateAdapter: DateAdapter<Date>
-  ) { 
+    private _authService: AuthService,
+    private dateAdapter: DateAdapter<Date>,
+    private router : Router
+    
+  ) {
     this.dateAdapter.setLocale('en-GB');
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
 
-this.salesControlForm.controls['userName'].setValue(this._authService.usuario.firstName);
+    this.salesControlForm.controls['userName'].setValue(this._authService.usuario.firstName);
 
   }
 
@@ -149,7 +152,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
       });
   };
 
-    //get prices
+  //get prices
   getDiselPrices() {
     this._hosesService.getDieselPrices()
       .subscribe((dieselPrice) => {
@@ -219,12 +222,12 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
   };
 
   openDay() {
-
-   
+    this.getLastNoDocumento();
     if (this.salesControlForm.get('readingDate')?.value == null || this.salesControlForm.get('readingDate')?.value == '') {
       Swal.fire('Informacíon', ` Debe seleccionar fecha`);
       return;
     };
+
     this.dateControl = this.salesControlForm.get('readingDate')?.value;
     this.salesControlForm.controls['salesDate'].setValue(this.dateControl);
     this.getRegularPrices();
@@ -236,7 +239,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     this.getCountGallonsRegular();
     this.getCountGallonsSuper();
     this.getCountGallonsDiesel();
-    this.getLastNoDocumento();
+    // this.getLastNoDocumento();
     this.buttonSaleRegular = true;
     this.buttonSaleSuper = true;
     this.buttonSaleDiesel = true;
@@ -244,7 +247,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
   };
 
 
-//calculatesto send to totals
+  //calculatesto send to totals
   calculateRegularTotals() {
     this.gallonsRegular = this.salesControlForm.get('totalGallonRegular')?.value;
     this.pricerRegular = this.salesControlForm.get('regularPrice')?.value;
@@ -269,7 +272,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     this.salesControlForm.controls['balance'].setValue(this.total.toFixed(2));
   };
 
-//calculatesto send to totals
+  //calculatesto send to totals
   calculateDieselTotals() {
     this.gallonsDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
     this.priceDiesel = this.salesControlForm.get('dieselPrice')?.value;
@@ -292,7 +295,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     this.salesControlForm.controls['abonos'].setValue(this.totalAbonos.toFixed(2));
     this.totalBalance = this.salesControlForm.get('total')?.value;
     this.abonoBalanbce = this.salesControlForm.get('abonos')?.value;
-    this.result_total_abono = (this.abonoBalanbce  - this.totalBalance );
+    this.result_total_abono = (this.abonoBalanbce - this.totalBalance);
     this.salesControlForm.controls['balance'].setValue(this.result_total_abono.toFixed(2));
   };
 
@@ -302,16 +305,16 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     this.totalRegular = this.salesControlForm.get('totalGallonRegular')?.value;
     this.NewAvailableRegular = ((this.availableregularDB) - (this.totalRegular));
     this.salesControlForm.controls['available'].setValue(parseFloat(this.NewAvailableRegular));
-   
+
   };
- //rest amount to available to set nwe amount on inventory
+  //rest amount to available to set nwe amount on inventory
   restAvailableSuper() {
     this.availableSuperDB = this.salesControlForm.get('available')?.value;
     this.totalSuper = this.salesControlForm.get('totalGallonSuper')?.value;
     this.newAAvailableSuper = ((this.availableSuperDB) - (this.totalSuper));
     this.salesControlForm.controls['available'].setValue(parseFloat(this.newAAvailableSuper));
   };
- //rest amount to available to set nwe amount on inventory
+  //rest amount to available to set nwe amount on inventory
   restAvailableDiesel() {
     this.availableDieselDB = this.salesControlForm.get('available')?.value;
     this.totalDiesel = this.salesControlForm.get('totalGallonDiesel')?.value;
@@ -341,7 +344,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableRegular();
-      this.updateAvailableRegular();
+
       this.buttonSaleRegular = false;
       this.buttonAbonos = true;
     });
@@ -370,7 +373,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableSuper();
-      this.updateAvailableSuper();
+
       this.buttonSaleSuper = false;
       this.buttonAbonos = true;
     });
@@ -400,7 +403,7 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
     const snackBarRef2 = this._snackBar.openFromComponent(TimerComponent, { duration: 1000 });
     snackBarRef2.afterDismissed().subscribe(() => {
       this.restAvailableDiesel();
-      this.updateAvailableDiesel();
+
       this.buttonSaleDiesel = false;
       this.buttonAbonos = true;
     });
@@ -409,20 +412,48 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
   getTotalAbono() { this.calulcateAbonos(); this.saveButton = true };
 
 
+
   //method tha creat a sale control
   createSalesControl() {
     this._salesControlService.createSalesControl(this.salesControlForm.value)
       .subscribe((data) => {
+        this.updateAvailableGallons();
         Swal.fire('Creado', `Cuadre registrada Correctamente`, 'success');
         this.salesControlForm.reset();
       }, err => {
         Swal.fire('Error', err.error.msg, 'error')
+        this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['dashboard/cuadres/cierre-de-ventas']);
+        });
       });
   };
 
   //** saves daily sales control
   //** guarda el cuadre de venta del dia */*/
-  saveSalesControl() { this.createSalesControl(); };
+  saveSalesControl() {
+
+    Swal.fire({
+      title: 'Desea guardar venta?',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Guardar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.createSalesControl();
+
+      } else if (result.isDenied) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Proceso Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+
+  };
 
   //* get the sum of the gallonages of regular 
   //* obtiene la sumatorio de los galonajes de regular */
@@ -462,55 +493,26 @@ this.salesControlForm.controls['userName'].setValue(this._authService.usuario.fi
   };
 
 
-  //method that update available
-  updateAvailableRegular() {
-    this._fuelInventoryService.updateAvailableRegularSale(this.salesControlForm.value)
-      .subscribe((data) => {
-        Swal.fire({
-          title: "Descontado!",
-          text: "Combustible descontado de tanque",
-          timer: 400
-        })
-      }, err => {
-        Swal.fire('Error', err.error.msg, 'error')
-      });
-  };
 
-  //method that update available
-  updateAvailableSuper() {
-    this._fuelInventoryService.updateAvailableSuperSale(this.salesControlForm.value)
-      .subscribe((data) => {
-        Swal.fire({
-          title: "Descontado!",
-          text: "Combustible descontado de tanque",
-          timer: 400
-        })
-      }, err => {
-        Swal.fire('Error', err.error.msg, 'error')
-      });
-  };
-
-  //method that update available
-  updateAvailableDiesel() {
-    this._fuelInventoryService.updateAvailableDieselSale(this.salesControlForm.value)
-      .subscribe((data) => {
-        Swal.fire({
-          title: "Descontado!",
-          text: "Combustible descontado de tanque",
-          timer: 400
-        })
-      }, err => {
-        Swal.fire('Error', err.error.msg, 'error')
-      });
-  };
-
-
-//get general dispenser reader id
-  getGeneralDispenserReaderid(){
+  //get general dispenser reader id
+  getGeneralDispenserReaderid() {
     this._dispenserService.getGeneralDispenserReaderId(this.salesControlForm.value)
-      .subscribe(({generalDispenserReader}) => {
+      .subscribe(({ generalDispenserReader }) => {
         this.salesControlForm.controls['generalDispenserReaderId'].setValue(generalDispenserReader.generalDispenserReaderId);
       })
   }
+
+  updateAvailableGallons() {
+    this._fuelInventoryService.updateAvailableGallonsSale(this.salesControlForm.value)
+      .subscribe((data) => {
+        Swal.fire({
+          title: "Descontado!",
+          text: "Combustibles descontados de tanque",
+          timer: 1500
+        })
+      }, err => {
+        Swal.fire('Error', err.error.msg, 'error')
+      });
+  };
 
 };

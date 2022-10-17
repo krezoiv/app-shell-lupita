@@ -375,6 +375,18 @@ export class DispensersService {
     return this.http.post<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/updateApplied`, formData, this.headers);
   };
 
+  updateTotalGallonsByUdpdatingRegular(formData : GeneralDispenserReader): Observable<GeneralDispenserReader[]>{
+    return this.http.post<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/updateTotalGallonsByUdpdatingRegular`, formData, this.headers);
+  }
+
+  updateTotalGallonsByUdpdatingSuper(formData : GeneralDispenserReader): Observable<GeneralDispenserReader[]>{
+    return this.http.post<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/updateTotalGallonsByUdpdatingSuper`, formData, this.headers);
+  }
+
+  updateTotalGallonsByUdpdatingDiesel(formData : GeneralDispenserReader): Observable<GeneralDispenserReader[]>{
+    return this.http.post<GeneralDispenserReader[]>(`${api_url}/generalDispenserReader/updateTotalGallonsByUdpdatingDiesel`, formData, this.headers);
+  }
+
 };
 
 
