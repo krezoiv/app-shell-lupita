@@ -1366,7 +1366,7 @@ diesel1A() {
     snackBarRef1.afterDismissed().subscribe(() => {
       this.getFuelIdByHoseId();
       this.getAvailable();
-      this.buttonDisableDiesel = false
+      this.buttonDisableDiesel = true
       this.buttonDisableSuper = true
       this.btnDisableDisableR1A = true
       this.btnDisableRegularR1A = true
@@ -2608,7 +2608,7 @@ updateDieselA1() {
       this.getFuelIdByHoseId();
       this.getAvailable();
       this.setPreviousTotals();
-      this.buttonDisableDiesel = true;
+      this.buttonDisableDiesel = false;
       this.buttonDisableDieselEdit = true;
       this.showMeDiesel1A = true;
 
@@ -4062,4 +4062,3 @@ setPreviousTotals() {
 }
 
 }
-

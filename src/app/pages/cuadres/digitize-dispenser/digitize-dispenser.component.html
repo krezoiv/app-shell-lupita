@@ -448,11 +448,11 @@
                                     <div>
                                         <tr>
                                             <div>
-                                                <button [disabled]="buttonDisableDiesel" mat-raised-button color="warn"
+                                                <button mat-raised-button color="warn"
                                                     (click)="cancelarDieselA1();">
                                                     <mat-icon>cancel</mat-icon>&nbsp; Cancelar
                                                 </button> &nbsp;
-                                                <button [disabled]="buttonDisableDiesel" mat-raised-button
+                                                <button *ngIf="buttonDisableDiesel" mat-raised-button
                                                     color="primary" (click)="guardarDieselA1();">
                                                     <mat-icon>save</mat-icon>&nbsp;Guardar
                                                 </button>
