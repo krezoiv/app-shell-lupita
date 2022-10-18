@@ -109,12 +109,12 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['storeId'].setValue(infoPurchaseOrder.infoPurchaseOrder.storeId.storeName);
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
         const dateOrder = (this.purchaseForm.get('orderDate')?.value);
-        const dateOrder2 = (dateOrder.slice(0, -14));
-        const dateOrder3 = new Date(dateOrder2).toLocaleDateString('en-GB');
+        const dateOrder2 = (dateOrder.slice(0, -1));
+        const dateOrder3 = new Date(dateOrder2).toLocaleDateString();
         this.purchaseForm.controls['orderDate'].setValue(dateOrder3);
         const deliveryOrder = (this.purchaseForm.get('deliveryDate')?.value);
-        const deliveryOrder2 = (deliveryOrder.slice(0, -14));
-        const deliveryOrder3 = new Date(deliveryOrder2).toLocaleDateString('en-GB');
+        const deliveryOrder2 = (deliveryOrder.slice(0, -1));
+        const deliveryOrder3 = new Date(deliveryOrder2).toLocaleDateString();
         this.purchaseForm.controls['deliveryDate'].setValue(deliveryOrder3);
 
 

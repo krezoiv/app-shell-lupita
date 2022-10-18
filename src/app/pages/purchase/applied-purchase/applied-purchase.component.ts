@@ -122,16 +122,16 @@ export class AppliedPurchaseComponent implements OnInit {
         this.purchaseForm.controls['expirationDate'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.expirationDate);
         this.purchaseForm.controls['orderNumber'].setValue(infoPurchaseOrder.infoPurchaseOrder.purchaseId.orderNumber);
         const dt = (this.purchaseForm.get('expirationDate')?.value);
-        const dt2 = (dt.slice(0, -14))
-        const dt3 = new Date(dt2).toLocaleDateString('en-GB')
+        const dt2 = (dt.slice(0, -1))
+        const dt3 = new Date(dt2).toLocaleDateString()
         this.purchaseForm.controls['expirationDate'].setValue(dt3);
         const dateOrder = (this.purchaseForm.get('orderDate')?.value);
-        const dateOrder2 = (dateOrder.slice(0, -14));
-        const dateOrder3 = new Date(dateOrder2).toLocaleDateString('en-GB')
+        const dateOrder2 = (dateOrder.slice(0, -1));
+        const dateOrder3 = new Date(dateOrder2).toLocaleDateString()
         this.purchaseForm.controls['orderDate'].setValue(dateOrder3);
         const dateDelivery = (this.purchaseForm.get('deliveryDate')?.value);
-        const dateDelivery2 = (dateDelivery.slice(0, -14));
-        const dateDelivery3 = new Date(dateDelivery2).toLocaleDateString('en-GB')
+        const dateDelivery2 = (dateDelivery.slice(0, -1));
+        const dateDelivery3 = new Date(dateDelivery2).toLocaleDateString()
         this.purchaseForm.controls['deliveryDate'].setValue(dateDelivery3);
 
         this.getPurchaseOrderId();

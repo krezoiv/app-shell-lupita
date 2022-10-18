@@ -16,6 +16,7 @@
                         </mat-form-field><br>
                         <button id="btnFindorder" mat-raised-button color="primary"
                             (click)="findOrder();">Buscar</button>
+                           
                     </td>
                 </tr>
             </table><br>
@@ -53,13 +54,13 @@
                         <div class="col-sm-4">
                             <label for="exampleInputEmail1">Serie de Factura</label>
                             <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="invoiceSerie"
-                                placeholder="123456">
+                                placeholder="ingrese # factura">
                         </div>
 
                         <div class="col-sm-4">
                             <label for="exampleInputEmail1">Número de Factura</label>
                             <input type="text" class="form-control" aria-describedby="emailHelp"
-                                formControlName="invoiceDocument" placeholder="dte">
+                                formControlName="invoiceDocument" placeholder="ingrese dte">
                         </div>
                     </div>
 
@@ -89,12 +90,12 @@
                             <mat-form-field id="mat-form-field-formaPago" appearance="fill">
 
                                 <mat-icon matSuffix> local_gas_station</mat-icon>
-                                <mat-select formControlName="paymentMethodId" required>
+                                <mat-select formControlName="appliedId" required>
                                     <mat-option *ngFor="let applied of applied" [value]="applied.appliedId">
                                         {{applied.appliedName | titlecase}}
                                     </mat-option>
                                 </mat-select>
-                                <mat-error>Por favor seleccione forma de pago</mat-error>
+                                <mat-error>Por favor seleccione status de factura</mat-error>
                                 <mat-hint></mat-hint>
                             </mat-form-field>
 

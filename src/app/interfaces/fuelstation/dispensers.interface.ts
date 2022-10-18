@@ -268,7 +268,8 @@ export interface getGallonsDB_I {
 
 export interface ListLastNumerationDispenser_I {
     listNumerationDispenser: [];
-    generalDispId: GeneralDispenserReader
+    generalDispId: GeneralDispenserReader,
+    generalDispDate: GeneralDispenserReader
 }
 
 export interface DeleteGnrlDispenserAndDetail_I {

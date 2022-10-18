@@ -43,3 +43,10 @@ td{
     width: 25% !important;
     
 }
+hr {
+    color: purple;
+    height: 10px;
+    background-color: aquamarine;
+   
+
+}

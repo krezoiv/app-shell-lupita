@@ -24,15 +24,24 @@ export class DeleteDispenserReaderComponent implements OnInit {
   }
 
   deleteForm: FormGroup = this.fb.group({
-    generalDispenserReaderId : []
+    generalDispenserReaderId : [],
+    readingDate: []
   })
   
   getResumeLastNumerationDispenser(){
     this._dispenserService.getResumeLastNumerationDispenser()
-      .subscribe(({listNumerationDispenser, generalDispId}) => {
+      .subscribe(({listNumerationDispenser, generalDispId, generalDispDate}) => {
         this.dispenserReader = listNumerationDispenser
         this.deleteForm.controls['generalDispenserReaderId'].setValue(generalDispId.generalDispenserReaderId);
+        
+        this.deleteForm.controls['readingDate'].setValue(generalDispDate.readingDate);
        
+        
+        const date = (this.deleteForm.get('readingDate')?.value);
+        const date2 = (date.slice(0, -1));
+        const date3 = new Date(date2).toLocaleDateString();
+        this.deleteForm.controls['readingDate'].setValue(date3);
+      
       })
   }
 
