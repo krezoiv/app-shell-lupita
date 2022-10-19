@@ -161,5 +161,9 @@ export class AccumulatedSalesComponent implements OnInit {
     this.getAccumulatedGallons();
   }
 
-  newSearch(){}
+  newSearch(){
+    this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['dashboard/reporteria/acumulado-de-ventas']);
+    });
+  }
 }
