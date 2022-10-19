@@ -64,11 +64,11 @@ export class PurchaseByDatesComponent implements OnInit {
 
   constructor(
     private fb : FormBuilder,
-    private dateAdapter: DateAdapter<Date>,
+   // private dateAdapter: DateAdapter<Date>,
     private _purchaseRerpotingService : PurchasesReportingService,
     private router: Router
   ) {
-    this.dateAdapter.setLocale('en-GB')
+    //this.dateAdapter.setLocale('en-GB')
    }
 
   ngOnInit(): void {
@@ -93,7 +93,7 @@ export class PurchaseByDatesComponent implements OnInit {
         this.purchaseReport = getData;
        }
       })
-
+      console.log(this.reportingPurchaseForm.value)
   };
 
   getTotalPurchaseByDates(){

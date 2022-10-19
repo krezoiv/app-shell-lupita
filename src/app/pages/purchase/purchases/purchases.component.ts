@@ -110,11 +110,12 @@ export class PurchasesComponent implements OnInit {
         this.purchaseForm.controls['totalPurchase'].setValue(infoPurchaseOrder.infoPurchaseOrder.totalPurchaseOrder);
         const dateOrder = (this.purchaseForm.get('orderDate')?.value);
         const dateOrder2 = (dateOrder.slice(0, -1));
-        const dateOrder3 = new Date(dateOrder2).toLocaleDateString();
+        const dateOrder3 = new Date(dateOrder2.slice(0,-1)).toDateString();
         this.purchaseForm.controls['orderDate'].setValue(dateOrder3);
+
         const deliveryOrder = (this.purchaseForm.get('deliveryDate')?.value);
         const deliveryOrder2 = (deliveryOrder.slice(0, -1));
-        const deliveryOrder3 = new Date(deliveryOrder2).toLocaleDateString();
+        const deliveryOrder3 = new Date(deliveryOrder2).toDateString();
         this.purchaseForm.controls['deliveryDate'].setValue(deliveryOrder3);
 
 
@@ -228,6 +229,17 @@ export class PurchasesComponent implements OnInit {
 
 
   savePurchase() {
+
+    const dOrder= this.purchaseForm.get('orderDate')?.value;
+    const dOrder1 = new Date(dOrder);
+    const dOrder2 =dOrder1.toISOString()
+    this.purchaseForm.controls['orderDate'].setValue(dOrder2);
+
+    const dDelivery= this.purchaseForm.get('deliveryDate')?.value;
+    const dDekivery1 = new Date(dDelivery);
+    const dDelivery2 =dDekivery1.toISOString()
+    this.purchaseForm.controls['deliveryDate'].setValue(dDelivery2);
+   
 
     Swal.fire({
       title: 'Desea Guardar factura?',

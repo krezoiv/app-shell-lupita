@@ -473,7 +473,7 @@ export class PurchasesOrderComponent implements OnInit {
       title: 'Desea guardar orden de pedidos?',
       showDenyButton: true,
     
-      confirmButtonText: 'Guarder',
+      confirmButtonText: 'Guardar',
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
