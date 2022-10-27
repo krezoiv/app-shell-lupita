@@ -35,7 +35,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-4">
                         <section id="sectionFuel">
                             <h3>Galones Vendidos Super</h3>
-                            <table>
+                            <table >
                                 <thead>
                                     <tr id="">
                                         <th></th>
@@ -137,11 +137,12 @@
     
             </div>
             <hr>
-           
-            <div class="row">
+           <div id="sectionFuel">
+            
+            <div class="row" >
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <section id="sectionDetail2">
-                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr id="trEncabezado">
                                     <th scope="col">Fecha</th>
@@ -176,9 +177,10 @@
                     </section>
                 </div>
             </div>
+           </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <button  mat-raised-button color="primary"  id="btnDelete" (click)="deleteSalesControl()">Eliminar Registros</button>
+                    <button  mat-raised-button color="primary"  id="btn" (click)="deleteSalesControl()">Eliminar Registros</button>
                 </div>
             </div>
         </form>

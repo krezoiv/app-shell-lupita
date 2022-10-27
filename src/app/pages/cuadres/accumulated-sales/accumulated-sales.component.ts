@@ -6,6 +6,7 @@ import { GeneralDispenserReader } from 'src/app/models/fuelstation/dispensers.mo
 import { SalesControl } from 'src/app/models/sales/salesControl.model';
 import { DispensersService } from 'src/app/services/fuelstation/dispensers.service';
 import Swal from 'sweetalert2';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-accumulated-sales',
@@ -59,12 +60,14 @@ export class AccumulatedSalesComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router : Router,
-    private _dispenserService: DispensersService
+    private _dispenserService: DispensersService,
+    private dateAdapter: DateAdapter<Date>,
 
   ) { }
 
   ngOnInit(): void {
     this.getAccumulatedGallons();
+    this.dateAdapter.setLocale('en-GB');
   }
 
   convertDates() {

@@ -114,26 +114,7 @@
                     </div>
                 </div>
                </div>
-               <div div class="col-md-4 col-sm-4 col-xs-4">
-                <label>
-                    <h1>Precios De Combustibles</h1>
-                </label>
-                <section id="sectionFuel">
-                    
-                    <table>
-                        <thead>
-                            <tr id="">
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr  *ngFor="let fuel of fuels">
-                                <td  align="center" id="tdFuel">{{fuel.fuelName}}  Q. {{fuel.salePrice | number}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-               </div>
+              
             </div>
            
             <div>
@@ -164,7 +145,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <section id="sectionDetail2">
-                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr id="trEncabezado">
                                     <th scope="col">Fecha</th>

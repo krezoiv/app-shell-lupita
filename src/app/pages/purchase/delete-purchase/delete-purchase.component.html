@@ -86,27 +86,7 @@
                     </div>
                 </div>
 
-                <div div class="col-md-4 col-sm-4 col-xs-4">
-                    <label>
-                        <h1>Precios De Combustibles</h1>
-                    </label>
-                    <section id="sectionFuel">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr  *ngFor="let fuel of fuels">
-                                <td  align="center" id="tdFuel">{{fuel.fuelName}}  Q. {{fuel.salePrice | number}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
+               
             </div>
 
             <div>
@@ -135,7 +115,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <section  id="sectionDetail2">
-                        <table  id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr id="trEncabezado">
                                     <th scope="col">Fecha</th>
@@ -150,14 +130,14 @@
                             </thead>
                             <tbody>
                                <tr *ngFor="let data of purchaseOrder">
-                                <th id="tfTable">{{data.deliveryDate | date}}</th>
-                                <th id="tfTable">{{data.purchaseId.invoiceSerie}}</th>
-                                <th id="tfTable">{{data.purchaseId.invoiceDocument}}</th>
-                                <th id="tfTable">{{data.purchaseId.bankId}}</th>
-                                <th id="tfTable">{{data.purchaseId.NoBankCheck}}</th>
-                                <th id="tfTable">{{data.purchaseId.checkAmount | number}}</th>
-                                <th id="tfTable">{{data.purchaseId.couponsAmount | number}}</th>
-                                <th id="tfTable">{{data.purchaseId.orderNumber | number}}</th>
+                                <td id="tfTable">{{data.deliveryDate | date}}</td>
+                                <td id="tfTable">{{data.purchaseId.invoiceSerie}}</td>
+                                <td id="tfTable">{{data.purchaseId.invoiceDocument}}</td>
+                                <td id="tfTable">{{data.purchaseId.bankId}}</td>
+                                <td id="tfTable">{{data.purchaseId.NoBankCheck}}</td>
+                                <td id="tfTable">{{data.purchaseId.checkAmount | number}}</td>
+                                <td id="tfTable">{{data.purchaseId.couponsAmount | number}}</td>
+                                <td id="tfTable">{{data.purchaseId.orderNumber | number}}</td>
                                </tr>
                             </tbody>
                         </table>

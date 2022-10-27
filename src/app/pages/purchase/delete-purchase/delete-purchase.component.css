@@ -86,14 +86,14 @@ h2{
     border: 1px solid #000;
     padding: 10px 20px;
     width: 100% !important;
-    background-color: #EAFAF1;
+    background-color: #329B9B;
 }
 
 #sectionFuel {
     border: 1px solid #000;
     padding: 10px 20px;
     width: 100% !important;
-    background-color: #EAFAF1;
+    background-color: #329B9B;
 }
  
  
@@ -109,11 +109,12 @@ h2{
     margin-right: auto;
     position: relative;
     top: 20px;
-    background: black;
-    padding: 20px;
-    padding-left: 5%;
-    color: white;
-    font-size: 25px;
-    width: 25% !important;
+    width: 30%;
+    background-color: #B40000;
+    font-size: 100%;
+    color: #EAFAF1;
     
 }
+td{
+    text-align: center;
+ }

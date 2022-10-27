@@ -69,9 +69,9 @@
                     <label>
                         <h1>Galones Acumulados</h1>
                     </label>
-                    <div class="row">
+                    <div class="row" >
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <section id="sectionFuel">
+                            <section id="section">
                                 <h3> Galones Acumulados Regular</h3>
                                 <table>
                                     <thead>
@@ -89,7 +89,7 @@
                             </section>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <section id="sectionFuel">
+                            <section id="section">
                                 <h3> Galones Acumulados Super</h3>
                                 <table>
                                     <thead>
@@ -109,7 +109,7 @@
                             </section>
                         </div>
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <section id="sectionFuel">
+                            <section id="section">
                                 <h3> Galones Acumulados Diesel</h3>
                                 <table>
                                     <thead>
@@ -132,7 +132,7 @@
                 <h3 class="card-title">  Total de registros ({{totalPurchases}})</h3>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <section id="section">
-                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr id="trEncabezado">
                                     <th thDetail scope="col"> Fecha</th>
@@ -170,17 +170,17 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button mat-button color="primary" (click)="changePage(-5);">
+                        <button  id="skip" mat-button color="primary" (click)="changePage(-5);">
                             <mat-icon>skip_previous</mat-icon> Anterior
                         </button>
-                        <button mat-button color="primary" (click)="changePage(5);"> Siguiente <mat-icon>skip_next
+                        <button id="skip" mat-button color="primary" (click)="changePage(5);"> Siguiente <mat-icon>skip_next
                             </mat-icon></button><br>
 
                            
                     </section>
                     <h1>Facturas Pendientes de Pago</h1>
                     <section id="section">
-                        <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                        <table class="table table-dark table-hover">
                             <thead>
                                 <tr  id="trEncabezado">
                                     <th thDetail scope="col"> Fecha</th>
@@ -243,7 +243,7 @@
                         <h3>Compra Mayor</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -289,7 +289,7 @@
                         <h3>Compra Menor</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -350,7 +350,7 @@
                         <h3>Galones Mayor Regular</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -394,7 +394,7 @@
                         <h3>Gallones Menor Compados</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -456,7 +456,7 @@
                         <h3> Galones Myor Super</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -499,7 +499,7 @@
                         <h3>Galones Menor Super</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -560,7 +560,7 @@
                         <h3> gallones Mayor Diesel</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
@@ -604,7 +604,7 @@
                         <h3>gallones Menor Diesel</h3>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <section id="sectionDetail">
-                                <table id="tableDetail" class="table table-dark" class="mat-elevation-z8">
+                                <table class="table table-dark table-hover">
                                     <thead>
                                         <tr id="trEncabezado">
                                             <th thDetail scope="col"> Fecha</th>
