@@ -21,7 +21,7 @@
                         </mat-form-field>
                     </td>
                     <td id="parametrosPrincipales">
-                        <label id="label1">Fecha de Orden : &nbsp; &nbsp; &nbsp;</label>
+                        <label id="label1">Fecha de Despacho : &nbsp; &nbsp; &nbsp;</label>
                         <mat-form-field id="mat-form-field-registros" id="matFiel-heards" color="accent"
                             appearance="fill">
                             <input id="input-registros" required matInput [matDatepicker]="deliveryDate"
@@ -86,7 +86,7 @@
                 <tr>
                     <td colspan="3" scope="rowgroup" align="center">
                         <button *ngIf="buttonDisableApertura" id="aprturaOrden" mat-raised-button color="primary"
-                            (click)="aperturaOrden();">Guardar Super</button>
+                            (click)="aperturaOrden();">Generar Orden</button>
 
                     </td>
                 </tr>
