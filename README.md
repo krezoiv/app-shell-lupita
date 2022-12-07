@@ -51,3 +51,4 @@ ng serve --open
 ```
 
 levantado el proyecto del lado del frontend y backend esta listo para uso de la aplicacion de forma local.
+
