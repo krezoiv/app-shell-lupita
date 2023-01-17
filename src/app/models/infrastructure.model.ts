@@ -14,3 +14,16 @@ export class Fuels {
       
     ){}
 }
+
+
+export class Lubricants {
+
+    constructor(
+        public lubricantInvetoryCode: string,
+        public lubricantName: string,
+        public lubricantCostPrice : number,
+        public lubricantSalePrice : number,
+        public statusId: Status
+
+    ){}
+}

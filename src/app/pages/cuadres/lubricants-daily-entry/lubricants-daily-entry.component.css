@@ -1,0 +1,36 @@
+body {
+    min-height: 90vh;
+    min-width: none;  
+}
+
+form {
+    border: 1px solid #101010;
+    padding: 5px;
+    width: 70%;
+    max-width: 100%;
+    margin: auto;
+    top: 30px;
+    min-height: 90vh;
+    background-color: white;
+    
+}
+
+h3{
+    font-size: 30px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+hr {
+    color: purple;
+    height: 10px;
+    background-color: aquamarine;
+   
+
+}
+@media (max-width:100%) {
+    form {
+        width: 100%;
+    }
+
+}

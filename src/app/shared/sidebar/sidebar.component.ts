@@ -61,18 +61,30 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
             [{ name: 'crear', url: '/dashboard/infrastructura/tanques/agregar-tanque' },
             { name: 'ver', url: '/dashboard/infrastructura/tanques/listado-tanques' }]
         },
+        {
+          name: 'Lubricantes', url: '',
+          children:
+            [{ name: 'crear', url: '/dashboard/infrastructura/lubricantes/agregar-nuevo-lubricante' }]
+        },
         ],
       },
     ],
   },
   {
-    name: 'Cuadres',
+    name: 'Cuadre de Bombas',
     url: '/dashboard',
     children: [
       { name: 'Digitar Bombas', url: '/dashboard/cuadres/digitalizacion-de-bombas' },
       { name: 'Cierre Ventas', url: '/dashboard/cuadres/cierre-de-ventas' },
       { name: 'Eliminar Numeración', url: '/dashboard/cuadres/eliminar-digitalizacion-de-bombas' },
       { name: 'Eliminar Cierre Ventas', url: '/dashboard/cuadres/eliminar-cierre-de-venta' }]
+
+  },
+  {
+    name: 'Cuadre de Lubricantes',
+    url: '/dashboard',
+    children: [
+      { name: 'Registro diario venta', url: '/dashboard/cuadres/registro-lubricante-por-dia' }]
 
   },
   {
@@ -93,7 +105,9 @@ const TREE_DATA_MODULE: SideBarNodeModule[] = [
     url: '/dashboard/inventario',
     children: [{
       name: 'Disponibilidad', url: '/dashboard/inventario'
-    }]
+    },
+    { name: 'Lubricantes', url : '/dashboard/inventario/lubricantes'}
+  ]
   }
 
 ]

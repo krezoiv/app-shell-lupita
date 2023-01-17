@@ -1,0 +1,47 @@
+<body>
+    <div class="contenedor" class="mat-elevation-z8">
+        <form class="mat-elevation-z8">
+            <h1>Inventario lubricantes</h1>
+            <hr>
+            <div class="row" class="div">
+                <div class="col-md-8 col-sm-8 col-xs-8" >
+                    <div>
+                        <label> <h2> Lubricantes</h2></label>
+                        <section id="inventarioSection">
+                            <div>
+                                <table class="table table-dark table-hover">
+                                    <thead class="thead-dark">  
+                                        <tr id="trEncabezado">
+                                          
+                                            <th scope="col" >código</th>
+                                            <th scope="col" >Nombre</th>
+                                            <th scope="col" >Precio Costo</th>
+                                            <th scope="col" >Precio Público</th>
+                                            <th scope="col" >Stock</th>
+                                            <th scope="col" >Total Costo</th>
+                                            <th scope="col" >Total Público</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of inventory">
+                                            <td>{{data.lubricantInvetoryCode}}</td>
+                                            <td>{{data.lubricantId.lubricantName}}</td>
+                                            <td>Q. {{data.lubricantId.lubricantCostPrice}}</td>
+                                            <td>Q. {{data.lubricantId.lubricantSalePrice}}</td>
+                                            <td>{{data.lubricantAvailable}}</td>
+                                            <td>Q. {{data.lubricantId.lubricantCostPrice * data.lubricantAvailable | number}}</td>
+                                            <td>Q. {{data.lubricantId.lubricantSalePrice * data.lubricantAvailable | number}}</td>
+                                           
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>

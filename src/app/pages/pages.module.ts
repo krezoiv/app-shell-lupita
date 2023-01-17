@@ -72,6 +72,9 @@ import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purch
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { AppliedPurchaseComponent } from './purchase/applied-purchase/applied-purchase.component';
 import { AccumulatedSalesComponent } from './cuadres/accumulated-sales/accumulated-sales.component';
+import { OilInventoryComponent } from './inventory/oil-inventory/oil-inventory.component';
+import { CreateLubricantsComponent } from './infrastructure/lubricants/create-lubricants/create-lubricants.component';
+import { LubricantsDailyEntryComponent } from './cuadres/lubricants-daily-entry/lubricants-daily-entry.component';
 
 
 
@@ -126,7 +129,10 @@ import { AccumulatedSalesComponent } from './cuadres/accumulated-sales/accumulat
     UpdateUserComponent,
     AppliedPurchaseComponent,
     AccumulatedSalesComponent,
-
+    OilInventoryComponent,
+    CreateLubricantsComponent,
+    LubricantsDailyEntryComponent,
+  
    
     
   ],

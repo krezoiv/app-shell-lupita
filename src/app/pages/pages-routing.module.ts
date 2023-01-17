@@ -40,6 +40,9 @@ import { DeletePurchaseComponent } from './purchase/delete-purchase/delete-purch
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { AppliedPurchaseComponent } from './purchase/applied-purchase/applied-purchase.component';
 import { AccumulatedSalesComponent } from './cuadres/accumulated-sales/accumulated-sales.component';
+import { OilInventoryComponent } from './inventory/oil-inventory/oil-inventory.component';
+import { CreateLubricantsComponent } from './infrastructure/lubricants/create-lubricants/create-lubricants.component';
+import { LubricantsDailyEntryComponent } from './cuadres/lubricants-daily-entry/lubricants-daily-entry.component';
 
 
 
@@ -70,6 +73,7 @@ const routes: Routes =[
     {path : 'cuadres/cierre-de-ventas', canActivate:[GuestRoleGuard], component: SalesControlComponent},
     {path : 'compras/orden-de-pedido', canActivate:[GuestRoleGuard], component: PurchasesOrderComponent},
     {path : 'compras/generar-factura', canActivate:[GuestRoleGuard], component: PurchasesComponent},
+    {path : 'cuadres/registro-lubricante-por-dia', canActivate:[GuestRoleGuard], component: LubricantsDailyEntryComponent},
     {path : 'compras/cierre-factura', canActivate:[GuestRoleGuard], component: AppliedPurchaseComponent},
     {path : 'compras', canActivate:[GuestRoleGuard], component: MainPurchaseComponent},
     {path : 'inventario', component: InventoryComponent},
@@ -82,6 +86,8 @@ const routes: Routes =[
     {path : 'cuadres/eliminar-cierre-de-venta', component: DeleteSalesControlComponent},
     {path : 'compras/eliminar-orden-de-compra', component: DeletePurchaseOrderComponent},
     {path : 'compras/eliminar-factura-de-compra', component: DeletePurchaseComponent},
+    {path : 'inventario/lubricantes', component: OilInventoryComponent},
+    {path : 'infrastructura/lubricantes/agregar-nuevo-lubricante', component: CreateLubricantsComponent},
     
 
   ]},
